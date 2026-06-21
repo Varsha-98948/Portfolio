@@ -1,718 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>About | Varsha Jairam</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages.css">
-
 </head>
-
 <body>
-
-    <!-- =========================
-            NAVBAR
-    ========================== -->
-
     <nav class="navbar navbar-expand-lg navbar-custom">
-
         <div class="container">
-
-            <a class="navbar-brand" href="home.html">
-                Varsha
-            </a>
-
-            <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
-
-                <span class="navbar-toggler-icon"></span>
-
-            </button>
-
+            <a class="navbar-brand" href="home.html">Varsha Jairam</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
-
                 <ul class="navbar-nav ms-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href="about.html">About</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="projects.html">Projects</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="resume.html">Resume</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
-
             </div>
-
         </div>
-
     </nav>
 
-    <!-- =========================
-            HERO
-    ========================== -->
-
-    <section class="about-hero">
-
-        <div class="container">
-
-            <div class="row align-items-center g-5">
-
-                <!-- LEFT -->
-
-                <div class="col-lg-7">
-
-                    <span class="hero-label">
-                        COMPUTER ENGINEERING STUDENT • PRODUCT BUILDER
-                    </span>
-
-                    <h1 class="about-main-heading">
-
-                        Building products that connect
-                        <span class="gradient-text">
-                            people,
-                            information,
-                            and ideas.
-                        </span>
-
-                    </h1>
-
-                    <p class="about-main-description">
-
-                        I'm Varsha Jairam, a Computer Engineering student passionate
-                        about building software products, AI systems, automation
-                        platforms, and Android applications.
-
-                        I enjoy transforming ideas into meaningful digital products
-                        by combining engineering, product thinking, and user
-                        experience.
-
-                    </p>
-
-                    <div class="hero-buttons">
-
-                        <a href="projects.html"
-                            class="btn-primary-custom">
-
-                            View Projects
-
-                        </a>
-
-                        <a href="resume.html"
-                            class="btn-secondary-custom">
-
-                            Resume
-
-                        </a>
-
+    <main class="page-shell">
+        <section class="hero-section about-hero">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-4 reveal">
+                        <div class="about-portrait-stack">
+                            <div class="founder-photo"><img src="assets/images/profile/profile.jpeg" alt="Varsha Jairam"></div>
+                            <div class="portrait-tags">
+                                <span class="badge-soft">Pune, Maharashtra</span>
+                                <span class="badge-soft">Computer Engineering Student</span>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="hero-tags mt-4">
-
-                        <span>📍 Pune, India</span>
-
-                        <span>🎓 Computer Engineering</span>
-
-                        <span>⚡ Building Aion</span>
-
-                        <span>🚀 Building Triggerly</span>
-
+                    <div class="col-lg-8 reveal">
+                        <span class="eyebrow">About Varsha</span>
+                        <h1 class="hero-title">Building products that connect <span class="gradient-text">people, information, and ideas.</span></h1>
+                        <p class="hero-copy">I learn by building. The part I enjoy most is shaping a rough idea into a system that feels coherent: what it does, who it helps, how it behaves, and how it can grow.</p>
+                        <div class="focus-list">
+                            <div class="focus-item"><strong>Aion</strong><p class="mb-0">A personal intelligence product that acts like a second brain for thoughts, tasks, memories, and projects.</p></div>
+                            <div class="focus-item"><strong>Triggerly</strong><p class="mb-0">An automation platform built around triggers, actions, and workflows.</p></div>
+                        </div>
                     </div>
-
                 </div>
-
-                <!-- RIGHT -->
-
-                <div class="col-lg-5 text-center">
-
-                    <div class="hero-image-wrapper">
-
-                        <div class="hero-image-glow"></div>
-
-                        <img
-                            src="assets/images/profile/profile.jpeg"
-                            alt="Varsha Jairam"
-                            class="hero-profile-image">
-
-                    </div>
-
-                </div>
-
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- =========================
-            STATS
-    ========================== -->
-
-    <section class="about-stats">
-
-        <div class="container">
-
-            <div class="row g-4">
-
-                <div class="col-md-6 col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h2>4+</h2>
-
-                        <p>
-                            Projects Built
-                        </p>
-
-                    </div>
-
+        <section>
+            <div class="container">
+                <div class="text-center reveal">
+                    <span class="section-label">Journey</span>
+                    <h2 class="section-title">A product roadmap, not a timeline.</h2>
+                    <p class="section-subtitle">Each stage changed the way I think about software, from learning foundations to building products with stronger intent.</p>
                 </div>
-
-                <div class="col-md-6 col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h2>2</h2>
-
-                        <p>
-                            Products in Development
-                        </p>
-
-                    </div>
-
+                <div class="journey-roadmap">
+                    <article class="journey-step reveal"><div class="journey-dot">01</div><div class="journey-content glass-card lift-card"><span class="badge-soft">Foundation</span><h3>Learning the engineering base</h3><p>I started with programming fundamentals, academic discipline, and the habit of breaking problems into smaller systems.</p></div></article>
+                    <article class="journey-step reveal"><div class="journey-dot">02</div><div class="journey-content glass-card lift-card"><span class="badge-soft">Builder</span><h3>Making Android and web products</h3><p>Projects like SyncZone and GalliMart helped me move from code exercises to user-facing workflows.</p></div></article>
+                    <article class="journey-step reveal"><div class="journey-dot">03</div><div class="journey-content glass-card lift-card"><span class="badge-soft">Product Thinker</span><h3>Designing around problems</h3><p>I began caring more about purpose, adoption, architecture, constraints, and how a product should feel to use.</p></div></article>
+                    <article class="journey-step reveal"><div class="journey-dot">04</div><div class="journey-content glass-card lift-card"><span class="badge-soft">Future</span><h3>Building intelligent platforms</h3><p>Aion and Triggerly are the next step: AI, memory, automation, and products that connect information to outcomes.</p></div></article>
                 </div>
-
-                <div class="col-md-6 col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h2>AI</h2>
-
-                        <p>
-                            Systems & Automation
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-
-                    <div class="stat-card">
-
-                        <h2>∞</h2>
-
-                        <p>
-                            Ideas to Build
-                        </p>
-
-                    </div>
-
-                </div>
-
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- =========================
-            JOURNEY
-    ========================== -->
-
-    <section class="journey-section">
-
-        <div class="container">
-
-            <div class="text-center mb-5">
-
-                <h2 class="section-title">
-
-                    My Journey
-
-                </h2>
-
-                <p class="section-subtitle mx-auto">
-
-                    Every project taught me something new.
-                    Every challenge made me a better builder.
-
-                </p>
-
-            </div>
-
-            <div class="roadmap-container">
-
-                <div class="roadmap-line"></div>
-
-                <div class="row g-4">
-
-                    <div class="col-lg-3">
-
-                        <div class="roadmap-card">
-
-                            <span class="roadmap-year">
-                                Foundation
-                            </span>
-
-                            <h3>
-
-                                Started Building
-
-                            </h3>
-
-                            <p>
-
-                                Built a strong academic foundation,
-                                discovered programming,
-                                and developed a passion
-                                for solving real-world problems.
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-3">
-
-                        <div class="roadmap-card">
-
-                            <span class="roadmap-year">
-                                Android
-                            </span>
-
-                            <h3>
-
-                                Learning by Building
-
-                            </h3>
-
-                            <p>
-
-                                Built Android applications,
-                                explored Firebase,
-                                and transformed classroom
-                                concepts into real products.
-
-                            </p>
-
-                        </div>
-
-                    </div>
-                                        <div class="col-lg-3">
-
-                        <div class="roadmap-card">
-
-                            <span class="roadmap-year">
-                                Product Thinking
-                            </span>
-
-                            <h3>
-
-                                Beyond Just Code
-
-                            </h3>
-
-                            <p>
-
-                                Started designing complete products
-                                instead of individual features,
-                                focusing on user experience,
-                                scalability and solving meaningful
-                                problems.
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-3">
-
-                        <div class="roadmap-card">
-
-                            <span class="roadmap-year">
-                                Today
-                            </span>
-
-                            <h3>
-
-                                Building the Future
-
-                            </h3>
-
-                            <p>
-
-                                Currently building Aion and Triggerly,
-                                exploring AI systems,
-                                intelligent automation
-                                and product engineering.
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
+        <section class="section-band">
+            <div class="container">
+                <div class="section-header text-center reveal">
+                    <span class="section-label">Certifications</span>
+                    <h2 class="section-title">Proof points from the learning path.</h2>
                 </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================
-            SKILLS
-    ========================== -->
-
-    <section class="skills-section">
-
-        <div class="container">
-
-            <div class="text-center mb-5">
-
-                <h2 class="section-title">
-
-                    Technologies I Work With
-
-                </h2>
-
-                <p class="section-subtitle mx-auto">
-
-                    The tools I enjoy using to turn ideas into products.
-
-                </p>
-
-            </div>
-
-            <div class="row g-4">
-
-                <div class="col-lg-3">
-
-                    <div class="skill-card">
-
-                        <h4>
-
-                            Product
-
-                        </h4>
-
-                        <div class="skill-pills">
-
-                            <span class="skill-pill">Product Thinking</span>
-
-                            <span class="skill-pill">UI / UX</span>
-
-                            <span class="skill-pill">System Design</span>
-
-                            <span class="skill-pill">Problem Solving</span>
-
-                        </div>
-
-                    </div>
-
+                <div class="carousel-controls" data-carousel="#certifications">
+                    <button class="icon-btn" type="button" data-direction="prev" aria-label="Previous certificate">&lt;</button>
+                    <button class="icon-btn" type="button" data-direction="next" aria-label="Next certificate">&gt;</button>
                 </div>
-
-                <div class="col-lg-3">
-
-                    <div class="skill-card">
-
-                        <h4>
-
-                            Mobile
-
-                        </h4>
-
-                        <div class="skill-pills">
-
-                            <span class="skill-pill">Android</span>
-
-                            <span class="skill-pill">Java</span>
-
-                            <span class="skill-pill">Firebase</span>
-
-                            <span class="skill-pill">XML</span>
-
-                        </div>
-
-                    </div>
-
+                <div id="certifications" class="horizontal-scroll">
+                    <article class="cert-card glass-card lift-card reveal"><span class="badge-soft">2026</span><h3>Product Thinking Foundations</h3><p>Independent learning track</p><a class="btn-secondary-custom" href="#">View Certificate</a></article>
+                    <article class="cert-card glass-card lift-card reveal"><span class="badge-soft">2025</span><h3>Android Development</h3><p>Practical project learning</p><a class="btn-secondary-custom" href="#">View Certificate</a></article>
+                    <article class="cert-card glass-card lift-card reveal"><span class="badge-soft">2025</span><h3>AI and Automation Basics</h3><p>Applied systems learning</p><a class="btn-secondary-custom" href="#">View Certificate</a></article>
                 </div>
-
-                <div class="col-lg-3">
-
-                    <div class="skill-card">
-
-                        <h4>
-
-                            AI
-
-                        </h4>
-
-                        <div class="skill-pills">
-
-                            <span class="skill-pill">Python</span>
-
-                            <span class="skill-pill">LLMs</span>
-
-                            <span class="skill-pill">Automation</span>
-
-                            <span class="skill-pill">Prompt Engineering</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-lg-3">
-
-                    <div class="skill-card">
-
-                        <h4>
-
-                            Tools
-
-                        </h4>
-
-                        <div class="skill-pills">
-
-                            <span class="skill-pill">Git</span>
-
-                            <span class="skill-pill">GitHub</span>
-
-                            <span class="skill-pill">Supabase</span>
-
-                            <span class="skill-pill">Notion</span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- =========================
-            EDUCATION
-    ========================== -->
-
-    <section class="education-section">
-
-        <div class="container">
-
-            <div class="text-center mb-5">
-
-                <h2 class="section-title">
-
-                    Education
-
-                </h2>
-
-            </div>
-
-            <div class="row g-4">
-
-                <div class="col-md-4">
-
-                    <div class="education-card">
-
-                        <div class="education-score">
-
-                            9.05
-
-                        </div>
-
-                        <h4>
-
-                            B.E. Computer Engineering
-
-                        </h4>
-
-                        <p>
-
-                            Current CGPA
-
-                        </p>
-
-                    </div>
-
+        <section id="education">
+            <div class="container">
+                <div class="section-header text-center reveal">
+                    <span class="section-label">Education</span>
+                    <h2 class="section-title">Academic foundation.</h2>
                 </div>
-
-                <div class="col-md-4">
-
-                    <div class="education-card">
-
-                        <div class="education-score">
-
-                            93.33%
-
-                        </div>
-
-                        <h4>
-
-                            Diploma in Computer Engineering
-
-                        </h4>
-
-                    </div>
-
+                <div class="row g-3">
+                    <div class="col-md-4 reveal"><div class="education-card lift-card"><h3>B.E. Computer Engineering</h3><p>Current CGPA</p><div class="education-score">9.05</div></div></div>
+                    <div class="col-md-4 reveal"><div class="education-card lift-card"><h3>Diploma</h3><p>Final Percentage</p><div class="education-score">93.33%</div></div></div>
+                    <div class="col-md-4 reveal"><div class="education-card lift-card"><h3>SSC</h3><p>Final Percentage</p><div class="education-score">86.4%</div></div></div>
                 </div>
+            </div>
+        </section>
 
-                <div class="col-md-4">
-
-                    <div class="education-card">
-
-                        <div class="education-score">
-
-                            86.4%
-
-                        </div>
-
-                        <h4>
-
-                            SSC
-
-                        </h4>
-
-                    </div>
-
+        <section class="section-band">
+            <div class="container">
+                <div class="philosophy-card glass-card reveal">
+                    <span class="section-label">Philosophy</span>
+                    <p class="fun-overview">Learning by building keeps me honest. A product has to survive real constraints: users, workflows, edge cases, and the question of whether it meaningfully improves something.</p>
                 </div>
-
             </div>
+        </section>
+    </main>
 
-        </div>
-
-    </section>
-
-    <!-- =========================
-            PHILOSOPHY
-    ========================== -->
-
-    <section class="philosophy-section">
-
-        <div class="container">
-
-            <div class="philosophy-card">
-
-                <span class="quote-icon">
-
-                    ❝
-
-                </span>
-
-                <h2>
-
-                    My Philosophy
-
-                </h2>
-
-                <p>
-
-                    I believe software is more than just writing code.
-
-                    Every application begins with an idea,
-                    grows through thoughtful design,
-                    and becomes meaningful when it genuinely
-                    improves someone's life.
-
-                    That's what excites me the most —
-                    transforming ideas into products that
-                    connect people, information, and possibilities.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =========================
-            FOOTER
-    ========================== -->
-
-    <footer class="footer-custom">
-
-        <div class="container text-center">
-
-            <h2>
-
-                Let's Build Something Meaningful.
-
-            </h2>
-
-            <p>
-
-                Whether it's software,
-                AI,
-                product engineering,
-                or startup ideas —
-                I'd love to connect.
-
-            </p>
-
-            <div class="footer-links mt-4">
-
-                <a href="#">
-                    GitHub
-                </a>
-
-                <a href="#">
-                    LinkedIn
-                </a>
-
-                <a href="resume.html">
-                    Resume
-                </a>
-
-            </div>
-
-            <p class="copyright mt-5">
-
-                © 2026 Varsha Jairam
-
-            </p>
-
-        </div>
-
-    </footer>
-
+    <footer class="footer-custom"><div class="container text-center"><h2>Let's build something meaningful.</h2><p>Whether it is software, AI, or the next product idea, I would love to connect.</p><div class="footer-links"><a href="projects.html">Projects</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a></div><p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p></div></footer>
+    <button class="aion-launcher" type="button" data-aion-launcher aria-expanded="false" aria-label="Open Aion Core">AI</button>
+    <aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant"><div class="aion-header"><div><strong>Aion Core</strong><span>Local portfolio assistant</span></div><button class="aion-close" type="button" data-aion-close aria-label="Close Aion Core">&times;</button></div><div class="aion-messages" data-aion-messages></div><form class="aion-form" data-aion-form><input data-aion-input type="text" placeholder="Ask about Varsha..." aria-label="Ask Aion Core"><button type="submit">Ask</button></form></aside>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="assets/js/navbar.js"></script><script src="assets/js/main.js"></script><script src="assets/js/carousel.js"></script><script src="assets/js/aion-core.js"></script>
 </body>
-
 </html>

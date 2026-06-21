@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Varsha Jairam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom"><div class="container"><a class="navbar-brand" href="home.html">Varsha Jairam</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarNav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="home.html">Home</a></li><li class="nav-item"><a class="nav-link" href="about.html">About</a></li><li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li><li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li><li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li></ul></div></div></nav>
+    <main class="page-shell">
+        <section class="project-hero">
+            <div class="container">
+                <span class="eyebrow">Project Portfolio</span>
+                <h1 class="hero-title">A product map from current bets to completed systems.</h1>
+                <p class="hero-copy">Each chapter has a different job: what I am building now, what I have already shipped, and what stays archived as part of the learning trail.</p>
+            </div>
+        </section>
+
+        <section class="projects-chapter section-band" data-filter-section>
+            <div class="container">
+                <div class="chapter-heading">
+                    <div><span class="section-label">Chapter 01</span><h2>Currently Building</h2></div>
+                    <div class="filter-bar"><button class="filter-btn is-active" type="button" data-section-filter="all">All</button><button class="filter-btn" type="button" data-section-filter="ai">Aion</button><button class="filter-btn" type="button" data-section-filter="automation">Automation</button></div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 reveal" data-project-card data-tech="ai"><article class="project-card lift-card"><div class="project-meta"><span class="status-badge in-dev">In Development</span><span class="badge-soft">Aion</span></div><h3>Aion</h3><p>Personal intelligence for thoughts, memories, tasks, and projects.</p><div class="tech-list"><span class="tech-badge">Aion</span><span class="tech-badge">Memory</span><span class="tech-badge">Product UX</span></div><div class="project-actions"><a class="btn-secondary-custom" href="projects/aion.html">View Details</a></div></article></div>
+                    <div class="col-md-6 reveal" data-project-card data-tech="automation"><article class="project-card lift-card"><div class="project-meta"><span class="status-badge in-dev">In Development</span><span class="badge-soft">Workflow</span></div><h3>Triggerly</h3><p>Automation platform focused on triggers, actions, and repeatable workflows.</p><div class="tech-list"><span class="tech-badge">Triggers</span><span class="tech-badge">Actions</span><span class="tech-badge">Automation</span></div><div class="project-actions"><a class="btn-secondary-custom" href="projects/triggerly.html">View Details</a></div></article></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-chapter" data-filter-section>
+            <div class="container">
+                <div class="chapter-heading">
+                    <div><span class="section-label">Chapter 02</span><h2>Completed Projects</h2></div>
+                    <div class="filter-bar"><button class="filter-btn is-active" type="button" data-section-filter="all">All</button><button class="filter-btn" type="button" data-section-filter="android">Android</button><button class="filter-btn" type="button" data-section-filter="platform">Platform</button><button class="filter-btn" type="button" data-section-filter="simulation">Simulation</button><button class="filter-btn" type="button" data-section-filter="data">Data</button></div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3 reveal" data-project-card data-tech="android platform"><article class="project-card lift-card"><div class="project-meta"><span class="status-badge completed">Completed</span><span class="badge-soft">Marketplace</span></div><h3>GalliMart</h3><p>Hyperlocal Android marketplace for ordering within 7 km.</p><div class="tech-list"><span class="tech-badge">Android</span><span class="tech-badge">OSMDroid</span></div><div class="project-actions"><a class="btn-secondary-custom" href="projects/gallimart.html">View Details</a></div></article></div>
+                    <div class="col-md-6 col-lg-3 reveal" data-project-card data-tech="android platform"><article class="project-card lift-card"><div class="project-meta"><span class="status-badge completed">Completed</span><span class="badge-soft">Campus</span></div><h3>SyncZone</h3><p>Campus collaboration with dashboards, chat, assignments, and roles.</p><div class="tech-list"><span class="tech-badge">Firebase</span><span class="tech-badge">Chat</span></div><div class="project-actions"><a class="btn-secondary-custom" href="projects/synczone.html">View Details</a></div></article></div>
+                    <div class="col-md-6 col-lg-3 reveal" data-project-card data-tech="simulation"><article class="project-card lift-card"><div class="project-meta"><span class="status-badge completed">Completed</span><span class="badge-soft">Rover</span></div><h3>LunaOps</h3><p>Moon rover simulation with coordinate-based navigation.</p><div class="tech-list"><span class="tech-badge">Simulation</span><span class="tech-badge">Navigation</span></div><div class="project-actions"><a class="btn-secondary-custom" href="projects/lunaops.html">View Details</a></div></article></div>
+                    <div class="col-md-6 col-lg-3 reveal" data-project-card data-tech="data platform"><article class="project-card lift-card"><div class="project-meta"><span class="status-badge completed">Completed</span><span class="badge-soft">Healthcare</span></div><h3>MediCore</h3><p>Hospital management using NoSQL with SQL-like querying.</p><div class="tech-list"><span class="tech-badge">NoSQL</span><span class="tech-badge">Queries</span></div><div class="project-actions"><a class="btn-secondary-custom" href="projects/medicore.html">View Details</a></div></article></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-chapter section-band" data-filter-section>
+            <div class="container">
+                <div class="chapter-heading">
+                    <div><span class="section-label">Chapter 03</span><h2>Archived Projects</h2></div>
+                    <div class="filter-bar"><button class="filter-btn is-active" type="button" data-section-filter="all">All</button><button class="filter-btn" type="button" data-section-filter="archive">Archive</button></div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4 reveal" data-project-card data-tech="archive"><article class="project-card lift-card"><div class="project-meta"><span class="status-badge archived">Archived</span><span class="badge-soft">Early Build</span></div><h3>WanderWave</h3><p>An early project kept as a marker of growth and product exploration.</p><div class="tech-list"><span class="tech-badge">Web</span><span class="tech-badge">Learning</span></div><div class="project-actions"><a class="btn-secondary-custom" href="projects/wanderwave.html">View Details</a></div></article></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer-custom"><div class="container text-center"><h2>Explore the build stories.</h2><p>Each project page explains the motivation, product decisions, and future direction.</p><div class="footer-links"><a href="about.html">About</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a></div><p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p></div></footer>
+    <button class="aion-launcher" type="button" data-aion-launcher aria-expanded="false" aria-label="Open Aion Core">AI</button><aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant"><div class="aion-header"><div><strong>Aion Core</strong><span>Local portfolio assistant</span></div><button class="aion-close" type="button" data-aion-close aria-label="Close Aion Core">&times;</button></div><div class="aion-messages" data-aion-messages></div><form class="aion-form" data-aion-form><input data-aion-input type="text" placeholder="Ask about Varsha..." aria-label="Ask Aion Core"><button type="submit">Ask</button></form></aside>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/navbar.js"></script><script src="assets/js/main.js"></script><script src="assets/js/filters.js"></script><script src="assets/js/aion-core.js"></script>
+</body>
+</html>
