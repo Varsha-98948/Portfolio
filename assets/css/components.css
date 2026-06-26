@@ -152,10 +152,10 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-        rgba(8, 12, 24, 0.72);
-    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(22px) saturate(1.15);
+        linear-gradient(155deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+        rgba(10, 14, 26, 0.7);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px) saturate(1.08);
 }
 
 .lift-card {

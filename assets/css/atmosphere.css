@@ -1,8 +1,9 @@
 /* ═══════════════════════════════════════════════════════════
-   ATMOSPHERE — visual personality layer (layouts unchanged)
+   ATMOSPHERE — lighting & depth only (layouts unchanged)
+   Interstellar calm · workshop precision · Apple restraint
    ═══════════════════════════════════════════════════════════ */
 
-/* ─── Global canvas (injected .atmosphere-root) ─── */
+/* ─── Global canvas ─── */
 .atmosphere-root {
     position: fixed;
     inset: 0;
@@ -11,75 +12,98 @@
     overflow: hidden;
 }
 
+.atmosphere-mesh {
+    position: absolute;
+    inset: -15%;
+    background:
+        radial-gradient(ellipse 50% 40% at 15% 25%, rgba(52, 211, 153, 0.045), transparent 58%),
+        radial-gradient(ellipse 45% 38% at 85% 20%, rgba(110, 231, 214, 0.035), transparent 55%),
+        radial-gradient(ellipse 55% 45% at 50% 100%, rgba(124, 132, 168, 0.025), transparent 60%);
+    animation: meshDrift 36s ease-in-out infinite alternate;
+}
+
 .atmosphere-aurora {
     position: absolute;
-    inset: -20%;
+    inset: -10%;
+    opacity: 0.85;
     background:
-        radial-gradient(ellipse 55% 45% at 20% 20%, rgba(79, 209, 197, 0.09), transparent 55%),
-        radial-gradient(ellipse 50% 40% at 80% 30%, rgba(167, 139, 250, 0.08), transparent 50%),
-        radial-gradient(ellipse 60% 50% at 50% 90%, rgba(124, 156, 255, 0.06), transparent 55%);
-    animation: auroraDrift 28s ease-in-out infinite alternate;
+        radial-gradient(ellipse 60% 50% at 30% 15%, rgba(110, 231, 214, 0.04), transparent 58%),
+        radial-gradient(ellipse 50% 42% at 75% 35%, rgba(52, 211, 153, 0.035), transparent 52%);
+    animation: auroraDrift 40s ease-in-out infinite alternate;
 }
 
 .atmosphere-stars {
     position: absolute;
     inset: 0;
+    opacity: 0.55;
     background-image:
-        radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.35), transparent),
-        radial-gradient(1px 1px at 25% 42%, rgba(255, 255, 255, 0.25), transparent),
-        radial-gradient(1.5px 1.5px at 42% 8%, rgba(79, 209, 197, 0.4), transparent),
-        radial-gradient(1px 1px at 58% 65%, rgba(255, 255, 255, 0.2), transparent),
-        radial-gradient(1px 1px at 72% 22%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 88% 78%, rgba(240, 184, 110, 0.35), transparent),
-        radial-gradient(1px 1px at 15% 88%, rgba(255, 255, 255, 0.15), transparent),
-        radial-gradient(1px 1px at 93% 12%, rgba(255, 255, 255, 0.28), transparent),
-        radial-gradient(1px 1px at 35% 72%, rgba(167, 139, 250, 0.3), transparent),
-        radial-gradient(1px 1px at 65% 48%, rgba(255, 255, 255, 0.18), transparent);
-    animation: starTwinkle 8s ease-in-out infinite alternate;
+        radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.22), transparent),
+        radial-gradient(1px 1px at 28% 44%, rgba(255, 255, 255, 0.14), transparent),
+        radial-gradient(1px 1px at 52% 12%, rgba(110, 231, 214, 0.2), transparent),
+        radial-gradient(1px 1px at 68% 58%, rgba(255, 255, 255, 0.12), transparent),
+        radial-gradient(1px 1px at 84% 28%, rgba(255, 255, 255, 0.18), transparent),
+        radial-gradient(1px 1px at 22% 82%, rgba(255, 255, 255, 0.1), transparent);
 }
 
 .atmosphere-grain {
     position: absolute;
     inset: 0;
-    opacity: 0.045;
+    opacity: 0.028;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .atmosphere-vignette {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 40%, rgba(4, 6, 14, 0.55) 100%);
+    background: radial-gradient(ellipse 78% 68% at 50% 42%, transparent 42%, rgba(8, 11, 22, 0.5) 100%);
+}
+
+/* Page-specific ambient tint */
+.landing-page .atmosphere-mesh,
+.page-home .atmosphere-mesh {
+    background:
+        radial-gradient(ellipse 55% 45% at 70% 10%, rgba(110, 231, 214, 0.055), transparent 58%),
+        radial-gradient(ellipse 50% 40% at 20% 70%, rgba(52, 211, 153, 0.04), transparent 55%),
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(124, 132, 168, 0.02), transparent 62%);
+}
+
+.page-about .atmosphere-mesh {
+    background:
+        radial-gradient(ellipse 50% 45% at 25% 30%, rgba(201, 166, 107, 0.035), transparent 58%),
+        radial-gradient(ellipse 55% 48% at 80% 60%, rgba(52, 211, 153, 0.03), transparent 55%);
+}
+
+.page-about .atmosphere-aurora {
+    background:
+        radial-gradient(ellipse 55% 50% at 40% 25%, rgba(201, 166, 107, 0.025), transparent 60%),
+        radial-gradient(ellipse 45% 40% at 70% 75%, rgba(110, 231, 214, 0.03), transparent 55%);
+}
+
+.page-projects .atmosphere-mesh {
+    background:
+        radial-gradient(ellipse 50% 42% at 50% 20%, rgba(124, 132, 168, 0.035), transparent 58%),
+        radial-gradient(ellipse 48% 40% at 15% 80%, rgba(110, 231, 214, 0.025), transparent 52%);
+}
+
+.page-contact .atmosphere-mesh,
+.page-resume .atmosphere-mesh {
+    opacity: 0.7;
+}
+
+.page-contact .atmosphere-aurora {
+    opacity: 0.5;
+}
+
+@keyframes meshDrift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(-1.5%, 1%) scale(1.02); }
 }
 
 @keyframes auroraDrift {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(-2%, 1.5%) scale(1.03); }
+    from { transform: translate(0, 0); opacity: 0.85; }
+    to { transform: translate(-1%, 0.8%); opacity: 1; }
 }
 
-@keyframes starTwinkle {
-    from { opacity: 0.7; }
-    to { opacity: 1; }
-}
-
-/* Cursor glow (desktop) */
-.cursor-glow {
-    position: fixed;
-    z-index: 9999;
-    width: 280px;
-    height: 280px;
-    margin: -140px 0 0 -140px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(79, 209, 197, 0.06), transparent 65%);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 400ms ease;
-}
-
-body.is-cursor-active .cursor-glow {
-    opacity: 1;
-}
-
-/* Ensure content sits above section decor */
 section .container,
 .page-shell > * .container,
 main .container {
@@ -87,76 +111,39 @@ main .container {
     z-index: 1;
 }
 
-/* ─── Section atmosphere overlays (existing sections only) ─── */
 section::before,
 section::after {
     pointer-events: none;
 }
 
-/* HOME — cinematic hero */
-.page-home .home-showcase-hero::before {
+/* ─── HERO / HOME — cinematic ─── */
+.page-home .home-showcase-hero::before,
+.landing-page .landing-cinematic-main::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(ellipse 70% 55% at 85% 15%, rgba(124, 156, 255, 0.12), transparent),
-        radial-gradient(circle at 10% 80%, rgba(79, 209, 197, 0.06), transparent 40%);
     z-index: 0;
+    background:
+        radial-gradient(ellipse 75% 60% at 78% 12%, rgba(110, 231, 214, 0.07), transparent 58%),
+        radial-gradient(ellipse 50% 45% at 12% 85%, rgba(52, 211, 153, 0.04), transparent 48%);
 }
 
-.page-home .home-showcase-hero::after {
-    content: "";
-    position: absolute;
-    top: 12%;
-    right: 8%;
-    width: 120px;
-    height: 120px;
-    opacity: 0.12;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80' fill='none'%3E%3Ccircle cx='40' cy='40' r='28' stroke='%234fd1c5' stroke-width='0.8' stroke-dasharray='4 6'/%3E%3Ccircle cx='40' cy='40' r='8' fill='%234fd1c5' opacity='0.5'/%3E%3C/svg%3E") center/contain no-repeat;
-    animation: floatSlow 14s ease-in-out infinite;
+.page-home .home-showcase-hero-glow {
+    opacity: 0.9;
 }
 
 .page-home .home-stats-strip::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.04), transparent);
+    background: linear-gradient(90deg, transparent, rgba(110, 231, 214, 0.025), transparent);
 }
 
-.page-home .home-showcase::after {
-    content: "";
-    position: absolute;
-    bottom: 8%;
-    left: 3%;
-    width: 90px;
-    height: 40px;
-    opacity: 0.15;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 40'%3E%3Cpath d='M5 28 Q45 8 85 28' stroke='%23a78bfa' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-}
-
-/* HOME — tech / skills particles */
-.page-home .home-tech::before {
+.page-home .home-showcase::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image:
-        radial-gradient(2px 2px at 15% 30%, rgba(79, 209, 197, 0.35), transparent),
-        radial-gradient(2px 2px at 45% 70%, rgba(167, 139, 250, 0.3), transparent),
-        radial-gradient(1.5px 1.5px at 78% 25%, rgba(240, 184, 110, 0.35), transparent),
-        radial-gradient(2px 2px at 90% 60%, rgba(124, 156, 255, 0.3), transparent);
-    animation: particleDrift 20s linear infinite;
-}
-
-.page-home .home-tech::after {
-    content: "";
-    position: absolute;
-    top: 15%;
-    right: 5%;
-    width: 64px;
-    height: 64px;
-    opacity: 0.1;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cpath d='M32 8 L36 28 L56 32 L36 36 L32 56 L28 36 L8 32 L28 28 Z' stroke='%23f0b86e' stroke-width='1'/%3E%3C/svg%3E") no-repeat;
-    animation: floatSlow 18s ease-in-out infinite reverse;
+    background: radial-gradient(ellipse 55% 40% at 50% 0%, rgba(110, 231, 214, 0.04), transparent 65%);
 }
 
 .page-home .home-mini-timeline::before {
@@ -166,61 +153,45 @@ section::after {
     right: 0;
     top: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(124, 156, 255, 0.2), rgba(79, 209, 197, 0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(110, 231, 214, 0.12), rgba(52, 211, 153, 0.08), transparent);
 }
 
-/* ABOUT — engineering notebook */
+/* ─── SKILLS / TECH — clean ─── */
+.page-home .home-tech::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255, 255, 255, 0.018), transparent 60%);
+}
+
+.page-home .home-tech::after {
+    content: none;
+}
+
+/* ─── ABOUT — warmer ─── */
 .page-about .about-story-hero::before {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 0;
     background:
+        radial-gradient(ellipse 60% 55% at 20% 40%, rgba(201, 166, 107, 0.045), transparent 58%),
+        radial-gradient(ellipse 50% 45% at 85% 70%, rgba(52, 211, 153, 0.03), transparent 52%),
         repeating-linear-gradient(
             transparent,
             transparent 31px,
-            rgba(79, 209, 197, 0.04) 31px,
-            rgba(79, 209, 197, 0.04) 32px
-        ),
-        linear-gradient(90deg, rgba(240, 184, 110, 0.06) 1px, transparent 1px);
-    background-size: 100% 32px, 80px 100%;
-    background-position: 0 40px, 60px 0;
-    opacity: 0.7;
-    z-index: 0;
-}
-
-.page-about .about-story-hero::after {
-    content: "build → learn → ship";
-    position: absolute;
-    bottom: 12%;
-    right: 6%;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 0.85rem;
-    color: rgba(240, 184, 110, 0.25);
-    transform: rotate(-6deg);
-    letter-spacing: 0.02em;
+            rgba(110, 231, 214, 0.022) 31px,
+            rgba(110, 231, 214, 0.022) 32px
+        );
+    background-size: 100% 100%, 100% 100%, 100% 32px;
+    background-position: 0 0, 0 0, 0 48px;
 }
 
 .page-about .about-roadmap::before {
     content: "";
     position: absolute;
-    top: 20%;
-    left: 2%;
-    width: 48px;
-    height: 48px;
-    opacity: 0.12;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M8 40 L8 12 L40 12' stroke='%234fd1c5' stroke-width='1.2' fill='none'/%3E%3Cpath d='M32 8 L40 12 L36 20' stroke='%234fd1c5' stroke-width='1' fill='none'/%3E%3C/svg%3E") no-repeat;
-}
-
-.page-about .about-achievements::after {
-    content: "";
-    position: absolute;
-    top: 10%;
-    right: 4%;
-    width: 56px;
-    height: 56px;
-    opacity: 0.1;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56' fill='none'%3E%3Crect x='8' y='10' width='40' height='36' rx='3' stroke='%23a78bfa' stroke-width='1' transform='rotate(-4 28 28)'/%3E%3Cpath d='M16 22 h24 M16 30 h18' stroke='%23a78bfa' stroke-width='0.8' opacity='0.7'/%3E%3C/svg%3E") no-repeat;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 45% at 50% 100%, rgba(110, 231, 214, 0.035), transparent 62%);
 }
 
 .page-about .about-philosophy::before {
@@ -229,32 +200,35 @@ section::after {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: min(400px, 80%);
+    width: min(420px, 82%);
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.25), transparent);
+    background: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.18), transparent);
 }
 
-/* PROJECTS — blueprint grid */
+.page-about .about-education::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 90% 20%, rgba(201, 166, 107, 0.03), transparent 42%);
+}
+
+/* ─── PROJECTS — technical ─── */
 .page-projects .projects-category-hero::before {
     content: "";
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(124, 156, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 156, 255, 0.04) 1px, transparent 1px);
+        linear-gradient(rgba(110, 231, 214, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110, 231, 214, 0.022) 1px, transparent 1px);
     background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent);
+    mask-image: radial-gradient(ellipse 78% 68% at 50% 38%, black, transparent);
 }
 
 .page-projects .projects-category-hero::after {
     content: "";
     position: absolute;
-    bottom: 15%;
-    left: 5%;
-    width: 100px;
-    height: 50px;
-    opacity: 0.1;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50'%3E%3Crect x='5' y='5' width='90' height='40' rx='4' stroke='%237c9cff' stroke-width='0.8' fill='none' stroke-dasharray='3 4'/%3E%3Cline x1='5' y1='20' x2='95' y2='20' stroke='%237c9cff' stroke-width='0.5' opacity='0.5'/%3E%3C/svg%3E") no-repeat;
+    inset: 0;
+    background: radial-gradient(ellipse 55% 45% at 50% 30%, rgba(124, 132, 168, 0.04), transparent 65%);
 }
 
 .page-projects .projects-chapter--building::before {
@@ -264,104 +238,89 @@ section::after {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.14), transparent);
 }
 
-.page-projects .projects-chapter--archive::after {
-    content: "";
-    position: absolute;
-    bottom: 10%;
-    right: 6%;
-    width: 40px;
-    height: 40px;
-    opacity: 0.1;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M10 10 L30 30 M30 10 L10 30' stroke='%23f0b86e' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-}
-
-/* RESUME — clean paper glow */
+/* ─── RESUME — clean document ─── */
 .page-resume .resume-main::before {
     content: "";
     position: absolute;
-    top: 10%;
+    top: 8%;
     left: 50%;
     transform: translateX(-50%);
-    width: min(900px, 90%);
-    height: 60%;
-    background: radial-gradient(ellipse at center, rgba(124, 156, 255, 0.06), transparent 70%);
+    width: min(880px, 88%);
+    height: 65%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.025), transparent 72%);
     pointer-events: none;
 }
 
-.page-resume .resume-paper::after {
-    content: "";
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 80px;
-    height: 80px;
-    opacity: 0.08;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cpath d='M10 70 L70 10' stroke='%23f0b86e' stroke-width='1.2'/%3E%3Ccircle cx='62' cy='18' r='4' fill='none' stroke='%23f0b86e' stroke-width='1'/%3E%3C/svg%3E") no-repeat;
-}
-
-/* CONTACT — soft atmospheric */
+/* ─── CONTACT — calm ─── */
 .page-contact .contact-stage::before {
     content: "";
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 20% 30%, rgba(167, 139, 250, 0.07), transparent 45%),
-        radial-gradient(circle at 85% 70%, rgba(79, 209, 197, 0.05), transparent 40%);
+        radial-gradient(circle at 25% 35%, rgba(110, 231, 214, 0.04), transparent 48%),
+        radial-gradient(circle at 80% 65%, rgba(52, 211, 153, 0.025), transparent 42%);
 }
 
-.page-contact .contact-stage::after {
-    content: "";
-    position: absolute;
-    top: 18%;
-    left: 8%;
-    width: 70px;
-    height: 70px;
-    opacity: 0.1;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 70'%3E%3Cpath d='M12 20 Q35 5 58 20 L58 50 Q35 65 12 50 Z' stroke='%234fd1c5' stroke-width='1' fill='none'/%3E%3Cpath d='M22 35 L32 42 L48 28' stroke='%234fd1c5' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-    animation: floatSlow 16s ease-in-out infinite;
-}
-
-/* LANDING — deepen existing cinematic */
+/* ─── LANDING — cinematic depth ─── */
 .landing-page .landing-cinematic::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 50% 40% at 50% 50%, transparent 30%, rgba(4, 6, 14, 0.4) 100%);
+    background: radial-gradient(ellipse 52% 42% at 50% 48%, transparent 32%, rgba(8, 11, 22, 0.45) 100%);
 }
 
-.landing-cinematic-main::before {
+/* ─── PROJECT DETAIL — workshop light ─── */
+.page-shell > .project-hero-premium::before {
     content: "";
     position: absolute;
-    top: 20%;
-    left: 5%;
-    width: 60px;
-    height: 60px;
-    opacity: 0.12;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='12' stroke='%23a78bfa' stroke-width='0.8' fill='none'/%3E%3Cellipse cx='30' cy='30' rx='22' ry='8' stroke='%23a78bfa' stroke-width='0.6' fill='none' transform='rotate(-20 30 30)'/%3E%3C/svg%3E") no-repeat;
-    animation: floatSlow 20s ease-in-out infinite;
-    pointer-events: none;
+    inset: 0;
     z-index: 0;
+    background:
+        radial-gradient(ellipse 65% 55% at 50% 20%, rgba(110, 231, 214, 0.05), transparent 62%),
+        linear-gradient(rgba(110, 231, 214, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110, 231, 214, 0.018) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    mask-image: radial-gradient(ellipse 72% 62% at 50% 32%, black, transparent);
+    pointer-events: none;
 }
 
-/* ─── Section bands — richer depth ─── */
+.page-shell > section.section-band:nth-of-type(even)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 48% 38% at 88% 18%, rgba(124, 132, 168, 0.025), transparent);
+    pointer-events: none;
+}
+
+.page-shell > section:not(.project-hero-premium):not(.section-band)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(110, 231, 214, 0.06), transparent);
+    pointer-events: none;
+}
+
+/* ─── Section surfaces ─── */
 .section-band {
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
-        linear-gradient(135deg, rgba(124, 156, 255, 0.03), rgba(79, 209, 197, 0.02)),
-        rgba(8, 12, 22, 0.55) !important;
-    border-block-color: rgba(255, 255, 255, 0.06) !important;
+        linear-gradient(180deg, rgba(255, 255, 255, 0.022), rgba(255, 255, 255, 0)),
+        rgba(11, 15, 28, 0.52) !important;
+    border-block-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 .section-glow {
     background:
-        radial-gradient(ellipse 60% 80% at 50% 0%, rgba(124, 156, 255, 0.07), transparent),
-        rgba(255, 255, 255, 0.012) !important;
+        radial-gradient(ellipse 58% 75% at 50% 0%, rgba(110, 231, 214, 0.04), transparent),
+        rgba(255, 255, 255, 0.008) !important;
 }
 
-/* ─── Card & glass micro-details ─── */
+/* ─── Card lighting (no layout change) ─── */
 .glass-card,
 .project-card,
 .project-feature,
@@ -393,7 +352,7 @@ section::after {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     pointer-events: none;
     z-index: 1;
 }
@@ -403,11 +362,8 @@ section::after {
 .achievement-card.glass-card::after {
     content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.04), transparent 45%);
+    inset: 0;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 42%);
     pointer-events: none;
     opacity: 0;
     transition: opacity var(--transition-slow);
@@ -418,43 +374,29 @@ section::after {
     opacity: 1;
 }
 
-/* Gradient border shimmer on hover */
-.lift-card {
-    background-clip: padding-box;
-}
-
 .lift-card:hover {
     box-shadow:
         var(--shadow-md),
-        0 0 0 1px rgba(124, 156, 255, 0.15),
-        0 0 40px rgba(79, 209, 197, 0.08) !important;
+        0 0 0 1px rgba(110, 231, 214, 0.08) !important;
 }
 
-/* Navbar glass edge */
+/* ─── Navbar & footer edge light ─── */
 .navbar-custom {
     box-shadow:
         var(--shadow-sm),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
 .navbar-custom.is-scrolled {
     box-shadow:
-        0 18px 50px rgba(0, 0, 0, 0.34),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 0 60px rgba(124, 156, 255, 0.04) !important;
+        0 16px 44px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
 }
 
-/* Showcase panel depth */
 .showcase-panel {
     box-shadow:
         var(--shadow-md),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 0 80px rgba(124, 156, 255, 0.04);
-}
-
-/* Footer atmospheric fade */
-.footer-custom {
-    position: relative;
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .footer-custom::before {
@@ -464,155 +406,77 @@ section::after {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.15), rgba(167, 139, 250, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(110, 231, 214, 0.1), rgba(52, 211, 153, 0.06), transparent);
 }
 
-/* Floating deco elements (JS-injected) */
-.deco-float {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.12;
-}
-
-.deco-float svg {
-    width: 100%;
-    height: 100%;
-}
-
-.deco-float--star { animation: floatSlow 12s ease-in-out infinite; }
-.deco-float--planet { animation: floatSlow 18s ease-in-out infinite reverse; }
-.deco-float--arrow { animation: floatSlow 14s ease-in-out infinite; opacity: 0.08; }
-.deco-float--satellite { animation: floatSlow 22s ease-in-out infinite; opacity: 0.1; }
-
-/* PROJECT DETAIL — workshop depth */
-.page-shell > .project-hero-premium::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image:
-        linear-gradient(rgba(124, 156, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 156, 255, 0.035) 1px, transparent 1px);
-    background-size: 36px 36px;
-    mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, black, transparent);
-    pointer-events: none;
-}
-
-.page-shell > .project-hero-premium::after {
-    content: "";
-    position: absolute;
-    bottom: 12%;
-    left: 6%;
-    width: 72px;
-    height: 36px;
-    opacity: 0.09;
-    z-index: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 36'%3E%3Cpath d='M4 28 L68 28 M8 8 L8 28 M20 12 L20 24 M32 10 L32 26 M44 14 L44 22' stroke='%234fd1c5' stroke-width='0.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-    pointer-events: none;
-}
-
-.page-shell > section.section-band:nth-of-type(even)::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 50% 40% at 90% 20%, rgba(167, 139, 250, 0.04), transparent);
-    pointer-events: none;
-}
-
-.page-shell > section:not(.project-hero-premium):not(.section-band)::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.08), transparent);
-    pointer-events: none;
-}
-
-@keyframes floatSlow {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(3deg); }
-}
-
-@keyframes particleDrift {
-    from { transform: translateY(0); }
-    to { transform: translateY(-20px); }
-}
-
-/* Illustration accents in showcase visuals */
-.showcase-visual::after {
-    content: "";
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    opacity: 0.15;
-    pointer-events: none;
-}
-
-.showcase-visual--ai::after {
-    bottom: 12%;
-    right: 10%;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='8' y='12' width='32' height='24' rx='3' stroke='%237c9cff' stroke-width='1' fill='none'/%3E%3Cpath d='M14 20 h20 M14 26 h12' stroke='%237c9cff' stroke-width='0.8'/%3E%3C/svg%3E") no-repeat;
-}
-
-.showcase-visual--android::after {
-    top: 10%;
-    left: 8%;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='14' y='6' width='20' height='36' rx='4' stroke='%234fd1c5' stroke-width='1' fill='none'/%3E%3Ccircle cx='24' cy='38' r='2' fill='%234fd1c5'/%3E%3C/svg%3E") no-repeat;
-}
-
-.showcase-visual {
-    position: relative;
-}
-
-/* Eyebrow doodle underline */
-.eyebrow::after {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 6px;
-    margin-left: 0.35rem;
-    vertical-align: middle;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cpath d='M0 4 Q10 0 20 4' stroke='%23f0b86e' stroke-width='1' fill='none' opacity='0.5'/%3E%3C/svg%3E") no-repeat;
-}
-
-/* Resume paper glow */
 .resume-frame {
     box-shadow:
-        0 24px 64px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.06),
-        0 0 60px rgba(124, 156, 255, 0.06) !important;
+        0 24px 64px rgba(0, 0, 0, 0.32),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 0 48px rgba(110, 231, 214, 0.04) !important;
 }
 
 .resume-paper {
     position: relative;
 }
 
+/* ─── Product chip glow — desaturated ─── */
+.chip-glow--ai { background: rgba(110, 231, 214, 0.22) !important; }
+.chip-glow--auto { background: rgba(52, 211, 153, 0.18) !important; }
+.chip-glow--android { background: rgba(110, 231, 214, 0.2) !important; }
+.chip-glow--campus { background: rgba(201, 166, 107, 0.16) !important; }
+
+.home-product-chip:hover .chip-glow {
+    opacity: 0.65 !important;
+}
+
+/* ─── Hero glows — softer lighting ─── */
+.home-showcase-hero-glow {
+    background: radial-gradient(circle, rgba(110, 231, 214, 0.06), transparent 68%) !important;
+}
+
+.project-hero--aion .project-hero-premium-bg { background: radial-gradient(ellipse 60% 80% at 80% 20%, rgba(110, 231, 214, 0.08), transparent) !important; }
+.project-hero--triggerly .project-hero-premium-bg { background: radial-gradient(ellipse 60% 80% at 20% 30%, rgba(52, 211, 153, 0.07), transparent) !important; }
+.project-hero--gallimart .project-hero-premium-bg { background: radial-gradient(ellipse 60% 80% at 70% 40%, rgba(110, 231, 214, 0.07), transparent) !important; }
+.project-hero--synczone .project-hero-premium-bg { background: radial-gradient(ellipse 60% 80% at 30% 20%, rgba(201, 166, 107, 0.06), transparent) !important; }
+.project-hero--lunaops .project-hero-premium-bg { background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(124, 132, 168, 0.06), transparent) !important; }
+.project-hero--medicore .project-hero-premium-bg { background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(52, 211, 153, 0.06), transparent) !important; }
+.project-hero--wanderwave .project-hero-premium-bg { background: radial-gradient(ellipse 60% 80% at 40% 30%, rgba(201, 166, 107, 0.05), transparent) !important; }
+
 @media (max-width: 768px) {
-    .page-about .about-story-hero::after,
-    .deco-float,
-    .cursor-glow {
-        display: none;
+    .atmosphere-stars {
+        opacity: 0.35;
     }
 
-    .atmosphere-stars {
-        opacity: 0.5;
+    .atmosphere-mesh {
+        opacity: 0.75;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .atmosphere-aurora,
-    .atmosphere-stars,
-    .deco-float,
-    .landing-cinematic-main::before,
-    .page-contact .contact-stage::after,
-    .deco-float--satellite {
+    .atmosphere-mesh,
+    .atmosphere-aurora {
         animation: none !important;
     }
+}
 
-    .cursor-glow {
-        display: none !important;
-    }
+/* ─── Landing cinematic — palette alignment ─── */
+.landing-mesh {
+    background:
+        radial-gradient(ellipse 78% 58% at 50% 38%, rgba(110, 231, 214, 0.07), transparent),
+        radial-gradient(circle at 22% 78%, rgba(52, 211, 153, 0.045), transparent 42%),
+        radial-gradient(circle at 78% 22%, rgba(124, 132, 168, 0.03), transparent 36%) !important;
+    animation-duration: 32s !important;
+}
+
+.landing-grain {
+    opacity: 0.22 !important;
+}
+
+.landing-beam {
+    background: linear-gradient(to bottom, transparent, rgba(110, 231, 214, 0.12), transparent) !important;
+}
+
+.landing-particles span {
+    background: rgba(110, 231, 214, 0.28) !important;
 }
