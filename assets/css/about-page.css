@@ -1,19 +1,31 @@
 /* ═══════════════════════════════════════════════════════════
-   ABOUT PAGE — notebook chapter (layout unchanged)
+   ABOUT PAGE — engineer's notebook (layout unchanged)
    ═══════════════════════════════════════════════════════════ */
 
 .page-about {
+    --about-ease: cubic-bezier(0.37, 0, 0.63, 1);
     --about-emerald: rgba(52, 211, 153, 0.55);
     --about-cyan: rgba(110, 231, 214, 0.5);
     --about-gold: rgba(201, 166, 107, 0.45);
-    --about-paper: rgba(238, 242, 248, 0.04);
+}
+
+/* Paper grain — full page */
+.page-about .page-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .page-about .page-shell {
     position: relative;
+    z-index: 1;
 }
 
-/* ─── Shared decor layer ─── */
+/* ─── Shared decor ─── */
 .about-visual-layer {
     position: absolute;
     inset: 0;
@@ -22,11 +34,92 @@
     overflow: visible;
 }
 
-.about-visual-layer .container {
-    position: static;
+.about-sketch {
+    position: absolute;
+    overflow: visible;
+    --prox-x: 0px;
+    --prox-y: 0px;
+    --prox-o: 0.14;
+    transform: translate(var(--prox-x), var(--prox-y));
+    opacity: var(--prox-o);
+    transition: opacity 800ms var(--about-ease);
 }
 
-/* ─── HERO — warm notebook opening ─── */
+.about-sketch.is-drawn {
+    opacity: var(--prox-o, 0.22);
+}
+
+.about-sketch path,
+.about-sketch line,
+.about-sketch circle,
+.about-sketch polyline {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.about-sketch.is-drawn.about-sketch--arrow,
+.about-sketch.is-drawn.about-sketch--arrow-hero,
+.about-sketch.is-drawn.about-sketch--roadmap-arrow {
+    animation: aboutArrowIdle 7s var(--about-ease) infinite;
+}
+
+@keyframes aboutArrowIdle {
+    0%, 100% { transform: translate(var(--prox-x), var(--prox-y)); }
+    50% { transform: translate(calc(var(--prox-x) + 2px), calc(var(--prox-y) - 3px)); }
+}
+
+.about-sketch[data-about-twinkle].is-drawn {
+    animation: aboutStarTwinkle var(--twinkle-duration, 14s) var(--about-ease) var(--twinkle-delay, 2s) infinite;
+}
+
+@keyframes aboutStarTwinkle {
+    0%, 88%, 100% { filter: brightness(1); }
+    94% { filter: brightness(1.55); }
+}
+
+/* Margin notes */
+.about-annotation,
+.about-margin-note {
+    position: absolute;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(0.7rem, 1.3vw, 0.86rem);
+    letter-spacing: 0.015em;
+    white-space: nowrap;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.1s var(--about-ease);
+}
+
+.about-margin-note {
+    color: rgba(110, 231, 214, 0.3);
+}
+
+.about-annotation {
+    color: rgba(201, 166, 107, 0.34);
+}
+
+.is-chapter-visible .about-annotation,
+.is-chapter-visible .about-margin-note,
+[data-about-unfold-item].is-unfolded.about-margin-note--inline {
+    clip-path: inset(0 0 0 0);
+}
+
+/* Staggered unfold */
+[data-about-unfold-item] {
+    opacity: 0;
+    transform: translateY(7px);
+    transition:
+        opacity 900ms var(--about-ease),
+        transform 900ms var(--about-ease);
+}
+
+[data-about-unfold-item].is-unfolded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── HERO ─── */
 .page-about .about-story-hero {
     isolation: isolate;
 }
@@ -42,7 +135,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    opacity: 0.035;
+    opacity: 0.032;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
@@ -52,61 +145,96 @@
     z-index: 1;
 }
 
-/* Margin note — hero */
-.about-annotation {
-    position: absolute;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(0.72rem, 1.4vw, 0.88rem);
-    color: rgba(201, 166, 107, 0.32);
-    letter-spacing: 0.01em;
-    white-space: nowrap;
+.about-story-content {
+    position: relative;
+}
+
+.about-margin-note--hero {
+    top: -0.25rem;
+    right: 0;
+    transform: rotate(5deg);
+}
+
+.about-story-hero.is-chapter-visible .about-margin-note--hero {
+    transition-delay: 420ms;
+}
+
+.about-margin-note--story {
+    bottom: 0.5rem;
+    right: -0.5rem;
+    transform: rotate(-6deg);
+    color: rgba(201, 166, 107, 0.28);
+}
+
+.about-story-hero.is-chapter-visible .about-margin-note--story {
+    transition-delay: 820ms;
 }
 
 .about-annotation--hero {
-    top: 14%;
-    right: 6%;
+    top: 13%;
+    right: 5%;
     transform: rotate(-7deg);
-    opacity: 0;
-    transition: opacity 800ms ease 400ms;
+    transition-delay: 520ms;
 }
 
-.about-story-hero.is-chapter-visible .about-annotation--hero {
-    opacity: 1;
+.about-sketch--arrow-hero {
+    top: 37%;
+    right: 26%;
+    width: 52px;
+    height: 28px;
 }
 
-/* Hand-drawn underline on key word */
+.about-sketch--star-hero {
+    top: 21%;
+    left: 3%;
+    width: 18px;
+    height: 18px;
+}
+
+.about-sketch--cross-hero {
+    bottom: 17%;
+    left: 40%;
+    width: 14px;
+    height: 14px;
+}
+
+/* Hand-drawn underlines — stroke draw */
 .about-highlight-word {
     position: relative;
     display: inline-block;
 }
 
-.about-highlight-word::after {
-    content: "";
+.about-word-underline {
     position: absolute;
-    left: -2%;
-    bottom: 0.06em;
-    width: 104%;
-    height: 0.14em;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5 Q30 1 60 4 T118 5' stroke='%23c9a66b' stroke-width='1.4' fill='none' stroke-linecap='round' opacity='0.55'/%3E%3C/svg%3E") no-repeat;
-    background-size: 100% 100%;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 900ms cubic-bezier(0.4, 0, 0.2, 1) 300ms;
+    left: -3%;
+    bottom: -0.12em;
+    width: 106%;
+    height: 0.55em;
+    overflow: visible;
+    pointer-events: none;
 }
 
-.about-story-hero.is-chapter-visible .about-highlight-word::after {
-    transform: scaleX(1);
+.about-word-underline .about-draw-path {
+    stroke: rgba(201, 166, 107, 0.55);
+    stroke-width: 1.4;
+}
+
+.about-eyebrow-line {
+    display: inline-block;
+    width: 30px;
+    height: 10px;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+    overflow: visible;
+}
+
+.about-eyebrow-line .about-draw-path {
+    stroke: rgba(52, 211, 153, 0.45);
+    stroke-width: 1;
 }
 
 .page-about .about-story-content .eyebrow::after {
-    content: "";
-    display: inline-block;
-    width: 28px;
-    height: 8px;
-    margin-left: 0.4rem;
-    vertical-align: middle;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 8'%3E%3Cpath d='M1 5 Q14 0 27 5' stroke='%2334d399' stroke-width='1' fill='none' opacity='0.45'/%3E%3C/svg%3E") no-repeat;
+    content: none;
 }
 
 /* Workspace illustration */
@@ -117,110 +245,31 @@
     width: min(240px, 34vw);
     z-index: 2;
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 1s ease 500ms, transform 1s ease 500ms;
+    transform: translateY(10px);
+    transition: opacity 1.1s var(--about-ease) 720ms, transform 1.1s var(--about-ease) 720ms;
 }
 
 .about-workspace-fig svg {
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.22));
 }
 
 .about-story-hero.is-chapter-visible .about-workspace-fig {
-    opacity: 0.82;
-    animation: aboutIllFloat 14s ease-in-out 1s infinite;
+    opacity: 0.78;
+    animation: aboutNotebookBreathe 9s var(--about-ease) 1.8s infinite;
 }
 
-@keyframes aboutIllFloat {
+@keyframes aboutNotebookBreathe {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    50% { transform: translateY(-4px); }
 }
 
-/* Hero doodles */
-.about-sketch {
-    position: absolute;
-    overflow: visible;
+.about-portrait {
+    animation: aboutNotebookBreathe 11s var(--about-ease) 1s infinite;
 }
 
-.about-sketch--arrow-hero {
-    top: 38%;
-    right: 28%;
-    width: 52px;
-    height: 28px;
-    opacity: 0;
-}
-
-.about-sketch--star-hero {
-    top: 22%;
-    left: 4%;
-    width: 18px;
-    height: 18px;
-}
-
-.about-sketch--cross-hero {
-    bottom: 18%;
-    left: 42%;
-    width: 14px;
-    height: 14px;
-    opacity: 0.35;
-}
-
-.about-sketch path,
-.about-sketch line,
-.about-sketch circle,
-.about-sketch polyline {
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.about-sketch--drawable path,
-.about-sketch--drawable line,
-.about-sketch--drawable polyline,
-.about-sketch--drawable circle {
-    stroke-dasharray: 120;
-    stroke-dashoffset: 120;
-    transition: stroke-dashoffset 1.1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.about-sketch.is-drawn path,
-.about-sketch.is-drawn line,
-.about-sketch.is-drawn polyline,
-.about-sketch.is-drawn circle {
-    stroke-dashoffset: 0;
-}
-
-.about-sketch--arrow-hero.is-drawn {
-    opacity: 0.28;
-    animation: aboutArrowFloat 5s ease-in-out infinite;
-}
-
-@keyframes aboutArrowFloat {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(2px, -3px); }
-}
-
-.about-sketch--star-hero.is-drawn {
-    animation: aboutStarTwinkle 6s ease-in-out infinite;
-}
-
-.about-sketch--cross-hero.is-drawn {
-    opacity: 0.35;
-}
-
-@keyframes aboutStarTwinkle {
-    0%, 100% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 0.45; transform: scale(1.08); }
-}
-
-.about-sketch--achievements-star.is-drawn,
-.about-sketch--philosophy-star.is-drawn {
-    animation: aboutStarTwinkle 7s ease-in-out infinite;
-}
-
-/* Portrait frame — notebook tape */
 .about-portrait-frame::before {
     content: "";
     position: absolute;
@@ -228,70 +277,62 @@
     left: -6px;
     width: 42px;
     height: 16px;
-    background: rgba(201, 166, 107, 0.12);
-    border: 1px solid rgba(201, 166, 107, 0.18);
+    background: rgba(201, 166, 107, 0.11);
+    border: 1px solid rgba(201, 166, 107, 0.16);
     transform: rotate(-8deg);
     z-index: 2;
-    opacity: 0;
-    transition: opacity 600ms ease 600ms;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 900ms var(--about-ease) 900ms;
 }
 
 .about-story-hero.is-chapter-visible .about-portrait-frame::before {
-    opacity: 1;
+    clip-path: inset(0 0 0 0);
 }
 
 .page-about .portrait-accent {
-    border-color: rgba(110, 231, 214, 0.18);
+    border-color: rgba(110, 231, 214, 0.16);
 }
 
 /* ─── ROADMAP ─── */
 .page-about .about-roadmap {
     overflow: visible;
+    margin-top: -12px;
 }
 
 .about-annotation--roadmap {
-    top: 12%;
-    right: 4%;
+    top: 11%;
+    right: 3%;
     transform: rotate(4deg);
-    color: rgba(110, 231, 214, 0.28);
-    opacity: 0;
-    transition: opacity 700ms ease;
+    color: rgba(110, 231, 214, 0.3);
+    transition-delay: 400ms;
 }
 
-.about-roadmap.is-chapter-visible .about-annotation--roadmap {
-    opacity: 1;
+.about-margin-note--roadmap {
+    bottom: 8%;
+    left: 2%;
+    transform: rotate(-5deg);
+    color: rgba(52, 211, 153, 0.28);
+    transition-delay: 560ms;
 }
 
 .about-sketch--roadmap-arrow {
-    top: 18%;
-    left: 2%;
+    top: 17%;
+    left: 1%;
     width: 64px;
     height: 32px;
 }
 
-.about-sketch--roadmap-arrow.is-drawn {
-    opacity: 0.22;
-    animation: aboutArrowFloat 6s ease-in-out infinite reverse;
-}
-
 .about-sketch--roadmap-circle {
-    bottom: 12%;
-    right: 6%;
+    bottom: 11%;
+    right: 5%;
     width: 36px;
     height: 36px;
-    opacity: 0;
-}
-
-.about-sketch--roadmap-circle.is-drawn {
-    opacity: 0.2;
 }
 
 .page-about .roadmap-step.is-expanded {
-    border-color: rgba(52, 211, 153, 0.22);
-    background: rgba(52, 211, 153, 0.04);
-    box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border-color: rgba(52, 211, 153, 0.2);
+    background: rgba(52, 211, 153, 0.035);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* ─── ACHIEVEMENTS ─── */
@@ -301,145 +342,317 @@
 
 .about-sticky-label {
     position: absolute;
-    top: 6%;
-    left: 5%;
-    padding: 0.45rem 0.65rem;
+    top: 5%;
+    left: 4%;
+    padding: 0.42rem 0.62rem;
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 0.78rem;
-    color: rgba(201, 166, 107, 0.55);
-    background: rgba(201, 166, 107, 0.06);
-    border: 1px solid rgba(201, 166, 107, 0.14);
+    font-size: 0.76rem;
+    color: rgba(201, 166, 107, 0.52);
+    background: rgba(201, 166, 107, 0.05);
+    border: 1px solid rgba(201, 166, 107, 0.12);
     transform: rotate(-5deg);
-    opacity: 0;
+    clip-path: inset(0 100% 0 0);
     pointer-events: auto;
-    transition: opacity 700ms ease, transform 400ms ease;
+    transition: clip-path 1s var(--about-ease) 340ms, transform 500ms var(--about-ease);
+    animation: aboutNotebookBreathe 10s var(--about-ease) 2s infinite;
 }
 
 .about-achievements.is-chapter-visible .about-sticky-label {
-    opacity: 1;
+    clip-path: inset(0 0 0 0);
 }
 
 .about-sticky-label:hover {
-    transform: rotate(-2deg) scale(1.02);
+    transform: rotate(-2deg);
+}
+
+.about-margin-note--achievements {
+    top: 7%;
+    right: 4%;
+    transform: rotate(6deg);
+    color: rgba(110, 231, 214, 0.28);
+    transition-delay: 480ms;
 }
 
 .about-sketch--achievements-star {
-    top: 8%;
-    right: 7%;
+    top: 7%;
+    right: 6%;
     width: 16px;
     height: 16px;
 }
 
 .page-about .achievement-card {
-    transition:
-        transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow var(--transition),
-        border-color var(--transition);
+    transition: transform 480ms var(--about-ease), box-shadow var(--transition), border-color var(--transition);
 }
 
 .page-about .achievement-card:hover {
-    transform: rotate(-0.5deg) translateY(-3px);
+    transform: rotate(-0.4deg) translateY(-2px);
 }
 
 /* ─── EDUCATION ─── */
+.about-annotation--edu {
+    bottom: 9%;
+    left: 5%;
+    transform: rotate(-4deg);
+    color: rgba(52, 211, 153, 0.3);
+    transition-delay: 420ms;
+}
+
+.about-margin-note--edu {
+    top: 12%;
+    right: 3%;
+    transform: rotate(5deg);
+    color: rgba(201, 166, 107, 0.28);
+    transition-delay: 280ms;
+}
+
 .about-sketch--edu-cross {
-    top: 14%;
-    right: 8%;
+    top: 13%;
+    right: 7%;
     width: 18px;
     height: 18px;
-    opacity: 0.25;
-}
-
-.about-annotation--edu {
-    bottom: 10%;
-    left: 6%;
-    transform: rotate(-4deg);
-    color: rgba(52, 211, 153, 0.28);
-    opacity: 0;
-    transition: opacity 700ms ease;
-}
-
-.about-education.is-chapter-visible .about-annotation--edu {
-    opacity: 1;
 }
 
 .page-about .education-card-v2 {
-    box-shadow:
-        var(--shadow-sm),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.page-about .education-card-v2:nth-child(1) { transition-delay: 0ms; }
-.page-about .education-card-v2:nth-child(2) { transition-delay: 80ms; }
-.page-about .education-card-v2:nth-child(3) { transition-delay: 160ms; }
-
-.about-education.is-chapter-visible .education-card-v2 {
-    animation: aboutCardFade 700ms ease backwards;
-}
-
-.about-education.is-chapter-visible .education-card-v2:nth-child(1) { animation-delay: 100ms; }
-.about-education.is-chapter-visible .education-card-v2:nth-child(2) { animation-delay: 220ms; }
-.about-education.is-chapter-visible .education-card-v2:nth-child(3) { animation-delay: 340ms; }
-
-@keyframes aboutCardFade {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+[data-about-unfold-item].education-card-v2 {
+    transition-delay: calc(540ms + var(--card-i, 0) * 140ms) !important;
 }
 
 /* ─── PHILOSOPHY ─── */
 .page-about .about-philosophy {
     overflow: visible;
+    padding-bottom: 32px;
 }
 
 .page-about .philosophy-quote {
     position: relative;
-    padding-top: 0.5rem;
+    padding-top: 0.65rem;
 }
 
-.page-about .philosophy-quote::before {
-    content: "";
+.about-quote-line {
     position: absolute;
     top: 0;
     left: 50%;
-    width: min(320px, 70%);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.35), transparent);
-    transform: translateX(-50%) scaleX(0);
-    transform-origin: center;
-    transition: transform 900ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+    width: min(300px, 68%);
+    height: 8px;
+    overflow: visible;
 }
 
-.about-philosophy.is-chapter-visible .philosophy-quote::before {
-    transform: translateX(-50%) scaleX(1);
+.about-quote-line .about-draw-path {
+    stroke: rgba(201, 166, 107, 0.38);
+    stroke-width: 1;
+}
+
+.about-margin-note--philosophy {
+    bottom: 18%;
+    left: 8%;
+    transform: rotate(-5deg);
+    color: rgba(201, 166, 107, 0.26);
+    transition-delay: 600ms;
 }
 
 .page-about .philosophy-quote p {
-    color: rgba(238, 242, 248, 0.78);
+    color: rgba(238, 242, 248, 0.76);
 }
 
 .about-sketch--philosophy-star {
-    bottom: 20%;
-    left: 12%;
+    bottom: 19%;
+    left: 11%;
     width: 14px;
     height: 14px;
 }
 
-/* ─── Section rhythm — soft overlaps ─── */
-.page-about .about-roadmap {
-    margin-top: -12px;
+/* ─── CHAPTER END → Projects ─── */
+.about-chapter-end {
+    position: relative;
+    padding: clamp(72px, 10vw, 120px) 0 clamp(160px, 20vw, 260px);
+    text-align: center;
+    overflow: visible;
 }
 
+.about-chapter-end::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 18%;
+    transform: translateX(-50%);
+    width: min(420px, 70%);
+    height: min(280px, 40vh);
+    background: radial-gradient(ellipse at center, rgba(110, 231, 214, 0.04), transparent 68%);
+    pointer-events: none;
+}
+
+.about-chapter-end-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-chapter-note {
+    margin: 0;
+    max-width: 26rem;
+}
+
+.about-chapter-note-text {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.7vw, 1.06rem);
+    line-height: 1.55;
+    color: rgba(201, 166, 107, 0.44);
+    letter-spacing: 0.012em;
+    transform: rotate(-1.5deg);
+    clip-path: inset(0 100% 0 0);
+}
+
+.about-chapter-end.is-chapter-visible .about-chapter-note-text {
+    animation: aboutChapterWrite 1.35s var(--about-ease) forwards;
+}
+
+@keyframes aboutChapterWrite {
+    to { clip-path: inset(0 0 0 0); }
+}
+
+.about-plane-stage {
+    position: relative;
+    width: 72px;
+    height: 140px;
+    margin-top: clamp(2.75rem, 5vw, 3.75rem);
+    opacity: 0;
+    transition: opacity 600ms var(--about-ease);
+}
+
+.about-chapter-end.is-plane-ready .about-plane-stage {
+    opacity: 1;
+}
+
+.about-plane-svg {
+    width: 72px;
+    height: 72px;
+    display: block;
+    margin: 0 auto;
+    transform-origin: 36px 36px;
+}
+
+.about-plane-stroke {
+    fill: none;
+    stroke: rgba(110, 231, 214, 0.42);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.about-plane-body-center {
+    stroke: rgba(201, 166, 107, 0.28);
+}
+
+.about-plane-body {
+    opacity: 0;
+    transform: scale(0.88) translateY(6px);
+    transform-origin: 36px 30px;
+    transition:
+        opacity 480ms var(--about-ease),
+        transform 520ms var(--about-ease);
+}
+
+.about-chapter-end.is-plane-folded .about-plane-body {
+    opacity: 0.62;
+    transform: scale(1) translateY(0);
+}
+
+.about-plane-trail {
+    position: absolute;
+    left: 50%;
+    top: 58px;
+    width: 4px;
+    height: 80px;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.about-plane-trail-path {
+    stroke: rgba(110, 231, 214, 0.2);
+}
+
+.about-chapter-end.is-plane-flying .about-plane-trail {
+    opacity: 1;
+}
+
+.about-chapter-end.is-plane-flying .about-plane-trail-path {
+    animation: aboutTrailDraw 0.9s var(--about-ease) forwards;
+}
+
+@keyframes aboutTrailDraw {
+    from { stroke-dashoffset: 72; }
+    to { stroke-dashoffset: 0; }
+}
+
+.about-chapter-end.is-plane-flying .about-plane-svg {
+    animation: aboutPlaneFly 1.25s var(--about-ease) forwards;
+}
+
+@keyframes aboutPlaneFly {
+    0% {
+        transform: translateY(0) rotate(-4deg);
+        opacity: 0.65;
+    }
+    100% {
+        transform: translateY(96px) rotate(10deg);
+        opacity: 0;
+    }
+}
+
+.about-chapter-continue {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: rgba(110, 231, 214, 0.28);
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+        opacity 700ms var(--about-ease),
+        color var(--transition);
+}
+
+.about-chapter-end.is-plane-flying .about-chapter-continue {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 700ms;
+}
+
+.about-chapter-continue:hover {
+    color: rgba(110, 231, 214, 0.52);
+}
+
+.about-chapter-end.is-chapter-replayed .about-chapter-continue {
+    opacity: 1;
+    transform: none;
+}
+
+.about-chapter-end.is-chapter-replayed .about-plane-body {
+    opacity: 0.5;
+}
+
+/* ─── Responsive ─── */
 @media (max-width: 992px) {
     .about-workspace-fig {
         right: -2%;
         bottom: -4%;
         width: min(200px, 40vw);
-        opacity: 0.55;
     }
 
     .about-annotation--hero,
-    .about-sketch--arrow-hero {
+    .about-sketch--arrow-hero,
+    .about-margin-note--story {
         display: none;
     }
 }
@@ -448,6 +661,7 @@
     .about-workspace-fig,
     .about-sticky-label,
     .about-annotation,
+    .about-margin-note,
     .about-sketch--roadmap-circle,
     .about-sketch--cross-hero,
     .about-sketch--edu-cross,
@@ -458,28 +672,65 @@
     .about-portrait-frame::before {
         display: none;
     }
+
+    [data-about-unfold-item] {
+        opacity: 1;
+        transform: none;
+    }
+
+    .about-chapter-note-text {
+        clip-path: none;
+    }
+
+    .about-plane-stage {
+        opacity: 0.45;
+    }
+
+    .about-chapter-continue {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .about-workspace-fig,
-    .about-sketch--arrow-hero.is-drawn,
-    .about-sketch--star-hero.is-drawn {
+    .about-portrait,
+    .about-sticky-label,
+    .about-sketch.is-drawn {
         animation: none !important;
     }
 
-    .about-highlight-word::after {
-        transform: scaleX(1);
+    [data-about-unfold-item],
+    .about-annotation,
+    .about-margin-note,
+    .about-sticky-label,
+    .about-portrait-frame::before {
+        opacity: 1;
+        transform: none;
+        clip-path: none;
         transition: none;
     }
 
-    .about-sketch--drawable path,
-    .about-sketch--drawable line,
-    .about-sketch--drawable polyline {
-        stroke-dashoffset: 0;
-        transition: none;
+    .about-sketch {
+        opacity: 0.25;
     }
 
-    .about-education.is-chapter-visible .education-card-v2 {
+    .about-chapter-note-text {
+        clip-path: none;
         animation: none;
+    }
+
+    .about-plane-stage {
+        opacity: 0.4;
+    }
+
+    .about-chapter-end.is-plane-flying .about-plane-svg,
+    .about-chapter-end.is-plane-flying .about-plane-trail-path {
+        animation: none;
+    }
+
+    .about-chapter-continue {
+        opacity: 1;
+        transform: none;
     }
 }

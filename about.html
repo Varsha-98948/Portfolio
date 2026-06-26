@@ -34,15 +34,17 @@
         <section class="about-story-hero">
             <div class="about-story-hero-bg" aria-hidden="true"></div>
             <aside class="about-visual-layer" aria-hidden="true">
-                <span class="about-annotation about-annotation--hero">the person behind the work →</span>
-                <svg class="about-sketch about-sketch--drawable about-sketch--arrow-hero" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 14h32M30 8l8 6-8 6" stroke="#6ee7d6" stroke-width="1.1"/>
+                <span class="about-annotation about-annotation--hero">curious builder →</span>
+                <svg class="about-sketch about-sketch--drawable about-sketch--arrow about-sketch--arrow-hero" data-about-proximity data-proximity-radius="100" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 14H36" stroke="#6ee7d6" stroke-width="1.1"/>
+                    <path d="M30 8l8 6-8 6" stroke="#6ee7d6" stroke-width="1.1"/>
                 </svg>
-                <svg class="about-sketch about-sketch--drawable about-sketch--star-hero" data-about-twinkle viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <svg class="about-sketch about-sketch--drawable about-sketch--star-hero" data-about-proximity data-about-twinkle data-proximity-radius="90" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M9 2l1.8 5.5H16l-4.5 3.3 1.7 5.2L9 12.7 4.8 16l1.7-5.2L2 7.5h5.2L9 2z" stroke="#c9a66b" stroke-width="0.7"/>
                 </svg>
-                <svg class="about-sketch about-sketch--drawable about-sketch--cross-hero" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M3 3l8 8M11 3L3 11" stroke="#6ee7d6" stroke-width="0.9"/>
+                <svg class="about-sketch about-sketch--drawable about-sketch--cross-hero" data-about-proximity data-proximity-radius="80" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M3 3l8 8" stroke="#6ee7d6" stroke-width="0.9"/>
+                    <path d="M11 3L3 11" stroke="#6ee7d6" stroke-width="0.9"/>
                 </svg>
                 <figure class="about-workspace-fig">
                     <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -64,17 +66,19 @@
                 </figure>
             </aside>
             <div class="container">
-                <div class="about-story-hero-grid reveal">
-                    <div class="about-portrait-frame">
+                <div class="about-story-hero-grid">
+                    <div class="about-portrait-frame" data-about-unfold-item>
                         <div class="founder-photo about-portrait"><img src="assets/images/profile/profile.jpeg" alt="Varsha Jairam"></div>
                         <div class="portrait-accent" aria-hidden="true"></div>
                         <div class="portrait-tags"><span class="badge-soft">Pune, Maharashtra</span><span class="badge-soft">Computer Engineering</span></div>
                     </div>
                     <div class="about-story-content">
-                        <span class="eyebrow">My Story</span>
-                        <h1 class="about-story-title">Every product starts with a <span class="font-display about-highlight-word">question</span> — who needs this, and why?</h1>
-                        <p class="about-story-lede">I'm a computer engineering student who learns by building. Not exercises — real products with real constraints.</p>
-                        <p>From academic foundations to Android apps and campus platforms, I've learned that the best work happens when you care about purpose, adoption, and how something feels to use.</p>
+                        <span class="about-margin-note about-margin-note--hero">UI lover</span>
+                        <span class="eyebrow" data-about-unfold-item>My Story<svg class="about-eyebrow-line" viewBox="0 0 30 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="about-draw-path" d="M1 6 Q15 1 29 6"/></svg></span>
+                        <h1 class="about-story-title" data-about-unfold-item>Every product starts with a <span class="font-display about-highlight-word">question<svg class="about-word-underline" viewBox="0 0 120 8" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="about-draw-path" d="M2 5 Q30 1 60 4 T118 5"/></svg></span> — who needs this, and why?</h1>
+                        <p class="about-story-lede" data-about-unfold-item>I'm a computer engineering student who learns by building. Not exercises — real products with real constraints.</p>
+                        <p data-about-unfold-item>From academic foundations to Android apps and campus platforms, I've learned that the best work happens when you care about purpose, adoption, and how something feels to use.</p>
+                        <span class="about-margin-note about-margin-note--story">Android enthusiast</span>
                     </div>
                 </div>
             </div>
@@ -83,20 +87,22 @@
         <!-- Interactive horizontal roadmap -->
         <section class="about-roadmap section-glow">
             <aside class="about-visual-layer" aria-hidden="true">
-                <span class="about-annotation about-annotation--roadmap">each chapter → real work</span>
-                <svg class="about-sketch about-sketch--drawable about-sketch--roadmap-arrow" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 16h44M40 10l8 6-8 6" stroke="#34d399" stroke-width="1"/>
+                <span class="about-annotation about-annotation--roadmap">always learning →</span>
+                <span class="about-margin-note about-margin-note--roadmap">build in public</span>
+                <svg class="about-sketch about-sketch--drawable about-sketch--arrow about-sketch--roadmap-arrow" data-about-proximity data-proximity-radius="110" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 16H48" stroke="#34d399" stroke-width="1"/>
+                    <path d="M40 10l8 6-8 6" stroke="#34d399" stroke-width="1"/>
                 </svg>
-                <svg class="about-sketch about-sketch--drawable about-sketch--roadmap-circle" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="18" cy="18" r="14" stroke="#6ee7d6" stroke-width="0.8" stroke-dasharray="3 5"/>
+                <svg class="about-sketch about-sketch--drawable about-sketch--roadmap-circle" data-about-proximity data-proximity-radius="95" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="18" cy="18" r="14" stroke="#6ee7d6" stroke-width="0.8"/>
                 </svg>
             </aside>
             <div class="container">
-                <div class="section-split reveal">
-                    <div><span class="section-label">Journey</span><h2 class="section-title">Product roadmap.</h2></div>
-                    <p class="section-aside">Hover a milestone to explore each chapter.</p>
+                <div class="section-split">
+                    <div><span class="section-label" data-about-unfold-item>Journey</span><h2 class="section-title" data-about-unfold-item>Product roadmap.</h2></div>
+                    <p class="section-aside" data-about-unfold-item>Hover a milestone to explore each chapter.</p>
                 </div>
-                <div class="roadmap-track reveal" data-roadmap-track>
+                <div class="roadmap-track" data-roadmap-track data-about-unfold-item>
                     <article class="roadmap-step is-expanded" data-roadmap-step tabindex="0">
                         <div class="roadmap-step-marker"><span>01</span><time>2022</time></div>
                         <div class="roadmap-step-panel"><span class="badge-soft">Foundation</span><h3>Engineering base</h3><p>Programming fundamentals, academic discipline, breaking problems into systems.</p></div>
@@ -120,17 +126,18 @@
         <!-- Certifications & Achievements - multi-card carousel -->
         <section class="about-achievements section-band">
             <aside class="about-visual-layer" aria-hidden="true">
-                <span class="about-sticky-label">proof of the journey</span>
-                <svg class="about-sketch about-sketch--drawable about-sketch--achievements-star" data-about-twinkle viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <span class="about-sticky-label">always learning</span>
+                <span class="about-margin-note about-margin-note--achievements">proof of curiosity</span>
+                <svg class="about-sketch about-sketch--drawable about-sketch--achievements-star" data-about-proximity data-about-twinkle data-proximity-radius="85" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M8 1.5l1.6 4.9H15l-4 2.9 1.5 4.7L8 11.2 3.5 14l1.5-4.7-4-2.9h5.4L8 1.5z" stroke="#c9a66b" stroke-width="0.65"/>
                 </svg>
             </aside>
             <div class="container">
-                <div class="section-header text-center reveal">
-                    <span class="section-label">Recognition</span>
-                    <h2 class="section-title">Certifications & Achievements</h2>
+                <div class="section-header text-center">
+                    <span class="section-label" data-about-unfold-item>Recognition</span>
+                    <h2 class="section-title" data-about-unfold-item>Certifications & Achievements</h2>
                 </div>
-                <div class="achievements-carousel reveal" data-achievements-carousel>
+                <div class="achievements-carousel" data-achievements-carousel data-about-unfold-item>
                     <div class="achievements-viewport" data-achievements-viewport>
                         <div class="achievements-track" data-achievements-track>
                             <article class="achievement-card glass-card lift-card" data-achievement-card><span class="achievement-type">Certification</span><time>2026</time><h3>Product Thinking Foundations</h3><p>Problem discovery, user intent, and product scope.</p></article>
@@ -155,18 +162,20 @@
         <!-- Education - split layout -->
         <section class="about-education">
             <aside class="about-visual-layer" aria-hidden="true">
-                <span class="about-annotation about-annotation--edu">discipline + curiosity</span>
-                <svg class="about-sketch about-sketch--drawable about-sketch--edu-cross" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 4l10 10M14 4L4 14" stroke="#34d399" stroke-width="0.85"/>
+                <span class="about-annotation about-annotation--edu">discipline + craft</span>
+                <span class="about-margin-note about-margin-note--edu">never stop building</span>
+                <svg class="about-sketch about-sketch--drawable about-sketch--edu-cross" data-about-proximity data-proximity-radius="90" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 4l10 10" stroke="#34d399" stroke-width="0.85"/>
+                    <path d="M14 4L4 14" stroke="#34d399" stroke-width="0.85"/>
                 </svg>
             </aside>
             <div class="container">
-                <div class="education-split reveal">
-                    <div class="education-split-copy"><span class="section-label">Education</span><h2 class="section-title">Academic foundation.</h2><p>Strong grades backed by hands-on product building — not just coursework.</p></div>
+                <div class="education-split">
+                    <div class="education-split-copy"><span class="section-label" data-about-unfold-item>Education</span><h2 class="section-title" data-about-unfold-item>Academic foundation.</h2><p data-about-unfold-item>Strong grades backed by hands-on product building — not just coursework.</p></div>
                     <div class="education-cards">
-                        <div class="education-card-v2 glass-card"><h3>B.E. Computer Engineering</h3><p>Current CGPA</p><div class="education-score">9.05</div></div>
-                        <div class="education-card-v2 glass-card"><h3>Diploma</h3><p>Final Percentage</p><div class="education-score">93.33%</div></div>
-                        <div class="education-card-v2 glass-card"><h3>SSC</h3><p>Final Percentage</p><div class="education-score">86.4%</div></div>
+                        <div class="education-card-v2 glass-card" data-about-unfold-item style="--card-i: 0"><h3>B.E. Computer Engineering</h3><p>Current CGPA</p><div class="education-score">9.05</div></div>
+                        <div class="education-card-v2 glass-card" data-about-unfold-item style="--card-i: 1"><h3>Diploma</h3><p>Final Percentage</p><div class="education-score">93.33%</div></div>
+                        <div class="education-card-v2 glass-card" data-about-unfold-item style="--card-i: 2"><h3>SSC</h3><p>Final Percentage</p><div class="education-score">86.4%</div></div>
                     </div>
                 </div>
             </div>
@@ -175,12 +184,42 @@
         <!-- Philosophy quote -->
         <section class="about-philosophy">
             <aside class="about-visual-layer" aria-hidden="true">
-                <svg class="about-sketch about-sketch--drawable about-sketch--philosophy-star" data-about-twinkle viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <span class="about-margin-note about-margin-note--philosophy">build → learn → ship</span>
+                <svg class="about-sketch about-sketch--drawable about-sketch--philosophy-star" data-about-proximity data-about-twinkle data-proximity-radius="80" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M7 1.5l1.4 4.2H13l-3.5 2.5 1.3 4L7 9.8 3.2 12l1.3-4-3.5-2.5h4.6L7 1.5z" stroke="#6ee7d6" stroke-width="0.6"/>
                 </svg>
             </aside>
             <div class="container">
-                <blockquote class="philosophy-quote reveal"><p class="font-display">"Learning by building keeps me honest — a product has to survive real constraints."</p></blockquote>
+                <blockquote class="philosophy-quote">
+                    <svg class="about-quote-line" viewBox="0 0 300 8" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="about-draw-path" d="M4 4 Q150 1 296 4"/></svg>
+                    <p class="font-display" data-about-unfold-item>"Learning by building keeps me honest — a product has to survive real constraints."</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Chapter end → Projects -->
+        <section class="about-chapter-end" aria-label="Transition to projects">
+            <div class="container about-chapter-end-inner">
+                <p class="about-chapter-note">
+                    <span class="about-chapter-note-text" data-about-chapter-write>✦ here's what all that curiosity turned into.</span>
+                </p>
+                <div class="about-plane-stage" data-about-plane aria-hidden="true">
+                    <svg class="about-plane-svg" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g class="about-plane-fold-lines">
+                            <path class="about-plane-stroke" d="M12 38 L36 14 L60 38"/>
+                            <path class="about-plane-stroke" d="M36 14 V58"/>
+                        </g>
+                        <g class="about-plane-body">
+                            <path class="about-plane-stroke" d="M36 14 L60 38 L36 48 Z"/>
+                            <path class="about-plane-stroke" d="M36 14 L12 38 L36 48 Z"/>
+                            <path class="about-plane-stroke about-plane-body-center" d="M36 48 V58"/>
+                        </g>
+                    </svg>
+                    <svg class="about-plane-trail" viewBox="0 0 4 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path class="about-plane-stroke about-plane-trail-path" d="M2 0 V72" stroke-dasharray="3 5"/>
+                    </svg>
+                </div>
+                <a class="about-chapter-continue" href="projects.html">Projects</a>
             </div>
         </section>
     </main>
