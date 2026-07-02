@@ -2,6 +2,12 @@
     padding-block: clamp(16px, 3vw, 24px);
 }
 
+/* Reduce top spacing when the stack is used as the completed-projects gallery */
+.projects-chapter#completed .card-stack-section {
+    padding-block: 8px;
+    margin-top: 0.25rem;
+}
+
 .card-stack-shell {
     display: grid;
     gap: 1.4rem;

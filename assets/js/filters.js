@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const values = (card.dataset.tech || "").split(" ");
                 card.classList.toggle("is-hidden", filter !== "all" && !values.includes(filter));
             });
+            section.dispatchEvent(new CustomEvent("card-stack:filter", { detail: { filter } }));
             moveIndicator(button);
         };
 

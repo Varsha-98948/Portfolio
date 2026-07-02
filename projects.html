@@ -35,21 +35,21 @@
             <div class="container">
                 <p class="projects-category-intro reveal">Explore by chapter</p>
                 <div class="projects-category-grid reveal">
-                    <a class="category-card category-card--building lift-card" href="#building">
+                    <a class="category-card category-card--completed lift-card" href="#completed">
                         <span class="category-num">01</span>
+                        <h2>Completed Projects</h2>
+                        <p>4 featured systems</p>
+                        <span class="category-arrow">↓</span>
+                    </a>
+                    <a class="category-card category-card--building lift-card" href="#building">
+                        <span class="category-num">02</span>
                         <h2>Currently Building</h2>
                         <p>2 active products</p>
                         <span class="category-arrow">↓</span>
                     </a>
-                    <a class="category-card category-card--completed lift-card" href="#completed">
-                        <span class="category-num">02</span>
-                        <h2>Completed</h2>
-                        <p>4 shipped systems</p>
-                        <span class="category-arrow">↓</span>
-                    </a>
                     <a class="category-card category-card--archive lift-card" href="#archive">
                         <span class="category-num">03</span>
-                        <h2>Archived</h2>
+                        <h2>Archived Projects</h2>
                         <p>Early experiments</p>
                         <span class="category-arrow">↓</span>
                     </a>
@@ -57,31 +57,10 @@
             </div>
         </section>
 
-        <section class="projects-chapter projects-chapter--building" id="building" data-filter-section>
-            <div class="container">
-                <div class="chapter-heading">
-                    <div><span class="section-label">Chapter 01</span><h2>Currently Building</h2></div>
-                    <div class="filter-bar glass-tabs" data-glass-tabs data-filter-bar>
-                        <button class="filter-btn is-active" type="button" data-section-filter="all">All</button>
-                        <button class="filter-btn" type="button" data-section-filter="ai">AI</button>
-                        <button class="filter-btn" type="button" data-section-filter="automation">Automation</button>
-                    </div>
-                </div>
-                <div class="building-grid">
-                    <div class="reveal" data-project-card data-tech="ai">
-                        <article class="project-feature lift-card"><div class="project-feature-visual project-feature-visual--ai"></div><div class="project-feature-body"><div class="project-meta"><span class="status-badge in-dev">In Development</span></div><h3>Aion</h3><p>Personal intelligence for thoughts, memories, tasks, and projects.</p><div class="tech-list"><span class="tech-badge">Memory</span><span class="tech-badge">Product UX</span></div><a class="btn-secondary-custom" href="projects/aion.html">View Details</a></div></article>
-                    </div>
-                    <div class="reveal" data-project-card data-tech="automation">
-                        <article class="project-feature lift-card"><div class="project-feature-visual project-feature-visual--auto"></div><div class="project-feature-body"><div class="project-meta"><span class="status-badge in-dev">In Development</span></div><h3>Triggerly</h3><p>Automation platform focused on triggers, actions, and repeatable workflows.</p><div class="tech-list"><span class="tech-badge">Triggers</span><span class="tech-badge">Automation</span></div><a class="btn-secondary-custom" href="projects/triggerly.html">View Details</a></div></article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="projects-chapter section-band" id="completed" data-filter-section>
             <div class="container">
                 <div class="chapter-heading">
-                    <div><span class="section-label">Chapter 02</span><h2>Completed Projects</h2></div>
+                    <div><span class="section-label">Chapter 01</span><h2>Completed Projects</h2></div>
                     <div class="filter-bar glass-tabs" data-glass-tabs data-filter-bar>
                         <button class="filter-btn is-active" type="button" data-section-filter="all">All</button>
                         <button class="filter-btn" type="button" data-section-filter="android">Android</button>
@@ -93,23 +72,13 @@
 
                 <section class="card-stack-section" data-card-stack-section aria-label="Featured portfolio projects">
                     <div class="card-stack-shell">
-                        <div class="card-stack-heading">
-                            <div class="card-stack-copy">
-                                <span class="section-label">Interactive showcase</span>
-                                <h2>3D project stack</h2>
-                                <p>Explore the systems shaping my AI-inspired product work through a cinematic card stack built for the AION Core aesthetic.</p>
-                            </div>
-                            <div class="card-stack-controls">
-                                <button class="card-stack-toggle" type="button" data-card-stack-toggle>Autoplay: On</button>
-                                <span class="card-stack-hint">Use ← → keys</span>
-                            </div>
-                        </div>
+                        <!-- Stack begins directly under the chapter heading and filters (heading removed per design) -->
 
                         <div class="card-stack-stage" data-card-stack-stage tabindex="0">
                             <div class="card-stack-viewport" data-card-stack-viewport>
-                                <article class="card-stack-card" data-card-stack-card data-card-stack-accent="linear-gradient(140deg, rgba(110,231,214,0.24), rgba(124,132,168,0.18))">
+                                <article class="card-stack-card" data-card-stack-card data-project-card data-tech="simulation" data-href="projects/lunaops.html" data-card-stack-accent="linear-gradient(140deg, rgba(110,231,214,0.24), rgba(124,132,168,0.18))">
                                     <div class="card-stack-media">
-                                        <span class="card-stack-media-badge">AION • Product</span>
+                                        <span class="card-stack-media-badge">Simulation • Mission</span>
                                         <div class="card-stack-media-glow" aria-hidden="true"></div>
                                     </div>
                                     <div class="card-stack-body">
@@ -130,7 +99,7 @@
                                     </div>
                                 </article>
 
-                                <article class="card-stack-card" data-card-stack-card data-card-stack-accent="linear-gradient(140deg, rgba(52,211,153,0.22), rgba(110,231,214,0.16))">
+                                <article class="card-stack-card" data-card-stack-card data-project-card data-tech="android platform" data-href="projects/synczone.html" data-card-stack-accent="linear-gradient(140deg, rgba(52,211,153,0.22), rgba(110,231,214,0.16))">
                                     <div class="card-stack-media">
                                         <span class="card-stack-media-badge">Campus • Platform</span>
                                         <div class="card-stack-media-glow" aria-hidden="true"></div>
@@ -153,7 +122,7 @@
                                     </div>
                                 </article>
 
-                                <article class="card-stack-card" data-card-stack-card data-card-stack-accent="linear-gradient(140deg, rgba(124,132,168,0.24), rgba(52,211,153,0.16))">
+                                <article class="card-stack-card" data-card-stack-card data-project-card data-tech="android platform" data-href="projects/gallimart.html" data-card-stack-accent="linear-gradient(140deg, rgba(124,132,168,0.24), rgba(52,211,153,0.16))">
                                     <div class="card-stack-media">
                                         <span class="card-stack-media-badge">Marketplace • Android</span>
                                         <div class="card-stack-media-glow" aria-hidden="true"></div>
@@ -176,25 +145,25 @@
                                     </div>
                                 </article>
 
-                                <article class="card-stack-card" data-card-stack-card data-card-stack-accent="linear-gradient(140deg, rgba(201,166,107,0.2), rgba(124,132,168,0.18))">
+                                <article class="card-stack-card" data-card-stack-card data-project-card data-tech="data platform" data-href="projects/medicore.html" data-card-stack-accent="linear-gradient(140deg, rgba(201,166,107,0.2), rgba(124,132,168,0.18))">
                                     <div class="card-stack-media">
-                                        <span class="card-stack-media-badge">Audio • Exploration</span>
+                                        <span class="card-stack-media-badge">Health • Data</span>
                                         <div class="card-stack-media-glow" aria-hidden="true"></div>
                                     </div>
                                     <div class="card-stack-body">
                                         <div class="card-stack-title">
-                                            <h3>WanderWave</h3>
-                                            <span class="card-stack-status">Archived</span>
+                                            <h3>Medicore</h3>
+                                            <span class="card-stack-status">Completed</span>
                                         </div>
-                                        <p class="card-stack-description">An exploratory concept for immersive audio-led discovery, preserved as a marker of evolving product thinking.</p>
+                                        <p class="card-stack-description">Hospital management system with flexible NoSQL and SQL-like query capabilities for clinical workflows.</p>
                                         <div class="card-stack-tech-list">
-                                            <span class="card-stack-tech-pill">Interaction</span>
-                                            <span class="card-stack-tech-pill">Sound</span>
-                                            <span class="card-stack-tech-pill">Prototype</span>
+                                            <span class="card-stack-tech-pill">NoSQL</span>
+                                            <span class="card-stack-tech-pill">SQL-like</span>
+                                            <span class="card-stack-tech-pill">Healthcare</span>
                                         </div>
                                         <div class="card-stack-actions">
-                                            <a class="card-stack-btn" href="projects/wanderwave.html" target="_self">GitHub</a>
-                                            <a class="card-stack-btn card-stack-btn--ghost" href="projects/wanderwave.html">Live Demo</a>
+                                            <a class="card-stack-btn" href="projects/medicore.html" target="_self">GitHub</a>
+                                            <a class="card-stack-btn card-stack-btn--ghost" href="projects/medicore.html">Live Demo</a>
                                         </div>
                                     </div>
                                 </article>
@@ -208,12 +177,21 @@
                         </div>
                     </div>
                 </section>
+            </div>
+        </section>
 
-                <div class="completed-mosaic">
-                    <div class="reveal" data-project-card data-tech="android platform"><article class="project-tile lift-card"><span class="status-badge completed">Completed</span><h3>GalliMart</h3><p>Hyperlocal Android marketplace within 7 km.</p><a href="projects/gallimart.html">Details →</a></article></div>
-                    <div class="reveal" data-project-card data-tech="android platform"><article class="project-tile lift-card project-tile--tall"><span class="status-badge completed">Completed</span><h3>SyncZone</h3><p>Campus collaboration with dashboards, chat, and roles.</p><a href="projects/synczone.html">Details →</a></article></div>
-                    <div class="reveal" data-project-card data-tech="simulation"><article class="project-tile lift-card"><span class="status-badge completed">Completed</span><h3>LunaOps</h3><p>Moon rover simulation with coordinate navigation.</p><a href="projects/lunaops.html">Details →</a></article></div>
-                    <div class="reveal" data-project-card data-tech="data platform"><article class="project-tile lift-card"><span class="status-badge completed">Completed</span><h3>MediCore</h3><p>Hospital management with NoSQL and SQL-like queries.</p><a href="projects/medicore.html">Details →</a></article></div>
+        <section class="projects-chapter projects-chapter--building" id="building" data-filter-section>
+            <div class="container">
+                <div class="chapter-heading">
+                    <div><span class="section-label">Chapter 02</span><h2>Currently Building</h2></div>
+                </div>
+                <div class="building-grid">
+                    <div class="reveal" data-project-card data-tech="ai">
+                        <article class="project-feature lift-card"><div class="project-feature-visual project-feature-visual--ai"></div><div class="project-feature-body"><div class="project-meta"><span class="status-badge in-dev">In Development</span></div><h3>Aion</h3><p>Personal intelligence for thoughts, memories, tasks, and projects.</p><div class="tech-list"><span class="tech-badge">Memory</span><span class="tech-badge">Product UX</span></div><a class="btn-secondary-custom" href="projects/aion.html">View Details</a></div></article>
+                    </div>
+                    <div class="reveal" data-project-card data-tech="automation">
+                        <article class="project-feature lift-card"><div class="project-feature-visual project-feature-visual--auto"></div><div class="project-feature-body"><div class="project-meta"><span class="status-badge in-dev">In Development</span></div><h3>Triggerly</h3><p>Automation platform focused on triggers, actions, and repeatable workflows.</p><div class="tech-list"><span class="tech-badge">Triggers</span><span class="tech-badge">Automation</span></div><a class="btn-secondary-custom" href="projects/triggerly.html">View Details</a></div></article>
+                    </div>
                 </div>
             </div>
         </section>
