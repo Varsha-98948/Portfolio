@@ -1,32 +1,45 @@
 :root {
-    --bg-primary: #0a0e1a;
-    --bg-secondary: #0d1220;
-    --bg-tertiary: #121829;
-    --bg-elevated: rgba(255, 255, 255, 0.04);
-    --bg-glass: rgba(10, 14, 26, 0.74);
+    --bg-primary: #0c0f14;
+    --bg-secondary: #131822;
+    --bg-tertiary: #191f2a;
+    --bg-elevated: rgba(246, 244, 239, 0.04);
+    --bg-glass: rgba(19, 24, 34, 0.82);
 
-    --text-primary: #eef2f8;
-    --text-secondary: #b0bbd0;
-    --text-muted: #6b778d;
+    --text-primary: #f6f4ef;
+    --text-secondary: #a9b0bd;
+    --text-muted: #7f8794;
 
-    --accent: #6ee7d6;
-    --accent-emerald: #34d399;
-    --accent-alt: #34d399;
-    --accent-strong: #8b93b8;
-    --accent-warm: #c9a66b;
-    --accent-violet: #7c85a8;
-    --accent-hover: #8ef0e2;
+    --accent: #7b86e8;
+    --accent-emerald: #62c370;
+    --accent-alt: #d1b273;
+    --accent-strong: #8f98e8;
+    --accent-warm: #d1b273;
+    --accent-violet: #a7aecd;
+    --accent-hover: #92a0ed;
 
-    --border: rgba(255, 255, 255, 0.07);
-    --border-strong: rgba(255, 255, 255, 0.12);
+    --border: rgba(42, 51, 64, 0.92);
+    --border-strong: rgba(246, 244, 239, 0.16);
 
-    --shadow-sm: 0 8px 28px rgba(0, 0, 0, 0.26);
-    --shadow-md: 0 16px 44px rgba(0, 0, 0, 0.32);
-    --shadow-lg: 0 28px 72px rgba(0, 0, 0, 0.42);
-    --glow: 0 0 48px rgba(52, 211, 153, 0.07);
-    --glow-cyan: 0 0 40px rgba(110, 231, 214, 0.06);
-    --glow-violet: 0 0 44px rgba(124, 132, 168, 0.04);
-    --glow-gold: 0 0 32px rgba(201, 166, 107, 0.05);
+    --shadow-sm: 0 10px 32px rgba(4, 6, 10, 0.24);
+    --shadow-md: 0 18px 46px rgba(4, 6, 10, 0.28);
+    --shadow-lg: 0 28px 70px rgba(4, 6, 10, 0.34);
+    --glow: none;
+    --glow-cyan: none;
+    --glow-violet: none;
+    --glow-gold: none;
+
+    --color-ink-rgb: 12, 15, 20;
+    --color-panel-rgb: 19, 24, 34;
+    --color-surface-rgb: 25, 31, 42;
+    --color-border-rgb: 42, 51, 64;
+    --color-text-primary-rgb: 246, 244, 239;
+    --color-text-secondary-rgb: 169, 176, 189;
+    --color-text-muted-rgb: 127, 135, 148;
+    --color-accent-primary-rgb: 123, 134, 232;
+    --color-accent-secondary-rgb: 209, 178, 115;
+    --color-success-rgb: 98, 195, 112;
+    --color-warning-rgb: 217, 164, 65;
+    --color-error-rgb: 217, 106, 106;
 
     --radius-xs: 10px;
     --radius-sm: 14px;

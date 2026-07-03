@@ -38,8 +38,8 @@
 }
 
 .card-stack-toggle {
-    border: 1px solid rgba(110, 231, 214, 0.24);
-    background: rgba(110, 231, 214, 0.1);
+    border: 1px solid rgba(var(--color-border-rgb), 0.9);
+    background: rgba(var(--color-panel-rgb), 0.78);
     color: var(--text-primary);
     padding: 0.65rem 0.95rem;
     border-radius: 999px;
@@ -47,14 +47,14 @@
     font-weight: 600;
     letter-spacing: 0.02em;
     backdrop-filter: blur(14px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: inset 0 1px 0 rgba(var(--color-text-primary-rgb), 0.04);
     transition: var(--transition);
 }
 
 .card-stack-toggle:hover,
 .card-stack-toggle:focus-visible {
-    border-color: rgba(110, 231, 214, 0.4);
-    background: rgba(110, 231, 214, 0.14);
+    border-color: rgba(var(--color-accent-primary-rgb), 0.28);
+    background: rgba(var(--color-accent-primary-rgb), 0.08);
     transform: translateY(-1px);
 }
 
@@ -91,10 +91,10 @@
     gap: 1rem;
     padding: 1.15rem;
     border-radius: var(--radius-xl);
-    border: 1px solid rgba(255,255,255,0.12);
-    background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    border: 1px solid rgba(var(--color-border-rgb), 0.9);
+    background: linear-gradient(145deg, rgba(var(--color-text-primary-rgb), 0.028), rgba(var(--color-text-primary-rgb), 0.01));
     backdrop-filter: blur(24px);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.06);
+    box-shadow: 0 16px 40px rgba(4,6,10,0.2), inset 0 1px 0 rgba(var(--color-text-primary-rgb), 0.04);
     overflow: hidden;
     transform-origin: center center;
     transition: transform 700ms cubic-bezier(0.2, 0.88, 0.24, 1), opacity 700ms ease, box-shadow 700ms ease;
@@ -107,7 +107,7 @@
     content: "";
     position: absolute;
     inset: -1px;
-    background: linear-gradient(135deg, rgba(110,231,214,0.2), transparent 35%, rgba(124,132,168,0.16));
+    background: linear-gradient(135deg, rgba(var(--color-accent-primary-rgb), 0.08), transparent 35%, rgba(var(--color-accent-secondary-rgb), 0.06));
     pointer-events: none;
 }
 
@@ -126,7 +126,7 @@
 
 .card-stack-card.is-active {
     z-index: 5;
-    box-shadow: 0 28px 80px rgba(0,0,0,0.38), 0 0 60px rgba(110,231,214,0.12);
+    box-shadow: 0 24px 56px rgba(4,6,10,0.24);
 }
 
 .card-stack-card.is-side {
@@ -158,10 +158,10 @@
     position: relative;
     min-height: 160px;
     border-radius: calc(var(--radius-lg) - 4px);
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(var(--color-border-rgb), 0.9);
     overflow: hidden;
-    background: var(--card-stack-accent, linear-gradient(140deg, rgba(110,231,214,0.22), rgba(124,132,168,0.18)));
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    background: var(--card-stack-accent, linear-gradient(140deg, rgba(var(--color-accent-primary-rgb), 0.12), rgba(var(--color-accent-secondary-rgb), 0.08)));
+    box-shadow: inset 0 1px 0 rgba(var(--color-text-primary-rgb), 0.04);
     padding: 1rem;
     display: flex;
     align-items: end;
@@ -278,8 +278,8 @@
     min-width: 128px;
     padding: 0.72rem 0.95rem;
     border-radius: 999px;
-    border: 1px solid rgba(110,231,214,0.24);
-    background: rgba(110,231,214,0.1);
+    border: 1px solid rgba(var(--color-accent-primary-rgb), 0.24);
+    background: rgba(var(--color-accent-primary-rgb), 0.1);
     color: var(--text-primary);
     font-size: 0.9rem;
     font-weight: 650;
@@ -288,13 +288,13 @@
 
 .card-stack-btn:hover,
 .card-stack-btn:focus-visible {
-    background: rgba(110,231,214,0.18);
+    background: rgba(var(--color-accent-primary-rgb), 0.16);
     transform: translateY(-1px);
 }
 
 .card-stack-btn--ghost {
-    background: rgba(255,255,255,0.03);
-    border-color: rgba(255,255,255,0.1);
+    background: rgba(var(--color-text-primary-rgb), 0.03);
+    border-color: rgba(var(--color-border-rgb), 0.9);
 }
 
 .card-stack-nav {
@@ -309,8 +309,8 @@
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(var(--color-border-rgb), 0.9);
+    background: rgba(var(--color-text-primary-rgb), 0.025);
     color: var(--text-primary);
     display: inline-flex;
     align-items: center;
@@ -320,8 +320,8 @@
 
 .card-stack-nav button:hover,
 .card-stack-nav button:focus-visible {
-    background: rgba(110,231,214,0.14);
-    border-color: rgba(110,231,214,0.28);
+    background: rgba(var(--color-accent-primary-rgb), 0.08);
+    border-color: rgba(var(--color-accent-primary-rgb), 0.24);
     transform: translateY(-1px);
 }
 
