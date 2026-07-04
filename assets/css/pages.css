@@ -2201,3 +2201,376 @@ textarea.form-control-custom {
     .achievement-card { flex: 0 0 calc(100% - 0.5rem); }
     .roadmap-step.is-expanded { flex: 0 0 280px; }
 }
+/* ==========================================================
+   SYNCZONE INTERACTIVE TOUR
+========================================================== */
+
+.synczone-tour-section {
+    padding:4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.synczone-tour-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(86, 169, 255, 0.14), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(144, 96, 255, 0.12), transparent 35%);
+    pointer-events: none;
+}
+
+.tour-heading{
+    text-align:center;
+    margin-bottom:2.5rem;
+    position:relative;
+    z-index:2;
+}
+
+.tour-label{
+
+    display:inline-flex;
+
+    padding:.45rem 1rem;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    letter-spacing:.25em;
+
+    text-transform:uppercase;
+
+    color:rgba(255,255,255,.65);
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    margin-bottom:1.5rem;
+}
+
+.tour-heading h2{
+
+    font-size:clamp(2.8rem,5vw,4.2rem);
+
+    font-weight:600;
+
+    margin-bottom:1rem;
+
+    color:#fff;
+}
+
+.tour-heading p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:rgba(255,255,255,.68);
+
+    line-height:1.8;
+
+    font-size:1.05rem;
+}
+
+.synczone-tour{
+
+    display:grid;
+
+    grid-template-columns:340px 1fr;
+
+    gap:5rem;
+
+    align-items:center;
+
+    position:relative;
+
+    z-index:2;
+}
+.tour-navigation{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.65rem;
+}
+.tour-item{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:1.2rem;
+
+    width:100%;
+
+    padding:.8rem 1rem;
+
+    border:none;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    cursor:pointer;
+
+    transition:.45s;
+
+    text-align:left;
+
+    backdrop-filter:blur(18px);
+}
+.tour-item:hover{
+
+    transform:translateX(10px);
+
+    border-color:rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.06);
+}
+.tour-item.active{
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.05)
+    );
+
+    border-color:rgba(255,255,255,.18);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.25);
+}
+.tour-number{
+
+    width:52px;
+
+    height:52px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:.9rem;
+
+    font-weight:700;
+
+    color:white;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+}
+.tour-item h4{
+
+    margin:0;
+
+    font-size:1rem;
+
+    color:white;
+}
+
+.tour-item small{
+
+    color:rgba(255,255,255,.55);
+
+    font-size:.82rem;
+}
+.tour-preview{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+}
+.phone-glow{
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    opacity:.45;
+}
+
+.glow-one{
+
+    background:#4aa8ff;
+
+    top:20%;
+
+    left:20%;
+}
+
+.glow-two{
+
+    background:#785cff;
+
+    bottom:10%;
+
+    right:10%;
+}
+.phone-wrapper{
+
+    position:relative;
+
+    z-index:2;
+
+    perspective:1500px;
+}
+.phone{
+
+    position:relative;
+
+    width:260px;
+
+    aspect-ratio:9/19.5;
+
+    background:#0b0b0b;
+
+    border-radius:42px;
+
+    padding:12px;
+
+    border:2px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    box-shadow:
+
+        0 45px 90px rgba(0,0,0,.45),
+
+        inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.phone-notch{
+
+    position:absolute;
+
+    top:10px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:110px;
+
+    height:28px;
+
+    border-radius:30px;
+
+    background:#050505;
+
+    z-index:20;
+}
+.phone-reflection{
+
+    position:absolute;
+
+    inset:-50%;
+
+    background:linear-gradient(
+        120deg,
+        transparent 35%,
+        rgba(255,255,255,.18),
+        transparent 65%
+    );
+
+    transform:rotate(18deg);
+
+    pointer-events:none;
+}
+.phone img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:30px;
+
+    display:block;
+}
+.tour-details{
+
+    margin-top:1.5rem;
+
+    text-align:center;
+
+    max-width:540px;
+}
+
+.tour-details span{
+
+    font-size:4rem;
+
+    font-weight:700;
+
+    opacity:.12;
+
+    display:block;
+}
+
+.tour-details h3{
+
+    font-size:2rem;
+
+    margin:.5rem 0 1rem;
+
+    color:white;
+}
+
+.tour-details p{
+
+    color:rgba(255,255,255,.7);
+
+    line-height:1.8;
+}
+@media(max-width:992px){
+
+.synczone-tour{
+
+grid-template-columns:1fr;
+
+gap:4rem;
+
+}
+
+.tour-navigation{
+
+order:2;
+
+}
+
+.tour-preview{
+
+order:1;
+
+}
+
+.phone{
+
+width:min(320px,90vw);
+
+}
+
+}
