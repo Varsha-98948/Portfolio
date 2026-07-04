@@ -141,9 +141,9 @@
 
 .page-about .about-story-hero-bg {
     background:
-        radial-gradient(900px circle at 20% 30%, rgba(var(--color-accent-primary-rgb), 0.12), transparent 60%),
-        radial-gradient(700px circle at 80% 20%, rgba(var(--color-accent-secondary-rgb), 0.08), transparent 55%),
-        linear-gradient(180deg, rgba(12, 15, 20, 1) 0%, rgba(10, 13, 18, 1) 100%) !important;
+        radial-gradient(900px circle at 20% 25%, rgba(123, 134, 232, 0.14), transparent 60%),
+        radial-gradient(700px circle at 80% 30%, rgba(209, 178, 115, 0.10), transparent 55%),
+        linear-gradient(180deg, #0a0d12 0%, #070a0f 100%);
 }
 
 .page-about .about-story-hero::after {
@@ -480,183 +480,13 @@
     width: 14px;
     height: 14px;
 }
-
-/* ─── CHAPTER END → Projects ─── */
-.about-chapter-end {
-    position: relative;
-    padding: clamp(72px, 10vw, 120px) 0 clamp(160px, 20vw, 260px);
-    text-align: center;
-    overflow: visible;
+.about-sketch {
+    opacity: 0.10;
+    filter: saturate(0.8);
 }
-
-.about-chapter-end::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 18%;
-    transform: translateX(-50%);
-    width: min(420px, 70%);
-    height: min(280px, 40vh);
-    background: radial-gradient(ellipse at center, rgba(var(--color-accent-primary-rgb), 0.04), transparent 68%);
-    pointer-events: none;
+.about-sketch.is-drawn {
+    opacity: 0.18;
 }
-
-.about-chapter-end-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.about-chapter-note {
-    margin: 0;
-    max-width: 26rem;
-}
-
-.about-chapter-note-text {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(0.9rem, 1.7vw, 1.06rem);
-    line-height: 1.55;
-    color: rgba(var(--color-accent-secondary-rgb), 0.44);
-    letter-spacing: 0.012em;
-    transform: rotate(-1.5deg);
-    clip-path: inset(0 100% 0 0);
-}
-
-.about-chapter-end.is-chapter-visible .about-chapter-note-text {
-    animation: aboutChapterWrite 1.35s var(--about-ease) forwards;
-}
-
-@keyframes aboutChapterWrite {
-    to { clip-path: inset(0 0 0 0); }
-}
-
-.about-plane-stage {
-    position: relative;
-    width: 72px;
-    height: 140px;
-    margin-top: clamp(2.75rem, 5vw, 3.75rem);
-    opacity: 0;
-    transition: opacity 600ms var(--about-ease);
-}
-
-.about-chapter-end.is-plane-ready .about-plane-stage {
-    opacity: 1;
-}
-
-.about-plane-svg {
-    width: 72px;
-    height: 72px;
-    display: block;
-    margin: 0 auto;
-    transform-origin: 36px 36px;
-}
-
-.about-plane-stroke {
-    fill: none;
-    stroke: rgba(var(--color-accent-primary-rgb), 0.42);
-    stroke-width: 1;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.about-plane-body-center {
-    stroke: rgba(var(--color-accent-secondary-rgb), 0.28);
-}
-
-.about-plane-body {
-    opacity: 0;
-    transform: scale(0.88) translateY(6px);
-    transform-origin: 36px 30px;
-    transition:
-        opacity 480ms var(--about-ease),
-        transform 520ms var(--about-ease);
-}
-
-.about-chapter-end.is-plane-folded .about-plane-body {
-    opacity: 0.62;
-    transform: scale(1) translateY(0);
-}
-
-.about-plane-trail {
-    position: absolute;
-    left: 50%;
-    top: 58px;
-    width: 4px;
-    height: 80px;
-    transform: translateX(-50%);
-    opacity: 0;
-}
-
-.about-plane-trail-path {
-    stroke: rgba(var(--color-accent-primary-rgb), 0.2);
-}
-
-.about-chapter-end.is-plane-flying .about-plane-trail {
-    opacity: 1;
-}
-
-.about-chapter-end.is-plane-flying .about-plane-trail-path {
-    animation: aboutTrailDraw 0.9s var(--about-ease) forwards;
-}
-
-@keyframes aboutTrailDraw {
-    from { stroke-dashoffset: 72; }
-    to { stroke-dashoffset: 0; }
-}
-
-.about-chapter-end.is-plane-flying .about-plane-svg {
-    animation: aboutPlaneFly 1.25s var(--about-ease) forwards;
-}
-
-@keyframes aboutPlaneFly {
-    0% {
-        transform: translateY(0) rotate(-4deg);
-        opacity: 0.65;
-    }
-    100% {
-        transform: translateY(96px) rotate(10deg);
-        opacity: 0;
-    }
-}
-
-.about-chapter-continue {
-    margin-top: clamp(3rem, 6vw, 4.5rem);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 0.82rem;
-    color: rgba(var(--color-accent-primary-rgb), 0.28);
-    letter-spacing: 0.04em;
-    text-transform: lowercase;
-    opacity: 0;
-    transform: translateY(4px);
-    transition:
-        opacity 700ms var(--about-ease),
-        color var(--transition);
-}
-
-.about-chapter-end.is-plane-flying .about-chapter-continue {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 700ms;
-}
-
-.about-chapter-continue:hover {
-    color: rgba(var(--color-accent-primary-rgb), 0.52);
-}
-
-.about-chapter-end.is-chapter-replayed .about-chapter-continue {
-    opacity: 1;
-    transform: none;
-}
-
-.about-chapter-end.is-chapter-replayed .about-plane-body {
-    opacity: 0.5;
-}
-
 /* ─── Responsive ─── */
 @media (max-width: 992px) {
     .about-workspace-fig {
@@ -748,4 +578,104 @@
         opacity: 1;
         transform: none;
     }
+}
+.about-roadmap,
+.about-achievements,
+.about-education,
+.about-philosophy {
+    position: relative;
+}
+
+.about-roadmap::before,
+.about-achievements::before,
+.about-education::before,
+.about-philosophy::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.015);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+}
+.achievement-card {
+    overflow: hidden;
+}
+
+.achievement-image {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 14px;
+    margin-bottom: 12px;
+}
+
+.achievement-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform 0.5s ease;
+}
+
+.achievement-card:hover .achievement-image img {
+    transform: scale(1.08);
+}
+.img-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.img-lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.img-lightbox img {
+    max-width: 88%;
+    max-height: 88%;
+    border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    transform: scale(0.96);
+    transition: transform 0.25s ease;
+}
+
+.img-lightbox.active img {
+    transform: scale(1);
+}
+
+.img-lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.img-lightbox-close:hover {
+    opacity: 1;
+}
+.achievement-card[data-tier="1"] {
+    border: 1px solid rgba(var(--color-accent-primary-rgb), 0.25);
+    box-shadow: 0 12px 40px rgba(123, 134, 232, 0.08);
+}
+
+.achievement-card[data-tier="3"] {
+    opacity: 0.85;
+    transform: scale(0.98);
 }

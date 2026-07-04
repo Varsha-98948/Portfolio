@@ -225,3 +225,32 @@ function initChapterEndTransition() {
 
     endObserver.observe(chapterEnd);
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById("imgLightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const closeBtn = document.getElementById("lightboxClose");
+
+    // open on click
+    document.querySelectorAll(".achievement-image img").forEach(img => {
+        img.addEventListener("click", () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add("active");
+        });
+    });
+
+    // close actions
+    const closeLightbox = () => {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+    };
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+    });
+});

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const viewport = carousel.querySelector("[data-achievements-viewport]");
     const track = carousel.querySelector("[data-achievements-track]");
-    const cards = carousel.querySelectorAll("[data-achievement-card]");
+    const cards = carousel.querySelectorAll(".achievement-card");
     const prevBtn = carousel.querySelector("[data-achievements-prev]");
     const nextBtn = carousel.querySelector("[data-achievements-next]");
     const dotsWrap = carousel.querySelector("[data-achievements-dots]");
