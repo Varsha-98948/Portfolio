@@ -116,33 +116,6 @@
         el.style.setProperty("--twinkle-duration", `${12 + Math.random() * 8}s`);
     });
 
-    if (!prefersReduced && !coarsePointer) {
-        const proximityTargets = document.querySelectorAll("[data-about-proximity]");
-        let rafId = null;
-        let cursor = { x: 0, y: 0 };
-
-        document.addEventListener("mousemove", (e) => {
-            cursor = { x: e.clientX, y: e.clientY };
-            if (rafId) return;
-            rafId = requestAnimationFrame(() => {
-                proximityTargets.forEach((el) => {
-                    if (!el.classList.contains("is-drawn")) return;
-                    const rect = el.getBoundingClientRect();
-                    const cx = rect.left + rect.width / 2;
-                    const cy = rect.top + rect.height / 2;
-                    const dist = Math.hypot(cursor.x - cx, cursor.y - cy);
-                    const radius = Number(el.dataset.proximityRadius) || 110;
-                    const influence = Math.max(0, 1 - dist / radius);
-                    const pull = influence * 0.032;
-
-                    el.style.setProperty("--prox-x", `${((cursor.x - cx) * pull).toFixed(2)}px`);
-                    el.style.setProperty("--prox-y", `${((cursor.y - cy) * pull).toFixed(2)}px`);
-                    el.style.setProperty("--prox-o", `${0.18 + influence * 0.14}`);
-                });
-                rafId = null;
-            });
-        }, { passive: true });
-    }
 
     initChapterEndTransition();
 })();

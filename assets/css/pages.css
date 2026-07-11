@@ -816,7 +816,7 @@
     background:
         linear-gradient(145deg, rgba(var(--color-white-rgb), 0.06), rgba(var(--color-white-rgb), 0.02)),
         rgba(10, 14, 24, 0.85);
-    backdrop-filter: blur(28px);
+    /* backdrop-filter: blur(28px); */
     text-align: center;
 }
 
@@ -1712,7 +1712,7 @@ textarea.form-control-custom {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: rgba(var(--color-white-rgb), 0.03);
-    backdrop-filter: blur(12px);
+    /* backdrop-filter: blur(12px); */
 }
 
 .stat-number {
@@ -2280,7 +2280,7 @@ textarea.form-control-custom {
 
     border:1px solid rgba(255,255,255,.08);
 
-    backdrop-filter:blur(26px);
+    /*backdrop-filter:blur(26px); */
 
     box-shadow:
         0 30px 80px rgba(0,0,0,.35);
