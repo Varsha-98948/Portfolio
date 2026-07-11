@@ -6,6 +6,7 @@
   --about-cyan: rgba(var(--color-accent-primary-rgb), 0.35);
   --about-emerald: rgba(var(--color-accent-primary-rgb), 0.25);
   --about-gold: rgba(var(--color-accent-secondary-rgb), 0.4);
+  --about-ease: cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 .page-about .page-shell {
