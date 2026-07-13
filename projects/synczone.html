@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/pages.css">
+    <link rel="stylesheet" href="../assets/css/project-showcase.css">
 </head>
 
 <body>
@@ -41,143 +42,16 @@
                 </div>
             </div>
         </section>
-        <section class="synczone-tour-section">
-
-    <div class="container">
-
-        <!-- Heading -->
-
-        <div class="tour-heading reveal">
-
-            <span class="tour-label">
-                APP WALKTHROUGH
-            </span>
-
-            <h2>
-                Explore SyncZone
-            </h2>
-
-            <p>
-                Take an interactive tour through the complete student and teacher
-                experience—from authentication to real-time collaboration.
-            </p>
-
-        </div>
-
-
-        <!-- Showcase Card -->
-
-        <div class="synczone-showcase reveal">
-
-            <!-- LEFT PANEL -->
-
-            <aside class="tour-sidebar">
-
-                <div class="sidebar-header">
-
-                    <span>Screens</span>
-
-                    <small>12 Views</small>
-
+        <section class="project-showcase-section">
+            <div class="container">
+                <div class="showcase-heading reveal">
+                    <span class="showcase-label">APP WALKTHROUGH</span>
+                    <h2>Explore SyncZone</h2>
+                    <p>Take an interactive tour through the complete student and teacher experience—from authentication to real-time collaboration.</p>
                 </div>
-
-                <div class="tour-list">
-
-                    <!-- JS inserts navigation -->
-
-                </div>
-
-            </aside>
-
-
-            <!-- RIGHT PANEL -->
-
-            <section class="tour-viewer">
-
-                <!-- Phone Area -->
-
-                <div class="phone-stage">
-
-                    <div class="phone-glow glow-one"></div>
-
-                    <div class="phone-glow glow-two"></div>
-
-                    <div class="phone-wrapper">
-
-                        <div class="phone">
-
-                            <div class="phone-notch"></div>
-
-                            <div class="phone-reflection"></div>
-
-                            <img
-                                id="tour-image"
-                                src="../assets/images/projects/synczone/01_Splash.png"
-                                alt="SyncZone Screen"
-                            >
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Progress -->
-
-                <div class="tour-progress">
-
-                    <div class="tour-progress-fill"></div>
-
-                </div>
-
-
-                <!-- Content -->
-
-                <div class="tour-content">
-
-                    <div class="tour-counter">
-
-                        <span id="tour-current">
-                            01
-                        </span>
-
-                        <span class="divider">/</span>
-
-                        <span>
-                            12
-                        </span>
-
-                    </div>
-
-                    <h3 id="tour-title">
-
-                        Splash Screen
-
-                    </h3>
-
-                    <h5 id="tour-subtitle">
-
-                        Launch Experience
-
-                    </h5>
-
-                    <p id="tour-description">
-
-                        Experience the branded launch screen before entering
-                        the application.
-
-                    </p>
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </div>
-
-</section>
+                <div id="synczone-showcase-root" class="reveal"></div>
+            </div>
+        </section>
         <section>
             <div class="container">
                 <p class="fun-overview reveal">Think of SyncZone as Discord meets Google Classroom—designed exclusively
@@ -305,6 +179,88 @@
         </form>
     </aside>
     <script src="../assets/js/aion-core.js"></script>
+    <script src="../assets/js/project-showcase.js"></script>
+    <script>
+        const synczoneScreens = [
+            {
+                title: "Splash Screen",
+                subtitle: "Launch Experience",
+                description: "Experience the branded launch screen before entering SyncZone.",
+                image: "../assets/images/projects/synczone/01_Splash.png"
+            },
+            {
+                title: "Login",
+                subtitle: "Secure Authentication",
+                description: "Sign in securely using your registered credentials and access your personalized workspace.",
+                image: "../assets/images/projects/synczone/02_Login.png"
+            },
+            {
+                title: "Register",
+                subtitle: "Create Account",
+                description: "New students and teachers can register and join their institution with ease.",
+                image: "../assets/images/projects/synczone/03_Register.png"
+            },
+            {
+                title: "Forgot Password",
+                subtitle: "Account Recovery",
+                description: "Recover access to your account through a simple password reset workflow.",
+                image: "../assets/images/projects/synczone/04_Forgot_Password.png"
+            },
+            {
+                title: "Student Chat",
+                subtitle: "Real-Time Messaging",
+                description: "Students collaborate through Firebase-powered real-time conversations inside course chatrooms.",
+                image: "../assets/images/projects/synczone/05_Stud_Chat.png"
+            },
+            {
+                title: "Teacher Chat",
+                subtitle: "Faculty Communication",
+                description: "Teachers communicate with students while maintaining structured classroom discussions.",
+                image: "../assets/images/projects/synczone/06_Teach_Chat.png"
+            },
+            {
+                title: "Student Announcements",
+                subtitle: "Stay Updated",
+                description: "Students receive important announcements, events and academic notices instantly.",
+                image: "../assets/images/projects/synczone/07_Stud_Announcement.png"
+            },
+            {
+                title: "Teacher Announcements",
+                subtitle: "Publish Updates",
+                description: "Faculty members can broadcast announcements across classes with a single action.",
+                image: "../assets/images/projects/synczone/08_Teach_Announcement.png"
+            },
+            {
+                title: "Student Assignments",
+                subtitle: "Coursework",
+                description: "Track assignments, deadlines and submissions from one organized dashboard.",
+                image: "../assets/images/projects/synczone/09_Stud_Assignment.png"
+            },
+            {
+                title: "Teacher Assignments",
+                subtitle: "Assignment Management",
+                description: "Teachers can create, distribute and manage assignments efficiently.",
+                image: "../assets/images/projects/synczone/10_Teach_Assignment.png"
+            },
+            {
+                title: "Student Profile",
+                subtitle: "Personal Dashboard",
+                description: "Manage personal information, account settings and profile details from one place.",
+                image: "../assets/images/projects/synczone/11_Stud_Profile.png"
+            },
+            {
+                title: "Teacher Profile",
+                subtitle: "Faculty Dashboard",
+                description: "Faculty profiles centralize teaching information and institutional details.",
+                image: "../assets/images/projects/synczone/12_Teach_Profile.png"
+            }
+        ];
+
+        initProjectShowcase("synczone-showcase-root", synczoneScreens, {
+            type: "phone",
+            autoplayDuration: 6000
+        });
+    </script>
 </body>
 
 </html>
