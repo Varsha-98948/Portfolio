@@ -4,50 +4,731 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Varsha Jairam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/pages.css">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           VARSHA JAIRAM — CLEAN PREMIUM BUFFER
+           Plain, elegant, no noise, no atmosphere
+           ═══════════════════════════════════════════════════════════ */
+
+        :root {
+            --bg: #0a0a0f;
+            --bg-elevated: #111118;
+            --surface: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text: #f0f0f5;
+            --text-muted: rgba(240,240,245,0.5);
+            --text-dim: rgba(240,240,245,0.25);
+            --accent-blue: #7c9cff;
+            --accent-beige: #d4b896;
+            --accent-mustard: #c9941a;
+            --accent-teal: #4fd1c5;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── LOADER ─── */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: opacity 0.6s var(--ease-out), visibility 0s 0.6s;
+        }
+
+        .loader.is-done { opacity: 0; visibility: hidden; }
+
+        .loader-ring {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--border);
+            border-top-color: var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .loader-text {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ═══════════════════════════════════════════════════════════
+           PARALLAX FLOATING LAYER
+           ═══════════════════════════════════════════════════════════ */
+
+        .parallax-container {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .parallax-element {
+            position: absolute;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* ─── Floating Project Cards ─── */
+        .float-card {
+            padding: 1rem 1.4rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(17, 17, 24, 0.7);
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out),
+                        border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .float-card.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .float-card:hover {
+            border-color: rgba(124,156,255,0.3);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .float-card-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .float-card-label--ai { color: var(--accent-blue); }
+        .float-card-label--auto { color: var(--accent-beige); }
+        .float-card-label--android { color: var(--accent-teal); }
+        .float-card-label--campus { color: var(--accent-mustard); }
+
+        .float-card-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .float-card--1 { top: 8%; left: 6%; }
+        .float-card--2 { top: 10%; right: 8%; }
+        .float-card--3 { bottom: 18%; left: 5%; }
+        .float-card--4 { bottom: 12%; right: 6%; }
+        .float-card--5 { top: 42%; left: 2%; }
+        .float-card--6 { top: 48%; right: 4%; }
+
+        /* ─── Floating Doodles ─── */
+        .float-doodle {
+            opacity: 0;
+            transition: opacity 0.8s var(--ease-out);
+        }
+
+        .float-doodle.is-visible { opacity: 1; }
+
+        .float-doodle svg {
+            overflow: visible;
+        }
+
+        .float-doodle svg path,
+        .float-doodle svg line,
+        .float-doodle svg circle {
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .doodle-star { top: 16%; left: 20%; }
+        .doodle-star svg path { stroke: var(--accent-mustard); stroke-width: 0.8; }
+
+        .doodle-cross { bottom: 32%; left: 12%; }
+        .doodle-cross svg line { stroke: var(--accent-teal); stroke-width: 1; opacity: 0.5; }
+
+        .doodle-ring { top: 22%; right: 22%; }
+        .doodle-ring svg circle { stroke: var(--accent-beige); stroke-width: 1; opacity: 0.4; }
+
+        .doodle-arrow { bottom: 28%; right: 18%; }
+        .doodle-arrow svg path { stroke: var(--accent-blue); stroke-width: 1; opacity: 0.5; }
+
+        .doodle-dots { top: 58%; left: 22%; }
+        .doodle-dots svg circle { fill: var(--accent-beige); opacity: 0.3; }
+
+        .doodle-annotation {
+            top: 30%;
+            right: 12%;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--accent-beige);
+            opacity: 0;
+            transform: rotate(-4deg);
+            white-space: nowrap;
+        }
+
+        .doodle-annotation.is-visible { opacity: 0.5; }
+
+        /* Constellation */
+        .constellation {
+            top: 5%;
+            right: 3%;
+            width: 250px;
+            height: 200px;
+            opacity: 0;
+            transition: opacity 1.5s var(--ease-out);
+        }
+
+        .constellation.is-visible { opacity: 1; }
+
+        .constellation svg circle {
+            fill: rgba(124,156,255,0.3);
+            r: 1.5;
+        }
+
+        .constellation svg line {
+            stroke: rgba(124,156,255,0.06);
+            stroke-width: 0.5;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           MAIN CONTENT
+           ═══════════════════════════════════════════════════════════ */
+
+        .main {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.6rem;
+            padding: 2rem;
+            max-width: 560px;
+            pointer-events: auto;
+        }
+
+        /* ─── PHOTO WITH CONCENTRIC RINGS ─── */
+        .photo-wrap {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+            transform: scale(0.85);
+            animation: photoIn 1s var(--ease-spring) 0.3s forwards;
+        }
+
+        @keyframes photoIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .photo-ring {
+            position: absolute;
+            border-radius: 50%;
+            border-style: solid;
+            pointer-events: none;
+        }
+
+        .photo-ring--1 {
+            inset: -10px;
+            border-width: 2px;
+            border-color: rgba(212, 184, 150, 0.4);
+            animation: ringPulse1 3s ease-in-out infinite;
+        }
+
+        .photo-ring--2 {
+            inset: -22px;
+            border-width: 1.5px;
+            border-color: rgba(201, 148, 26, 0.25);
+            animation: ringPulse2 3s ease-in-out infinite 0.5s;
+        }
+
+        .photo-ring--3 {
+            inset: -36px;
+            border-width: 1px;
+            border-color: rgba(124, 156, 255, 0.15);
+            animation: ringPulse3 4s ease-in-out infinite 1s;
+        }
+
+        @keyframes ringPulse1 {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.02); opacity: 0.3; }
+        }
+
+        @keyframes ringPulse2 {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.03); opacity: 0.2; }
+        }
+
+        @keyframes ringPulse3 {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.04); opacity: 0.15; }
+        }
+
+        .photo-glow {
+            position: absolute;
+            inset: -50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124,156,255,0.06), transparent 70%);
+            animation: glowPulse 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.15); opacity: 0.9; }
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 3px solid rgba(255,255,255,0.06);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── TEXT ─── */
+        .eyebrow {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-mustard);
+            opacity: 0;
+            animation: fadeUp 0.6s var(--ease-out) 0.8s forwards;
+        }
+
+        .name {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.8rem, 7vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeUp 0.7s var(--ease-out) 0.95s forwards;
+        }
+
+        .name span {
+            color: var(--accent-blue);
+            font-style: italic;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 360px;
+            opacity: 0;
+            animation: fadeUp 0.6s var(--ease-out) 1.1s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── ENTER BUTTON ─── */
+        .enter-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out);
+            opacity: 0;
+            animation: fadeUp 0.6s var(--ease-out) 1.25s forwards;
+            backdrop-filter: blur(10px);
+            margin-top: 0.5rem;
+            pointer-events: auto;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(124,156,255,0.08), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        .enter-btn:hover::before { transform: translateX(100%); }
+
+        .enter-btn:hover {
+            border-color: rgba(124,156,255,0.3);
+            background: rgba(124,156,255,0.06);
+            box-shadow: 0 10px 35px rgba(124,156,255,0.1);
+        }
+
+        .enter-btn svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .enter-btn:hover svg { transform: translateX(3px); }
+
+        /* ─── FOOTER LINKS ─── */
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.5s var(--ease-out) 1.5s forwards;
+        }
+
+        .footer-links a {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+            pointer-events: auto;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-mustard);
+            transition: width 0.3s var(--ease-out);
+        }
+
+        .footer-links a:hover { color: var(--text); }
+        .footer-links a:hover::after { width: 100%; }
+
+        /* ─── PAGE TRANSITION ─── */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: var(--bg-elevated);
+            transform: translateY(100%);
+            transition: transform 0.5s var(--ease-out);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-transition.is-active { transform: translateY(0); }
+
+        .page-transition-text {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.4rem;
+            color: var(--text);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .page-transition.is-active .page-transition-text {
+            opacity: 1;
+            transition-delay: 0.25s;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .parallax-element { display: none; }
+            .photo-wrap { width: 170px; height: 170px; }
+            .photo-ring--3 { display: none; }
+            .name { font-size: 2.4rem; }
+            .main { gap: 1.4rem; }
+        }
+
+        @media (max-width: 480px) {
+            .photo-wrap { width: 150px; height: 150px; }
+            .photo-ring--2, .photo-ring--3 { display: none; }
+            .name { font-size: 2rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .parallax-element { transition: none; }
+        }
+    </style>
+<base target="_blank">
 </head>
-<body class="landing-page">
-    <div class="landing-cinematic" aria-hidden="true">
-        <div class="landing-mesh"></div>
-        <div class="landing-grain"></div>
-        <div class="landing-beam landing-beam--1"></div>
-        <div class="landing-beam landing-beam--2"></div>
-        <div class="landing-particles">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Loading...</div>
+    </div>
+
+    <!-- Page Transition -->
+    <div class="page-transition" id="transition">
+        <div class="page-transition-text">Welcome in ✦</div>
+    </div>
+
+    <!-- Parallax Floating Layer -->
+    <div class="parallax-container" id="parallax-container">
+
+        <!-- Floating Project Cards -->
+        <div class="parallax-element float-card float-card--1" data-depth="0.5">
+            <span class="float-card-label float-card-label--ai">AI</span>
+            <span class="float-card-name">Aion</span>
+        </div>
+        <div class="parallax-element float-card float-card--2" data-depth="1.0">
+            <span class="float-card-label float-card-label--auto">Auto</span>
+            <span class="float-card-name">Triggerly</span>
+        </div>
+        <div class="parallax-element float-card float-card--3" data-depth="1.5">
+            <span class="float-card-label float-card-label--android">Android</span>
+            <span class="float-card-name">GalliMart</span>
+        </div>
+        <div class="parallax-element float-card float-card--4" data-depth="0.8">
+            <span class="float-card-label float-card-label--campus">Campus</span>
+            <span class="float-card-name">SyncZone</span>
+        </div>
+        <div class="parallax-element float-card float-card--5" data-depth="2.0">
+            <span class="float-card-label float-card-label--ai" style="color: var(--accent-teal)">Health</span>
+            <span class="float-card-name">MediCore</span>
+        </div>
+        <div class="parallax-element float-card float-card--6" data-depth="1.2">
+            <span class="float-card-label float-card-label--auto" style="color: var(--accent-blue)">Travel</span>
+            <span class="float-card-name">WanderWave</span>
+        </div>
+
+        <!-- Floating Doodles -->
+        <div class="parallax-element float-doodle doodle-star" data-depth="0.3">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" stroke-width="0.8"/>
+            </svg>
+        </div>
+        <div class="parallax-element float-doodle doodle-cross" data-depth="1.5">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="1"/>
+                <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="parallax-element float-doodle doodle-ring" data-depth="0.8">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="parallax-element float-doodle doodle-arrow" data-depth="1.2">
+            <svg width="44" height="24" viewBox="0 0 44 24" fill="none">
+                <path d="M4 12h30M32 6l8 6-8 6" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="parallax-element float-doodle doodle-dots" data-depth="0.6">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="8" cy="8" r="2" fill="currentColor"/>
+                <circle cx="22" cy="6" r="1.5" fill="currentColor"/>
+                <circle cx="34" cy="12" r="2" fill="currentColor"/>
+                <circle cx="12" cy="24" r="1.5" fill="currentColor"/>
+                <circle cx="28" cy="28" r="1" fill="currentColor"/>
+            </svg>
+        </div>
+        <div class="parallax-element float-doodle doodle-annotation" data-depth="0.4">
+            products that ship →
+        </div>
+
+        <!-- Constellation -->
+        <div class="parallax-element constellation" data-depth="0.2">
+            <svg width="250" height="200" viewBox="0 0 250 200" fill="none">
+                <circle cx="30" cy="40" r="2" fill="rgba(124,156,255,0.4)"/>
+                <circle cx="80" cy="25" r="1.5" fill="rgba(79,209,197,0.3)"/>
+                <circle cx="140" cy="50" r="2" fill="rgba(240,184,110,0.25)"/>
+                <circle cx="200" cy="80" r="1.5" fill="rgba(124,156,255,0.3)"/>
+                <circle cx="120" cy="120" r="1" fill="rgba(79,209,197,0.25)"/>
+                <circle cx="50" cy="150" r="1.5" fill="rgba(240,184,110,0.2)"/>
+                <line x1="30" y1="40" x2="80" y2="25" stroke="rgba(124,156,255,0.08)" stroke-width="0.5"/>
+                <line x1="80" y1="25" x2="140" y2="50" stroke="rgba(79,209,197,0.06)" stroke-width="0.5"/>
+                <line x1="140" y1="50" x2="200" y2="80" stroke="rgba(240,184,110,0.05)" stroke-width="0.5"/>
+                <line x1="200" y1="80" x2="120" y2="120" stroke="rgba(124,156,255,0.05)" stroke-width="0.5"/>
+                <line x1="120" y1="120" x2="50" y2="150" stroke="rgba(79,209,197,0.04)" stroke-width="0.5"/>
+                <line x1="30" y1="40" x2="50" y2="150" stroke="rgba(240,184,110,0.03)" stroke-width="0.5"/>
+            </svg>
         </div>
     </div>
 
-    <main class="landing-cinematic-main">
-        <div class="landing-cinematic-content reveal">
-            <p class="landing-cinematic-eyebrow">Portfolio · 2026</p>
-            <h1 class="landing-cinematic-title">
-                <span class="landing-word">Varsha</span>
-                <span class="landing-word font-display">Jairam</span>
-            </h1>
-            <p class="landing-cinematic-tagline">Product builder crafting software, AI systems, and Android experiences.</p>
-            <a class="btn-landing-enter" href="home.html">
-                <span>Enter the portfolio</span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.2"/><path d="M8 7l4 3-4 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Photo with Concentric Rings -->
+        <div class="photo-wrap">
+            <div class="photo-glow"></div>
+            <div class="photo-ring photo-ring--3"></div>
+            <div class="photo-ring photo-ring--2"></div>
+            <div class="photo-ring photo-ring--1"></div>
+            <img src="assets/images/profile/profile-cropped.jpeg" alt="Varsha Jairam" class="photo">
         </div>
 
-        <div class="landing-float-stage reveal" aria-hidden="true">
-            <article class="landing-float-card is-front"><span>AI</span><strong>Aion</strong></article>
-            <article class="landing-float-card"><span>Auto</span><strong>Triggerly</strong></article>
-            <article class="landing-float-card"><span>Android</span><strong>GalliMart</strong></article>
-        </div>
+        <div class="eyebrow">Portfolio 2026</div>
+        <h1 class="name">Varsha <span>Jairam</span></h1>
+        <p class="tagline">
+            Building software, AI systems, and Android experiences that ship.
+        </p>
 
-        <div class="landing-cinematic-footer">
-            <span class="landing-scroll-cue"><i></i>Scroll</span>
+        <a href="home.html" class="enter-btn" id="enter-btn">
+            <span>Enter Portfolio</span>
+            <svg viewBox="0 0 18 18" fill="none">
+                <path d="M3 9h10M8 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+
+        <div class="footer-links">
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="resume.html">Resume</a>
+            <a href="contact.html">Contact</a>
         </div>
     </main>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/landing.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            // ─── LOADER ───
+            const loader = document.getElementById('loader');
+            window.addEventListener('load', () => {
+                setTimeout(() => loader.classList.add('is-done'), 500);
+            });
+
+            // ─── PARALLAX ENGINE ───
+            const elements = document.querySelectorAll('.parallax-element');
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let targetX = mouseX;
+            let targetY = mouseY;
+            let currentX = mouseX;
+            let currentY = mouseY;
+            const easingFactor = 0.08;
+
+            document.addEventListener('mousemove', (e) => {
+                targetX = e.clientX;
+                targetY = e.clientY;
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                targetX = e.touches[0].clientX;
+                targetY = e.touches[0].clientY;
+            });
+
+            function animateParallax() {
+                currentX += (targetX - currentX) * easingFactor;
+                currentY += (targetY - currentY) * easingFactor;
+
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const offsetX = (currentX - centerX);
+                const offsetY = (currentY - centerY);
+
+                elements.forEach(el => {
+                    const depth = parseFloat(el.dataset.depth) || 1;
+                    const strength = depth * 0.3;
+                    const x = offsetX * strength * -1;
+                    const y = offsetY * strength * -1;
+                    el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                });
+
+                requestAnimationFrame(animateParallax);
+            }
+            animateParallax();
+
+            // ─── REVEAL ANIMATIONS ───
+            const cards = document.querySelectorAll('.float-card');
+            const doodles = document.querySelectorAll('.float-doodle');
+            const constellation = document.querySelector('.constellation');
+
+            setTimeout(() => {
+                cards.forEach((card, i) => {
+                    setTimeout(() => card.classList.add('is-visible'), i * 150);
+                });
+            }, 800);
+
+            setTimeout(() => {
+                doodles.forEach((doodle, i) => {
+                    setTimeout(() => doodle.classList.add('is-visible'), i * 100);
+                });
+            }, 1200);
+
+            setTimeout(() => {
+                if (constellation) constellation.classList.add('is-visible');
+            }, 1000);
+
+            // ─── PAGE TRANSITION ───
+            const enterBtn = document.getElementById('enter-btn');
+            const transition = document.getElementById('transition');
+
+            enterBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                transition.classList.add('is-active');
+                setTimeout(() => {
+                    window.location.href = this.getAttribute('href');
+                }, 700);
+            });
+
+            let triggered = false;
+            window.addEventListener('wheel', e => {
+                if (triggered || e.deltaY <= 0) return;
+                triggered = true;
+                transition.classList.add('is-active');
+                setTimeout(() => window.location.href = 'home.html', 700);
+            });
+
+            let touchStart = 0;
+            window.addEventListener('touchstart', e => { touchStart = e.touches[0].clientY; });
+            window.addEventListener('touchend', e => {
+                if (triggered) return;
+                if (touchStart - e.changedTouches[0].clientY > 40) {
+                    triggered = true;
+                    transition.classList.add('is-active');
+                    setTimeout(() => window.location.href = 'home.html', 700);
+                }
+            });
+
+        })();
+    </script>
 </body>
 </html>
