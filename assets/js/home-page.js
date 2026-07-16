@@ -6,13 +6,12 @@
     // ─── Page Intro Animation ───
     function initPageIntro() {
         if (prefersReduced) {
-            document.querySelector('.about-page-intro')?.classList.add('is-done');
+            document.querySelector('.home-page-intro')?.classList.add('is-done');
             return;
         }
-        const intro = document.querySelector('.about-page-intro');
+        const intro = document.querySelector('.home-page-intro');
         if (!intro) return;
 
-        // Small delay to let the page render first
         requestAnimationFrame(() => {
             setTimeout(() => {
                 intro.classList.add('is-done');
@@ -20,39 +19,80 @@
         });
     }
 
-    // ─── Chapter Reveal System ───
-    const chapters = document.querySelectorAll(
-        ".about-story-hero, .about-achievements, .about-education, .about-philosophy"
+    // ─── Section Reveal System ───
+    const sections = document.querySelectorAll(
+        ".home-showcase-hero, .home-stats-strip, .home-showcase, .home-tech, .home-mini-timeline, .home-bento"
     );
 
-    const chapterObserver = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
             const section = entry.target;
-            section.classList.add("is-chapter-visible");
+            section.classList.add("is-section-visible");
             unfoldSection(section);
-            chapterObserver.unobserve(section);
+            sectionObserver.unobserve(section);
         });
     }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
 
-    chapters.forEach((section) => chapterObserver.observe(section));
+    sections.forEach((section) => sectionObserver.observe(section));
 
-    // Hero immediate reveal if already in viewport
-    const hero = document.querySelector(".about-story-hero");
+    // Hero immediate reveal
+    const hero = document.querySelector(".home-showcase-hero");
     if (hero) {
         requestAnimationFrame(() => {
             const { top, height } = hero.getBoundingClientRect();
             if (top < window.innerHeight * 0.92 && top + height > 0) {
-                hero.classList.add("is-chapter-visible");
+                hero.classList.add("is-section-visible");
                 unfoldSection(hero);
             }
         });
     }
 
     function unfoldSection(section) {
-        const items = section.querySelectorAll("[data-about-unfold-item]");
+        // Unfold text items
+        const items = section.querySelectorAll("[data-home-unfold]");
         items.forEach((el, index) => {
-            const delay = 180 + index * 160;
+            const delay = 180 + index * 140;
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add("is-unfolded");
+        });
+
+        // Unfold product chips
+        const chips = section.querySelectorAll("[data-home-chip]");
+        chips.forEach((el) => {
+            const delay = 300 + (parseInt(el.style.getPropertyValue('--chip-i')) || 0) * 120;
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add("is-unfolded");
+        });
+
+        // Unfold stat blocks
+        const stats = section.querySelectorAll("[data-home-stat]");
+        stats.forEach((el) => {
+            const delay = 200 + (parseInt(el.style.getPropertyValue('--stat-i')) || 0) * 100;
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add("is-unfolded");
+        });
+
+        // Unfold timeline nodes
+        const nodes = section.querySelectorAll("[data-home-timeline]");
+        nodes.forEach((el) => {
+            const delay = 200 + (parseInt(el.style.getPropertyValue('--node-i')) || 0) * 120;
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add("is-unfolded");
+        });
+
+        // Draw timeline lines
+        const lines = section.querySelectorAll("[data-home-line]");
+        lines.forEach((el, index) => {
+            const delay = 400 + index * 120 + 200;
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add("is-drawn");
+        });
+
+        // Unfold bento cells
+        const bentos = section.querySelectorAll("[data-home-bento]");
+        bentos.forEach((el) => {
+            const delay = 200 + (parseInt(el.style.getPropertyValue('--bento-i')) || 0) * 120;
             el.style.transitionDelay = `${delay}ms`;
             el.classList.add("is-unfolded");
         });
@@ -75,21 +115,19 @@
         });
     }
 
-    const drawRoots = document.querySelectorAll(
-        ".about-sketch--drawable, .about-word-underline, .about-eyebrow-line, .about-quote-line"
-    );
+    const drawRoots = document.querySelectorAll(".home-sketch--drawable");
 
     if (prefersReduced) {
         drawRoots.forEach((root) => {
             root.classList.add("is-drawn");
-            root.querySelectorAll(".about-draw-path, path, line, circle, polyline").forEach((el) => {
+            root.querySelectorAll("path, line, circle, polyline").forEach((el) => {
                 prepareStroke(el);
                 el.style.strokeDashoffset = "0";
             });
         });
     } else {
         drawRoots.forEach((root) => {
-            root.querySelectorAll(".about-draw-path, path, line, circle, polyline").forEach(prepareStroke);
+            root.querySelectorAll("path, line, circle, polyline").forEach(prepareStroke);
         });
 
         const drawObserver = new IntersectionObserver((entries) => {
@@ -98,12 +136,8 @@
                 const root = entry.target;
                 root.classList.add("is-drawn");
 
-                root.querySelectorAll(".about-draw-path, path, line, circle, polyline").forEach((path, i) => {
-                    const duration = root.classList.contains("about-word-underline") ? 1000 : 1300;
-                    const delay = root.classList.contains("about-eyebrow-line") ? 280 + i * 100
-                        : root.classList.contains("about-quote-line") ? 200 + i * 100
-                        : i * 160;
-                    drawStroke(path, duration, delay);
+                root.querySelectorAll("path, line, circle, polyline").forEach((path, i) => {
+                    drawStroke(path, 1300, i * 160);
                 });
 
                 drawObserver.unobserve(root);
@@ -117,14 +151,11 @@
             requestAnimationFrame(() => {
                 const { top, height } = hero.getBoundingClientRect();
                 if (top < window.innerHeight && top + height > 0) {
-                    hero.querySelectorAll(
-                        ".about-sketch--drawable, .about-word-underline, .about-eyebrow-line"
-                    ).forEach((root) => {
+                    hero.querySelectorAll(".home-sketch--drawable").forEach((root) => {
                         if (root.classList.contains("is-drawn")) return;
                         root.classList.add("is-drawn");
-                        root.querySelectorAll(".about-draw-path, path, line, circle, polyline").forEach((path, i) => {
-                            const duration = root.classList.contains("about-word-underline") ? 1000 : 1300;
-                            drawStroke(path, duration, 400 + i * 140);
+                        root.querySelectorAll("path, line, circle, polyline").forEach((path, i) => {
+                            drawStroke(path, 1300, 400 + i * 140);
                         });
                     });
                 }
@@ -133,7 +164,7 @@
     }
 
     // ─── Star Twinkle Randomization ───
-    document.querySelectorAll("[data-about-twinkle]").forEach((el) => {
+    document.querySelectorAll("[data-home-twinkle]").forEach((el) => {
         el.style.setProperty("--twinkle-delay", `${4 + Math.random() * 10}s`);
         el.style.setProperty("--twinkle-duration", `${12 + Math.random() * 8}s`);
     });
@@ -181,7 +212,7 @@
             currentX += (mouseX - currentX) * 0.05;
             currentY += (mouseY - currentY) * 0.05;
 
-            document.querySelectorAll('.about-sketch[data-about-proximity]').forEach((sketch) => {
+            document.querySelectorAll('.home-sketch[data-home-proximity]').forEach((sketch) => {
                 const radius = parseInt(sketch.dataset.proximityRadius) || 100;
                 const x = currentX * radius * 0.15;
                 const y = currentY * radius * 0.15;
@@ -225,43 +256,80 @@
         });
     }
 
-    // ─── Lightbox ───
-    function initLightbox() {
-        const lightbox = document.getElementById("imgLightbox");
-        const lightboxImg = document.getElementById("lightboxImg");
-        const closeBtn = document.getElementById("lightboxClose");
+    // ─── Tech Cloud Enhanced ───
+    function initTechCloud() {
+        const cloud = document.querySelector("[data-tech-cloud]");
+        if (!cloud) return;
 
-        if (!lightbox || !lightboxImg || !closeBtn) return;
-
-        // Open on click
-        document.querySelectorAll(".achievement-image img").forEach((img) => {
-            img.style.cursor = 'pointer';
-            img.addEventListener("click", () => {
-                lightboxImg.src = img.src;
-                lightbox.classList.add("active");
-                document.body.style.overflow = 'hidden';
+        cloud.querySelectorAll(".tech-cloud-tag").forEach((tag) => {
+            tag.addEventListener("mouseenter", () => {
+                cloud.querySelectorAll(".tech-cloud-tag").forEach((t) => t.classList.toggle("is-dimmed", t !== tag));
+                tag.classList.add("is-highlight");
             });
-        });
-
-        // Close actions
-        const closeLightbox = () => {
-            lightbox.classList.remove("active");
-            lightboxImg.src = "";
-            document.body.style.overflow = '';
-        };
-
-        closeBtn.addEventListener("click", closeLightbox);
-
-        lightbox.addEventListener("click", (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") closeLightbox();
+            tag.addEventListener("mouseleave", () => {
+                cloud.querySelectorAll(".tech-cloud-tag").forEach((t) => {
+                    t.classList.remove("is-dimmed", "is-highlight");
+                });
+            });
         });
     }
 
-    // ─── Smooth Scroll for Internal Links ───
+    // ─── Showcase Tabs Sync ───
+    function initShowcase() {
+        const showcase = document.querySelector("[data-showcase]");
+        if (!showcase) return;
+
+        const tabs = showcase.querySelectorAll("[data-showcase-tab]");
+        const panels = showcase.querySelectorAll("[data-showcase-panel]");
+
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                const target = tab.dataset.showcaseTab;
+                panels.forEach((panel) => {
+                    const isActive = panel.dataset.showcasePanel === target;
+                    panel.classList.toggle("is-active", isActive);
+                });
+            });
+        });
+    }
+
+    // ─── Counter Animation ───
+    function initCounters() {
+        const counters = document.querySelectorAll("[data-count]");
+        if (!counters.length) return;
+
+        const animate = (el) => {
+            const target = parseFloat(el.dataset.count);
+            const suffix = el.dataset.suffix || "";
+            const prefix = el.dataset.prefix || "";
+            const decimals = (String(target).split(".")[1] || "").length;
+            const duration = 1400;
+            const start = performance.now();
+
+            const tick = (now) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = target * eased;
+                el.textContent = `${prefix}${decimals ? value.toFixed(decimals) : Math.round(value)}${suffix}`;
+                if (progress < 1) requestAnimationFrame(tick);
+            };
+
+            requestAnimationFrame(tick);
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animate(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        counters.forEach((el) => observer.observe(el));
+    }
+
+    // ─── Smooth Scroll ───
     function initSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', function(e) {
@@ -274,29 +342,13 @@
         });
     }
 
-    // ─── Education Card Stagger Animation ───
-    function initEducationCards() {
-        const cards = document.querySelectorAll('.education-card-v2');
-        if (!cards.length) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-unfolded');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        cards.forEach((card) => observer.observe(card));
-    }
-
     // ─── Initialize Everything ───
     initPageIntro();
     initMagneticButtons();
     initMouseParallax();
     initAmbientParticles();
-    initLightbox();
+    initTechCloud();
+    initShowcase();
+    initCounters();
     initSmoothScroll();
-    initEducationCards();
 })();

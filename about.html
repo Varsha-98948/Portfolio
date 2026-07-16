@@ -14,9 +14,16 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/pages.css">
     <link rel="stylesheet" href="assets/css/about-page.css">
+    <base target="_blank">
 </head>
 
 <body class="page-about">
+    <!-- Page intro overlay -->
+    <div class="about-page-intro" aria-hidden="true">
+        <div class="about-intro-glow"></div>
+        <div class="about-intro-particles" aria-hidden="true"></div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="home.html">Varsha Jairam</a>
@@ -25,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -35,9 +42,47 @@
     </nav>
 
     <main class="page-shell">
+        <!-- Floating ambient particles -->
+        <div class="about-ambient-particles" aria-hidden="true">
+            <div class="ambient-particle" style="--ap-x: 12%; --ap-y: 18%; --ap-s: 3px; --ap-d: 14s; --ap-dl: 0s;">
+            </div>
+            <div class="ambient-particle" style="--ap-x: 88%; --ap-y: 12%; --ap-s: 2px; --ap-d: 18s; --ap-dl: 2s;">
+            </div>
+            <div class="ambient-particle" style="--ap-x: 72%; --ap-y: 35%; --ap-s: 4px; --ap-d: 12s; --ap-dl: 1s;">
+            </div>
+            <div class="ambient-particle" style="--ap-x: 25%; --ap-y: 55%; --ap-s: 2px; --ap-d: 16s; --ap-dl: 3s;">
+            </div>
+            <div class="ambient-particle" style="--ap-x: 65%; --ap-y: 68%; --ap-s: 3px; --ap-d: 20s; --ap-dl: 0.5s;">
+            </div>
+            <div class="ambient-particle" style="--ap-x: 15%; --ap-y: 82%; --ap-s: 2px; --ap-d: 15s; --ap-dl: 4s;">
+            </div>
+            <div class="ambient-particle" style="--ap-x: 92%; --ap-y: 78%; --ap-s: 3px; --ap-d: 17s; --ap-dl: 1.5s;">
+            </div>
+            <div class="ambient-particle" style="--ap-x: 45%; --ap-y: 92%; --ap-s: 2px; --ap-d: 13s; --ap-dl: 2.5s;">
+            </div>
+        </div>
+
         <!-- Hero: Image + Storytelling -->
         <section class="about-story-hero">
             <div class="about-story-hero-bg" aria-hidden="true"></div>
+            <div class="about-hero-constellation" aria-hidden="true">
+                <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="60" r="1.5" fill="rgba(124,156,255,0.35)" />
+                    <circle cx="120" cy="30" r="1" fill="rgba(79,209,197,0.3)" />
+                    <circle cx="200" cy="80" r="2" fill="rgba(240,184,110,0.25)" />
+                    <circle cx="320" cy="45" r="1.5" fill="rgba(124,156,255,0.3)" />
+                    <circle cx="360" cy="120" r="1" fill="rgba(79,209,197,0.25)" />
+                    <circle cx="80" cy="150" r="1.5" fill="rgba(240,184,110,0.2)" />
+                    <circle cx="280" cy="180" r="2" fill="rgba(124,156,255,0.2)" />
+                    <circle cx="180" cy="220" r="1" fill="rgba(79,209,197,0.2)" />
+                    <circle cx="340" cy="250" r="1.5" fill="rgba(240,184,110,0.15)" />
+                    <line x1="40" y1="60" x2="120" y2="30" stroke="rgba(124,156,255,0.08)" stroke-width="0.5" />
+                    <line x1="120" y1="30" x2="200" y2="80" stroke="rgba(79,209,197,0.06)" stroke-width="0.5" />
+                    <line x1="200" y1="80" x2="320" y2="45" stroke="rgba(240,184,110,0.06)" stroke-width="0.5" />
+                    <line x1="80" y1="150" x2="180" y2="220" stroke="rgba(124,156,255,0.05)" stroke-width="0.5" />
+                    <line x1="180" y1="220" x2="280" y2="180" stroke="rgba(79,209,197,0.05)" stroke-width="0.5" />
+                </svg>
+            </div>
             <aside class="about-visual-layer" aria-hidden="true">
                 <span class="about-annotation about-annotation--hero">curious builder →</span>
                 <svg class="about-sketch about-sketch--drawable about-sketch--arrow about-sketch--arrow-hero"
@@ -57,6 +102,22 @@
                     aria-hidden="true">
                     <path d="M3 3l8 8" stroke="#6ee7d6" stroke-width="0.9" />
                     <path d="M11 3L3 11" stroke="#6ee7d6" stroke-width="0.9" />
+                </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--blob-hero" data-about-proximity
+                    data-proximity-radius="120" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <circle cx="30" cy="30" r="24" stroke="rgba(124,156,255,0.15)" stroke-width="0.8"
+                        stroke-dasharray="4 3" />
+                </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--dots-hero" data-about-proximity
+                    data-proximity-radius="70" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <circle cx="8" cy="8" r="1.5" fill="rgba(79,209,197,0.3)" />
+                    <circle cx="20" cy="6" r="1" fill="rgba(79,209,197,0.2)" />
+                    <circle cx="32" cy="10" r="1.5" fill="rgba(79,209,197,0.25)" />
+                    <circle cx="10" cy="22" r="1" fill="rgba(79,209,197,0.2)" />
+                    <circle cx="28" cy="26" r="1.5" fill="rgba(79,209,197,0.15)" />
+                    <circle cx="18" cy="34" r="1" fill="rgba(79,209,197,0.2)" />
                 </svg>
                 <figure class="about-workspace-fig">
                     <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -90,8 +151,7 @@
                         <div class="founder-photo about-portrait"><img src="assets/images/profile/profile.jpeg"
                                 alt="Varsha Jairam"></div>
                         <div class="portrait-accent" aria-hidden="true"></div>
-                        <div class="portrait-tags"><span class="badge-soft">Pune, Maharashtra</span><span
-                                class="badge-soft">Computer Engineering</span></div>
+                        <div class="portrait-tags"><span class="badge-soft">📍Pune, Maharashtra</span></div>
                     </div>
                     <div class="about-story-content">
                         <span class="about-margin-note about-margin-note--hero">UI lover</span>
@@ -105,70 +165,18 @@
                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path class="about-draw-path" d="M2 5 Q30 1 60 4 T118 5" />
                                 </svg></span> — who needs this, and why?</h1>
-                        <p class="about-story-lede" data-about-unfold-item>I'm a computer engineering student who learns
-                            by building. Not exercises — real products with real constraints.</p>
-                        <p data-about-unfold-item>From academic foundations to Android apps and campus platforms, I've
-                            learned that the best work happens when you care about purpose, adoption, and how something
-                            feels to use.</p>
+                        <p class="about-story-lede">
+                            I'm a computer engineering student who enjoys building products where technology, design,
+                            and user experience come together.
+                        </p>
+
+                        <p>
+                            For me, writing code is only one part of the process. I enjoy understanding the problem,
+                            designing intuitive experiences, and refining the small details that make people want to
+                            keep using what I've built.
+                        </p>
                         <span class="about-margin-note about-margin-note--story">Android enthusiast</span>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive horizontal roadmap -->
-        <section class="about-roadmap section-glow">
-            <aside class="about-visual-layer" aria-hidden="true">
-                <span class="about-annotation about-annotation--roadmap">always learning →</span>
-                <span class="about-margin-note about-margin-note--roadmap">build in public</span>
-                <svg class="about-sketch about-sketch--drawable about-sketch--arrow about-sketch--roadmap-arrow"
-                    data-about-proximity data-proximity-radius="110" viewBox="0 0 64 32" fill="none"
-                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 16H48" stroke="#34d399" stroke-width="1" />
-                    <path d="M40 10l8 6-8 6" stroke="#34d399" stroke-width="1" />
-                </svg>
-                <svg class="about-sketch about-sketch--drawable about-sketch--roadmap-circle" data-about-proximity
-                    data-proximity-radius="95" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true">
-                    <circle cx="18" cy="18" r="14" stroke="#6ee7d6" stroke-width="0.8" />
-                </svg>
-            </aside>
-            <div class="container">
-                <div class="section-split">
-                    <div><span class="section-label" data-about-unfold-item>Journey</span>
-                        <h2 class="section-title" data-about-unfold-item>Product roadmap.</h2>
-                    </div>
-                    <p class="section-aside" data-about-unfold-item>Hover a milestone to explore each chapter.</p>
-                </div>
-                <div class="roadmap-track" data-roadmap-track data-about-unfold-item>
-                    <article class="roadmap-step is-expanded" data-roadmap-step tabindex="0">
-                        <div class="roadmap-step-marker"><span>01</span><time>2022</time></div>
-                        <div class="roadmap-step-panel"><span class="badge-soft">Foundation</span>
-                            <h3>Engineering base</h3>
-                            <p>Programming fundamentals, academic discipline, breaking problems into systems.</p>
-                        </div>
-                    </article>
-                    <article class="roadmap-step" data-roadmap-step tabindex="0">
-                        <div class="roadmap-step-marker"><span>02</span><time>2023</time></div>
-                        <div class="roadmap-step-panel"><span class="badge-soft">Builder</span>
-                            <h3>Android & web products</h3>
-                            <p>User-facing workflows replaced code exercises. Real feedback loops.</p>
-                        </div>
-                    </article>
-                    <article class="roadmap-step" data-roadmap-step tabindex="0">
-                        <div class="roadmap-step-marker"><span>03</span><time>2024</time></div>
-                        <div class="roadmap-step-panel"><span class="badge-soft">Product Thinker</span>
-                            <h3>Designing around problems</h3>
-                            <p>Purpose, adoption, architecture — how a product should feel became the focus.</p>
-                        </div>
-                    </article>
-                    <article class="roadmap-step" data-roadmap-step tabindex="0">
-                        <div class="roadmap-step-marker"><span>04</span><time>2025+</time></div>
-                        <div class="roadmap-step-panel"><span class="badge-soft">Next</span>
-                            <h3>Intelligent systems</h3>
-                            <p>AI, automation, and products that connect information to outcomes.</p>
-                        </div>
-                    </article>
                 </div>
             </div>
         </section>
@@ -183,6 +191,18 @@
                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M8 1.5l1.6 4.9H15l-4 2.9 1.5 4.7L8 11.2 3.5 14l1.5-4.7-4-2.9h5.4L8 1.5z" stroke="#c9a66b"
                         stroke-width="0.65" />
+                </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--achievements-scribble"
+                    data-about-proximity data-proximity-radius="100" viewBox="0 0 80 30" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M2 15 Q20 5 40 15 T78 15" stroke="rgba(124,156,255,0.12)" stroke-width="0.8"
+                        stroke-dasharray="3 2" />
+                </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--achievements-blob" data-about-proximity
+                    data-proximity-radius="110" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path d="M25 5 C38 5 45 18 42 32 C39 46 20 48 12 38 C4 28 8 8 25 5Z" stroke="rgba(240,184,110,0.1)"
+                        stroke-width="0.6" fill="rgba(240,184,110,0.03)" />
                 </svg>
             </aside>
             <div class="container">
@@ -569,10 +589,11 @@
                         </div>
                     </div>
                     <div class="achievements-nav">
-                        <button class="icon-btn" type="button" data-achievements-prev
+                        <button class="icon-btn magnetic-btn" type="button" data-achievements-prev
                             aria-label="Previous">&larr;</button>
                         <div class="achievement-dots" data-achievements-dots></div>
-                        <button class="icon-btn" type="button" data-achievements-next aria-label="Next">&rarr;</button>
+                        <button class="icon-btn magnetic-btn" type="button" data-achievements-next
+                            aria-label="Next">&rarr;</button>
                     </div>
                 </div>
             </div>
@@ -589,27 +610,47 @@
                     <path d="M4 4l10 10" stroke="#34d399" stroke-width="0.85" />
                     <path d="M14 4L4 14" stroke="#34d399" stroke-width="0.85" />
                 </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--edu-blob" data-about-proximity
+                    data-proximity-radius="130" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path d="M35 8 C52 8 62 22 58 40 C54 58 32 64 20 54 C8 44 12 16 35 8Z"
+                        stroke="rgba(124,156,255,0.1)" stroke-width="0.7" fill="rgba(124,156,255,0.03)" />
+                </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--edu-dots" data-about-proximity
+                    data-proximity-radius="80" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <circle cx="10" cy="12" r="1.5" fill="rgba(240,184,110,0.25)" />
+                    <circle cx="25" cy="8" r="1" fill="rgba(240,184,110,0.2)" />
+                    <circle cx="40" cy="15" r="1.5" fill="rgba(240,184,110,0.2)" />
+                    <circle cx="15" cy="30" r="1" fill="rgba(240,184,110,0.15)" />
+                    <circle cx="35" cy="35" r="1.5" fill="rgba(240,184,110,0.15)" />
+                    <circle cx="25" cy="45" r="1" fill="rgba(240,184,110,0.2)" />
+                </svg>
             </aside>
             <div class="container">
                 <div class="education-split">
                     <div class="education-split-copy"><span class="section-label"
                             data-about-unfold-item>Education</span>
                         <h2 class="section-title" data-about-unfold-item>Academic foundation.</h2>
-                        <p data-about-unfold-item>Strong grades backed by hands-on product building — not just
-                            coursework.</p>
+                        <p data-about-unfold-item>
+                            Every semester taught me the fundamentals. Every project taught me how to build.
+                        </p>
                     </div>
                     <div class="education-cards">
                         <div class="education-card-v2 glass-card" data-about-unfold-item style="--card-i: 0">
+                            <div class="edu-card-glow" aria-hidden="true"></div>
                             <h3>B.E. Computer Engineering</h3>
                             <p>Current CGPA</p>
                             <div class="education-score">9.05</div>
                         </div>
                         <div class="education-card-v2 glass-card" data-about-unfold-item style="--card-i: 1">
+                            <div class="edu-card-glow" aria-hidden="true"></div>
                             <h3>Diploma</h3>
                             <p>Final Percentage</p>
                             <div class="education-score">93.33%</div>
                         </div>
                         <div class="education-card-v2 glass-card" data-about-unfold-item style="--card-i: 2">
+                            <div class="edu-card-glow" aria-hidden="true"></div>
                             <h3>SSC</h3>
                             <p>Final Percentage</p>
                             <div class="education-score">86.4%</div>
@@ -629,6 +670,22 @@
                     <path d="M7 1.5l1.4 4.2H13l-3.5 2.5 1.3 4L7 9.8 3.2 12l1.3-4-3.5-2.5h4.6L7 1.5z" stroke="#6ee7d6"
                         stroke-width="0.6" />
                 </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--philosophy-blob" data-about-proximity
+                    data-proximity-radius="140" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <circle cx="40" cy="40" r="30" stroke="rgba(79,209,197,0.08)" stroke-width="0.6"
+                        stroke-dasharray="4 3" />
+                    <circle cx="40" cy="40" r="20" stroke="rgba(79,209,197,0.06)" stroke-width="0.5"
+                        stroke-dasharray="2 2" />
+                </svg>
+                <svg class="about-sketch about-sketch--drawable about-sketch--philosophy-code" data-about-proximity
+                    data-proximity-radius="90" viewBox="0 0 50 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path d="M8 15 L2 15 L2 8 L8 8" stroke="rgba(124,156,255,0.12)" stroke-width="0.7" />
+                    <path d="M15 5 L15 25" stroke="rgba(124,156,255,0.08)" stroke-width="0.5" />
+                    <path d="M22 10 L28 10 L28 20 L22 20" stroke="rgba(124,156,255,0.1)" stroke-width="0.6" />
+                    <path d="M35 8 L42 8 L42 22 L35 22" stroke="rgba(124,156,255,0.08)" stroke-width="0.5" />
+                </svg>
             </aside>
             <div class="container">
                 <blockquote class="philosophy-quote">
@@ -636,8 +693,9 @@
                         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path class="about-draw-path" d="M4 4 Q150 1 296 4" />
                     </svg>
-                    <p class="font-display" data-about-unfold-item>"Learning by building keeps me honest — a product has
-                        to survive real constraints."</p>
+                    <p class="font-display" data-about-unfold-item>
+                        "Building is exciting. Polishing it until it just feels right is my favorite part."
+                    </p>
                 </blockquote>
             </div>
         </section>
@@ -648,7 +706,7 @@
             <p class="footer-tagline font-display">Curious about the work?</p>
             <div class="footer-links"><a href="projects.html">Projects</a><a href="resume.html">Resume</a><a
                     href="contact.html">Contact</a></div>
-            <p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p>
+            <p class="copyright">Copyright <span data-current-year></span> @ Varsha Jairam</p>
         </div>
     </footer>
 
@@ -684,7 +742,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/roadmap.js"></script>
     <script src="assets/js/cert-carousel.js"></script>
     <script src="assets/js/about-page.js"></script>
     <script src="assets/js/aion-core.js"></script>
