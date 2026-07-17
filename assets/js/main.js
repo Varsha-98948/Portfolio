@@ -27,21 +27,4 @@ document.addEventListener("DOMContentLoaded", () => {
         year.textContent = new Date().getFullYear();
     }
 
-    initAtmosphere();
 });
-
-function initAtmosphere() {
-    if (document.querySelector(".atmosphere-root") || document.body.classList.contains("landing-page")) return;
-
-    const root = document.createElement("div");
-    root.className = "atmosphere-root";
-    root.setAttribute("aria-hidden", "true");
-    root.innerHTML = `
-        <div class="atmosphere-mesh"></div>
-        <div class="atmosphere-aurora"></div>
-        <div class="atmosphere-stars"></div>
-        <div class="atmosphere-grain"></div>
-        <div class="atmosphere-vignette"></div>
-    `;
-    document.body.prepend(root);
-}

@@ -32,7 +32,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(124, 156, 255, 0.15), transparent 70%);
+  background: rgba(124, 156, 255, 0.15);
   animation: homeIntroPulse 1.2s var(--home-ease-out) forwards;
 }
 
@@ -261,7 +261,7 @@
   right: -10%;
   width: 60%;
   height: 80%;
-  background: radial-gradient(circle, rgba(124, 156, 255, 0.1), transparent 65%);
+  background: rgba(124, 156, 255, 0.1);
   pointer-events: none;
   z-index: 0;
 }

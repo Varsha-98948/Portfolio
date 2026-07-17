@@ -1,4 +1,4 @@
-@import url("atmosphere.css");
+@import url("clean-surfaces.css");
 
 * {
     margin: 0;
@@ -12,11 +12,7 @@ html {
 
 body {
     min-height: 100vh;
-    background:
-        radial-gradient(1200px circle at 15% 10%, rgba(123, 134, 232, 0.14), transparent 55%),
-        radial-gradient(900px circle at 85% 20%, rgba(209, 178, 115, 0.10), transparent 50%),
-        radial-gradient(800px circle at 50% 100%, rgba(98, 195, 112, 0.06), transparent 60%),
-        linear-gradient(180deg, #0a0d12 0%, #0b0f14 50%, #070a0f 100%);
+    background: #0a0d12;
 
     color: var(--text-primary);
     font-family: var(--font-body);
@@ -86,9 +82,7 @@ section {
 }
 
 .section-band {
-    background:
-        linear-gradient(180deg, rgba(var(--color-text-primary-rgb), 0.028), rgba(var(--color-text-primary-rgb), 0)),
-        rgba(var(--color-panel-rgb), 0.72);
+    background: rgba(var(--color-panel-rgb), 0.72);
     border-block: 1px solid rgba(var(--color-border-rgb), 0.92);
 }
 
@@ -134,10 +128,7 @@ section {
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, var(--accent), var(--accent-alt), var(--accent-warm));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--accent);
 }
 
 .muted {

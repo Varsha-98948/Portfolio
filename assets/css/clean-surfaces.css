@@ -1,0 +1,61 @@
+/* Solid-surface cleanup: preserve the palette and hierarchy without decorative layers. */
+*,
+*::before,
+*::after {
+    background-image: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    mix-blend-mode: normal !important;
+    backdrop-filter: none !important;
+}
+
+.home-page-intro,
+.about-page-intro,
+.home-ambient-particles,
+.about-ambient-particles,
+.home-showcase-hero-glow,
+.home-hero-constellation,
+.about-hero-constellation,
+.about-story-hero-bg,
+.project-hero-premium-bg,
+.aion-panel-glow,
+.edu-card-glow,
+.landing-cinematic,
+.landing-grain,
+.landing-mesh,
+.landing-beam,
+.tech-constellation {
+    display: none !important;
+}
+
+.glass-card,
+.project-card,
+.metric-card,
+.skill-card,
+.education-card,
+.feature-card,
+.detail-card,
+.category-card,
+.showcase-panel,
+.card-stack-card,
+.project-showcase,
+.synczone-showcase,
+.phone,
+.tour-sidebar {
+    background: rgba(var(--color-panel-rgb), 0.78) !important;
+}
+
+.section-band,
+.page-resume,
+.project-hero-premium,
+.home-showcase-hero,
+.about-story-hero,
+.synczone-tour-section,
+.phone-stage {
+    background: var(--bg-primary) !important;
+}
+
+.gradient-text {
+    background: none !important;
+    color: var(--accent) !important;
+}

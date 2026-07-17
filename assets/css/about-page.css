@@ -37,11 +37,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(124, 156, 255, 0.15),
-    transparent 70%
-  );
+  background: rgba(124, 156, 255, 0.15);
   animation: aboutIntroPulse 1.2s var(--about-ease-out) forwards;
 }
 

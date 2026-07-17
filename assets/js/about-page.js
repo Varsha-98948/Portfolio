@@ -4,22 +4,6 @@
     const EASE = "cubic-bezier(0.37, 0, 0.63, 1)";
 
     // ─── Page Intro Animation ───
-    function initPageIntro() {
-        if (prefersReduced) {
-            document.querySelector('.about-page-intro')?.classList.add('is-done');
-            return;
-        }
-        const intro = document.querySelector('.about-page-intro');
-        if (!intro) return;
-
-        // Small delay to let the page render first
-        requestAnimationFrame(() => {
-            setTimeout(() => {
-                intro.classList.add('is-done');
-            }, 600);
-        });
-    }
-
     // ─── Chapter Reveal System ───
     const chapters = document.querySelectorAll(
         ".about-story-hero, .about-achievements, .about-education, .about-philosophy"
@@ -196,35 +180,6 @@
     }
 
     // ─── Ambient Particle Mouse Interaction ───
-    function initAmbientParticles() {
-        if (coarsePointer || prefersReduced) return;
-
-        const particles = document.querySelectorAll('.ambient-particle');
-        if (!particles.length) return;
-
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-
-            particles.forEach((particle) => {
-                const rect = particle.getBoundingClientRect();
-                const particleX = rect.left + rect.width / 2;
-                const particleY = rect.top + rect.height / 2;
-                const distance = Math.sqrt(
-                    Math.pow(mouseX - particleX, 2) + Math.pow(mouseY - particleY, 2)
-                );
-
-                if (distance < 150) {
-                    const force = (150 - distance) / 150;
-                    const angle = Math.atan2(particleY - mouseY, particleX - mouseX);
-                    const pushX = Math.cos(angle) * force * 8;
-                    const pushY = Math.sin(angle) * force * 8;
-                    particle.style.transform = `translate(calc(var(--prox-x) + ${pushX}px), calc(var(--prox-y) + ${pushY}px))`;
-                }
-            });
-        });
-    }
-
     // ─── Lightbox ───
     function initLightbox() {
         const lightbox = document.getElementById("imgLightbox");
@@ -292,10 +247,8 @@
     }
 
     // ─── Initialize Everything ───
-    initPageIntro();
     initMagneticButtons();
     initMouseParallax();
-    initAmbientParticles();
     initLightbox();
     initSmoothScroll();
     initEducationCards();

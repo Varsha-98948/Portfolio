@@ -4,21 +4,6 @@
     const EASE = "cubic-bezier(0.37, 0, 0.63, 1)";
 
     // ─── Page Intro Animation ───
-    function initPageIntro() {
-        if (prefersReduced) {
-            document.querySelector('.home-page-intro')?.classList.add('is-done');
-            return;
-        }
-        const intro = document.querySelector('.home-page-intro');
-        if (!intro) return;
-
-        requestAnimationFrame(() => {
-            setTimeout(() => {
-                intro.classList.add('is-done');
-            }, 600);
-        });
-    }
-
     // ─── Section Reveal System ───
     const sections = document.querySelectorAll(
         ".home-showcase-hero, .home-stats-strip, .home-showcase, .home-tech, .home-mini-timeline, .home-bento"
@@ -227,35 +212,6 @@
     }
 
     // ─── Ambient Particle Mouse Interaction ───
-    function initAmbientParticles() {
-        if (coarsePointer || prefersReduced) return;
-
-        const particles = document.querySelectorAll('.ambient-particle');
-        if (!particles.length) return;
-
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-
-            particles.forEach((particle) => {
-                const rect = particle.getBoundingClientRect();
-                const particleX = rect.left + rect.width / 2;
-                const particleY = rect.top + rect.height / 2;
-                const distance = Math.sqrt(
-                    Math.pow(mouseX - particleX, 2) + Math.pow(mouseY - particleY, 2)
-                );
-
-                if (distance < 150) {
-                    const force = (150 - distance) / 150;
-                    const angle = Math.atan2(particleY - mouseY, particleX - mouseX);
-                    const pushX = Math.cos(angle) * force * 8;
-                    const pushY = Math.sin(angle) * force * 8;
-                    particle.style.transform = `translate(calc(var(--prox-x) + ${pushX}px), calc(var(--prox-y) + ${pushY}px))`;
-                }
-            });
-        });
-    }
-
     // ─── Tech Cloud Enhanced ───
     function initTechCloud() {
         const cloud = document.querySelector("[data-tech-cloud]");
@@ -343,10 +299,8 @@
     }
 
     // ─── Initialize Everything ───
-    initPageIntro();
     initMagneticButtons();
     initMouseParallax();
-    initAmbientParticles();
     initTechCloud();
     initShowcase();
     initCounters();
