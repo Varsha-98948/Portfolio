@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SyncZone | Varsha Jairam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/base.css">
@@ -11,17 +12,16 @@
     <link rel="stylesheet" href="../assets/css/pages.css">
     <link rel="stylesheet" href="../assets/css/project-showcase.css">
     <style>
-    /* ═══════════════════════════════════════════════════════════
-       SYNCZONE — REDESIGNED PROJECT PAGE
-       Restrained, purposeful, premium
-       ═══════════════════════════════════════════════════════════ */
-
     :root {
       --accent-mustard: #c9941a;
       --accent-navy: #1a1a2e;
       --accent-blue: #7c9cff;
       --accent-beige: #d4b896;
       --accent-teal: #4fd1c5;
+      --accent-rose: #e8a0bf;
+      --accent-lavender: #b8a9c9;
+      --accent-coral: #ff8a65;
+      --accent-sage: #a5d6a7;
       --bg: #0a0a0f;
       --bg-elevated: #111118;
       --surface: rgba(255,255,255,0.03);
@@ -48,22 +48,19 @@
     /* ─── SCROLL REVEAL ─── */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
     }
     .reveal.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+    .reveal-delay-4 { transition-delay: 0.48s; }
 
-    /* ═══════════════════════════════════════════════════════════
-       HERO
-       ═══════════════════════════════════════════════════════════ */
-
+    /* ─── HERO ─── */
     .project-hero {
       position: relative;
       min-height: 100vh;
@@ -71,7 +68,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
+      padding: 120px 24px 100px;
       overflow: hidden;
     }
 
@@ -221,10 +218,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       SECTION HEADERS
-       ═══════════════════════════════════════════════════════════ */
-
+    /* ─── SECTION HEADERS ─── */
     .section-header {
       margin-bottom: 64px;
     }
@@ -254,12 +248,9 @@
       max-width: 540px;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       OVERVIEW — THE BIG IDEA
-       ═══════════════════════════════════════════════════════════ */
-
+    /* ─── OVERVIEW ─── */
     .overview-section {
-      padding: 120px 24px;
+      padding: 100px 24px 0;
       position: relative;
     }
 
@@ -332,116 +323,165 @@
       opacity: 0.6;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       APP SHOWCASE — STACKED CARDS GALLERY
-       ═══════════════════════════════════════════════════════════ */
-
+    /* ─── SHOWCASE ─── */
     .showcase-section {
-      padding: 0 24px 120px;
+      padding: 0;
       position: relative;
+      background: linear-gradient(to bottom, var(--bg) 0%, var(--bg-elevated) 30%, var(--bg-elevated) 70%, var(--bg) 100%);
     }
 
     .showcase-wrapper {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 80px 24px 100px;
     }
 
     .showcase-header {
       text-align: center;
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
 
-    /* ─── Stacked Cards Gallery ─── */
-    .stacked-gallery {
+    .phone-showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .phone-frame {
       position: relative;
-      max-width: 900px;
-      margin: 0 auto;
+      width: 300px;
       height: 600px;
-      perspective: 1200px;
-    }
-
-    .stack-card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 320px;
-      transform: translate(-50%, -50%);
-      border-radius: 24px;
-      overflow: hidden;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
+      margin: 0 auto;
+      background: linear-gradient(145deg, #1e1e28, #14141c);
+      border-radius: 48px;
+      padding: 14px;
       box-shadow:
-        0 20px 60px rgba(0,0,0,0.4),
-        0 0 0 1px rgba(255,255,255,0.03);
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 0 0 6px rgba(255,255,255,0.02),
+        0 50px 100px rgba(0,0,0,0.6),
+        0 0 80px rgba(201,148,26,0.05);
       transition: all 0.6s var(--ease-out);
-      cursor: pointer;
-      will-change: transform, opacity;
+      animation: phoneFloat 6s ease-in-out infinite;
     }
 
-    .stack-card img {
-      width: 100%;
-      height: auto;
-      display: block;
+    @keyframes phoneFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
 
-    .stack-card--1 { z-index: 12; transform: translate(-50%, -50%) translateZ(0); }
-    .stack-card--2 { z-index: 11; transform: translate(-50%, -50%) translateZ(-30px) translateX(40px) rotateY(-4deg); opacity: 0.85; }
-    .stack-card--3 { z-index: 10; transform: translate(-50%, -50%) translateZ(-60px) translateX(80px) rotateY(-8deg); opacity: 0.7; }
-    .stack-card--4 { z-index: 9; transform: translate(-50%, -50%) translateZ(-90px) translateX(120px) rotateY(-12deg); opacity: 0.55; }
-    .stack-card--5 { z-index: 8; transform: translate(-50%, -50%) translateZ(-120px) translateX(160px) rotateY(-16deg); opacity: 0.4; }
-
-    .stack-card:hover {
+    .phone-frame:hover {
       box-shadow:
-        0 30px 80px rgba(0,0,0,0.5),
-        0 0 0 1px rgba(201,148,26,0.15);
+        0 0 0 1px rgba(255,255,255,0.1),
+        0 0 0 6px rgba(255,255,255,0.04),
+        0 60px 120px rgba(0,0,0,0.7),
+        0 0 100px rgba(201,148,26,0.08);
     }
 
-    .stack-card.is-active {
-      z-index: 20;
-      transform: translate(-50%, -50%) translateZ(60px) scale(1.05);
-      opacity: 1;
-      border-color: rgba(201,148,26,0.2);
+    .phone-notch {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 26px;
+      background: #0a0a0f;
+      border-radius: 0 0 18px 18px;
+      z-index: 10;
     }
 
-    /* ─── Gallery Info Panel ─── */
-    .gallery-info {
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #0a0a0f;
+      position: relative;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+    }
+
+    .phone-home-bar {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 4px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 2px;
+      z-index: 10;
+    }
+
+    .phone-info {
       text-align: center;
-      margin-top: 48px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100px;
     }
 
-    .gallery-info-label {
+    .phone-info-label {
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent-mustard);
       margin-bottom: 8px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.4s var(--ease-out);
     }
 
-    .gallery-info-title {
-      font-size: 1.4rem;
-      font-weight: 600;
+    .phone-info-label.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .phone-info-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
       margin-bottom: 8px;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.4s var(--ease-out) 0.08s;
     }
 
-    .gallery-info-desc {
+    .phone-info-title.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .phone-info-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.6;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.4s var(--ease-out) 0.16s;
     }
 
-    .gallery-nav {
+    .phone-info-desc.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .phone-nav {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 16px;
-      margin-top: 32px;
+      margin-top: 8px;
     }
 
-    .gallery-nav-btn {
+    .phone-nav-btn {
       width: 44px;
       height: 44px;
       border-radius: 50%;
@@ -455,22 +495,22 @@
       transition: all 0.3s var(--ease-out);
     }
 
-    .gallery-nav-btn:hover {
+    .phone-nav-btn:hover {
       border-color: var(--border-hover);
       background: var(--surface-hover);
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
-    .gallery-nav-btn:active {
+    .phone-nav-btn:active {
       transform: scale(0.95);
     }
 
-    .gallery-nav-dots {
+    .phone-nav-dots {
       display: flex;
       gap: 8px;
     }
 
-    .gallery-nav-dot {
+    .phone-nav-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -479,85 +519,113 @@
       transition: all 0.3s var(--ease-out);
     }
 
-    .gallery-nav-dot.is-active {
+    .phone-nav-dot.is-active {
       background: var(--accent-mustard);
       width: 24px;
       border-radius: 4px;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       FEATURE HIGHLIGHTS
-       ═══════════════════════════════════════════════════════════ */
+    .phone-progress {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      font-variant-numeric: tabular-nums;
+    }
 
+    /* ─── FEATURES ─── */
     .features-section {
-      padding: 120px 24px;
+      padding: 0 24px 100px;
       position: relative;
+      background: var(--bg);
     }
 
-    .features-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to bottom, transparent, var(--border));
-    }
-
-    .features-grid {
+    .project-section-grid {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .detail-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
       border-radius: 20px;
+      padding: 40px 36px;
+      transition: all 0.5s var(--ease-out);
+      position: relative;
       overflow: hidden;
     }
 
-    .feature-cell {
-      background: var(--bg-elevated);
-      padding: 48px 36px;
-      transition: background 0.4s var(--ease-out);
+    .detail-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(90deg, var(--accent-mustard), var(--accent-blue));
+      opacity: 0.3;
+      transition: height 0.4s var(--ease-out);
     }
 
-    .feature-cell:hover {
+    .detail-card:hover::before {
+      height: 2px;
+    }
+
+    .detail-card:hover {
+      border-color: var(--border-hover);
       background: rgba(255,255,255,0.02);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.3);
     }
 
-    .feature-cell-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-    }
-
-    .feature-cell h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+    .detail-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 16px;
       color: var(--text);
     }
 
-    .feature-cell p {
-      font-size: 0.9rem;
-      line-height: 1.7;
+    .detail-card p {
+      font-size: 0.95rem;
+      line-height: 1.75;
       color: var(--text-muted);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       TECH STACK
-       ═══════════════════════════════════════════════════════════ */
+    .detail-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
+    .detail-card li {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .detail-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-mustard);
+      opacity: 0.6;
+    }
+
+    /* ─── TECH ─── */
     .tech-section {
-      padding: 0 24px 120px;
+      padding: 0 24px 100px;
+      background: var(--bg);
     }
 
     .tech-wrapper {
@@ -587,13 +655,15 @@
       font-weight: 500;
       color: var(--text-muted);
       transition: all 0.3s var(--ease-out);
+      cursor: default;
     }
 
     .tech-tag:hover {
       border-color: var(--border-hover);
       background: var(--surface-hover);
       color: var(--text);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .tech-tag-dot {
@@ -601,6 +671,12 @@
       height: 6px;
       border-radius: 50%;
       background: var(--accent-mustard);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
 
     .repo-card {
@@ -611,12 +687,14 @@
       border-radius: 16px;
       background: var(--surface);
       border: 1px solid var(--border);
-      transition: all 0.4s var(--ease-out);
+      transition: all 0.5s var(--ease-out);
     }
 
     .repo-card:hover {
       border-color: rgba(124,156,255,0.2);
       background: rgba(124,156,255,0.04);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
     }
 
     .repo-card h3 {
@@ -649,6 +727,7 @@
       border-color: rgba(124,156,255,0.3);
       background: rgba(124,156,255,0.08);
       box-shadow: 0 8px 24px rgba(124,156,255,0.08);
+      transform: translateX(4px);
     }
 
     .repo-link svg {
@@ -659,12 +738,10 @@
       transform: translateX(3px);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       FUTURE
-       ═══════════════════════════════════════════════════════════ */
-
+    /* ─── FUTURE ─── */
     .future-section {
-      padding: 0 24px 120px;
+      padding: 0 24px 100px;
+      background: var(--bg);
     }
 
     .future-wrapper {
@@ -690,11 +767,29 @@
       display: flex;
       align-items: flex-start;
       gap: 16px;
-      transition: background 0.3s var(--ease-out);
+      transition: all 0.4s var(--ease-out);
+      position: relative;
+    }
+
+    .future-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: linear-gradient(to bottom, var(--accent-mustard), var(--accent-blue));
+      opacity: 0.2;
+      transition: width 0.4s var(--ease-out);
+    }
+
+    .future-item:hover::before {
+      width: 3px;
     }
 
     .future-item:hover {
       background: var(--surface);
+      padding-left: 36px;
     }
 
     .future-item:nth-child(2n) { border-right: none; }
@@ -707,6 +802,12 @@
       color: var(--accent-mustard);
       opacity: 0.6;
       min-width: 32px;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .future-item:hover .future-item-number {
+      opacity: 1;
+      transform: scale(1.1);
     }
 
     .future-item-text {
@@ -715,12 +816,10 @@
       color: var(--text-muted);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       RECOMMENDATIONS
-       ═══════════════════════════════════════════════════════════ */
-
+    /* ─── RECOMMENDATIONS ─── */
     .rec-section {
-      padding: 0 24px 160px;
+      padding: 0 24px 120px;
+      background: var(--bg);
     }
 
     .rec-wrapper {
@@ -742,7 +841,7 @@
       border: 1px solid var(--border);
       text-decoration: none;
       color: inherit;
-      transition: all 0.4s var(--ease-out);
+      transition: all 0.5s var(--ease-out);
       position: relative;
       overflow: hidden;
     }
@@ -753,21 +852,21 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-mustard), transparent);
-      opacity: 0;
-      transition: opacity 0.4s var(--ease-out);
+      height: 0;
+      background: linear-gradient(90deg, var(--accent-mustard), var(--accent-blue));
+      opacity: 0.4;
+      transition: height 0.4s var(--ease-out);
+    }
+
+    .rec-card:hover::before {
+      height: 3px;
     }
 
     .rec-card:hover {
       border-color: var(--border-hover);
       background: var(--surface-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-
-    .rec-card:hover::before {
-      opacity: 1;
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
     }
 
     .rec-card-tag {
@@ -800,21 +899,21 @@
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-dim);
-      transition: color 0.3s var(--ease-out);
+      transition: all 0.3s var(--ease-out);
     }
 
     .rec-card:hover .rec-card-arrow {
       color: var(--accent-mustard);
+      gap: 10px;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       FOOTER
-       ═══════════════════════════════════════════════════════════ */
-
+    /* ─── FOOTER ─── */
     .project-footer {
       padding: 80px 24px;
       text-align: center;
       border-top: 1px solid var(--border);
+      background: var(--bg);
+      position: relative;
     }
 
     .project-footer h2 {
@@ -870,30 +969,253 @@
       color: var(--text-dim);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       RESPONSIVE
-       ═══════════════════════════════════════════════════════════ */
+    /* ─── MEANINGFUL DOODLES ─── */
+    .doodle-zone {
+      position: relative;
+    }
 
+    .page-doodle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+      z-index: 1;
+    }
+
+    .page-doodle.is-visible {
+      opacity: 1;
+    }
+
+    /* Overview doodles - messaging/communication theme */
+    .page-doodle--chat-bubble {
+      top: 12%; right: 6%;
+      color: var(--accent-coral);
+      animation: doodleBob 4s ease-in-out infinite;
+    }
+    .page-doodle--chat-bubble svg {
+      width: 32px; height: 28px;
+    }
+
+    .page-doodle--paper-plane {
+      bottom: 18%; left: 4%;
+      color: var(--accent-blue);
+      animation: doodleBob 5s ease-in-out infinite 0.5s;
+    }
+    .page-doodle--paper-plane svg {
+      width: 28px; height: 24px;
+    }
+
+    .page-doodle--users {
+      top: 45%; right: 3%;
+      color: var(--accent-teal);
+      animation: doodleBob 4.5s ease-in-out infinite 1s;
+    }
+    .page-doodle--users svg {
+      width: 30px; height: 22px;
+    }
+
+    /* Showcase doodles - security/device theme */
+    .page-doodle--fingerprint {
+      top: 8%; left: 8%;
+      color: var(--accent-sage);
+      animation: doodleSpin 8s linear infinite;
+    }
+    .page-doodle--fingerprint svg {
+      width: 36px; height: 36px;
+    }
+
+    .page-doodle--shield {
+      bottom: 20%; right: 6%;
+      color: var(--accent-blue);
+      animation: doodleBob 4s ease-in-out infinite 0.3s;
+    }
+    .page-doodle--shield svg {
+      width: 28px; height: 32px;
+    }
+
+    .page-doodle--wifi {
+      top: 30%; right: 4%;
+      color: var(--accent-mustard);
+      animation: doodlePulse 3s ease-in-out infinite;
+    }
+    .page-doodle--wifi svg {
+      width: 30px; height: 24px;
+    }
+
+    /* Features doodles - code/build theme */
+    .page-doodle--brackets {
+      top: 8%; right: 8%;
+      color: var(--accent-lavender);
+      animation: doodleBob 4s ease-in-out infinite;
+    }
+    .page-doodle--brackets svg {
+      width: 28px; height: 24px;
+    }
+
+    .page-doodle--bug {
+      bottom: 12%; left: 5%;
+      color: var(--accent-rose);
+      animation: doodleWiggle 3s ease-in-out infinite;
+    }
+    .page-doodle--bug svg {
+      width: 26px; height: 26px;
+    }
+
+    .page-doodle--database {
+      top: 50%; right: 4%;
+      color: var(--accent-teal);
+      animation: doodleBob 5s ease-in-out infinite 0.7s;
+    }
+    .page-doodle--database svg {
+      width: 24px; height: 28px;
+    }
+
+    /* Tech doodles - tools theme */
+    .page-doodle--hammer {
+      top: 10%; left: 5%;
+      color: var(--accent-beige);
+      animation: doodleWiggle 4s ease-in-out infinite;
+    }
+    .page-doodle--hammer svg {
+      width: 26px; height: 26px;
+    }
+
+    .page-doodle--gear {
+      bottom: 15%; right: 7%;
+      color: var(--accent-mustard);
+      animation: doodleSpin 10s linear infinite;
+    }
+    .page-doodle--gear svg {
+      width: 30px; height: 30px;
+    }
+
+    .page-doodle--terminal {
+      top: 40%; right: 3%;
+      color: var(--accent-sage);
+      animation: doodleBlink 2s ease-in-out infinite;
+    }
+    .page-doodle--terminal svg {
+      width: 28px; height: 22px;
+    }
+
+    /* Future doodles - growth/forward theme */
+    .page-doodle--rocket {
+      top: 6%; right: 8%;
+      color: var(--accent-coral);
+      animation: doodleBob 3s ease-in-out infinite;
+    }
+    .page-doodle--rocket svg {
+      width: 26px; height: 30px;
+    }
+
+    .page-doodle--chart {
+      bottom: 10%; left: 5%;
+      color: var(--accent-blue);
+      animation: doodleGrow 3s ease-in-out infinite;
+    }
+    .page-doodle--chart svg {
+      width: 28px; height: 24px;
+    }
+
+    .page-doodle--lightbulb {
+      top: 35%; left: 3%;
+      color: var(--accent-mustard);
+      animation: doodlePulse 2.5s ease-in-out infinite;
+    }
+    .page-doodle--lightbulb svg {
+      width: 22px; height: 28px;
+    }
+
+    /* Rec doodles - connection theme */
+    .page-doodle--link {
+      top: 8%; left: 7%;
+      color: var(--accent-teal);
+      animation: doodleWiggle 4s ease-in-out infinite;
+    }
+    .page-doodle--link svg {
+      width: 28px; height: 16px;
+    }
+
+    .page-doodle--compass {
+      bottom: 12%; right: 6%;
+      color: var(--accent-beige);
+      animation: doodleSpin 12s linear infinite;
+    }
+    .page-doodle--compass svg {
+      width: 28px; height: 28px;
+    }
+
+    .page-doodle--bookmark {
+      top: 30%; right: 4%;
+      color: var(--accent-rose);
+      animation: doodleBob 4s ease-in-out infinite 0.5s;
+    }
+    .page-doodle--bookmark svg {
+      width: 20px; height: 26px;
+    }
+
+    @keyframes doodleBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes doodleSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes doodleWiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-5deg); }
+    }
+
+    @keyframes doodlePulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.15); }
+    }
+
+    @keyframes doodleGrow {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
+    }
+
+    @keyframes doodleBlink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+
+    /* ─── CONTINUITY ─── */
+    .section-connector {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      max-width: 200px;
+      margin: 0 auto;
+      opacity: 0.5;
+    }
+
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
       .overview-grid { grid-template-columns: 1fr; gap: 48px; }
       .overview-statement { position: relative; top: 0; }
-      .features-grid { grid-template-columns: 1fr; }
+      .project-section-grid { grid-template-columns: 1fr; }
       .tech-wrapper { grid-template-columns: 1fr; gap: 48px; }
       .future-list { grid-template-columns: 1fr; }
       .future-item:nth-child(2n) { border-right: 1px solid var(--border); }
       .future-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
       .future-item:last-child { border-bottom: none; }
       .rec-grid { grid-template-columns: 1fr; }
+      .page-doodle { display: none; }
     }
 
     @media (max-width: 768px) {
       .project-hero { min-height: auto; padding: 100px 20px 60px; }
-      .stacked-gallery { height: 450px; }
-      .stack-card { width: 240px; }
+      .phone-frame { width: 240px; height: 480px; }
       .hero-meta { gap: 20px; }
       .hero-meta-divider { display: none; }
-      .overview-section, .features-section { padding: 80px 20px; }
-      .feature-cell { padding: 32px 24px; }
+      .overview-section { padding: 60px 20px 0; }
+      .features-section { padding: 0 20px 60px; }
+      .detail-card { padding: 28px 24px; }
       .future-item { padding: 20px 24px; }
     }
 
@@ -905,17 +1227,30 @@
       }
     }
     </style>
+<base target="_blank">
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════
-     HERO
-     ═══════════════════════════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+        <a class="navbar-brand" href="../home.html">Varsha Jairam</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="../home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="../resume.html">Resume</a></li>
+                <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <section class="project-hero">
   <div class="project-hero-bg"></div>
-
-  <!-- Doodles matching portfolio landing page -->
   <div class="hero-doodles" id="hero-doodles">
     <div class="hero-doodle hero-doodle--star" data-depth="0.3">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -951,7 +1286,6 @@
       campus, connected →
     </div>
   </div>
-
   <div class="hero-content">
     <div class="hero-eyebrow">Project Showcase</div>
     <h1 class="hero-title">Sync<span>Zone</span></h1>
@@ -982,11 +1316,30 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     OVERVIEW
-     ═══════════════════════════════════════════════════════════ -->
+<div class="section-connector"></div>
 
-<section class="overview-section">
+<section class="overview-section doodle-zone">
+  <div class="page-doodle page-doodle--chat-bubble" data-depth="0.4">
+    <svg viewBox="0 0 32 28" fill="none">
+      <rect x="1" y="1" width="26" height="20" rx="10" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+      <path d="M7 21l5 5 2-5" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+      <line x1="8" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="8" y1="13" x2="14" y2="13" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--paper-plane" data-depth="0.6">
+    <svg viewBox="0 0 28 24" fill="none">
+      <path d="M2 12l24-10-10 10-6 10 2-8-10-2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--users" data-depth="0.3">
+    <svg viewBox="0 0 30 22" fill="none">
+      <circle cx="10" cy="7" r="5" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <circle cx="22" cy="7" r="4" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M2 20c0-5 4-8 8-8s6 1 6 1" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M14 20c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
   <div class="overview-grid">
     <div class="overview-statement reveal">
       Think of SyncZone as <em>Discord meets Google Classroom</em>—designed exclusively for educational institutions.
@@ -1008,6 +1361,7 @@
           <li>Designing separate Teacher & Student workflows</li>
           <li>Integrating real-time chat and live synchronization</li>
           <li>Implementing profanity detection without affecting UX</li>
+          <li>Enabling two-factor authentication for secure login</li>
         </ul>
       </div>
       <div class="overview-block reveal reveal-delay-4">
@@ -1024,11 +1378,33 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     APP SHOWCASE — STACKED CARDS
-     ═══════════════════════════════════════════════════════════ -->
-
-<section class="showcase-section">
+<div class="section-connector"></div>
+<section class="showcase-section doodle-zone">
+  <div class="page-doodle page-doodle--fingerprint" data-depth="0.5">
+    <svg viewBox="0 0 36 36" fill="none">
+      <path d="M18 2C9.7 2 3 8.7 3 17v8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <path d="M18 6c-6.1 0-11 4.9-11 11v10" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M18 10c-3.9 0-7 3.1-7 7v12" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <path d="M18 14c-1.7 0-3 1.3-3 3v14" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M18 22c1.1 0 2-.9 2-2" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <path d="M33 17c0-8.3-6.7-15-15-15" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <path d="M29 17c0-6.1-4.9-11-11-11" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M25 17c0-3.9-3.1-7-7-7" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--shield" data-depth="0.6">
+    <svg viewBox="0 0 28 32" fill="none">
+      <path d="M14 2L4 7v8c0 6 4.3 11.3 10 13 5.7-1.7 10-7 10-13V7L14 2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <path d="M10 16l4 4 6-6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--wifi" data-depth="0.4">
+    <svg viewBox="0 0 30 24" fill="none">
+      <path d="M3 10c5-5 13-5 18 0" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <path d="M7 14c3-3 9-3 12 0" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+      <circle cx="15" cy="19" r="2" fill="currentColor" opacity="0.3"/>
+    </svg>
+  </div>
   <div class="showcase-wrapper">
     <div class="showcase-header reveal">
       <div class="section-eyebrow">App Walkthrough</div>
@@ -1036,76 +1412,126 @@
       <p class="section-subtitle">Twelve screens that tell the complete story—from splash to profile.</p>
     </div>
 
-    <div class="stacked-gallery" id="stacked-gallery">
-      <!-- Cards injected by JS -->
-    </div>
+    <div class="phone-showcase">
+      <div class="phone-frame" id="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" id="phone-screen">
+          <img id="phone-img" src="../assets/images/projects/synczone/01_Splash.png" alt="Splash Screen">
+        </div>
+        <div class="phone-home-bar"></div>
+      </div>
 
-    <div class="gallery-info reveal">
-      <div class="gallery-info-label" id="gallery-label">01 — Launch</div>
-      <h3 class="gallery-info-title" id="gallery-title">Splash Screen</h3>
-      <p class="gallery-info-desc" id="gallery-desc">Experience the branded launch screen before entering SyncZone.</p>
-      <div class="gallery-nav">
-        <button class="gallery-nav-btn" id="gallery-prev" aria-label="Previous">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 3L5 9l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="gallery-nav-dots" id="gallery-dots"></div>
-        <button class="gallery-nav-btn" id="gallery-next" aria-label="Next">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+      <div class="phone-info" id="phone-info">
+        <div class="phone-info-label" id="phone-label">01 — Launch</div>
+        <div class="phone-info-title" id="phone-title">Splash Screen</div>
+        <div class="phone-info-desc" id="phone-desc">Experience the branded launch screen before entering SyncZone.</div>
       </div>
     </div>
+
+    <div class="phone-nav">
+      <button class="phone-nav-btn" id="phone-prev" aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 3L5 9l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="phone-nav-dots" id="phone-dots"></div>
+      <button class="phone-nav-btn" id="phone-next" aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="phone-progress" id="phone-progress">01 / 12</div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     FEATURE HIGHLIGHTS
-     ═══════════════════════════════════════════════════════════ -->
+<div class="section-connector"></div>
 
-<section class="features-section">
+<section class="features-section doodle-zone">
+  <div class="page-doodle page-doodle--brackets" data-depth="0.5">
+    <svg viewBox="0 0 28 24" fill="none">
+      <path d="M8 4L2 12l6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <path d="M20 4l6 8-6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <line x1="14" y1="2" x2="14" y2="22" stroke="currentColor" stroke-width="0.8" opacity="0.2" stroke-dasharray="2 2"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--bug" data-depth="0.6">
+    <svg viewBox="0 0 26 26" fill="none">
+      <ellipse cx="13" cy="14" rx="5" ry="7" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <line x1="8" y1="10" x2="4" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="18" y1="10" x2="22" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="8" y1="18" x2="4" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="18" y1="18" x2="22" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="13" y1="7" x2="13" y2="3" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <circle cx="11" cy="12" r="1" fill="currentColor" opacity="0.3"/>
+      <circle cx="15" cy="12" r="1" fill="currentColor" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--database" data-depth="0.4">
+    <svg viewBox="0 0 24 28" fill="none">
+      <ellipse cx="12" cy="6" rx="9" ry="4" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <path d="M3 6v6c0 2.2 4 4 9 4s9-1.8 9-4V6" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M3 12v6c0 2.2 4 4 9 4s9-1.8 9-4v-6" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
   <div class="section-header" style="max-width:1200px;margin:0 auto 64px;padding:0 24px;">
-    <div class="section-eyebrow reveal">Core Features</div>
-    <h2 class="section-title reveal reveal-delay-1">What SyncZone Does</h2>
-    <p class="section-subtitle reveal reveal-delay-2">Six capabilities that transform how students and teachers interact on campus.</p>
+    <div class="section-eyebrow reveal">Project Details</div>
+    <h2 class="section-title reveal reveal-delay-1">Behind the Build</h2>
+    <p class="section-subtitle reveal reveal-delay-2">The story, the decisions, and the obstacles that shaped SyncZone.</p>
   </div>
-  <div class="features-grid">
-    <div class="feature-cell reveal">
-      <div class="feature-cell-icon">🔐</div>
-      <h3>Secure Authentication</h3>
-      <p>Firebase-backed login, registration, and password recovery with role-based access for students and teachers.</p>
-    </div>
-    <div class="feature-cell reveal reveal-delay-1">
-      <div class="feature-cell-icon">💬</div>
-      <h3>Real-Time Chat</h3>
-      <p>Firebase Realtime Database powers instant messaging inside course chatrooms with zero latency.</p>
-    </div>
-    <div class="feature-cell reveal reveal-delay-2">
-      <div class="feature-cell-icon">🛡️</div>
-      <h3>Profanity Filter</h3>
-      <p>Every message passes through the Purgomalum API before delivery, keeping conversations respectful.</p>
-    </div>
-    <div class="feature-cell reveal">
-      <div class="feature-cell-icon">📢</div>
-      <h3>Announcements</h3>
-      <p>Teachers broadcast updates across classes. Students receive them instantly with push notifications.</p>
-    </div>
-    <div class="feature-cell reveal reveal-delay-1">
-      <div class="feature-cell-icon">📝</div>
-      <h3>Assignment Hub</h3>
-      <p>Create, distribute, track, and submit assignments—all from a single organized dashboard.</p>
-    </div>
-    <div class="feature-cell reveal reveal-delay-2">
-      <div class="feature-cell-icon">👤</div>
-      <h3>Profile Management</h3>
-      <p>Personal and faculty dashboards with account settings, institutional details, and course information.</p>
-    </div>
+  <div class="project-section-grid">
+    <article class="detail-card reveal">
+      <h3>Why I Built It</h3>
+      <p>Educational communication often lives across WhatsApp groups, emails, classroom notices, and shared drives. I wanted to create one platform where students and teachers could collaborate professionally without distractions, scattered information, or inappropriate communication.</p>
+    </article>
+    <article class="detail-card reveal reveal-delay-1">
+      <h3>What Makes SyncZone Different</h3>
+      <p>Unlike traditional classroom messaging platforms, every message is checked using a real-time profanity detection API before it reaches other users. This creates a safer, distraction-free environment where discussions remain focused on learning.</p>
+    </article>
+    <article class="detail-card reveal reveal-delay-2">
+      <h3>Challenges</h3>
+      <ul>
+        <li>Building my first large-scale Android application</li>
+        <li>Learning Firebase architecture from scratch</li>
+        <li>Designing separate Teacher & Student workflows</li>
+        <li>Integrating real-time chat and live synchronization</li>
+        <li>Implementing profanity detection without affecting user experience</li>
+        <li>Enabling two-factor authentication for secure login</li>
+      </ul>
+    </article>
+    <article class="detail-card reveal reveal-delay-3">
+      <h3>Lessons Learned</h3>
+      <ul>
+        <li>Plan the architecture before writing code</li>
+        <li>Design scalable database structures</li>
+        <li>Break complex features into smaller milestones</li>
+        <li>Debugging is as important as development</li>
+        <li>Great products solve user problems, not just technical ones</li>
+      </ul>
+    </article>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     TECH STACK
-     ═══════════════════════════════════════════════════════════ -->
+<div class="section-connector"></div>
 
-<section class="tech-section">
+<section class="tech-section doodle-zone">
+  <div class="page-doodle page-doodle--hammer" data-depth="0.5">
+    <svg viewBox="0 0 26 26" fill="none">
+      <rect x="10" y="2" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <path d="M4 20l6-4 6 4-6 4-6-4z" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="13" y1="16" x2="13" y2="20" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--gear" data-depth="0.6">
+    <svg viewBox="0 0 30 30" fill="none">
+      <circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <path d="M15 5v3M15 22v3M5 15H8M22 15h3M7.6 7.6l2.1 2.1M20.3 20.3l2.1 2.1M7.6 22.4l2.1-2.1M20.3 9.7l2.1-2.1" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--terminal" data-depth="0.4">
+    <svg viewBox="0 0 28 22" fill="none">
+      <rect x="1" y="1" width="26" height="20" rx="4" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <path d="M6 7l4 4-4 4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <line x1="14" y1="15" x2="20" y2="15" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <circle cx="22" cy="6" r="1.5" fill="currentColor" opacity="0.3"/>
+    </svg>
+  </div>
   <div class="tech-wrapper">
     <div>
       <div class="section-header" style="margin-bottom:40px;">
@@ -1135,33 +1561,74 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     FUTURE
-     ═══════════════════════════════════════════════════════════ -->
+<div class="section-connector"></div>
 
-<section class="future-section">
+<section class="future-section doodle-zone">
+  <div class="page-doodle page-doodle--rocket" data-depth="0.5">
+    <svg viewBox="0 0 26 30" fill="none">
+      <path d="M13 2s-10 10-10 20h20c0-10-10-20-10-20z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="13" cy="15" r="3" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M9 24l4 4 4-4" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <line x1="13" y1="22" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--chart" data-depth="0.6">
+    <svg viewBox="0 0 28 24" fill="none">
+      <rect x="2" y="2" width="24" height="20" rx="3" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M6 18l6-8 4 4 6-10" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="6" cy="18" r="1.5" fill="currentColor" opacity="0.4"/>
+      <circle cx="12" cy="10" r="1.5" fill="currentColor" opacity="0.4"/>
+      <circle cx="16" cy="14" r="1.5" fill="currentColor" opacity="0.4"/>
+      <circle cx="22" cy="4" r="1.5" fill="currentColor" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--lightbulb" data-depth="0.4">
+    <svg viewBox="0 0 22 28" fill="none">
+      <path d="M11 2c-4.4 0-8 3.6-8 8 0 3.2 1.9 6 4.7 7.3.3.1.5.4.5.7v2h6v-2c0-.3.2-.6.5-.7C17.1 16 19 13.2 19 10c0-4.4-3.6-8-8-8z" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      <line x1="9" y1="20" x2="9" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="13" y1="20" x2="13" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="8" y1="24" x2="14" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <line x1="9" y1="26" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
   <div class="future-wrapper">
     <div class="section-header" style="margin-bottom:48px;">
       <div class="section-eyebrow reveal">Roadmap</div>
-      <h2 class="section-title reveal reveal-delay-1">What's Next</h2>
+      <h2 class="section-title reveal reveal-delay-1">What is Next</h2>
     </div>
     <ul class="future-list reveal reveal-delay-2">
       <li class="future-item"><span class="future-item-number">01</span><span class="future-item-text">AI-powered academic assistant for personalized tutoring</span></li>
       <li class="future-item"><span class="future-item-number">02</span><span class="future-item-text">Attendance & timetable management with calendar sync</span></li>
       <li class="future-item"><span class="future-item-number">03</span><span class="future-item-text">Advanced moderation with temporary account restrictions</span></li>
-      <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Multi-factor authentication for enhanced security</span></li>
-      <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">Smart announcement summaries using NLP</span></li>
-      <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Analytics dashboard for teachers with engagement metrics</span></li>
-      <li class="future-item"><span class="future-item-number">07</span><span class="future-item-text">Personalized learning recommendations per student</span></li>
+      <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Smart announcement summaries using NLP</span></li>
+      <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">Analytics dashboard for teachers with engagement metrics</span></li>
+      <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Personalized learning recommendations per student</span></li>
     </ul>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     RECOMMENDATIONS
-     ═══════════════════════════════════════════════════════════ -->
+<div class="section-connector"></div>
 
-<section class="rec-section">
+<section class="rec-section doodle-zone">
+  <div class="page-doodle page-doodle--link" data-depth="0.5">
+    <svg viewBox="0 0 28 16" fill="none">
+      <path d="M10 8c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6s-2.7 6-6 6h-4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <path d="M18 8c0 3.3-2.7 6-6 6H8c-3.3 0-6-2.7-6-6s2.7-6 6-6h4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--compass" data-depth="0.6">
+    <svg viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+      <path d="M14 3v4M14 21v4M3 14h4M21 14h4" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+      <path d="M14 8l-3 9 9-3-6-6z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="page-doodle page-doodle--bookmark" data-depth="0.4">
+    <svg viewBox="0 0 20 26" fill="none">
+      <path d="M4 2h12v20l-6-4-6 4V2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+      <line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
   <div class="rec-wrapper">
     <div class="section-header" style="margin-bottom:48px;">
       <div class="section-eyebrow reveal">More Work</div>
@@ -1190,10 +1657,6 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════════════════ -->
-
 <footer class="project-footer">
   <h2>Campus collaboration, <em>made structured.</em></h2>
   <div class="footer-links">
@@ -1203,15 +1666,14 @@
   <p class="copyright">Copyright 2026 Varsha Jairam</p>
 </footer>
 
-<script>
-/* ═══════════════════════════════════════════════════════════
-   SYNCZONE — INTERACTIVE GALLERY & SCROLL REVEAL
-   ═══════════════════════════════════════════════════════════ */
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/navbar.js"></script>
+<script src="../assets/js/main.js"></script>
 
+<script>
 (function() {
   'use strict';
 
-  // ─── SCREEN DATA ───
   const screens = [
     { number: "01", title: "Splash Screen", subtitle: "Launch Experience", desc: "Experience the branded launch screen before entering SyncZone.", image: "../assets/images/projects/synczone/01_Splash.png" },
     { number: "02", title: "Login", subtitle: "Secure Authentication", desc: "Sign in securely using your registered credentials and access your personalized workspace.", image: "../assets/images/projects/synczone/02_Login.png" },
@@ -1227,99 +1689,96 @@
     { number: "12", title: "Teacher Profile", subtitle: "Faculty Dashboard", desc: "Faculty profiles centralize teaching information and institutional details.", image: "../assets/images/projects/synczone/12_Teach_Profile.png" }
   ];
 
-  // ─── BUILD STACKED CARDS ───
-  const gallery = document.getElementById('stacked-gallery');
-  const dotsContainer = document.getElementById('gallery-dots');
+  const phoneImg = document.getElementById('phone-img');
+  const dotsContainer = document.getElementById('phone-dots');
+  const progressEl = document.getElementById('phone-progress');
+  const labelEl = document.getElementById('phone-label');
+  const titleEl = document.getElementById('phone-title');
+  const descEl = document.getElementById('phone-desc');
+
   let currentIndex = 0;
   let autoplayInterval = null;
   let isHovered = false;
 
   screens.forEach((screen, i) => {
-    const card = document.createElement('div');
-    card.className = `stack-card stack-card--${Math.min(i + 1, 5)}`;
-    card.dataset.index = i;
-    card.innerHTML = `<img src="${screen.image}" alt="${screen.title}" loading="lazy">`;
-    card.addEventListener('click', () => goTo(i));
-    gallery.appendChild(card);
-
     const dot = document.createElement('div');
-    dot.className = 'gallery-nav-dot' + (i === 0 ? ' is-active' : '');
+    dot.className = 'phone-nav-dot' + (i === 0 ? ' is-active' : '');
     dot.addEventListener('click', () => goTo(i));
     dotsContainer.appendChild(dot);
   });
 
-  const cards = gallery.querySelectorAll('.stack-card');
-  const dots = dotsContainer.querySelectorAll('.gallery-nav-dot');
+  const dots = dotsContainer.querySelectorAll('.phone-nav-dot');
 
-  function updateGallery() {
-    cards.forEach((card, i) => {
-      const offset = i - currentIndex;
-      const absOffset = Math.abs(offset);
+  function animateInfoIn() {
+    labelEl.classList.remove('is-visible');
+    titleEl.classList.remove('is-visible');
+    descEl.classList.remove('is-visible');
+    setTimeout(() => {
+      labelEl.classList.add('is-visible');
+      titleEl.classList.add('is-visible');
+      descEl.classList.add('is-visible');
+    }, 50);
+  }
 
-      card.classList.toggle('is-active', i === currentIndex);
+  function updatePhone() {
+    const screen = screens[currentIndex];
 
-      if (i === currentIndex) {
-        card.style.transform = 'translate(-50%, -50%) translateZ(60px) scale(1.05)';
-        card.style.opacity = '1';
-        card.style.zIndex = '20';
-        card.style.borderColor = 'rgba(201,148,26,0.2)';
-      } else if (offset > 0) {
-        card.style.transform = `translate(-50%, -50%) translateZ(${-absOffset * 30}px) translateX(${absOffset * 40}px) rotateY(${-absOffset * 4}deg)`;
-        card.style.opacity = `${Math.max(0.85 - absOffset * 0.15, 0.3)}`;
-        card.style.zIndex = `${20 - absOffset}`;
-        card.style.borderColor = 'rgba(255,255,255,0.08)';
-      } else {
-        card.style.transform = `translate(-50%, -50%) translateZ(${-absOffset * 30}px) translateX(${-absOffset * 40}px) rotateY(${absOffset * 4}deg)`;
-        card.style.opacity = `${Math.max(0.85 - absOffset * 0.15, 0.3)}`;
-        card.style.zIndex = `${20 - absOffset}`;
-        card.style.borderColor = 'rgba(255,255,255,0.08)';
-      }
-    });
+    phoneImg.style.opacity = '0';
+    phoneImg.style.transform = 'scale(0.92)';
+
+    setTimeout(() => {
+      phoneImg.src = screen.image;
+      phoneImg.alt = screen.title;
+      phoneImg.style.opacity = '1';
+      phoneImg.style.transform = 'scale(1)';
+    }, 250);
 
     dots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentIndex));
+    progressEl.textContent = screen.number + ' / 12';
 
-    const screen = screens[currentIndex];
-    document.getElementById('gallery-label').textContent = `${screen.number} — ${screen.subtitle}`;
-    document.getElementById('gallery-title').textContent = screen.title;
-    document.getElementById('gallery-desc').textContent = screen.desc;
+    labelEl.textContent = screen.number + ' — ' + screen.subtitle;
+    titleEl.textContent = screen.title;
+    descEl.textContent = screen.desc;
+    animateInfoIn();
   }
 
   function goTo(index) {
     if (index < 0) index = screens.length - 1;
     if (index >= screens.length) index = 0;
     currentIndex = index;
-    updateGallery();
+    updatePhone();
   }
 
-  document.getElementById('gallery-prev').addEventListener('click', () => goTo(currentIndex - 1));
-  document.getElementById('gallery-next').addEventListener('click', () => goTo(currentIndex + 1));
+  document.getElementById('phone-prev').addEventListener('click', () => goTo(currentIndex - 1));
+  document.getElementById('phone-next').addEventListener('click', () => goTo(currentIndex + 1));
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') goTo(currentIndex + 1);
     if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
   });
 
-  // Touch
   let touchStartX = 0;
-  gallery.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-  gallery.addEventListener('touchend', e => {
+  const phoneFrame = document.getElementById('phone-frame');
+  phoneFrame.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  phoneFrame.addEventListener('touchend', e => {
     const diff = touchStartX - e.changedTouches[0].screenX;
     if (Math.abs(diff) > 40) goTo(currentIndex + (diff > 0 ? 1 : -1));
   });
 
-  // Autoplay
   function startAutoplay() {
     autoplayInterval = setInterval(() => { if (!isHovered) goTo(currentIndex + 1); }, 5000);
   }
   function stopAutoplay() { clearInterval(autoplayInterval); }
 
-  gallery.addEventListener('mouseenter', () => { isHovered = true; });
-  gallery.addEventListener('mouseleave', () => { isHovered = false; });
+  phoneFrame.addEventListener('mouseenter', () => { isHovered = true; });
+  phoneFrame.addEventListener('mouseleave', () => { isHovered = false; });
 
-  updateGallery();
+  // Initial info animation
+  setTimeout(() => animateInfoIn(), 300);
+  updatePhone();
   startAutoplay();
 
-  // ─── SCROLL REVEAL ───
+  // Scroll reveal
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1330,8 +1789,19 @@
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // ─── DOODLE PARALLAX ───
-  const doodles = document.querySelectorAll('.hero-doodle');
+  // Doodle reveal
+  const doodleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.page-doodle').forEach(el => doodleObserver.observe(el));
+
+  // Hero doodle parallax
+  const heroDoodles = document.querySelectorAll('.hero-doodle');
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let currentMX = mouseX;
@@ -1349,18 +1819,16 @@
     const cy = window.innerHeight / 2;
     const ox = currentMX - cx;
     const oy = currentMY - cy;
-
-    doodles.forEach(d => {
+    heroDoodles.forEach(d => {
       const depth = parseFloat(d.dataset.depth) || 1;
       const s = depth * 0.25;
-      d.style.transform = `translate3d(${ox * s * -1}px, ${oy * s * -1}px, 0)`;
+      d.style.transform = 'translate3d(' + (ox * s * -1) + 'px, ' + (oy * s * -1) + 'px, 0)';
     });
     requestAnimationFrame(animateDoodles);
   }
 
-  // Reveal doodles after load
   setTimeout(() => {
-    doodles.forEach((d, i) => {
+    heroDoodles.forEach((d, i) => {
       setTimeout(() => d.classList.add('is-visible'), i * 120);
     });
   }, 600);
