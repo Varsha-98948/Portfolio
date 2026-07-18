@@ -1,266 +1,1374 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SyncZone | Varsha Jairam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/pages.css">
     <link rel="stylesheet" href="../assets/css/project-showcase.css">
+    <style>
+    /* ═══════════════════════════════════════════════════════════
+       SYNCZONE — REDESIGNED PROJECT PAGE
+       Restrained, purposeful, premium
+       ═══════════════════════════════════════════════════════════ */
+
+    :root {
+      --accent-mustard: #c9941a;
+      --accent-navy: #1a1a2e;
+      --accent-blue: #7c9cff;
+      --accent-beige: #d4b896;
+      --accent-teal: #4fd1c5;
+      --bg: #0a0a0f;
+      --bg-elevated: #111118;
+      --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.14);
+      --text: #f0f0f5;
+      --text-muted: rgba(240,240,245,0.5);
+      --text-dim: rgba(240,240,245,0.25);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════════ */
+
+    .project-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+
+    .project-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,156,255,0.04), transparent),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(201,148,26,0.03), transparent);
+    }
+
+    .hero-doodles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-doodle {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1.2s var(--ease-out);
+    }
+    .hero-doodle.is-visible { opacity: 1; }
+
+    .hero-doodle--star { top: 14%; left: 18%; }
+    .hero-doodle--star svg path { stroke: var(--accent-mustard); stroke-width: 0.8; }
+
+    .hero-doodle--cross { bottom: 28%; left: 14%; }
+    .hero-doodle--cross svg line { stroke: var(--accent-teal); stroke-width: 1; opacity: 0.5; }
+
+    .hero-doodle--ring { top: 20%; right: 20%; }
+    .hero-doodle--ring svg circle { stroke: var(--accent-beige); stroke-width: 1; opacity: 0.4; }
+
+    .hero-doodle--arrow { bottom: 24%; right: 16%; }
+    .hero-doodle--arrow svg path { stroke: var(--accent-blue); stroke-width: 1; opacity: 0.5; }
+
+    .hero-doodle--dots { top: 55%; left: 20%; }
+    .hero-doodle--dots svg circle { fill: var(--accent-beige); opacity: 0.3; }
+
+    .hero-doodle--annotation {
+      top: 28%;
+      right: 10%;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 0.8rem;
+      color: var(--accent-beige);
+      transform: rotate(-4deg);
+      white-space: nowrap;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 720px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s var(--ease-out) 0.3s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent-mustard);
+      opacity: 0.5;
+    }
+
+    .hero-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s var(--ease-out) 0.5s forwards;
+    }
+
+    .hero-title span {
+      font-style: italic;
+      color: var(--accent-mustard);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s var(--ease-out) 0.7s forwards;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s var(--ease-out) 0.9s forwards;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-meta-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .hero-meta-value {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--border);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ═══════════════════════════════════════════════════════════ */
+
+    .section-header {
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 540px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       OVERVIEW — THE BIG IDEA
+       ═══════════════════════════════════════════════════════════ */
+
+    .overview-section {
+      padding: 120px 24px;
+      position: relative;
+    }
+
+    .overview-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .overview-statement {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.4;
+      color: var(--text);
+      position: sticky;
+      top: 120px;
+    }
+
+    .overview-statement em {
+      font-style: italic;
+      color: var(--accent-mustard);
+    }
+
+    .overview-details {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .overview-block h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .overview-block p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    .overview-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .overview-block li {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .overview-block li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-mustard);
+      opacity: 0.6;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       APP SHOWCASE — STACKED CARDS GALLERY
+       ═══════════════════════════════════════════════════════════ */
+
+    .showcase-section {
+      padding: 0 24px 120px;
+      position: relative;
+    }
+
+    .showcase-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    /* ─── Stacked Cards Gallery ─── */
+    .stacked-gallery {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      height: 600px;
+      perspective: 1200px;
+    }
+
+    .stack-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      transform: translate(-50%, -50%);
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(255,255,255,0.03);
+      transition: all 0.6s var(--ease-out);
+      cursor: pointer;
+      will-change: transform, opacity;
+    }
+
+    .stack-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .stack-card--1 { z-index: 12; transform: translate(-50%, -50%) translateZ(0); }
+    .stack-card--2 { z-index: 11; transform: translate(-50%, -50%) translateZ(-30px) translateX(40px) rotateY(-4deg); opacity: 0.85; }
+    .stack-card--3 { z-index: 10; transform: translate(-50%, -50%) translateZ(-60px) translateX(80px) rotateY(-8deg); opacity: 0.7; }
+    .stack-card--4 { z-index: 9; transform: translate(-50%, -50%) translateZ(-90px) translateX(120px) rotateY(-12deg); opacity: 0.55; }
+    .stack-card--5 { z-index: 8; transform: translate(-50%, -50%) translateZ(-120px) translateX(160px) rotateY(-16deg); opacity: 0.4; }
+
+    .stack-card:hover {
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(201,148,26,0.15);
+    }
+
+    .stack-card.is-active {
+      z-index: 20;
+      transform: translate(-50%, -50%) translateZ(60px) scale(1.05);
+      opacity: 1;
+      border-color: rgba(201,148,26,0.2);
+    }
+
+    /* ─── Gallery Info Panel ─── */
+    .gallery-info {
+      text-align: center;
+      margin-top: 48px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-info-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 8px;
+    }
+
+    .gallery-info-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .gallery-info-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .gallery-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .gallery-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .gallery-nav-btn:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      transform: scale(1.08);
+    }
+
+    .gallery-nav-btn:active {
+      transform: scale(0.95);
+    }
+
+    .gallery-nav-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .gallery-nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .gallery-nav-dot.is-active {
+      background: var(--accent-mustard);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FEATURE HIGHLIGHTS
+       ═══════════════════════════════════════════════════════════ */
+
+    .features-section {
+      padding: 120px 24px;
+      position: relative;
+    }
+
+    .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--border));
+    }
+
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .feature-cell {
+      background: var(--bg-elevated);
+      padding: 48px 36px;
+      transition: background 0.4s var(--ease-out);
+    }
+
+    .feature-cell:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .feature-cell-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .feature-cell h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .feature-cell p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       TECH STACK
+       ═══════════════════════════════════════════════════════════ */
+
+    .tech-section {
+      padding: 0 24px 120px;
+    }
+
+    .tech-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .tech-tag:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .tech-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-mustard);
+    }
+
+    .repo-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 32px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.4s var(--ease-out);
+    }
+
+    .repo-card:hover {
+      border-color: rgba(124,156,255,0.2);
+      background: rgba(124,156,255,0.04);
+    }
+
+    .repo-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .repo-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .repo-link:hover {
+      border-color: rgba(124,156,255,0.3);
+      background: rgba(124,156,255,0.08);
+      box-shadow: 0 8px 24px rgba(124,156,255,0.08);
+    }
+
+    .repo-link svg {
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .repo-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FUTURE
+       ═══════════════════════════════════════════════════════════ */
+
+    .future-section {
+      padding: 0 24px 120px;
+    }
+
+    .future-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .future-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .future-item {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: background 0.3s var(--ease-out);
+    }
+
+    .future-item:hover {
+      background: var(--surface);
+    }
+
+    .future-item:nth-child(2n) { border-right: none; }
+    .future-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    .future-item-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--accent-mustard);
+      opacity: 0.6;
+      min-width: 32px;
+    }
+
+    .future-item-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RECOMMENDATIONS
+       ═══════════════════════════════════════════════════════════ */
+
+    .rec-section {
+      padding: 0 24px 160px;
+    }
+
+    .rec-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .rec-card {
+      display: block;
+      padding: 32px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.4s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rec-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-mustard), transparent);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease-out);
+    }
+
+    .rec-card:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .rec-card:hover::before {
+      opacity: 1;
+    }
+
+    .rec-card-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 12px;
+    }
+
+    .rec-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .rec-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .rec-card-arrow {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      transition: color 0.3s var(--ease-out);
+    }
+
+    .rec-card:hover .rec-card-arrow {
+      color: var(--accent-mustard);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ */
+
+    .project-footer {
+      padding: 80px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-footer h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+
+    .project-footer h2 em {
+      font-style: italic;
+      color: var(--accent-mustard);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-mustard);
+      transition: width 0.3s var(--ease-out);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════════════════ */
+
+    @media (max-width: 1024px) {
+      .overview-grid { grid-template-columns: 1fr; gap: 48px; }
+      .overview-statement { position: relative; top: 0; }
+      .features-grid { grid-template-columns: 1fr; }
+      .tech-wrapper { grid-template-columns: 1fr; gap: 48px; }
+      .future-list { grid-template-columns: 1fr; }
+      .future-item:nth-child(2n) { border-right: 1px solid var(--border); }
+      .future-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .future-item:last-child { border-bottom: none; }
+      .rec-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .project-hero { min-height: auto; padding: 100px 20px 60px; }
+      .stacked-gallery { height: 450px; }
+      .stack-card { width: 240px; }
+      .hero-meta { gap: 20px; }
+      .hero-meta-divider { display: none; }
+      .overview-section, .features-section { padding: 80px 20px; }
+      .feature-cell { padding: 32px 24px; }
+      .future-item { padding: 20px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    </style>
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container"><a class="navbar-brand" href="../home.html">Varsha Jairam</a><button
-                class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
-                    class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../resume.html">Resume</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main class="page-shell">
-        <section class="project-hero-premium project-hero--synczone">
-            <div class="project-hero-premium-bg" aria-hidden="true"></div>
-            <div class="container">
-                <div class="project-hero-premium-inner"><span class="status-badge completed">Completed</span>
-                    <h1 class="hero-title">SyncZone</h1>
-                    <p class="hero-copy">Revolutionizing Student Education System.</p>
-                </div>
-            </div>
-        </section>
-        <section class="project-showcase-section">
-            <div class="container">
-                <div class="showcase-heading reveal">
-                    <span class="showcase-label">APP WALKTHROUGH</span>
-                    <h2>Explore SyncZone</h2>
-                    <p>Take an interactive tour through the complete student and teacher experience—from authentication to real-time collaboration.</p>
-                </div>
-                <div id="synczone-showcase-root" class="reveal"></div>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <p class="fun-overview reveal">Think of SyncZone as Discord meets Google Classroom—designed exclusively
-                    for educational institutions. It combines real-time communication, assignments, announcements, and
-                    collaboration into a single platform while ensuring conversations remain respectful through built-in
-                    profanity filtering.
-                </p>
-                <div class="project-section-grid mt-4">
-                    <article class="detail-card reveal">
-                        <h3>Why I Built It</h3>
-                        <p>Educational communication often lives across WhatsApp groups, emails, classroom notices, and
-                            shared drives. I wanted to create one platform where students and teachers could collaborate
-                            professionally without distractions, scattered information, or inappropriate communication.
-                        </p>
-                    </article>
-                    <article class="detail-card reveal">
-                        <h3>What Makes SyncZone Different</h3>
-                        <p>Unlike traditional classroom messaging platforms, every message is checked using a real-time
-                            profanity detection API before it reaches other users.
 
-                            This creates a safer, distraction-free environment where discussions remain focused on
-                            learning.</p>
-                    </article>
-                    <article class="detail-card reveal">
-                        <h3>Challenges</h3>
-                        <p>• Building my first large-scale Android application
-                        <p>• Learning Firebase architecture from scratch</p>
-                        <p>• Designing separate Teacher & Student workflows</p>
-                        <p>• Integrating real-time chat and live synchronization</p>
-                        <p>• Implementing profanity detection without affecting user experience</p>
-                    </article>
-                    <article class="detail-card reveal">
-                        <h3>Lessons Learned</h3>
-                        <p>• Plan the architecture before writing code</p>
-                        <p>• Design scalable database structures</p>
-                        <p>• Break complex features into smaller </p>
-                        <p>• Debugging is as important as development</p>
-                        <p>• Great products solve user problems, not just technical ones</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-        <section class="section-band">
-            <div class="container">
-                <h2 class="section-title reveal">Technologies Used</h2>
-                <div class="tech-list mt-3 reveal"><span class="tech-badge">Java</span><span
-                        class="tech-badge">XML</span><span class="tech-badge">Firebase Authentication</span><span
-                        class="tech-badge">Android Studio</span><span class="tech-badge">Firebase Realtime
-                        Database</span><span class="tech-badge">Supabase</span><span class="tech-badge">Purgomalum
-                        API</span></div>
-                <div class="repo-card glass-card mt-4 reveal">
-                    <div>
-                        <h3>GitHub</h3>
-                    </div><a class="btn-secondary-custom" href="https://github.com/Vallabh05/SyncZone">View
-                        Repository</a>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <article class="detail-card reveal">
-                    <h3>Future Plans</h3>
-                    <p>• AI-powered academic assistant</p>
-                    <p>• Attendance & timetable management</p>
-                    <p>• Advanced moderation system with temporary account restrictions</p>
-                    <p>• Multi-factor authentication</p>
-                    <p>• Smart announcement summaries</p>
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════ -->
 
-                    • Analytics dashboard for teachers
+<section class="project-hero">
+  <div class="project-hero-bg"></div>
 
-                    • Personalized learning recommendations</p>
-                </article>
-            </div>
-        </section>
-        <section class="section-band">
-            <div class="container">
-                <h2 class="section-title reveal">You may also like</h2>
-                <div class="recommendation-grid mt-4"><a class="mini-project-card reveal" href="gallimart.html"><span
-                            class="badge-soft">Android</span>
-                        <h3>GalliMart</h3>
-                        <p>Local marketplace flows.</p>
-                    </a><a class="mini-project-card reveal" href="aion.html"><span class="badge-soft">Aion</span>
-                        <h3>Aion</h3>
-                        <p>Memory and task intelligence.</p>
-                    </a><a class="mini-project-card reveal" href="triggerly.html"><span
-                            class="badge-soft">Automation</span>
-                        <h3>Triggerly</h3>
-                        <p>Workflow automation.</p>
-                    </a></div>
-            </div>
-        </section>
-    </main>
-    <footer class="footer-custom">
-        <div class="container text-center">
-            <h2>Campus collaboration, made structured.</h2>
-            <div class="footer-links"><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a></div>
-            <p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/navbar.js"></script>
-    <script src="../assets/js/main.js"></script><button class="aion-orb" type="button" data-aion-launcher
-        aria-expanded="false" aria-label="Open Aion Core"><span class="aion-orb-ring" aria-hidden="true"></span><span
-            class="aion-orb-ring aion-orb-ring--2" aria-hidden="true"></span><span class="aion-orb-core"
-            aria-hidden="true"></span></button>
-    <aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant">
-        <div class="aion-panel-glow" aria-hidden="true"></div>
-        <header class="aion-header">
-            <div class="aion-brand"><span class="aion-brand-icon" aria-hidden="true">✦</span>
-                <div><strong>Aion Core</strong><span>Portfolio intelligence</span></div>
-            </div><button class="aion-close" type="button" data-aion-close aria-label="Close">&times;</button>
-        </header>
-        <div class="aion-messages" data-aion-messages>
-            <div class="aion-empty" data-aion-empty><span class="aion-empty-icon">✦</span>
-                <p>Ask me anything about Varsha's work, skills, or product direction.</p>
-            </div>
-        </div>
-        <form class="aion-form" data-aion-form>
-            <div class="aion-input-wrap"><input data-aion-input type="text" placeholder="Ask about Varsha..."
-                    aria-label="Ask Aion Core" autocomplete="off"><button type="submit" aria-label="Send"><svg
-                        width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <path d="M3 9l12-6-3 6 3 6-12-6z" stroke="currentColor" stroke-width="1.4"
-                            stroke-linejoin="round" />
-                    </svg></button></div>
-        </form>
-    </aside>
-    <script src="../assets/js/aion-core.js"></script>
-    <script src="../assets/js/project-showcase.js"></script>
-    <script>
-        const synczoneScreens = [
-            {
-                title: "Splash Screen",
-                subtitle: "Launch Experience",
-                description: "Experience the branded launch screen before entering SyncZone.",
-                image: "../assets/images/projects/synczone/01_Splash.png"
-            },
-            {
-                title: "Login",
-                subtitle: "Secure Authentication",
-                description: "Sign in securely using your registered credentials and access your personalized workspace.",
-                image: "../assets/images/projects/synczone/02_Login.png"
-            },
-            {
-                title: "Register",
-                subtitle: "Create Account",
-                description: "New students and teachers can register and join their institution with ease.",
-                image: "../assets/images/projects/synczone/03_Register.png"
-            },
-            {
-                title: "Forgot Password",
-                subtitle: "Account Recovery",
-                description: "Recover access to your account through a simple password reset workflow.",
-                image: "../assets/images/projects/synczone/04_Forgot_Password.png"
-            },
-            {
-                title: "Student Chat",
-                subtitle: "Real-Time Messaging",
-                description: "Students collaborate through Firebase-powered real-time conversations inside course chatrooms.",
-                image: "../assets/images/projects/synczone/05_Stud_Chat.png"
-            },
-            {
-                title: "Teacher Chat",
-                subtitle: "Faculty Communication",
-                description: "Teachers communicate with students while maintaining structured classroom discussions.",
-                image: "../assets/images/projects/synczone/06_Teach_Chat.png"
-            },
-            {
-                title: "Student Announcements",
-                subtitle: "Stay Updated",
-                description: "Students receive important announcements, events and academic notices instantly.",
-                image: "../assets/images/projects/synczone/07_Stud_Announcement.png"
-            },
-            {
-                title: "Teacher Announcements",
-                subtitle: "Publish Updates",
-                description: "Faculty members can broadcast announcements across classes with a single action.",
-                image: "../assets/images/projects/synczone/08_Teach_Announcement.png"
-            },
-            {
-                title: "Student Assignments",
-                subtitle: "Coursework",
-                description: "Track assignments, deadlines and submissions from one organized dashboard.",
-                image: "../assets/images/projects/synczone/09_Stud_Assignment.png"
-            },
-            {
-                title: "Teacher Assignments",
-                subtitle: "Assignment Management",
-                description: "Teachers can create, distribute and manage assignments efficiently.",
-                image: "../assets/images/projects/synczone/10_Teach_Assignment.png"
-            },
-            {
-                title: "Student Profile",
-                subtitle: "Personal Dashboard",
-                description: "Manage personal information, account settings and profile details from one place.",
-                image: "../assets/images/projects/synczone/11_Stud_Profile.png"
-            },
-            {
-                title: "Teacher Profile",
-                subtitle: "Faculty Dashboard",
-                description: "Faculty profiles centralize teaching information and institutional details.",
-                image: "../assets/images/projects/synczone/12_Teach_Profile.png"
-            }
-        ];
+  <!-- Doodles matching portfolio landing page -->
+  <div class="hero-doodles" id="hero-doodles">
+    <div class="hero-doodle hero-doodle--star" data-depth="0.3">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" stroke-width="0.8"/>
+      </svg>
+    </div>
+    <div class="hero-doodle hero-doodle--cross" data-depth="1.5">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="1"/>
+        <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="hero-doodle hero-doodle--ring" data-depth="0.8">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="hero-doodle hero-doodle--arrow" data-depth="1.2">
+      <svg width="44" height="24" viewBox="0 0 44 24" fill="none">
+        <path d="M4 12h30M32 6l8 6-8 6" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="hero-doodle hero-doodle--dots" data-depth="0.6">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="8" cy="8" r="2" fill="currentColor"/>
+        <circle cx="22" cy="6" r="1.5" fill="currentColor"/>
+        <circle cx="34" cy="12" r="2" fill="currentColor"/>
+        <circle cx="12" cy="24" r="1.5" fill="currentColor"/>
+        <circle cx="28" cy="28" r="1" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="hero-doodle hero-doodle--annotation" data-depth="0.4">
+      campus, connected →
+    </div>
+  </div>
 
-        initProjectShowcase("synczone-showcase-root", synczoneScreens, {
-            type: "phone",
-            autoplayDuration: 6000
-        });
-    </script>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Project Showcase</div>
+    <h1 class="hero-title">Sync<span>Zone</span></h1>
+    <p class="hero-tagline">
+      An Android campus collaboration platform that unifies real-time messaging, assignments, and announcements into one structured experience.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Status</span>
+        <span class="hero-meta-value">Completed</span>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Platform</span>
+        <span class="hero-meta-value">Android</span>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Year</span>
+        <span class="hero-meta-value">2025</span>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Role</span>
+        <span class="hero-meta-value">Full-Stack</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     OVERVIEW
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="overview-section">
+  <div class="overview-grid">
+    <div class="overview-statement reveal">
+      Think of SyncZone as <em>Discord meets Google Classroom</em>—designed exclusively for educational institutions.
+    </div>
+    <div class="overview-details">
+      <div class="overview-block reveal reveal-delay-1">
+        <h3>Why I Built It</h3>
+        <p>Educational communication often lives across WhatsApp groups, emails, classroom notices, and shared drives. I wanted to create one platform where students and teachers could collaborate professionally without distractions, scattered information, or inappropriate communication.</p>
+      </div>
+      <div class="overview-block reveal reveal-delay-2">
+        <h3>What Makes It Different</h3>
+        <p>Unlike traditional classroom messaging platforms, every message is checked using a real-time profanity detection API before it reaches other users. This creates a safer, distraction-free environment where discussions remain focused on learning.</p>
+      </div>
+      <div class="overview-block reveal reveal-delay-3">
+        <h3>Challenges</h3>
+        <ul>
+          <li>Building my first large-scale Android application</li>
+          <li>Learning Firebase architecture from scratch</li>
+          <li>Designing separate Teacher & Student workflows</li>
+          <li>Integrating real-time chat and live synchronization</li>
+          <li>Implementing profanity detection without affecting UX</li>
+        </ul>
+      </div>
+      <div class="overview-block reveal reveal-delay-4">
+        <h3>Lessons Learned</h3>
+        <ul>
+          <li>Plan the architecture before writing code</li>
+          <li>Design scalable database structures</li>
+          <li>Break complex features into smaller milestones</li>
+          <li>Debugging is as important as development</li>
+          <li>Great products solve user problems, not just technical ones</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     APP SHOWCASE — STACKED CARDS
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="showcase-section">
+  <div class="showcase-wrapper">
+    <div class="showcase-header reveal">
+      <div class="section-eyebrow">App Walkthrough</div>
+      <h2 class="section-title">Explore the Experience</h2>
+      <p class="section-subtitle">Twelve screens that tell the complete story—from splash to profile.</p>
+    </div>
+
+    <div class="stacked-gallery" id="stacked-gallery">
+      <!-- Cards injected by JS -->
+    </div>
+
+    <div class="gallery-info reveal">
+      <div class="gallery-info-label" id="gallery-label">01 — Launch</div>
+      <h3 class="gallery-info-title" id="gallery-title">Splash Screen</h3>
+      <p class="gallery-info-desc" id="gallery-desc">Experience the branded launch screen before entering SyncZone.</p>
+      <div class="gallery-nav">
+        <button class="gallery-nav-btn" id="gallery-prev" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 3L5 9l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="gallery-nav-dots" id="gallery-dots"></div>
+        <button class="gallery-nav-btn" id="gallery-next" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 3l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FEATURE HIGHLIGHTS
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="features-section">
+  <div class="section-header" style="max-width:1200px;margin:0 auto 64px;padding:0 24px;">
+    <div class="section-eyebrow reveal">Core Features</div>
+    <h2 class="section-title reveal reveal-delay-1">What SyncZone Does</h2>
+    <p class="section-subtitle reveal reveal-delay-2">Six capabilities that transform how students and teachers interact on campus.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-cell reveal">
+      <div class="feature-cell-icon">🔐</div>
+      <h3>Secure Authentication</h3>
+      <p>Firebase-backed login, registration, and password recovery with role-based access for students and teachers.</p>
+    </div>
+    <div class="feature-cell reveal reveal-delay-1">
+      <div class="feature-cell-icon">💬</div>
+      <h3>Real-Time Chat</h3>
+      <p>Firebase Realtime Database powers instant messaging inside course chatrooms with zero latency.</p>
+    </div>
+    <div class="feature-cell reveal reveal-delay-2">
+      <div class="feature-cell-icon">🛡️</div>
+      <h3>Profanity Filter</h3>
+      <p>Every message passes through the Purgomalum API before delivery, keeping conversations respectful.</p>
+    </div>
+    <div class="feature-cell reveal">
+      <div class="feature-cell-icon">📢</div>
+      <h3>Announcements</h3>
+      <p>Teachers broadcast updates across classes. Students receive them instantly with push notifications.</p>
+    </div>
+    <div class="feature-cell reveal reveal-delay-1">
+      <div class="feature-cell-icon">📝</div>
+      <h3>Assignment Hub</h3>
+      <p>Create, distribute, track, and submit assignments—all from a single organized dashboard.</p>
+    </div>
+    <div class="feature-cell reveal reveal-delay-2">
+      <div class="feature-cell-icon">👤</div>
+      <h3>Profile Management</h3>
+      <p>Personal and faculty dashboards with account settings, institutional details, and course information.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TECH STACK
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="tech-section">
+  <div class="tech-wrapper">
+    <div>
+      <div class="section-header" style="margin-bottom:40px;">
+        <div class="section-eyebrow reveal">Built With</div>
+        <h2 class="section-title reveal reveal-delay-1">Technologies</h2>
+      </div>
+      <div class="tech-list reveal reveal-delay-2">
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Java</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>XML</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Firebase Auth</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Android Studio</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Firebase RTDB</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Supabase</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Purgomalum API</span>
+      </div>
+    </div>
+    <div class="repo-card reveal reveal-delay-3">
+      <div>
+        <h3>GitHub Repository</h3>
+        <p>View the full source code and documentation.</p>
+      </div>
+      <a class="repo-link" href="https://github.com/Vallabh05/SyncZone" target="_blank">
+        View Code
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FUTURE
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="future-section">
+  <div class="future-wrapper">
+    <div class="section-header" style="margin-bottom:48px;">
+      <div class="section-eyebrow reveal">Roadmap</div>
+      <h2 class="section-title reveal reveal-delay-1">What's Next</h2>
+    </div>
+    <ul class="future-list reveal reveal-delay-2">
+      <li class="future-item"><span class="future-item-number">01</span><span class="future-item-text">AI-powered academic assistant for personalized tutoring</span></li>
+      <li class="future-item"><span class="future-item-number">02</span><span class="future-item-text">Attendance & timetable management with calendar sync</span></li>
+      <li class="future-item"><span class="future-item-number">03</span><span class="future-item-text">Advanced moderation with temporary account restrictions</span></li>
+      <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Multi-factor authentication for enhanced security</span></li>
+      <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">Smart announcement summaries using NLP</span></li>
+      <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Analytics dashboard for teachers with engagement metrics</span></li>
+      <li class="future-item"><span class="future-item-number">07</span><span class="future-item-text">Personalized learning recommendations per student</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     RECOMMENDATIONS
+     ═══════════════════════════════════════════════════════════ -->
+
+<section class="rec-section">
+  <div class="rec-wrapper">
+    <div class="section-header" style="margin-bottom:48px;">
+      <div class="section-eyebrow reveal">More Work</div>
+      <h2 class="section-title reveal reveal-delay-1">You May Also Like</h2>
+    </div>
+    <div class="rec-grid">
+      <a class="rec-card reveal" href="gallimart.html">
+        <div class="rec-card-tag">Android</div>
+        <h3>GalliMart</h3>
+        <p>Local marketplace flows connecting buyers and sellers in neighborhood commerce.</p>
+        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </a>
+      <a class="rec-card reveal reveal-delay-1" href="aion.html">
+        <div class="rec-card-tag">AI</div>
+        <h3>Aion</h3>
+        <p>Memory and task intelligence system with contextual awareness and reasoning.</p>
+        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </a>
+      <a class="rec-card reveal reveal-delay-2" href="triggerly.html">
+        <div class="rec-card-tag">Automation</div>
+        <h3>Triggerly</h3>
+        <p>Workflow automation engine that connects services through conditional triggers.</p>
+        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+
+<footer class="project-footer">
+  <h2>Campus collaboration, <em>made structured.</em></h2>
+  <div class="footer-links">
+    <a href="../projects.html">Projects</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+  <p class="copyright">Copyright 2026 Varsha Jairam</p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   SYNCZONE — INTERACTIVE GALLERY & SCROLL REVEAL
+   ═══════════════════════════════════════════════════════════ */
+
+(function() {
+  'use strict';
+
+  // ─── SCREEN DATA ───
+  const screens = [
+    { number: "01", title: "Splash Screen", subtitle: "Launch Experience", desc: "Experience the branded launch screen before entering SyncZone.", image: "../assets/images/projects/synczone/01_Splash.png" },
+    { number: "02", title: "Login", subtitle: "Secure Authentication", desc: "Sign in securely using your registered credentials and access your personalized workspace.", image: "../assets/images/projects/synczone/02_Login.png" },
+    { number: "03", title: "Register", subtitle: "Create Account", desc: "New students and teachers can register and join their institution with ease.", image: "../assets/images/projects/synczone/03_Register.png" },
+    { number: "04", title: "Forgot Password", subtitle: "Account Recovery", desc: "Recover access to your account through a simple password reset workflow.", image: "../assets/images/projects/synczone/04_Forgot_Password.png" },
+    { number: "05", title: "Student Chat", subtitle: "Real-Time Messaging", desc: "Students collaborate through Firebase-powered real-time conversations inside course chatrooms.", image: "../assets/images/projects/synczone/05_Stud_Chat.png" },
+    { number: "06", title: "Teacher Chat", subtitle: "Faculty Communication", desc: "Teachers communicate with students while maintaining structured classroom discussions.", image: "../assets/images/projects/synczone/06_Teach_Chat.png" },
+    { number: "07", title: "Student Announcements", subtitle: "Stay Updated", desc: "Students receive important announcements, events and academic notices instantly.", image: "../assets/images/projects/synczone/07_Stud_Announcement.png" },
+    { number: "08", title: "Teacher Announcements", subtitle: "Publish Updates", desc: "Faculty members can broadcast announcements across classes with a single action.", image: "../assets/images/projects/synczone/08_Teach_Announcement.png" },
+    { number: "09", title: "Student Assignments", subtitle: "Coursework", desc: "Track assignments, deadlines and submissions from one organized dashboard.", image: "../assets/images/projects/synczone/09_Stud_Assignment.png" },
+    { number: "10", title: "Teacher Assignments", subtitle: "Assignment Management", desc: "Teachers can create, distribute and manage assignments efficiently.", image: "../assets/images/projects/synczone/10_Teach_Assignment.png" },
+    { number: "11", title: "Student Profile", subtitle: "Personal Dashboard", desc: "Manage personal information, account settings and profile details from one place.", image: "../assets/images/projects/synczone/11_Stud_Profile.png" },
+    { number: "12", title: "Teacher Profile", subtitle: "Faculty Dashboard", desc: "Faculty profiles centralize teaching information and institutional details.", image: "../assets/images/projects/synczone/12_Teach_Profile.png" }
+  ];
+
+  // ─── BUILD STACKED CARDS ───
+  const gallery = document.getElementById('stacked-gallery');
+  const dotsContainer = document.getElementById('gallery-dots');
+  let currentIndex = 0;
+  let autoplayInterval = null;
+  let isHovered = false;
+
+  screens.forEach((screen, i) => {
+    const card = document.createElement('div');
+    card.className = `stack-card stack-card--${Math.min(i + 1, 5)}`;
+    card.dataset.index = i;
+    card.innerHTML = `<img src="${screen.image}" alt="${screen.title}" loading="lazy">`;
+    card.addEventListener('click', () => goTo(i));
+    gallery.appendChild(card);
+
+    const dot = document.createElement('div');
+    dot.className = 'gallery-nav-dot' + (i === 0 ? ' is-active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const cards = gallery.querySelectorAll('.stack-card');
+  const dots = dotsContainer.querySelectorAll('.gallery-nav-dot');
+
+  function updateGallery() {
+    cards.forEach((card, i) => {
+      const offset = i - currentIndex;
+      const absOffset = Math.abs(offset);
+
+      card.classList.toggle('is-active', i === currentIndex);
+
+      if (i === currentIndex) {
+        card.style.transform = 'translate(-50%, -50%) translateZ(60px) scale(1.05)';
+        card.style.opacity = '1';
+        card.style.zIndex = '20';
+        card.style.borderColor = 'rgba(201,148,26,0.2)';
+      } else if (offset > 0) {
+        card.style.transform = `translate(-50%, -50%) translateZ(${-absOffset * 30}px) translateX(${absOffset * 40}px) rotateY(${-absOffset * 4}deg)`;
+        card.style.opacity = `${Math.max(0.85 - absOffset * 0.15, 0.3)}`;
+        card.style.zIndex = `${20 - absOffset}`;
+        card.style.borderColor = 'rgba(255,255,255,0.08)';
+      } else {
+        card.style.transform = `translate(-50%, -50%) translateZ(${-absOffset * 30}px) translateX(${-absOffset * 40}px) rotateY(${absOffset * 4}deg)`;
+        card.style.opacity = `${Math.max(0.85 - absOffset * 0.15, 0.3)}`;
+        card.style.zIndex = `${20 - absOffset}`;
+        card.style.borderColor = 'rgba(255,255,255,0.08)';
+      }
+    });
+
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentIndex));
+
+    const screen = screens[currentIndex];
+    document.getElementById('gallery-label').textContent = `${screen.number} — ${screen.subtitle}`;
+    document.getElementById('gallery-title').textContent = screen.title;
+    document.getElementById('gallery-desc').textContent = screen.desc;
+  }
+
+  function goTo(index) {
+    if (index < 0) index = screens.length - 1;
+    if (index >= screens.length) index = 0;
+    currentIndex = index;
+    updateGallery();
+  }
+
+  document.getElementById('gallery-prev').addEventListener('click', () => goTo(currentIndex - 1));
+  document.getElementById('gallery-next').addEventListener('click', () => goTo(currentIndex + 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+    if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
+  });
+
+  // Touch
+  let touchStartX = 0;
+  gallery.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  gallery.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 40) goTo(currentIndex + (diff > 0 ? 1 : -1));
+  });
+
+  // Autoplay
+  function startAutoplay() {
+    autoplayInterval = setInterval(() => { if (!isHovered) goTo(currentIndex + 1); }, 5000);
+  }
+  function stopAutoplay() { clearInterval(autoplayInterval); }
+
+  gallery.addEventListener('mouseenter', () => { isHovered = true; });
+  gallery.addEventListener('mouseleave', () => { isHovered = false; });
+
+  updateGallery();
+  startAutoplay();
+
+  // ─── SCROLL REVEAL ───
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ─── DOODLE PARALLAX ───
+  const doodles = document.querySelectorAll('.hero-doodle');
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let currentMX = mouseX;
+  let currentMY = mouseY;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateDoodles() {
+    currentMX += (mouseX - currentMX) * 0.06;
+    currentMY += (mouseY - currentMY) * 0.06;
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const ox = currentMX - cx;
+    const oy = currentMY - cy;
+
+    doodles.forEach(d => {
+      const depth = parseFloat(d.dataset.depth) || 1;
+      const s = depth * 0.25;
+      d.style.transform = `translate3d(${ox * s * -1}px, ${oy * s * -1}px, 0)`;
+    });
+    requestAnimationFrame(animateDoodles);
+  }
+
+  // Reveal doodles after load
+  setTimeout(() => {
+    doodles.forEach((d, i) => {
+      setTimeout(() => d.classList.add('is-visible'), i * 120);
+    });
+  }, 600);
+
+  animateDoodles();
+
+})();
+</script>
+
 </body>
-
 </html>
