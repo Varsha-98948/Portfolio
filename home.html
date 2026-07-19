@@ -1,403 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Varsha Jairam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/pages.css">
-    <link rel="stylesheet" href="assets/css/home-page.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varsha Jairam — Product Builder</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mustard: #c9941a; --mustard-glow: rgba(201,148,26,0.15);
+  --blue: #7c9cff; --blue-glow: rgba(124,156,255,0.15);
+  --teal: #4fd1c5; --teal-glow: rgba(79,209,197,0.15);
+  --rose: #e8a0bf; --rose-glow: rgba(232,160,191,0.15);
+  --coral: #ff8a65; --coral-glow: rgba(255,138,101,0.15);
+  --lavender: #b8a9c9; --lavender-glow: rgba(184,169,201,0.15);
+  --sage: #a5d6a7; --sage-glow: rgba(165,214,167,0.15);
+  --bg: #0a0a0f; --bg-2: #0d0d14; --bg-3: #11111a;
+  --surface: rgba(255,255,255,0.03); --surface-2: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.07); --border-hover: rgba(255,255,255,0.14);
+  --text: #f0f0f5; --text-muted: rgba(240,240,245,0.5); --text-dim: rgba(240,240,245,0.22);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+
+/* ═══ NAVBAR ═══ */
+.navbar-custom { background:rgba(10,10,15,0.6)!important; backdrop-filter:blur(24px) saturate(1.2); border-bottom:1px solid var(--border); padding:18px 0; transition:all 0.5s var(--ease-out); position:fixed; width:100%; top:0; z-index:1000; }
+.navbar-custom.scrolled { padding:12px 0; background:rgba(10,10,15,0.92)!important; border-color:rgba(255,255,255,0.04); }
+.navbar-brand { font-family:'Instrument Serif',serif; font-size:1.5rem; color:var(--text)!important; letter-spacing:-0.02em; position:relative; }
+.navbar-brand::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--mustard); transition:width 0.5s var(--ease-out); }
+.navbar-brand:hover::after { width:100%; }
+.nav-link { font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim)!important; padding:8px 18px!important; position:relative; transition:color 0.4s; overflow:hidden; }
+.nav-link::before { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%) scaleX(0); width:20px; height:2px; background:var(--mustard); border-radius:2px; transition:transform 0.4s var(--ease-expo); }
+.nav-link:hover,.nav-link.active { color:var(--text)!important; }
+.nav-link:hover::before,.nav-link.active::before { transform:translateX(-50%) scaleX(1); }
+.navbar-toggler { border-color:var(--border); padding:8px 12px; }
+.navbar-toggler-icon { filter:invert(1); opacity:0.6; width:1.2em; height:1.2em; }
+
+/* ═══ HERO ═══ */
+.hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding:140px 24px 100px; }
+.hero::before { content:''; position:absolute; top:5%; right:-5%; width:700px; height:700px; background:radial-gradient(circle,var(--mustard-glow),transparent 70%); filter:blur(100px); animation:blobMorph 12s ease-in-out infinite; pointer-events:none; }
+.hero::after { content:''; position:absolute; bottom:-15%; left:-10%; width:600px; height:600px; background:radial-gradient(circle,var(--blue-glow),transparent 70%); filter:blur(100px); animation:blobMorph 15s ease-in-out infinite reverse; pointer-events:none; }
+@keyframes blobMorph { 0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%;transform:rotate(0deg) scale(1);} 25%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%;transform:rotate(90deg) scale(1.1);} 50%{border-radius:50% 60% 30% 60%/30% 40% 70% 50%;transform:rotate(180deg) scale(0.95);} 75%{border-radius:60% 40% 60% 30%/70% 30% 50% 60%;transform:rotate(270deg) scale(1.05);} }
+.hero-content { position:relative; z-index:10; max-width:900px; margin:0 auto; width:100%; text-align:center; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:12px; font-size:0.7rem; font-weight:700; letter-spacing:0.35em; text-transform:uppercase; color:var(--mustard); margin-bottom:32px; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s var(--ease-out) 0.4s forwards; }
+.hero-eyebrow::before { content:''; width:40px; height:1px; background:var(--mustard); opacity:0.4; }
+.hero-eyebrow::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--mustard); opacity:0.6; animation:pulseDot 2s ease-in-out infinite; }
+@keyframes pulseDot { 0%,100%{opacity:0.6;transform:scale(1);} 50%{opacity:1;transform:scale(1.3);} }
+.hero-title { font-family:'Instrument Serif',serif; font-size:clamp(4rem,11vw,9rem); font-weight:400; line-height:0.9; letter-spacing:-0.04em; margin-bottom:28px; }
+.hero-title .line { display:block; overflow:hidden; }
+.hero-title .line span { display:block; transform:translateY(110%); animation:lineReveal 1s var(--ease-expo) forwards; }
+.hero-title .line:nth-child(1) span { animation-delay:0.5s; }
+.hero-title .line:nth-child(2) span { animation-delay:0.65s; }
+.hero-title .line:nth-child(3) span { animation-delay:0.8s; }
+.hero-title .italic { font-style:italic; color:var(--mustard); position:relative; }
+.hero-title .italic::after { content:''; position:absolute; bottom:4px; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--mustard),transparent); opacity:0.3; border-radius:2px; }
+@keyframes lineReveal { from{transform:translateY(110%);} to{transform:translateY(0);} }
+.hero-desc { font-size:clamp(1rem,1.6vw,1.25rem); color:var(--text-muted); line-height:1.8; max-width:520px; margin:0 auto 40px; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s var(--ease-out) 1.1s forwards; }
+.hero-actions { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s var(--ease-out) 1.3s forwards; }
+.btn-primary { display:inline-flex; align-items:center; gap:12px; padding:16px 36px; border-radius:999px; background:var(--mustard); color:var(--bg); font-size:0.85rem; font-weight:600; text-decoration:none; border:none; cursor:pointer; transition:all 0.5s var(--ease-out); position:relative; overflow:hidden; }
+.btn-primary::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.25),transparent); opacity:0; transition:opacity 0.4s; }
+.btn-primary:hover { transform:translateY(-4px) scale(1.02); box-shadow:0 20px 50px rgba(201,148,26,0.3),0 0 0 1px rgba(201,148,26,0.2); }
+.btn-primary:hover::before { opacity:1; }
+.btn-ghost { display:inline-flex; align-items:center; gap:12px; padding:16px 36px; border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:none; cursor:pointer; transition:all 0.5s var(--ease-out); backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+.btn-ghost::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(124,156,255,0.08),transparent); opacity:0; transition:opacity 0.4s; }
+.btn-ghost:hover { border-color:rgba(124,156,255,0.3); background:rgba(124,156,255,0.05); transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.3); }
+.btn-ghost:hover::before { opacity:1; }
+.btn-primary svg,.btn-ghost svg { transition:transform 0.4s var(--ease-spring); }
+.btn-primary:hover svg { transform:translateX(5px); }
+.btn-ghost:hover svg { transform:translateX(5px) rotate(-5deg); }
+
+.hero-strip { display:flex; justify-content:center; gap:12px; margin-top:64px; flex-wrap:wrap; opacity:0; animation:fadeUp 1s var(--ease-out) 1.6s forwards; }
+.h-strip-item { display:flex; align-items:center; gap:10px; padding:12px 20px; border-radius:14px; background:var(--bg-3); border:1px solid var(--border); font-size:0.8rem; font-weight:500; color:var(--text-muted); text-decoration:none; transition:all 0.4s var(--ease-out); }
+.h-strip-item:hover { transform:translateY(-3px); border-color:var(--border-hover); color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.h-strip-item .s-icon { width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.95rem; }
+.h-strip-item .s-dot-live { width:6px; height:6px; border-radius:50%; background:var(--teal); animation:livePulse 2s ease-in-out infinite; }
+.h-strip-item .s-dot-dev { width:6px; height:6px; border-radius:50%; background:var(--mustard); animation:livePulse 2s ease-in-out infinite 0.5s; }
+@keyframes livePulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(0.7);} }
+
+.scroll-hint { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; animation:fadeUp 1s var(--ease-out) 2.5s forwards; }
+.scroll-hint span { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); }
+.scroll-hint .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,var(--text-dim),transparent); animation:scrollBounce 2s ease-in-out infinite; }
+@keyframes scrollBounce { 0%,100%{transform:scaleY(1);opacity:0.5;} 50%{transform:scaleY(0.6);opacity:1;} }
+
+/* Hero doodles */
+.hero-doodle { position:absolute; pointer-events:none; opacity:0; }
+.hero-doodle svg { opacity:0.35; }
+.hd-1 { top:12%; right:15%; color:var(--mustard); animation:doodleFadeIn 1s var(--ease-out) 2s forwards,doodleFloat 5s ease-in-out infinite 2s; }
+.hd-1 svg { width:32px; height:32px; }
+.hd-2 { bottom:18%; right:10%; color:var(--blue); animation:doodleFadeIn 1s var(--ease-out) 2.2s forwards,doodleFloat 6s ease-in-out infinite 2.2s; }
+.hd-2 svg { width:40px; height:28px; }
+.hd-3 { top:20%; left:10%; color:var(--teal); animation:doodleFadeIn 1s var(--ease-out) 2.4s forwards,doodleFloat 4s ease-in-out infinite 2.4s; }
+.hd-3 svg { width:26px; height:26px; }
+.hd-4 { bottom:25%; left:12%; color:var(--rose); animation:doodleFadeIn 1s var(--ease-out) 2.6s forwards,doodleSpin 20s linear infinite 2.6s; }
+.hd-4 svg { width:30px; height:30px; }
+.hd-5 { top:35%; right:5%; color:var(--coral); animation:doodleFadeIn 1s var(--ease-out) 2.8s forwards,doodleFloat 5s ease-in-out infinite 2.8s; }
+.hd-5 svg { width:24px; height:24px; }
+.hd-6 { top:8%; left:20%; color:var(--lavender); animation:doodleFadeIn 1s var(--ease-out) 3s forwards,doodleFloat 4s ease-in-out infinite 3s; }
+.hd-6 svg { width:20px; height:20px; }
+@keyframes doodleFadeIn { from{opacity:0;} to{opacity:1;} }
+@keyframes doodleFloat { 0%,100%{transform:translateY(0) rotate(0deg);} 33%{transform:translateY(-12px) rotate(3deg);} 66%{transform:translateY(-6px) rotate(-2deg);} }
+@keyframes doodleSpin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+
+/* ═══ SKILLS MARQUEE ═══ */
+.skills-section { padding:60px 0; position:relative; overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.skills-track { display:flex; gap:16px; animation:marqueeScroll 30s linear infinite; width:max-content; }
+.skills-track:hover { animation-play-state:paused; }
+@keyframes marqueeScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+.skill-chip { display:flex; align-items:center; gap:10px; padding:14px 24px; border-radius:14px; background:var(--bg-3); border:1px solid var(--border); font-size:0.85rem; font-weight:500; color:var(--text-muted); white-space:nowrap; transition:all 0.4s var(--ease-out); cursor:default; }
+.skill-chip:hover { border-color:var(--border-hover); color:var(--text); transform:translateY(-3px); background:var(--surface); }
+.skill-chip .s-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; transition:transform 0.3s; }
+.skill-chip:hover .s-dot { transform:scale(1.5); }
+
+/* ═══ STATS ═══ */
+.stats-section { padding:120px 24px; position:relative; }
+.stats-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.stat-flip { perspective:1000px; height:200px; }
+.stat-flip-inner { position:relative; width:100%; height:100%; transition:transform 0.8s var(--ease-expo); transform-style:preserve-3d; }
+.stat-flip:hover .stat-flip-inner { transform:rotateY(180deg); }
+.stat-flip-front,.stat-flip-back { position:absolute; inset:0; backface-visibility:hidden; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; border:1px solid var(--border); }
+.stat-flip-front { background:var(--bg-3); }
+.stat-flip-back { background:linear-gradient(135deg,var(--bg-3),rgba(201,148,26,0.05)); transform:rotateY(180deg); }
+.stat-number { font-family:'Instrument Serif',serif; font-size:3.5rem; font-weight:400; line-height:1; margin-bottom:12px; background:linear-gradient(135deg,var(--text),var(--text-muted)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.stat-label { font-size:0.75rem; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; text-align:center; }
+.stat-back-text { font-size:0.85rem; color:var(--text-muted); text-align:center; line-height:1.7; }
+.stat-back-icon { font-size:2rem; margin-bottom:12px; opacity:0.6; }
+
+/* ═══ DECK CAROUSEL (inspired by React component) ═══ */
+.deck-section { padding:140px 24px; position:relative; overflow:hidden; }
+.deck-section::before { content:''; position:absolute; top:20%; left:-20%; width:600px; height:600px; background:radial-gradient(circle,var(--blue-glow),transparent 70%); filter:blur(100px); pointer-events:none; }
+.deck-wrapper { max-width:480px; margin:0 auto; }
+.deck-stage { position:relative; height:340px; width:100%; user-select:none; perspective:1200px; touch-action:pan-y; }
+.deck-card { position:absolute; inset:0; border-radius:20px; border:1px solid var(--border); background:var(--bg-3); padding:32px; box-shadow:0 18px 50px -20px rgba(0,0,0,0.4); overflow:hidden; transition:transform 0.7s var(--ease-out), opacity 0.7s var(--ease-out); transform-origin:top center; cursor:grab; }
+.deck-card.leaving { transform:translateY(120%) rotate(6deg) scale(0.96)!important; opacity:0!important; z-index:99!important; pointer-events:none!important; transition:transform 0.4s cubic-bezier(0.4,0,0.7,1), opacity 0.34s ease-out!important; }
+.deck-card:active { cursor:grabbing; }
+.deck-card-header { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+.deck-number { display:grid; place-items:center; width:44px; height:44px; border-radius:12px; font-weight:700; font-size:1rem; color:#fff; flex-shrink:0; }
+.deck-bar { height:6px; width:32px; border-radius:999px; }
+.deck-title { font-family:'Instrument Serif',serif; font-size:1.35rem; font-weight:400; line-height:1.3; margin:0 0 12px; }
+.deck-text { line-height:1.7; color:var(--text-muted); font-size:0.95rem; margin:0; }
+.deck-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; }
+.deck-tag { padding:5px 12px; border-radius:999px; background:var(--surface); border:1px solid var(--border); font-size:0.7rem; color:var(--text-dim); letter-spacing:0.03em; }
+.deck-controls { margin-top:32px; display:flex; align-items:center; justify-content:space-between; }
+.deck-btns { display:flex; gap:12px; }
+.deck-btn { display:grid; place-items:center; width:48px; height:48px; border-radius:50%; border:1px solid var(--border); background:var(--bg-3); color:var(--text); cursor:pointer; transition:all 0.3s var(--ease-out); }
+.deck-btn:hover { background:var(--mustard); border-color:var(--mustard); color:var(--bg); transform:scale(1.08); }
+.deck-dots { display:flex; align-items:center; gap:10px; }
+.deck-dot { width:10px; height:10px; border-radius:50%; border:none; cursor:pointer; padding:0; background:var(--border); transition:transform 0.5s var(--ease-out), background-color 0.5s var(--ease-out); }
+.deck-dot.active { transform:scale(1.3); background:var(--mustard); }
+
+/* Word blur reveal animation */
+@keyframes dcBlurIn { from{opacity:0;filter:blur(8px);transform:translateY(10px);} to{opacity:1;filter:blur(0);transform:translateY(0);} }
+.dc-word { display:inline-block; animation:dcBlurIn 0.35s cubic-bezier(0.22,0.61,0.36,1) both; animation-play-state:paused; }
+.dc-deck.revealed .dc-word { animation-play-state:running; }
+
+/* ═══ TECH STACK ═══ */
+.tech-section { padding:140px 24px; position:relative; overflow:hidden; }
+.tech-section::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:700px; background:radial-gradient(circle,var(--teal-glow),transparent 70%); filter:blur(100px); pointer-events:none; }
+.tech-wrapper { max-width:1000px; margin:0 auto; position:relative; z-index:1; }
+.tech-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:48px; }
+.tech-item { padding:32px 24px; border-radius:20px; background:var(--bg-3); border:1px solid var(--border); text-align:center; transition:all 0.5s var(--ease-out); position:relative; overflow:hidden; }
+.tech-item::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--mustard),var(--blue)); opacity:0; transition:opacity 0.4s; }
+.tech-item:hover { transform:translateY(-6px); border-color:var(--border-hover); box-shadow:0 16px 40px rgba(0,0,0,0.3); }
+.tech-item:hover::before { opacity:1; }
+.tech-icon { font-size:2.2rem; margin-bottom:14px; display:block; }
+.tech-name { font-size:1rem; font-weight:600; color:var(--text); margin-bottom:4px; }
+.tech-desc { font-size:0.78rem; color:var(--text-dim); }
+.tech-item.highlight { background:linear-gradient(135deg,rgba(201,148,26,0.06),rgba(124,156,255,0.04)); border-color:rgba(201,148,26,0.15); }
+
+/* ═══ TIMELINE HORIZONTAL ═══ */
+.timeline-section { padding:140px 24px; position:relative; overflow:hidden; }
+.timeline-section::before { content:''; position:absolute; bottom:10%; right:-10%; width:500px; height:500px; background:radial-gradient(circle,var(--rose-glow),transparent 70%); filter:blur(100px); pointer-events:none; }
+.timeline-wrapper { max-width:1100px; margin:0 auto; position:relative; }
+.timeline-track { display:flex; gap:0; position:relative; padding-top:40px; }
+.timeline-line-h { position:absolute; top:56px; left:80px; right:80px; height:2px; background:linear-gradient(to right,var(--mustard),var(--blue),var(--teal),var(--rose)); opacity:0.2; }
+.timeline-line-h::before { content:''; position:absolute; left:-4px; top:-2px; width:6px; height:6px; border-radius:50%; background:var(--mustard); }
+.timeline-line-h::after { content:''; position:absolute; right:-4px; top:-2px; width:6px; height:6px; border-radius:50%; background:var(--rose); }
+.timeline-node-h { flex:1; text-align:center; position:relative; padding:0 16px; opacity:0; transform:translateY(30px); transition:all 0.7s var(--ease-expo); }
+.timeline-node-h.is-visible { opacity:1; transform:translateY(0); }
+.timeline-node-h::before { content:''; position:absolute; top:-28px; left:50%; transform:translateX(-50%); width:18px; height:18px; border-radius:50%; background:var(--bg); border:3px solid; box-shadow:0 0 0 6px rgba(0,0,0,0.3); transition:all 0.5s var(--ease-out); z-index:2; }
+.timeline-node-h:hover::before { transform:translateX(-50%) scale(1.3); box-shadow:0 0 0 10px rgba(0,0,0,0.2); }
+.timeline-node-h--now::before { border-color:var(--mustard); }
+.timeline-node-h--shipped::before { border-color:var(--blue); }
+.timeline-node-h--focus::before { border-color:var(--teal); }
+.timeline-node-h--next::before { border-color:var(--rose); }
+.timeline-card-h { padding:28px 20px; border-radius:20px; background:var(--bg-3); border:1px solid var(--border); transition:all 0.5s var(--ease-out); margin-top:24px; }
+.timeline-card-h:hover { transform:translateY(-8px); border-color:var(--border-hover); box-shadow:0 20px 50px rgba(0,0,0,0.3); }
+.timeline-time-h { font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:10px; }
+.timeline-node-h--now .timeline-time-h { color:var(--mustard); }
+.timeline-node-h--shipped .timeline-time-h { color:var(--blue); }
+.timeline-node-h--focus .timeline-time-h { color:var(--teal); }
+.timeline-node-h--next .timeline-time-h { color:var(--rose); }
+.timeline-title-h { font-family:'Instrument Serif',serif; font-size:1.2rem; font-weight:400; margin-bottom:8px; }
+.timeline-desc-h { font-size:0.85rem; color:var(--text-muted); line-height:1.6; }
+
+/* ═══ DOODLES ═══ */
+.doodle-zone { position:relative; }
+.page-doodle { position:absolute; pointer-events:none; opacity:0; transition:opacity 1.2s var(--ease-out); z-index:1; }
+.page-doodle.is-visible { opacity:1; }
+.doodle-sparkle { top:10%; right:6%; color:var(--mustard); animation:doodleFloat 5s ease-in-out infinite; }
+.doodle-sparkle svg { width:28px; height:28px; }
+.doodle-arrow-curved { bottom:15%; right:4%; color:var(--blue); animation:doodleFloat 6s ease-in-out infinite 1s; }
+.doodle-arrow-curved svg { width:48px; height:32px; }
+.doodle-brackets { top:12%; right:8%; color:var(--teal); animation:doodleFloat 5s ease-in-out infinite; }
+.doodle-brackets svg { width:32px; height:28px; }
+.doodle-terminal { bottom:12%; left:4%; color:var(--lavender); animation:doodleFloat 6s ease-in-out infinite 1s; }
+.doodle-terminal svg { width:30px; height:24px; }
+.doodle-compass { top:6%; right:3%; color:var(--rose); animation:doodleSpin 20s linear infinite; }
+.doodle-compass svg { width:32px; height:32px; }
+.doodle-flag { bottom:10%; left:6%; color:var(--mustard); animation:doodleFloat 5s ease-in-out infinite 0.5s; }
+.doodle-flag svg { width:28px; height:32px; }
+.doodle-code { top:18%; left:3%; color:var(--blue); animation:doodleFloat 4s ease-in-out infinite 0.3s; }
+.doodle-code svg { width:36px; height:24px; }
+.doodle-zigzag { bottom:20%; right:10%; color:var(--coral); animation:doodleFloat 5s ease-in-out infinite 0.8s; }
+.doodle-zigzag svg { width:36px; height:20px; }
+.doodle-star { top:25%; left:5%; color:var(--mustard); animation:doodleSpin 15s linear infinite; }
+.doodle-star svg { width:24px; height:24px; }
+.doodle-wave { bottom:15%; right:2%; color:var(--teal); animation:doodleFloat 4s ease-in-out infinite 1.2s; }
+.doodle-wave svg { width:40px; height:16px; }
+.doodle-hash { top:40%; right:12%; color:var(--sage); animation:doodleFloat 5s ease-in-out infinite 0.6s; }
+.doodle-hash svg { width:22px; height:22px; }
+.doodle-dots { bottom:35%; left:8%; color:var(--beige); animation:doodleFloat 4s ease-in-out infinite 1.5s; }
+.doodle-dots svg { width:30px; height:10px; }
+.doodle-chevron { top:55%; right:6%; color:var(--lavender); animation:doodleFloat 5s ease-in-out infinite 0.2s; }
+.doodle-chevron svg { width:20px; height:20px; }
+.doodle-ring { bottom:45%; left:3%; color:var(--rose); animation:doodleSpin 25s linear infinite; }
+.doodle-ring svg { width:28px; height:28px; }
+
+/* ═══ CTA ═══ */
+.cta-section { padding:180px 24px; text-align:center; position:relative; overflow:hidden; }
+.cta-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 40% at 30% 50%,var(--mustard-glow),transparent),radial-gradient(ellipse 40% 50% at 70% 50%,var(--blue-glow),transparent); pointer-events:none; }
+.cta-title { font-family:'Instrument Serif',serif; font-size:clamp(2.8rem,7vw,5.5rem); font-weight:400; line-height:1.05; margin-bottom:28px; position:relative; z-index:1; }
+.cta-title em { font-style:italic; color:var(--mustard); position:relative; }
+.cta-title em::after { content:''; position:absolute; bottom:2px; left:-5%; right:-5%; height:8px; background:linear-gradient(90deg,transparent,var(--mustard-glow),transparent); z-index:-1; border-radius:4px; }
+.cta-desc { font-size:1.1rem; color:var(--text-muted); max-width:460px; margin:0 auto 48px; position:relative; z-index:1; }
+.cta-actions { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; position:relative; z-index:1; }
+
+/* ═══ FOOTER ═══ */
+.project-footer { padding:80px 24px; text-align:center; border-top:1px solid var(--border); background:var(--bg); position:relative; }
+.project-footer h2 { font-family:'Instrument Serif',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:400; margin-bottom:36px; }
+.project-footer h2 em { font-style:italic; color:var(--mustard); }
+.footer-links { display:flex; justify-content:center; gap:36px; margin-bottom:40px; flex-wrap:wrap; }
+.footer-links a { font-size:0.8rem; color:var(--text-dim); text-decoration:none; letter-spacing:0.12em; text-transform:uppercase; transition:all 0.4s; position:relative; padding:4px 0; }
+.footer-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--mustard); transition:width 0.4s var(--ease-expo); }
+.footer-links a:hover { color:var(--text); }
+.footer-links a:hover::after { width:100%; }
+.copyright { font-size:0.8rem; color:var(--text-dim); }
+
+/* ═══ REVEAL ═══ */
+.reveal { opacity:0; transform:translateY(50px); transition:opacity 1s var(--ease-expo), transform 1s var(--ease-expo); }
+.reveal.is-visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:0.15s; }
+.reveal-delay-2 { transition-delay:0.3s; }
+.reveal-delay-3 { transition-delay:0.45s; }
+.reveal-delay-4 { transition-delay:0.6s; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width:1200px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .tech-grid{grid-template-columns:repeat(3,1fr);} }
+@media (max-width:1024px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .tech-grid{grid-template-columns:repeat(3,1fr);} .timeline-track{flex-wrap:wrap;gap:32px;} .timeline-line-h{display:none;} .timeline-node-h{flex:1 1 45%;text-align:left;padding:0;} .timeline-node-h::before{left:16px;top:16px;transform:none;} .timeline-node-h:hover::before{transform:scale(1.3);} .timeline-card-h{margin-top:40px;padding-left:48px;} }
+@media (max-width:768px) { .hero{padding:120px 20px 80px;min-height:auto;} .hero-title{font-size:clamp(2.5rem,10vw,4rem);} .stats-grid{grid-template-columns:1fr;} .stat-flip{height:160px;} .tech-grid{grid-template-columns:repeat(2,1fr);} .timeline-node-h{flex:1 1 100%;} .page-doodle{display:none;} .cta-section{padding:100px 20px;} .deck-wrapper{max-width:100%;} .deck-stage{height:380px;} }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;} }
+</style>
 <base target="_blank">
 </head>
-<body class="page-home">
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container">
-            <a class="navbar-brand" href="home.html">Varsha Jairam</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="home.html">Varsha Jairam</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <main class="page-shell">
-        <!-- Hero: Product Showcase -->
-        <section class="home-showcase-hero">
-            <div class="home-hero-constellation" aria-hidden="true">
-                <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="80" r="1.5" fill="rgba(124,156,255,0.3)" />
-                    <circle cx="150" cy="40" r="1" fill="rgba(79,209,197,0.25)" />
-                    <circle cx="280" cy="100" r="2" fill="rgba(240,184,110,0.2)" />
-                    <circle cx="420" cy="60" r="1.5" fill="rgba(124,156,255,0.25)" />
-                    <circle cx="460" cy="150" r="1" fill="rgba(79,209,197,0.2)" />
-                    <circle cx="100" cy="180" r="1.5" fill="rgba(240,184,110,0.15)" />
-                    <circle cx="380" cy="220" r="2" fill="rgba(124,156,255,0.18)" />
-                    <circle cx="220" cy="280" r="1" fill="rgba(79,209,197,0.15)" />
-                    <circle cx="450" cy="320" r="1.5" fill="rgba(240,184,110,0.12)" />
-                    <circle cx="80" cy="320" r="1" fill="rgba(124,156,255,0.15)" />
-                    <line x1="50" y1="80" x2="150" y2="40" stroke="rgba(124,156,255,0.06)" stroke-width="0.5" />
-                    <line x1="150" y1="40" x2="280" y2="100" stroke="rgba(79,209,197,0.05)" stroke-width="0.5" />
-                    <line x1="280" y1="100" x2="420" y2="60" stroke="rgba(240,184,110,0.04)" stroke-width="0.5" />
-                    <line x1="100" y1="180" x2="220" y2="280" stroke="rgba(124,156,255,0.04)" stroke-width="0.5" />
-                    <line x1="220" y1="280" x2="380" y2="220" stroke="rgba(79,209,197,0.04)" stroke-width="0.5" />
-                    <line x1="80" y1="320" x2="220" y2="280" stroke="rgba(240,184,110,0.03)" stroke-width="0.5" />
-                </svg>
-            </div>
-            <aside class="home-visual-layer" aria-hidden="true">
-                <svg class="home-sketch home-sketch--drawable home-sketch--star-hero" data-home-proximity data-home-twinkle data-proximity-radius="90" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M9 2l1.8 5.5H16l-4.5 3.3 1.7 5.2L9 12.7 4.8 16l1.7-5.2L2 7.5h5.2L9 2z" stroke="#c9a66b" stroke-width="0.7" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--cross-hero" data-home-proximity data-proximity-radius="80" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M3 3l8 8" stroke="#6ee7d6" stroke-width="0.9" />
-                    <path d="M11 3L3 11" stroke="#6ee7d6" stroke-width="0.9" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--blob-hero" data-home-proximity data-proximity-radius="120" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="30" cy="30" r="24" stroke="rgba(124,156,255,0.12)" stroke-width="0.8" stroke-dasharray="4 3" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--dots-hero" data-home-proximity data-proximity-radius="70" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="8" cy="8" r="1.5" fill="rgba(79,209,197,0.25)" />
-                    <circle cx="20" cy="6" r="1" fill="rgba(79,209,197,0.18)" />
-                    <circle cx="32" cy="10" r="1.5" fill="rgba(79,209,197,0.2)" />
-                    <circle cx="10" cy="22" r="1" fill="rgba(79,209,197,0.15)" />
-                    <circle cx="28" cy="26" r="1.5" fill="rgba(79,209,197,0.12)" />
-                    <circle cx="18" cy="34" r="1" fill="rgba(79,209,197,0.18)" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--arrow-hero" data-home-proximity data-proximity-radius="100" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 14H36" stroke="#6ee7d6" stroke-width="1.1" />
-                    <path d="M30 8l8 6-8 6" stroke="#6ee7d6" stroke-width="1.1" />
-                </svg>
-                <span class="home-annotation home-annotation--hero">products that ship →</span>
-            </aside>
-            <div class="container">
-                <div class="home-showcase-hero-grid reveal">
-                    <div class="home-showcase-hero-copy">
-                        <span class="eyebrow" data-home-unfold>Product Builder</span>
-                        <h1 class="home-showcase-headline" data-home-unfold><span class="font-display">Products</span> that ship.</h1>
-                        <p data-home-unfold>Seven builds across AI, automation, and Android — each one a product decision, not an assignment.</p>
-                        <div class="home-hero-actions" data-home-unfold>
-                            <a href="projects.html" class="btn-primary-custom magnetic-btn">View All Projects</a>
-                            <a href="about.html" class="btn-ghost-custom magnetic-btn">My Story</a>
-                        </div>
-                    </div>
-                    <div class="home-product-rail" data-home-unfold>
-                        <a class="home-product-chip lift-card" href="projects/aion.html" data-home-chip style="--chip-i: 0">
-                            <span class="chip-glow chip-glow--ai"></span>
-                            <div class="chip-content">
-                                <strong>Aion</strong>
-                                <span>Personal AI</span>
-                            </div>
-                            <svg class="chip-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a class="home-product-chip lift-card" href="projects/triggerly.html" data-home-chip style="--chip-i: 1">
-                            <span class="chip-glow chip-glow--auto"></span>
-                            <div class="chip-content">
-                                <strong>Triggerly</strong>
-                                <span>Automation</span>
-                            </div>
-                            <svg class="chip-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a class="home-product-chip lift-card" href="projects/gallimart.html" data-home-chip style="--chip-i: 2">
-                            <span class="chip-glow chip-glow--android"></span>
-                            <div class="chip-content">
-                                <strong>GalliMart</strong>
-                                <span>Marketplace</span>
-                            </div>
-                            <svg class="chip-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                        <a class="home-product-chip lift-card" href="projects/synczone.html" data-home-chip style="--chip-i: 3">
-                            <span class="chip-glow chip-glow--campus"></span>
-                            <div class="chip-content">
-                                <strong>SyncZone</strong>
-                                <span>Campus</span>
-                            </div>
-                            <svg class="chip-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Portfolio 2026</div>
+    <h1 class="hero-title">
+      <span class="line"><span>Products</span></span>
+      <span class="line"><span>that</span></span>
+      <span class="line"><span class="italic">ship.</span></span>
+    </h1>
+    <p class="hero-desc">Seven builds across AI, automation, and Android — each one a product decision, not an assignment. I design systems that think, automate, and scale.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View All Projects <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="about.html" class="btn-ghost">My Story <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="hero-strip">
+      <a href="projects/aion.html" class="h-strip-item"><span class="s-icon" style="background:rgba(124,156,255,0.1);">✦</span><span>Aion</span><span class="s-dot-dev"></span></a>
+      <a href="projects/triggerly.html" class="h-strip-item"><span class="s-icon" style="background:rgba(201,148,26,0.1);">⚡</span><span>Triggerly</span><span class="s-dot-dev"></span></a>
+      <a href="projects/synczone.html" class="h-strip-item"><span class="s-icon" style="background:rgba(232,160,191,0.1);">💬</span><span>SyncZone</span><span class="s-dot-live"></span></a>
+      <a href="projects/gallimart.html" class="h-strip-item"><span class="s-icon" style="background:rgba(79,209,197,0.1);">🛒</span><span>GalliMart</span><span class="s-dot-live"></span></a>
+      <a href="projects/medicore.html" class="h-strip-item"><span class="s-icon" style="background:rgba(165,214,167,0.1);">🏥</span><span>MediCore</span><span class="s-dot-live"></span></a>
+      <a href="projects/wanderwave.html" class="h-strip-item"><span class="s-icon" style="background:rgba(184,169,201,0.1);">🌊</span><span>WanderWave</span><span class="s-dot-live"></span></a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+  <div class="hero-doodle hd-1"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2l4 10h10l-8 6 3 10-9-7-9 7 3-10-8-6h10l4-10z" stroke="currentColor" stroke-width="1" opacity="0.6"/></svg></div>
+  <div class="hero-doodle hd-2"><svg viewBox="0 0 40 28" fill="none"><path d="M4 24C4 8 16 4 32 4" stroke="currentColor" stroke-width="1.2" opacity="0.5" stroke-dasharray="4 3"/><path d="M26 0l6 4-3 6" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg></div>
+  <div class="hero-doodle hd-3"><svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M13 5v3M13 18v3M5 13h3M18 13h3" stroke="currentColor" stroke-width="0.8" opacity="0.3"/></svg></div>
+  <div class="hero-doodle hd-4"><svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="11" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M15 7v3M15 20v3M7 15h3M20 15h3" stroke="currentColor" stroke-width="0.8" opacity="0.3"/><path d="M15 9l-2 8 8-2-6-6z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg></div>
+  <div class="hero-doodle hd-5"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2 7h7l-5.5 4 2 7L12 15l-6.5 5 2-7L2 9h7l2-7z" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg></div>
+  <div class="hero-doodle hd-6"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1" opacity="0.3"/><circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.2"/></svg></div>
+</section>
 
-        <!-- Stats strip -->
-        <section class="home-stats-strip section-glow">
-            <aside class="home-visual-layer" aria-hidden="true">
-                <svg class="home-sketch home-sketch--drawable home-sketch--stats-star" data-home-proximity data-home-twinkle data-proximity-radius="85" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M8 1.5l1.6 4.9H15l-4 2.9 1.5 4.7L8 11.2 3.5 14l1.5-4.7-4-2.9h5.4L8 1.5z" stroke="#c9a66b" stroke-width="0.65" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--stats-blob" data-home-proximity data-proximity-radius="130" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M35 8 C52 8 62 22 58 40 C54 58 32 64 20 54 C8 44 12 16 35 8Z" stroke="rgba(124,156,255,0.08)" stroke-width="0.7" fill="rgba(124,156,255,0.02)" />
-                </svg>
-            </aside>
-            <div class="container">
-                <div class="stats-grid reveal">
-                    <div class="stat-block" data-home-stat style="--stat-i: 0">
-                        <div class="stat-glow" aria-hidden="true"></div>
-                        <span class="stat-number" data-count="7" data-suffix="+">0</span>
-                        <span class="stat-label">Products built</span>
-                    </div>
-                    <div class="stat-block" data-home-stat style="--stat-i: 1">
-                        <div class="stat-glow" aria-hidden="true"></div>
-                        <span class="stat-number" data-count="3">0</span>
-                        <span class="stat-label">Platforms explored</span>
-                    </div>
-                    <div class="stat-block" data-home-stat style="--stat-i: 2">
-                        <div class="stat-glow" aria-hidden="true"></div>
-                        <span class="stat-number" data-count="9.05">0</span>
-                        <span class="stat-label">CGPA</span>
-                    </div>
-                    <div class="stat-block" data-home-stat style="--stat-i: 3">
-                        <div class="stat-glow" aria-hidden="true"></div>
-                        <span class="stat-number" data-count="2" data-suffix="+">0</span>
-                        <span class="stat-label">In active development</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ═══ SKILLS MARQUEE ═══ -->
+<section class="skills-section">
+  <div class="skills-track" id="skillsTrack">
+    <div class="skill-chip"><span class="s-dot" style="background:var(--mustard)"></span>Android Development</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--blue)"></span>AI Systems</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--teal)"></span>Workflow Automation</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--rose)"></span>Firebase & NoSQL</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--coral)"></span>Product UX</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--lavender)"></span>Java & XML</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--sage)"></span>API Integration</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--beige)"></span>Full-Stack</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--mustard)"></span>Real-time DB</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--blue)"></span>Memory Systems</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="skill-chip"><span class="s-dot" style="background:var(--mustard)"></span>Android Development</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--blue)"></span>AI Systems</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--teal)"></span>Workflow Automation</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--rose)"></span>Firebase & NoSQL</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--coral)"></span>Product UX</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--lavender)"></span>Java & XML</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--sage)"></span>API Integration</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--beige)"></span>Full-Stack</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--mustard)"></span>Real-time DB</div>
+    <div class="skill-chip"><span class="s-dot" style="background:var(--blue)"></span>Memory Systems</div>
+  </div>
+</section>
 
-        <!-- Featured Work -->
-        <section class="home-showcase">
-            <aside class="home-visual-layer" aria-hidden="true">
-                <span class="home-sticky-label">featured work</span>
-                <svg class="home-sketch home-sketch--drawable home-sketch--showcase-scribble" data-home-proximity data-proximity-radius="100" viewBox="0 0 80 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M2 15 Q20 5 40 15 T78 15" stroke="rgba(124,156,255,0.1)" stroke-width="0.8" stroke-dasharray="3 2" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--showcase-cross" data-home-proximity data-proximity-radius="80" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 4l10 10" stroke="#34d399" stroke-width="0.85" />
-                    <path d="M14 4L4 14" stroke="#34d399" stroke-width="0.85" />
-                </svg>
-            </aside>
-            <div class="container">
-                <div class="showcase-header reveal">
-                    <span class="section-label">Featured Work</span>
-                    <h2 class="section-title">Pick a product. See the story.</h2>
-                </div>
-                <div class="showcase-panel reveal" data-showcase>
-                    <div class="showcase-tabs glass-tabs" data-glass-tabs role="tablist">
-                        <button class="showcase-tab is-active" type="button" data-glass-tab data-showcase-tab="aion" role="tab" aria-selected="true">Aion</button>
-                        <button class="showcase-tab" type="button" data-glass-tab data-showcase-tab="triggerly" role="tab" aria-selected="false">Triggerly</button>
-                        <button class="showcase-tab" type="button" data-glass-tab data-showcase-tab="gallimart" role="tab" aria-selected="false">GalliMart</button>
-                        <button class="showcase-tab" type="button" data-glass-tab data-showcase-tab="synczone" role="tab" aria-selected="false">SyncZone</button>
-                    </div>
-                    <div class="showcase-body">
-                        <article class="showcase-slide is-active" data-showcase-panel="aion">
-                            <div class="showcase-visual showcase-visual--ai">
-                                <div class="showcase-mock">
-                                    <div class="mock-header"><span></span><span></span><span></span></div>
-                                    <div class="mock-content">
-                                        <div class="mock-line mock-line--wide"></div>
-                                        <div class="mock-line"></div>
-                                        <div class="mock-chip-row"><span>Memory</span><span>Tasks</span><span>Projects</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-copy">
-                                <span class="status-badge in-dev">In Development</span>
-                                <h3>Aion — Personal Intelligence</h3>
-                                <p>A second brain for thoughts, memories, tasks, and projects.</p>
-                                <a class="btn-secondary-custom magnetic-btn" href="projects/aion.html">Explore Aion</a>
-                            </div>
-                        </article>
-                        <article class="showcase-slide" data-showcase-panel="triggerly">
-                            <div class="showcase-visual showcase-visual--auto">
-                                <div class="showcase-mock">
-                                    <div class="mock-flow">
-                                        <span class="mock-node">Trigger</span>
-                                        <span class="mock-arrow">→</span>
-                                        <span class="mock-node">Action</span>
-                                        <span class="mock-arrow">→</span>
-                                        <span class="mock-node">Result</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-copy">
-                                <span class="status-badge in-dev">In Development</span>
-                                <h3>Triggerly — Workflow Automation</h3>
-                                <p>Triggers, actions, and repeatable business logic.</p>
-                                <a class="btn-secondary-custom magnetic-btn" href="projects/triggerly.html">Explore Triggerly</a>
-                            </div>
-                        </article>
-                        <article class="showcase-slide" data-showcase-panel="gallimart">
-                            <div class="showcase-visual showcase-visual--android">
-                                <div class="showcase-mock showcase-mock--phone">
-                                    <div class="mock-map-ring"></div>
-                                    <span class="mock-pin"></span>
-                                </div>
-                            </div>
-                            <div class="showcase-copy">
-                                <span class="status-badge completed">Completed</span>
-                                <h3>GalliMart — Hyperlocal Marketplace</h3>
-                                <p>Android marketplace within a 7 km radius.</p>
-                                <a class="btn-secondary-custom magnetic-btn" href="projects/gallimart.html">Explore GalliMart</a>
-                            </div>
-                        </article>
-                        <article class="showcase-slide" data-showcase-panel="synczone">
-                            <div class="showcase-visual showcase-visual--campus">
-                                <div class="showcase-mock">
-                                    <div class="mock-chat">
-                                        <span class="mock-bubble"></span>
-                                        <span class="mock-bubble mock-bubble--alt"></span>
-                                        <span class="mock-bubble"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-copy">
-                                <span class="status-badge completed">Completed</span>
-                                <h3>SyncZone — Campus Collaboration</h3>
-                                <p>Announcements, roles, and realtime chat.</p>
-                                <a class="btn-secondary-custom magnetic-btn" href="projects/synczone.html">Explore SyncZone</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ═══ STATS ═══ -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-flip reveal">
+      <div class="stat-flip-inner">
+        <div class="stat-flip-front"><div class="stat-number" data-count="7" data-suffix="+">0</div><div class="stat-label">Products Built</div></div>
+        <div class="stat-flip-back"><div class="stat-back-icon">🚀</div><div class="stat-back-text">From campus apps to AI systems — each one shipped and solving real problems.</div></div>
+      </div>
+    </div>
+    <div class="stat-flip reveal reveal-delay-1">
+      <div class="stat-flip-inner">
+        <div class="stat-flip-front"><div class="stat-number" data-count="3">0</div><div class="stat-label">Platforms</div></div>
+        <div class="stat-flip-back"><div class="stat-back-icon">🌐</div><div class="stat-back-text">Android, Web, and AI — building across the full stack.</div></div>
+      </div>
+    </div>
+    <div class="stat-flip reveal reveal-delay-2">
+      <div class="stat-flip-inner">
+        <div class="stat-flip-front"><div class="stat-number" data-count="9.05">0</div><div class="stat-label">CGPA</div></div>
+        <div class="stat-flip-back"><div class="stat-back-icon">📚</div><div class="stat-back-text">Academic excellence with practical application in every project.</div></div>
+      </div>
+    </div>
+    <div class="stat-flip reveal reveal-delay-3">
+      <div class="stat-flip-inner">
+        <div class="stat-flip-front"><div class="stat-number" data-count="2" data-suffix="+">0</div><div class="stat-label">In Dev</div></div>
+        <div class="stat-flip-back"><div class="stat-back-icon">⚡</div><div class="stat-back-text">Aion & Triggerly are cooking — AI memory + workflow automation.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Tech cloud -->
-        <section class="home-tech section-band">
-            <aside class="home-visual-layer" aria-hidden="true">
-                <svg class="home-sketch home-sketch--drawable home-sketch--tech-blob" data-home-proximity data-proximity-radius="140" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="40" cy="40" r="30" stroke="rgba(79,209,197,0.06)" stroke-width="0.6" stroke-dasharray="4 3" />
-                    <circle cx="40" cy="40" r="20" stroke="rgba(79,209,197,0.04)" stroke-width="0.5" stroke-dasharray="2 2" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--tech-dots" data-home-proximity data-proximity-radius="80" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="10" cy="12" r="1.5" fill="rgba(240,184,110,0.2)" />
-                    <circle cx="25" cy="8" r="1" fill="rgba(240,184,110,0.15)" />
-                    <circle cx="40" cy="15" r="1.5" fill="rgba(240,184,110,0.18)" />
-                    <circle cx="15" cy="30" r="1" fill="rgba(240,184,110,0.12)" />
-                    <circle cx="35" cy="35" r="1.5" fill="rgba(240,184,110,0.1)" />
-                    <circle cx="25" cy="45" r="1" fill="rgba(240,184,110,0.15)" />
-                </svg>
-            </aside>
-            <div class="container">
-                <div class="section-split reveal">
-                    <div>
-                        <span class="section-label">Stack</span>
-                        <h2 class="section-title">Technologies I build with.</h2>
-                    </div>
-                    <p class="section-aside">Hover to explore — each tag represents real project experience.</p>
-                </div>
-                <div class="tech-cloud reveal" data-tech-cloud>
-                    <span class="tech-cloud-tag" data-home-tag>Android</span>
-                    <span class="tech-cloud-tag" data-home-tag>Firebase</span>
-                    <span class="tech-cloud-tag" data-home-tag>JavaScript</span>
-                    <span class="tech-cloud-tag" data-home-tag>AI Logic</span>
-                    <span class="tech-cloud-tag" data-home-tag>Product UX</span>
-                    <span class="tech-cloud-tag" data-home-tag>Automation</span>
-                    <span class="tech-cloud-tag" data-home-tag>NoSQL</span>
-                    <span class="tech-cloud-tag" data-home-tag>Java</span>
-                    <span class="tech-cloud-tag" data-home-tag>APIs</span>
-                    <span class="tech-cloud-tag" data-home-tag>Workflows</span>
-                    <span class="tech-cloud-tag" data-home-tag>OSMDroid</span>
-                    <span class="tech-cloud-tag" data-home-tag>Bootstrap</span>
-                </div>
-            </div>
-        </section>
+<!-- ═══ DECK CAROUSEL — PROJECTS ═══ -->
+<section class="deck-section doodle-zone" id="projects">
+  <div class="page-doodle doodle-sparkle" data-doodle>
+    <svg viewBox="0 0 28 28" fill="none"><path d="M14 2l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9l3-9z" stroke="currentColor" stroke-width="1" opacity="0.6"/></svg>
+  </div>
+  <div class="page-doodle doodle-arrow-curved" data-doodle>
+    <svg viewBox="0 0 48 32" fill="none"><path d="M4 28C4 8 20 4 40 4" stroke="currentColor" stroke-width="1.2" opacity="0.5" stroke-dasharray="4 3"/><path d="M32 0l8 4-4 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-hash" data-doodle>
+    <svg viewBox="0 0 22 22" fill="none"><line x1="6" y1="2" x2="6" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="16" y1="2" x2="16" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="2" y1="8" x2="20" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="2" y1="14" x2="20" y2="14" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-dots" data-doodle>
+    <svg viewBox="0 0 30 10" fill="none"><circle cx="5" cy="5" r="2" fill="currentColor" opacity="0.4"/><circle cx="15" cy="5" r="2" fill="currentColor" opacity="0.4"/><circle cx="25" cy="5" r="2" fill="currentColor" opacity="0.4"/></svg>
+  </div>
+  <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 60px;">
+    <div class="section-eyebrow" style="justify-content:center;">Featured Work</div>
+    <h2 class="section-title">Pick a card.<br>See the story.</h2>
+    <p class="section-subtitle" style="margin:16px auto 0;">Swipe or click through — each project is a solved problem, not just code.</p>
+  </div>
+  <div class="deck-wrapper">
+    <div class="deck-stage dc-deck" id="deckStage">
+      <!-- Cards injected by JS -->
+    </div>
+    <div class="deck-controls">
+      <div class="deck-btns">
+        <button class="deck-btn" id="deckPrev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="deck-btn" id="deckNext" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="deck-dots" id="deckDots"></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Mini timeline -->
-        <section class="home-mini-timeline">
-            <aside class="home-visual-layer" aria-hidden="true">
-                <svg class="home-sketch home-sketch--drawable home-sketch--timeline-star" data-home-proximity data-home-twinkle data-proximity-radius="80" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M7 1.5l1.4 4.2H13l-3.5 2.5 1.3 4L7 9.8 3.2 12l1.3-4-3.5-2.5h4.6L7 1.5z" stroke="#6ee7d6" stroke-width="0.6" />
-                </svg>
-                <svg class="home-sketch home-sketch--drawable home-sketch--timeline-arrow" data-home-proximity data-proximity-radius="100" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 16H48" stroke="#34d399" stroke-width="1" />
-                    <path d="M40 10l8 6-8 6" stroke="#34d399" stroke-width="1" />
-                </svg>
-            </aside>
-            <div class="container">
-                <span class="section-label reveal">Now → Next</span>
-                <div class="mini-timeline-track reveal">
-                    <div class="mini-timeline-node" data-home-timeline style="--node-i: 0">
-                        <time>Now</time>
-                        <p>Building Aion & Triggerly</p>
-                    </div>
-                    <div class="mini-timeline-line" aria-hidden="true" data-home-line></div>
-                    <div class="mini-timeline-node" data-home-timeline style="--node-i: 1">
-                        <time>Shipped</time>
-                        <p>4 completed products</p>
-                    </div>
-                    <div class="mini-timeline-line" aria-hidden="true" data-home-line></div>
-                    <div class="mini-timeline-node" data-home-timeline style="--node-i: 2">
-                        <time>Focus</time>
-                        <p>AI + automation systems</p>
-                    </div>
-                    <div class="mini-timeline-line" aria-hidden="true" data-home-line></div>
-                    <div class="mini-timeline-node" data-home-timeline style="--node-i: 3">
-                        <time>Next</time>
-                        <p>Intelligent platforms</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ═══ TECH STACK ═══ -->
+<section class="tech-section doodle-zone">
+  <div class="page-doodle doodle-brackets" data-doodle>
+    <svg viewBox="0 0 32 28" fill="none"><path d="M10 4L4 14l6 10" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M22 4l6 10-6 10" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-terminal" data-doodle>
+    <svg viewBox="0 0 30 24" fill="none"><rect x="1" y="1" width="28" height="22" rx="4" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M6 8l5 4-5 4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="14" y1="16" x2="22" y2="16" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
+  <div class="page-doodle doodle-code" data-doodle>
+    <svg viewBox="0 0 36 24" fill="none"><path d="M10 4L4 12l6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M26 4l6 8-6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="20" y1="2" x2="16" y2="22" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
+  <div class="page-doodle doodle-zigzag" data-doodle>
+    <svg viewBox="0 0 36 20" fill="none"><path d="M2 10l6-6 6 6 6-6 6 6 6-6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle doodle-star" data-doodle>
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-5-6.5 5 2-7L2 9h7l3-7z" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-wave" data-doodle>
+    <svg viewBox="0 0 40 16" fill="none"><path d="M2 8c4-4 8 4 12 0s8 4 12 0 8 4 12 0" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle doodle-ring" data-doodle>
+    <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1" opacity="0.3"/><circle cx="14" cy="14" r="6" stroke="currentColor" stroke-width="0.8" opacity="0.2"/></svg>
+  </div>
+  <div class="tech-wrapper">
+    <div class="section-header reveal" style="text-align:center;max-width:600px;">
+      <div class="section-eyebrow" style="justify-content:center;">Built With</div>
+      <h2 class="section-title">Technologies I work with.</h2>
+      <p class="section-subtitle" style="margin:16px auto 0;">Real project experience across 7 shipped products.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-item highlight reveal"><span class="tech-icon">🤖</span><div class="tech-name">Android</div><div class="tech-desc">Native apps with Java & XML</div></div>
+      <div class="tech-item reveal reveal-delay-1"><span class="tech-icon">☕</span><div class="tech-name">Java</div><div class="tech-desc">Backend logic & architecture</div></div>
+      <div class="tech-item reveal reveal-delay-2"><span class="tech-icon">🔥</span><div class="tech-name">Firebase</div><div class="tech-desc">Auth, DB, real-time sync</div></div>
+      <div class="tech-item reveal reveal-delay-3"><span class="tech-icon">🧠</span><div class="tech-name">AI Logic</div><div class="tech-desc">Contextual reasoning systems</div></div>
+      <div class="tech-item reveal"><span class="tech-icon">📜</span><div class="tech-name">JavaScript</div><div class="tech-desc">Web interactivity & APIs</div></div>
+      <div class="tech-item reveal reveal-delay-1"><span class="tech-icon">🗃️</span><div class="tech-name">NoSQL</div><div class="tech-desc">Flexible data modeling</div></div>
+      <div class="tech-item reveal reveal-delay-2"><span class="tech-icon">🔌</span><div class="tech-name">APIs</div><div class="tech-desc">Third-party integrations</div></div>
+      <div class="tech-item reveal reveal-delay-3"><span class="tech-icon">🏗️</span><div class="tech-name">XML</div><div class="tech-desc">UI layouts & styling</div></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Bento navigation -->
-        <section class="home-bento">
-            <aside class="home-visual-layer" aria-hidden="true">
-                <svg class="home-sketch home-sketch--drawable home-sketch--bento-blob" data-home-proximity data-proximity-radius="150" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M30 5 C45 5 55 18 52 35 C49 52 28 58 15 48 C5 38 8 12 30 5Z" stroke="rgba(124,156,255,0.08)" stroke-width="0.6" fill="rgba(124,156,255,0.02)" />
-                </svg>
-            </aside>
-            <div class="container">
-                <div class="bento-grid reveal">
-                    <a class="bento-cell bento-cell--wide lift-card" href="projects.html" data-home-bento style="--bento-i: 0">
-                        <div class="bento-glow" aria-hidden="true"></div>
-                        <span class="bento-label">Portfolio</span>
-                        <h3>All projects</h3>
-                        <p>Current bets to archived experiments.</p>
-                        <span class="bento-arrow">→</span>
-                    </a>
-                    <a class="bento-cell lift-card" href="about.html" data-home-bento style="--bento-i: 1">
-                        <div class="bento-glow" aria-hidden="true"></div>
-                        <span class="bento-label">Story</span>
-                        <h3>About me</h3>
-                        <p>Journey & philosophy.</p>
-                        <span class="bento-arrow">→</span>
-                    </a>
-                    <a class="bento-cell lift-card" href="contact.html" data-home-bento style="--bento-i: 2">
-                        <div class="bento-glow" aria-hidden="true"></div>
-                        <span class="bento-label">Connect</span>
-                        <h3>Contact</h3>
-                        <p>Start a conversation.</p>
-                        <span class="bento-arrow">→</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- ═══ TIMELINE ═══ -->
+<section class="timeline-section doodle-zone">
+  <div class="page-doodle doodle-compass" data-doodle>
+    <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M16 6v4M16 22v4M6 16h4M22 16h4" stroke="currentColor" stroke-width="0.8" opacity="0.3"/><path d="M16 10l-3 9 9-3-6-6z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-flag" data-doodle>
+    <svg viewBox="0 0 28 32" fill="none"><path d="M4 2v28" stroke="currentColor" stroke-width="1.2" opacity="0.4"/><path d="M4 4h16l-4 6 4 6H4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-star" data-doodle>
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-5-6.5 5 2-7L2 9h7l3-7z" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-wave" data-doodle>
+    <svg viewBox="0 0 40 16" fill="none"><path d="M2 8c4-4 8 4 12 0s8 4 12 0 8 4 12 0" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle doodle-hash" data-doodle>
+    <svg viewBox="0 0 22 22" fill="none"><line x1="6" y1="2" x2="6" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="16" y1="2" x2="16" y2="20" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="2" y1="8" x2="20" y2="8" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="2" y1="14" x2="20" y2="14" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle doodle-chevron" data-doodle>
+    <svg viewBox="0 0 20 20" fill="none"><path d="M6 4l8 6-8 6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle doodle-dots" data-doodle>
+    <svg viewBox="0 0 30 10" fill="none"><circle cx="5" cy="5" r="2" fill="currentColor" opacity="0.4"/><circle cx="15" cy="5" r="2" fill="currentColor" opacity="0.4"/><circle cx="25" cy="5" r="2" fill="currentColor" opacity="0.4"/></svg>
+  </div>
+  <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 64px;">
+    <div class="section-eyebrow" style="justify-content:center;">Journey</div>
+    <h2 class="section-title">Now to Next</h2>
+    <p class="section-subtitle" style="margin:16px auto 0;">The path from shipped products to what is coming next.</p>
+  </div>
+  <div class="timeline-wrapper">
+    <div class="timeline-track">
+      <div class="timeline-line-h"></div>
+      <div class="timeline-node-h timeline-node-h--now" data-timeline>
+        <div class="timeline-card-h"><div class="timeline-time-h">Now</div><div class="timeline-title-h">Building Aion & Triggerly</div><div class="timeline-desc-h">Deep in development on two ambitious products — an AI memory system and a workflow automation engine.</div></div>
+      </div>
+      <div class="timeline-node-h timeline-node-h--shipped" data-timeline>
+        <div class="timeline-card-h"><div class="timeline-time-h">Shipped</div><div class="timeline-title-h">4 Completed Products</div><div class="timeline-desc-h">SyncZone, GalliMart, MediCore, and WanderWave are live, tested, and solving real problems.</div></div>
+      </div>
+      <div class="timeline-node-h timeline-node-h--focus" data-timeline>
+        <div class="timeline-card-h"><div class="timeline-time-h">Focus</div><div class="timeline-title-h">AI + Automation</div><div class="timeline-desc-h">Currently specializing in intelligent platforms that learn, adapt, and automate complex workflows.</div></div>
+      </div>
+      <div class="timeline-node-h timeline-node-h--next" data-timeline>
+        <div class="timeline-card-h"><div class="timeline-time-h">Next</div><div class="timeline-title-h">Intelligent Platforms</div><div class="timeline-desc-h">Exploring the intersection of contextual AI and product design — building tools that think with you.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer class="footer-custom footer-compact">
-        <div class="container text-center">
-            <p class="footer-tagline font-display">Let's build something meaningful.</p>
-            <div class="footer-links"><a href="projects.html">Projects</a><a href="resume.html">Resume</a><a href="contact.html">Contact</a></div>
-            <p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p>
-        </div>
-    </footer>
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <h2 class="cta-title reveal">Let us build something<br><em>meaningful.</em></h2>
+  <p class="cta-desc reveal reveal-delay-1">Open to collaborations, internships, and product-driven conversations.</p>
+  <div class="cta-actions reveal reveal-delay-2">
+    <a href="contact.html" class="btn-primary">Get in Touch <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="resume.html" class="btn-ghost">View Resume <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
 
-    <button class="aion-orb" type="button" data-aion-launcher aria-expanded="false" aria-label="Open Aion Core"><span class="aion-orb-ring" aria-hidden="true"></span><span class="aion-orb-ring aion-orb-ring--2" aria-hidden="true"></span><span class="aion-orb-core" aria-hidden="true"></span></button>
-    <aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant">
-        <div class="aion-panel-glow" aria-hidden="true"></div>
-        <header class="aion-header"><div class="aion-brand"><span class="aion-brand-icon" aria-hidden="true">✦</span><div><strong>Aion Core</strong><span>Portfolio intelligence</span></div></div><button class="aion-close" type="button" data-aion-close aria-label="Close">&times;</button></header>
-        <div class="aion-messages" data-aion-messages><div class="aion-empty" data-aion-empty><span class="aion-empty-icon">✦</span><p>Ask me anything about Varsha's work, skills, or product direction.</p></div></div>
-        <form class="aion-form" data-aion-form><div class="aion-input-wrap"><input data-aion-input type="text" placeholder="Ask about Varsha..." aria-label="Ask Aion Core" autocomplete="off"><button type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l12-6-3 6 3 6-12-6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></button></div></form>
-    </aside>
+<!-- ═══ FOOTER ═══ -->
+<footer class="project-footer">
+  <h2>Products that <em>ship.</em></h2>
+  <div class="footer-links">
+    <a href="home.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About</a>
+    <a href="resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copyright">Copyright <span id="year"></span> Varsha Jairam</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  'use strict';
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/navbar.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/glass-indicator.js"></script>
-    <script src="assets/js/home-showcase.js"></script>
-    <script src="assets/js/counters.js"></script>
-    <script src="assets/js/tech-cloud.js"></script>
-    <script src="assets/js/home-page.js"></script>
-    <script src="assets/js/aion-core.js"></script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Navbar scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+  // Reveal observer
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Timeline observer
+  const timelineObs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('is-visible'), i * 150); });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('[data-timeline]').forEach(el => timelineObs.observe(el));
+
+  // Doodle observer
+  const doodleObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('[data-doodle]').forEach(el => doodleObs.observe(el));
+
+  // Counter animation
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.animated) {
+        e.target.dataset.animated = 'true';
+        const target = parseFloat(e.target.dataset.count);
+        const suffix = e.target.dataset.suffix || '';
+        const isFloat = target % 1 !== 0;
+        const duration = 2200, start = performance.now();
+        function update(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const current = target * eased;
+          e.target.innerHTML = (isFloat ? current.toFixed(2) : Math.floor(current)) + '<span style="font-size:0.5em;opacity:0.5;margin-left:2px;">' + suffix + '</span>';
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-number').forEach(el => counterObs.observe(el));
+
+  // ═══ DECK CAROUSEL ═══
+  const deckItems = [
+    { title: "Aion — Personal Intelligence", text: "A second brain for thoughts, memories, tasks, and projects. Contextual awareness and reasoning built into every interaction.", tags: ["AI", "Memory System", "Contextual Reasoning"], color: "#7c9cff", bar: "#3B82F6", status: "In Development" },
+    { title: "Triggerly", text: "Triggers, actions, and repeatable business logic. Connect services through conditional triggers and automate your workflows.", tags: ["Automation", "APIs", "Workflows"], color: "#c9941a", bar: "#EAB308", status: "In Development" },
+    { title: "SyncZone", text: "Real-time chat, assignments, and profanity-filtered messaging. Discord meets Google Classroom for campus collaboration.", tags: ["Android", "Firebase", "Real-time"], color: "#e8a0bf", bar: "#EF4444", status: "Completed" },
+    { title: "GalliMart", text: "Android marketplace connecting buyers and sellers within a 7 km radius. OSMDroid-powered maps for hyperlocal commerce.", tags: ["Android", "OSMDroid", "Commerce"], color: "#4fd1c5", bar: "#22C55E", status: "Completed" },
+    { title: "MediCore", text: "Patient records, appointment scheduling, and healthcare workflow management system built for clinics and hospitals.", tags: ["Healthcare", "Management"], color: "#a5d6a7", bar: "#22C55E", status: "Completed" },
+    { title: "WanderWave", text: "Itinerary planning and local discovery features for travelers exploring new destinations with smart recommendations.", tags: ["Travel", "Discovery"], color: "#b8a9c9", bar: "#3B82F6", status: "Completed" }
+  ];
+
+  const n = deckItems.length;
+  let active = 0, leaving = null, revealed = false;
+  const stage = document.getElementById('deckStage');
+  const dotsContainer = document.getElementById('deckDots');
+
+  // Build cards
+  deckItems.forEach((item, i) => {
+    const card = document.createElement('article');
+    card.className = 'deck-card';
+    card.dataset.index = i;
+    card.innerHTML = `
+      <div class="deck-card-header">
+        <span class="deck-number" style="background:${item.color};">${i + 1}</span>
+        <span class="deck-bar" style="background:${item.bar};"></span>
+        <span style="margin-left:auto;font-size:0.65rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;">${item.status}</span>
+      </div>
+      <h3 class="deck-title">${blurWords(item.title, 100, 30)}</h3>
+      <p class="deck-text">${blurWords(item.text, 230, 18)}</p>
+      <div class="deck-tags">${item.tags.map(t => `<span class="deck-tag">${t}</span>`).join('')}</div>
+    `;
+    stage.appendChild(card);
+  });
+
+  // Build dots
+  deckItems.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'deck-dot' + (i === 0 ? ' active' : '');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Go to card ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function blurWords(text, base, step) {
+    const words = text.split(' ');
+    return words.map((w, i) => `<span class="dc-word" style="animation-delay:${base + i * step}ms">${w}</span>`).join(' ');
+  }
+
+  function updateCards() {
+    const cards = stage.querySelectorAll('.deck-card');
+    cards.forEach((card, i) => {
+      card.classList.remove('leaving');
+      if (i === leaving) {
+        card.style.cssText = 'transform:translateY(120%) rotate(6deg) scale(0.96);opacity:0;z-index:99;pointer-events:none;transition:transform 0.4s cubic-bezier(0.4,0,0.7,1),opacity 0.34s ease-out;';
+        return;
+      }
+      const offset = (i - active + n) % n;
+      const visible = offset < 3;
+      const isFront = offset === 0 && leaving === null;
+      card.style.cssText = `transform:translateY(${offset * 16}px) scale(${1 - offset * 0.05});opacity:${visible ? (offset === 0 ? 1 : 0.5) : 0};z-index:${n - offset};pointer-events:${isFront ? 'auto' : 'none'};transition:transform 0.7s cubic-bezier(0.16,1,0.3,1),opacity 0.7s cubic-bezier(0.16,1,0.3,1);cursor:${isFront ? 'grab' : 'default'};`;
+    });
+    // Update dots
+    const dotIndex = leaving !== null ? (active + 1) % n : active;
+    dotsContainer.querySelectorAll('.deck-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === dotIndex);
+    });
+  }
+
+  function next() {
+    if (leaving !== null) return;
+    leaving = active;
+    updateCards();
+    setTimeout(() => {
+      active = (active + 1) % n;
+      leaving = null;
+      updateCards();
+    }, 340);
+  }
+
+  function prev() {
+    if (leaving !== null) return;
+    active = (active - 1 + n) % n;
+    updateCards();
+  }
+
+  function goTo(i) {
+    if (leaving !== null || i === active) return;
+    active = i;
+    updateCards();
+  }
+
+  document.getElementById('deckNext').addEventListener('click', next);
+  document.getElementById('deckPrev').addEventListener('click', prev);
+
+  // Swipe
+  let downX = null;
+  stage.addEventListener('pointerdown', e => { downX = e.clientX; });
+  stage.addEventListener('pointerup', e => {
+    if (downX === null) return;
+    const dx = e.clientX - downX;
+    downX = null;
+    if (dx < -50) next();
+    else if (dx > 50) prev();
+  });
+
+  // Reveal animation
+  const deckObs = new IntersectionObserver((entries) => {
+    if (entries.some(e => e.isIntersecting)) {
+      stage.classList.add('revealed');
+      deckObs.disconnect();
+    }
+  }, { threshold: 0.3 });
+  deckObs.observe(stage);
+
+  // Initial render
+  updateCards();
+
+})();
+</script>
 </body>
 </html>
