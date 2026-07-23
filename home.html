@@ -2045,37 +2045,11 @@
       }
     }
   </style>
-  <base target="_blank">
 </head>
 
 <body>
   <div class="aura" id="aura"></div>
   <div class="grain"></div>
-
-  <!-- ============ DOCK NAV ============ -->
-  <div class="dock-wrap" id="dockWrap">
-    <nav class="dock" aria-label="Primary">
-      <a class="dock-brand" href="home.html">
-        <span class="mark">V</span><b>Varsha Jairam</b>
-      </a>
-      <div class="dock-nav" id="dockNav">
-        <span class="dock-pill" id="dockPill"></span>
-        <a class="dock-link active" href="home.html">Home</a>
-        <a class="dock-link" href="about.html">About</a>
-        <a class="dock-link" href="projects.html">Projects</a>
-        <a class="dock-link" href="resume.html">Resume</a>
-      </div>
-      <a class="dock-cta" href="contact.html">Contact</a>
-      <button class="dock-burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-    </nav>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="resume.html">Resume</a>
-    <a href="contact.html">Contact</a>
-  </div>
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="hero">
@@ -2720,6 +2694,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/shared-navbar.js"></script>
   <script>
     (function () {
       'use strict';
@@ -2732,42 +2707,6 @@
         aura.style.setProperty('--mx', e.clientX + 'px');
         aura.style.setProperty('--my', e.clientY + 'px');
       });
-
-      /* ---- dock: shrink + active pill ---- */
-      var dockWrap = document.getElementById('dockWrap');
-      window.addEventListener('scroll', function () {
-        dockWrap.classList.toggle('tuck', window.scrollY > 40);
-      }, { passive: true });
-
-      var dockNav = document.getElementById('dockNav');
-      var pill = document.getElementById('dockPill');
-      var links = dockNav ? dockNav.querySelectorAll('.dock-link') : [];
-      function movePill(el) {
-        if (!el) { pill.style.opacity = '0'; return; }
-        pill.style.opacity = '1';
-        pill.style.width = el.offsetWidth + 'px';
-        pill.style.transform = 'translateX(' + el.offsetLeft + 'px)';
-      }
-      var activeLink = dockNav ? dockNav.querySelector('.dock-link.active') : null;
-      links.forEach(function (l) { l.addEventListener('mouseenter', function () { movePill(l); }); });
-      if (dockNav) {
-        dockNav.addEventListener('mouseleave', function () { movePill(activeLink); });
-        window.addEventListener('load', function () { movePill(activeLink); });
-        setTimeout(function () { movePill(activeLink); }, 200);
-      }
-
-      /* ---- mobile menu ---- */
-      var burger = document.getElementById('burger');
-      var mobileMenu = document.getElementById('mobileMenu');
-      if (burger) {
-        burger.addEventListener('click', function () {
-          burger.classList.toggle('open');
-          mobileMenu.classList.toggle('open');
-        });
-        mobileMenu.querySelectorAll('a').forEach(function (a) {
-          a.addEventListener('click', function () { burger.classList.remove('open'); mobileMenu.classList.remove('open'); });
-        });
-      }
 
       /* ---- magnetic buttons ---- */
       if (!reduce) {

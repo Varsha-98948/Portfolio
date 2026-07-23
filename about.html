@@ -406,36 +406,11 @@ a{color:inherit;text-decoration:none}
 }
 
 </style>
-<base target="_blank">
-<base target="_blank">
 </head>
 <body>
 <div class="aura" id="aura"></div>
 <div class="grain"></div>
 <div class="scrollbar" id="scrollbar"></div>
-
-<!-- ============ DOCK NAV ============ -->
-<div class="dock-wrap" id="dockWrap">
-  <nav class="dock" aria-label="Primary">
-    <a class="dock-brand" href="home.html"><span class="mark">V</span><b>Varsha Jairam</b></a>
-    <div class="dock-nav" id="dockNav">
-      <span class="dock-pill" id="dockPill"></span>
-      <a class="dock-link" href="home.html">Home</a>
-      <a class="dock-link active" href="about.html">About</a>
-      <a class="dock-link" href="projects.html">Projects</a>
-      <a class="dock-link" href="resume.html">Resume</a>
-    </div>
-    <a class="dock-cta" href="contact.html">Contact</a>
-    <button class="dock-burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  </nav>
-</div>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="home.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html">Projects</a>
-  <a href="resume.html">Resume</a>
-  <a href="contact.html">Contact</a>
-</div>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -730,7 +705,7 @@ a{color:inherit;text-decoration:none}
     var h = document.documentElement;
     var p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
     scrollbar.style.width = (p*100) + '%';
-    dockWrap.classList.toggle('tuck', window.scrollY > 40);
+    if (dockWrap) dockWrap.classList.toggle('tuck', window.scrollY > 40);
     /* parallax */
     if(!reduce){
       document.querySelectorAll('[data-parallax]').forEach(function(el){
@@ -896,5 +871,6 @@ a{color:inherit;text-decoration:none}
   }
 
 </script>
+<script src="assets/js/shared-navbar.js"></script>
 </body>
 </html>
