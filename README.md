@@ -11,5 +11,7 @@ The portfolio showcases:
 - LunaOps
 - Medicore
 - WanderWave
+- GreenGrid
+- Recall
 
 Currently under development.
