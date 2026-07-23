@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aion | Varsha Jairam</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/components.css">
@@ -19,13 +22,13 @@
         :root {
             --bg: #0a0a0f;
             --bg-elevated: #111118;
-            --surface: rgba(255,255,255,0.03);
-            --surface-hover: rgba(255,255,255,0.05);
-            --border: rgba(255,255,255,0.08);
-            --border-hover: rgba(124,156,255,0.25);
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-hover: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(124, 156, 255, 0.25);
             --text: #f0f0f5;
-            --text-muted: rgba(240,240,245,0.5);
-            --text-dim: rgba(240,240,245,0.25);
+            --text-muted: rgba(240, 240, 245, 0.5);
+            --text-dim: rgba(240, 240, 245, 0.25);
             --accent-blue: #7c9cff;
             --accent-beige: #d4b896;
             --accent-mustard: #c9941a;
@@ -80,8 +83,17 @@
         }
 
         @keyframes aionGlowBreathe {
-            0%, 100% { opacity: 0.4; transform: translateY(-50%) scale(1); }
-            50% { opacity: 0.7; transform: translateY(-50%) scale(1.06); }
+
+            0%,
+            100% {
+                opacity: 0.4;
+                transform: translateY(-50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: translateY(-50%) scale(1.06);
+            }
         }
 
         /* ─── Text Content — Left Aligned ─── */
@@ -153,13 +165,29 @@
         }
 
         @keyframes aionStatusPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
         }
 
         @keyframes aionFadeUp {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ─── Mascot — Right Side ─── */
@@ -181,8 +209,15 @@
         }
 
         @keyframes aionMascotIn {
-            from { opacity: 0; transform: scale(0.85) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.85) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .aion-mascot {
@@ -198,8 +233,15 @@
         }
 
         @keyframes aionFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
         }
 
         .aion-breathe {
@@ -208,8 +250,15 @@
         }
 
         @keyframes aionBreathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.012); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.012);
+            }
         }
 
         .aion-orbital-ring {
@@ -218,8 +267,13 @@
         }
 
         @keyframes aionOrbit {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .aion-antenna {
@@ -228,9 +282,19 @@
         }
 
         @keyframes aionAntennaSway {
-            0%, 100% { transform: rotate(0deg); }
-            30% { transform: rotate(4deg); }
-            70% { transform: rotate(-3deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            30% {
+                transform: rotate(4deg);
+            }
+
+            70% {
+                transform: rotate(-3deg);
+            }
         }
 
         .aion-blink-left,
@@ -240,8 +304,17 @@
         }
 
         @keyframes aionBlink {
-            0%, 45%, 49%, 100% { transform: scaleY(1); }
-            47% { transform: scaleY(0.08); }
+
+            0%,
+            45%,
+            49%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            47% {
+                transform: scaleY(0.08);
+            }
         }
 
         .aion-blush {
@@ -249,8 +322,15 @@
         }
 
         @keyframes aionBlush {
-            0%, 100% { opacity: 0.45; }
-            50% { opacity: 0.75; }
+
+            0%,
+            100% {
+                opacity: 0.45;
+            }
+
+            50% {
+                opacity: 0.75;
+            }
         }
 
         .aion-star-twinkle {
@@ -258,8 +338,17 @@
         }
 
         @keyframes aionStarTwinkle {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         .aion-star-twinkle-delayed {
@@ -271,8 +360,15 @@
         }
 
         @keyframes aionGlowPulse {
-            0%, 100% { opacity: 0.25; }
-            50% { opacity: 0.45; }
+
+            0%,
+            100% {
+                opacity: 0.25;
+            }
+
+            50% {
+                opacity: 0.45;
+            }
         }
 
         /* ─── Floating Doodles Around Mascot ─── */
@@ -290,18 +386,64 @@
         }
 
         @keyframes doodleFadeIn {
-            to { opacity: 1; }
+            to {
+                opacity: 1;
+            }
         }
 
-        .doodle-star-1 { top: 5%; left: 15%; animation-delay: 1.2s; }
-        .doodle-star-2 { top: 10%; right: 10%; animation-delay: 1.5s; }
-        .doodle-star-3 { bottom: 20%; left: 5%; animation-delay: 1.8s; }
-        .doodle-star-4 { bottom: 10%; right: 20%; animation-delay: 2.0s; }
-        .doodle-rocket { top: 0; right: 25%; animation-delay: 1.6s; }
-        .doodle-sparkle-1 { top: 30%; left: 0; animation-delay: 1.4s; }
-        .doodle-sparkle-2 { bottom: 35%; right: 0; animation-delay: 1.7s; }
-        .doodle-ring { top: 50%; left: -5%; animation-delay: 2.2s; }
-        .doodle-heart { bottom: 5%; left: 30%; animation-delay: 2.4s; }
+        .doodle-star-1 {
+            top: 5%;
+            left: 15%;
+            animation-delay: 1.2s;
+        }
+
+        .doodle-star-2 {
+            top: 10%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        .doodle-star-3 {
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 1.8s;
+        }
+
+        .doodle-star-4 {
+            bottom: 10%;
+            right: 20%;
+            animation-delay: 2.0s;
+        }
+
+        .doodle-rocket {
+            top: 0;
+            right: 25%;
+            animation-delay: 1.6s;
+        }
+
+        .doodle-sparkle-1 {
+            top: 30%;
+            left: 0;
+            animation-delay: 1.4s;
+        }
+
+        .doodle-sparkle-2 {
+            bottom: 35%;
+            right: 0;
+            animation-delay: 1.7s;
+        }
+
+        .doodle-ring {
+            top: 50%;
+            left: -5%;
+            animation-delay: 2.2s;
+        }
+
+        .doodle-heart {
+            bottom: 5%;
+            left: 30%;
+            animation-delay: 2.4s;
+        }
 
         .doodle svg {
             overflow: visible;
@@ -348,7 +490,7 @@
         .aion-card:hover {
             transform: translateY(-4px);
             border-color: var(--border-hover);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
         .aion-card h3 {
@@ -456,7 +598,7 @@
         .aion-rec-card:hover {
             transform: translateY(-4px);
             border-color: var(--border-hover);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
         .aion-rec-card .rec-badge {
@@ -501,46 +643,58 @@
                 gap: 3rem;
                 text-align: center;
             }
+
             .aion-text {
                 text-align: center;
             }
+
             .aion-desc {
                 margin-left: auto;
                 margin-right: auto;
             }
+
             .aion-mascot-wrap {
                 width: 340px;
                 height: 340px;
                 margin: 0 auto;
             }
+
             .aion-hero-glow {
                 right: 50%;
                 transform: translate(50%, -50%);
                 width: 500px;
                 height: 500px;
             }
+
             .aion-grid {
                 grid-template-columns: 1fr;
             }
+
             .aion-rec-grid {
                 grid-template-columns: 1fr;
             }
+
             .aion-repo-card {
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
             }
-            .doodle-layer { display: none; }
+
+            .doodle-layer {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
             .aion-hero {
                 padding: 6rem 1.5rem 3rem;
             }
+
             .aion-mascot-wrap {
                 width: 280px;
                 height: 280px;
             }
+
             .aion-hero-glow {
                 width: 400px;
                 height: 400px;
@@ -555,9 +709,17 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .aion-float, .aion-breathe, .aion-orbital-ring, .aion-antenna,
-            .aion-blink-left, .aion-blink-right, .aion-blush,
-            .aion-star-twinkle, .aion-star-twinkle-delayed, .aion-glow-pulse,
+
+            .aion-float,
+            .aion-breathe,
+            .aion-orbital-ring,
+            .aion-antenna,
+            .aion-blink-left,
+            .aion-blink-right,
+            .aion-blush,
+            .aion-star-twinkle,
+            .aion-star-twinkle-delayed,
+            .aion-glow-pulse,
             .aion-hero-glow {
                 animation: none !important;
             }
@@ -568,8 +730,9 @@
             display: none;
         }
     </style>
-<base target="_blank">
+    <base target="_blank">
 </head>
+
 <body class="page-aion">
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
@@ -602,7 +765,7 @@
                     <span class="aion-badge">Local-first AI</span>
                     <h1 class="aion-title">Meet <span>Aion</span></h1>
                     <p class="aion-desc">
-                        Aion is currently evolving. A personal operating system for thoughts, 
+                        Aion is currently evolving. A personal operating system for thoughts,
                         memories, tasks, and projects — designed to bring your context back when you need it.
                     </p>
                     <div class="aion-status">
@@ -618,58 +781,68 @@
                         <!-- Star 1 -->
                         <div class="doodle doodle-star-1 aion-star-twinkle">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2z" fill="var(--accent-mustard)" opacity="0.6"/>
+                                <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2z"
+                                    fill="var(--accent-mustard)" opacity="0.6" />
                             </svg>
                         </div>
                         <!-- Star 2 -->
                         <div class="doodle doodle-star-2 aion-star-twinkle-delayed">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M8 1l1.5 4.5L14 8l-4.5 1.5L8 14l-1.5-4.5L2 8l4.5-1.5L8 1z" fill="var(--accent-blue)" opacity="0.5"/>
+                                <path d="M8 1l1.5 4.5L14 8l-4.5 1.5L8 14l-1.5-4.5L2 8l4.5-1.5L8 1z"
+                                    fill="var(--accent-blue)" opacity="0.5" />
                             </svg>
                         </div>
                         <!-- Star 3 -->
                         <div class="doodle doodle-star-3 aion-star-twinkle">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="var(--accent-teal)" opacity="0.4"/>
+                                <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="var(--accent-teal)"
+                                    opacity="0.4" />
                             </svg>
                         </div>
                         <!-- Star 4 -->
                         <div class="doodle doodle-star-4 aion-star-twinkle-delayed">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M7 1l1.5 4.5L13 7l-4.5 1.5L7 13l-1.5-4.5L1 7l4.5-1.5L7 1z" fill="var(--accent-beige)" opacity="0.5"/>
+                                <path d="M7 1l1.5 4.5L13 7l-4.5 1.5L7 13l-1.5-4.5L1 7l4.5-1.5L7 1z"
+                                    fill="var(--accent-beige)" opacity="0.5" />
                             </svg>
                         </div>
                         <!-- Tiny Rocket -->
                         <div class="doodle doodle-rocket aion-star-twinkle">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <path d="M14 4c0 0-6 6-6 12 0 2 1.5 4 3 5l-1 3 4-2 4 2-1-3c1.5-1 3-3 3-5 0-6-6-12-6-12z" fill="var(--accent-blue)" opacity="0.3"/>
-                                <circle cx="14" cy="14" r="2" fill="var(--text)" opacity="0.6"/>
+                                <path d="M14 4c0 0-6 6-6 12 0 2 1.5 4 3 5l-1 3 4-2 4 2-1-3c1.5-1 3-3 3-5 0-6-6-12-6-12z"
+                                    fill="var(--accent-blue)" opacity="0.3" />
+                                <circle cx="14" cy="14" r="2" fill="var(--text)" opacity="0.6" />
                             </svg>
                         </div>
                         <!-- Sparkle 1 -->
                         <div class="doodle doodle-sparkle-1 aion-star-twinkle-delayed">
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                <path d="M16 4v24M4 16h24" stroke="var(--accent-blue)" stroke-width="1" opacity="0.25"/>
-                                <circle cx="16" cy="16" r="2" fill="var(--accent-blue)" opacity="0.4"/>
+                                <path d="M16 4v24M4 16h24" stroke="var(--accent-blue)" stroke-width="1"
+                                    opacity="0.25" />
+                                <circle cx="16" cy="16" r="2" fill="var(--accent-blue)" opacity="0.4" />
                             </svg>
                         </div>
                         <!-- Sparkle 2 -->
                         <div class="doodle doodle-sparkle-2 aion-star-twinkle">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <path d="M14 2v24M2 14h24" stroke="var(--accent-teal)" stroke-width="0.8" opacity="0.2"/>
-                                <circle cx="14" cy="14" r="1.5" fill="var(--accent-teal)" opacity="0.35"/>
+                                <path d="M14 2v24M2 14h24" stroke="var(--accent-teal)" stroke-width="0.8"
+                                    opacity="0.2" />
+                                <circle cx="14" cy="14" r="1.5" fill="var(--accent-teal)" opacity="0.35" />
                             </svg>
                         </div>
                         <!-- Ring -->
                         <div class="doodle doodle-ring">
                             <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <circle cx="20" cy="20" r="16" stroke="var(--accent-beige)" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
+                                <circle cx="20" cy="20" r="16" stroke="var(--accent-beige)" stroke-width="1"
+                                    stroke-dasharray="4 4" opacity="0.3" />
                             </svg>
                         </div>
                         <!-- Heart -->
                         <div class="doodle doodle-heart aion-star-twinkle-delayed">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                <path d="M9 15.5S3 11 3 6.5C3 4 4.5 2.5 6.75 2.5 8 2.5 9 3.2 9 3.2s1-0.7 2.25-0.7C13.5 2.5 15 4 15 6.5 15 11 9 15.5 9 15.5z" fill="var(--accent-blue)" opacity="0.25"/>
+                                <path
+                                    d="M9 15.5S3 11 3 6.5C3 4 4.5 2.5 6.75 2.5 8 2.5 9 3.2 9 3.2s1-0.7 2.25-0.7C13.5 2.5 15 4 15 6.5 15 11 9 15.5 9 15.5z"
+                                    fill="var(--accent-blue)" opacity="0.25" />
                             </svg>
                         </div>
                     </div>
@@ -680,86 +853,85 @@
                             <defs>
                                 <!-- 3D Body gradient — glossy white to soft blue/purple -->
                                 <radialGradient id="bodyGrad3D" cx="0.35" cy="0.3" r="0.75">
-                                    <stop offset="0%" stop-color="#ffffff"/>
-                                    <stop offset="35%" stop-color="#f5f5fa"/>
-                                    <stop offset="65%" stop-color="#e0e0f5"/>
-                                    <stop offset="85%" stop-color="#c5c5ee"/>
-                                    <stop offset="100%" stop-color="#a8a8e0"/>
+                                    <stop offset="0%" stop-color="#ffffff" />
+                                    <stop offset="35%" stop-color="#f5f5fa" />
+                                    <stop offset="65%" stop-color="#e0e0f5" />
+                                    <stop offset="85%" stop-color="#c5c5ee" />
+                                    <stop offset="100%" stop-color="#a8a8e0" />
                                 </radialGradient>
 
                                 <!-- Bottom blue/purple glow -->
                                 <radialGradient id="bodyGlowBottom" cx="0.5" cy="0.88" r="0.55">
-                                    <stop offset="0%" stop-color="#8aa4ff" stop-opacity="0.35"/>
-                                    <stop offset="40%" stop-color="#a8b8f0" stop-opacity="0.2"/>
-                                    <stop offset="100%" stop-color="#8aa4ff" stop-opacity="0"/>
+                                    <stop offset="0%" stop-color="#8aa4ff" stop-opacity="0.35" />
+                                    <stop offset="40%" stop-color="#a8b8f0" stop-opacity="0.2" />
+                                    <stop offset="100%" stop-color="#8aa4ff" stop-opacity="0" />
                                 </radialGradient>
 
                                 <!-- Eye gradient -->
                                 <radialGradient id="eyeGrad3D" cx="0.4" cy="0.35" r="0.6">
-                                    <stop offset="0%" stop-color="#2a2a4e"/>
-                                    <stop offset="100%" stop-color="#0f0f28"/>
+                                    <stop offset="0%" stop-color="#2a2a4e" />
+                                    <stop offset="100%" stop-color="#0f0f28" />
                                 </radialGradient>
 
                                 <!-- Blush gradient -->
                                 <radialGradient id="blushGrad3D">
-                                    <stop offset="0%" stop-color="#8aa4ff" stop-opacity="0.35"/>
-                                    <stop offset="100%" stop-color="#8aa4ff" stop-opacity="0"/>
+                                    <stop offset="0%" stop-color="#8aa4ff" stop-opacity="0.35" />
+                                    <stop offset="100%" stop-color="#8aa4ff" stop-opacity="0" />
                                 </radialGradient>
 
                                 <!-- Orbital ring gradient -->
                                 <linearGradient id="orbitalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#8aa4ff" stop-opacity="0.08"/>
-                                    <stop offset="25%" stop-color="#a8b8f0" stop-opacity="0.35"/>
-                                    <stop offset="50%" stop-color="#c8d4ff" stop-opacity="0.55"/>
-                                    <stop offset="75%" stop-color="#a8b8f0" stop-opacity="0.35"/>
-                                    <stop offset="100%" stop-color="#8aa4ff" stop-opacity="0.08"/>
+                                    <stop offset="0%" stop-color="#8aa4ff" stop-opacity="0.08" />
+                                    <stop offset="25%" stop-color="#a8b8f0" stop-opacity="0.35" />
+                                    <stop offset="50%" stop-color="#c8d4ff" stop-opacity="0.55" />
+                                    <stop offset="75%" stop-color="#a8b8f0" stop-opacity="0.35" />
+                                    <stop offset="100%" stop-color="#8aa4ff" stop-opacity="0.08" />
                                 </linearGradient>
 
                                 <!-- Soft glow filter -->
                                 <filter id="softGlow3D" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feGaussianBlur stdDeviation="20" result="blur"/>
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                    <feGaussianBlur stdDeviation="20" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
                                 </filter>
 
                                 <!-- Stronger glow for body -->
                                 <filter id="bodyGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
-                                    <feGaussianBlur stdDeviation="25" result="blur"/>
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                    <feGaussianBlur stdDeviation="25" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
                                 </filter>
 
                                 <!-- Outer rim glow -->
                                 <filter id="rimGlow" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feGaussianBlur stdDeviation="8" result="blur"/>
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
                                 </filter>
                             </defs>
 
                             <!-- Soft ambient glow behind everything -->
-                            <circle cx="160" cy="170" r="110" fill="rgba(138,164,255,0.06)" 
-                                    filter="url(#bodyGlowFilter)" class="aion-glow-pulse"/>
+                            <circle cx="160" cy="170" r="110" fill="rgba(138,164,255,0.06)"
+                                filter="url(#bodyGlowFilter)" class="aion-glow-pulse" />
 
                             <!-- ═══ ORBITAL RING (tilted, behind body) ═══ -->
                             <g class="aion-orbital-ring">
                                 <!-- Main orbital ellipse — tilted -->
-                                <ellipse cx="160" cy="170" rx="135" ry="48" 
-                                         fill="none" stroke="url(#orbitalGrad)" stroke-width="3.5"
-                                         transform="rotate(-18 160 170)"/>
+                                <ellipse cx="160" cy="170" rx="135" ry="48" fill="none" stroke="url(#orbitalGrad)"
+                                    stroke-width="3.5" transform="rotate(-18 160 170)" />
 
                                 <!-- Orbital highlight segment -->
-                                <ellipse cx="160" cy="170" rx="135" ry="48" 
-                                         fill="none" stroke="rgba(200,212,255,0.45)" stroke-width="1.5"
-                                         transform="rotate(-18 160 170)"
-                                         stroke-dasharray="50 650" stroke-dashoffset="200"/>
+                                <ellipse cx="160" cy="170" rx="135" ry="48" fill="none" stroke="rgba(200,212,255,0.45)"
+                                    stroke-width="1.5" transform="rotate(-18 160 170)" stroke-dasharray="50 650"
+                                    stroke-dashoffset="200" />
 
                                 <!-- Small planet on orbit -->
                                 <g transform="rotate(-18 160 170)">
-                                    <circle cx="160" cy="122" r="5.5" fill="#8aa4ff" opacity="0.65"/>
-                                    <circle cx="160" cy="122" r="9" fill="none" stroke="rgba(138,164,255,0.2)" stroke-width="1"/>
+                                    <circle cx="160" cy="122" r="5.5" fill="#8aa4ff" opacity="0.65" />
+                                    <circle cx="160" cy="122" r="9" fill="none" stroke="rgba(138,164,255,0.2)"
+                                        stroke-width="1" />
                                 </g>
 
                                 <!-- Tiny dot on orbit -->
                                 <g transform="rotate(-18 160 170)">
-                                    <circle cx="295" cy="170" r="2.5" fill="#a8b8f0" opacity="0.5"/>
+                                    <circle cx="295" cy="170" r="2.5" fill="#a8b8f0" opacity="0.5" />
                                 </g>
                             </g>
 
@@ -769,105 +941,102 @@
                                 <!-- Antenna with droplet tip -->
                                 <g class="aion-antenna">
                                     <!-- Stem -->
-                                    <path d="M160 95 Q160 68 166 52" stroke="#c8c8e8" stroke-width="3" 
-                                          fill="none" stroke-linecap="round"/>
+                                    <path d="M160 95 Q160 68 166 52" stroke="#c8c8e8" stroke-width="3" fill="none"
+                                        stroke-linecap="round" />
                                     <!-- Droplet/leaf tip -->
-                                    <path d="M166 52 Q172 36 178 30 Q184 36 178 48 Q172 54 166 52Z" 
-                                          fill="#a8b8f0" opacity="0.85"/>
-                                    <path d="M166 52 Q172 36 178 30 Q184 36 178 48 Q172 54 166 52Z" 
-                                          fill="none" stroke="rgba(138,164,255,0.35)" stroke-width="1"/>
+                                    <path d="M166 52 Q172 36 178 30 Q184 36 178 48 Q172 54 166 52Z" fill="#a8b8f0"
+                                        opacity="0.85" />
+                                    <path d="M166 52 Q172 36 178 30 Q184 36 178 48 Q172 54 166 52Z" fill="none"
+                                        stroke="rgba(138,164,255,0.35)" stroke-width="1" />
                                     <!-- Glow around tip -->
-                                    <circle cx="172" cy="38" r="10" fill="rgba(138,164,255,0.12)" 
-                                            filter="url(#softGlow3D)"/>
+                                    <circle cx="172" cy="38" r="10" fill="rgba(138,164,255,0.12)"
+                                        filter="url(#softGlow3D)" />
                                 </g>
 
                                 <!-- Body sphere -->
-                                <circle cx="160" cy="170" r="88" fill="url(#bodyGrad3D)" 
-                                        stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                                <circle cx="160" cy="170" r="88" fill="url(#bodyGrad3D)" stroke="rgba(255,255,255,0.35)"
+                                    stroke-width="1.5" />
 
                                 <!-- Bottom blue/purple glow overlay -->
-                                <circle cx="160" cy="170" r="88" fill="url(#bodyGlowBottom)"/>
+                                <circle cx="160" cy="170" r="88" fill="url(#bodyGlowBottom)" />
 
                                 <!-- Top-left highlight (glossy) -->
-                                <ellipse cx="128" cy="122" rx="42" ry="32" 
-                                         fill="rgba(255,255,255,0.28)" transform="rotate(-22 128 122)"/>
+                                <ellipse cx="128" cy="122" rx="42" ry="32" fill="rgba(255,255,255,0.28)"
+                                    transform="rotate(-22 128 122)" />
 
                                 <!-- Small specular highlight -->
-                                <ellipse cx="122" cy="116" rx="16" ry="11" 
-                                         fill="rgba(255,255,255,0.55)" transform="rotate(-22 122 116)"/>
+                                <ellipse cx="122" cy="116" rx="16" ry="11" fill="rgba(255,255,255,0.55)"
+                                    transform="rotate(-22 122 116)" />
 
                                 <!-- Tiny bright spot -->
-                                <ellipse cx="118" cy="112" rx="6" ry="4" 
-                                         fill="rgba(255,255,255,0.8)" transform="rotate(-22 118 112)"/>
+                                <ellipse cx="118" cy="112" rx="6" ry="4" fill="rgba(255,255,255,0.8)"
+                                    transform="rotate(-22 118 112)" />
 
                                 <!-- ═══ EYES ═══ -->
                                 <g id="aion-eyes">
                                     <!-- Left eye -->
                                     <g class="aion-eye-left" id="eye-left">
                                         <g class="aion-blink-left">
-                                            <ellipse cx="125" cy="155" rx="17" ry="21" fill="url(#eyeGrad3D)"/>
+                                            <ellipse cx="125" cy="155" rx="17" ry="21" fill="url(#eyeGrad3D)" />
                                             <!-- Large highlight -->
-                                            <ellipse cx="119" cy="147" rx="8" ry="10" 
-                                                     fill="rgba(255,255,255,0.95)"/>
-                                            <circle cx="121" cy="149" r="4" fill="white"/>
+                                            <ellipse cx="119" cy="147" rx="8" ry="10" fill="rgba(255,255,255,0.95)" />
+                                            <circle cx="121" cy="149" r="4" fill="white" />
                                             <!-- Small secondary highlight -->
-                                            <circle cx="130" cy="161" r="2.5" fill="rgba(138,164,255,0.35)"/>
+                                            <circle cx="130" cy="161" r="2.5" fill="rgba(138,164,255,0.35)" />
                                         </g>
                                     </g>
 
                                     <!-- Right eye -->
                                     <g class="aion-eye-right" id="eye-right">
                                         <g class="aion-blink-right">
-                                            <ellipse cx="195" cy="155" rx="17" ry="21" fill="url(#eyeGrad3D)"/>
+                                            <ellipse cx="195" cy="155" rx="17" ry="21" fill="url(#eyeGrad3D)" />
                                             <!-- Large highlight -->
-                                            <ellipse cx="189" cy="147" rx="8" ry="10" 
-                                                     fill="rgba(255,255,255,0.95)"/>
-                                            <circle cx="191" cy="149" r="4" fill="white"/>
+                                            <ellipse cx="189" cy="147" rx="8" ry="10" fill="rgba(255,255,255,0.95)" />
+                                            <circle cx="191" cy="149" r="4" fill="white" />
                                             <!-- Small secondary highlight -->
-                                            <circle cx="200" cy="161" r="2.5" fill="rgba(138,164,255,0.35)"/>
+                                            <circle cx="200" cy="161" r="2.5" fill="rgba(138,164,255,0.35)" />
                                         </g>
                                     </g>
                                 </g>
 
                                 <!-- ═══ BLUSH ═══ -->
-                                <ellipse cx="103" cy="182" rx="15" ry="10" fill="url(#blushGrad3D)" 
-                                         class="aion-blush"/>
-                                <ellipse cx="217" cy="182" rx="15" ry="10" fill="url(#blushGrad3D)" 
-                                         class="aion-blush"/>
+                                <ellipse cx="103" cy="182" rx="15" ry="10" fill="url(#blushGrad3D)"
+                                    class="aion-blush" />
+                                <ellipse cx="217" cy="182" rx="15" ry="10" fill="url(#blushGrad3D)"
+                                    class="aion-blush" />
 
                                 <!-- ═══ SMILE ═══ -->
                                 <!-- Tiny subtle smile -->
-                                <path d="M150 198 Q160 203 170 198" stroke="#4a4a5e" stroke-width="2" 
-                                      fill="none" stroke-linecap="round"/>
+                                <path d="M150 198 Q160 203 170 198" stroke="#4a4a5e" stroke-width="2" fill="none"
+                                    stroke-linecap="round" />
                                 <!-- Smile glow underneath -->
-                                <path d="M148 197 Q160 205 172 197" stroke="rgba(138,164,255,0.12)" 
-                                      stroke-width="4" fill="none" stroke-linecap="round"/>
+                                <path d="M148 197 Q160 205 172 197" stroke="rgba(138,164,255,0.12)" stroke-width="4"
+                                    fill="none" stroke-linecap="round" />
                             </g>
 
                             <!-- ═══ FLOATING STARS (delicate) ═══ -->
                             <!-- Top-left star -->
                             <g class="aion-star-twinkle" transform="translate(75, 78)">
-                                <path d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8Z" 
-                                      fill="rgba(200,212,255,0.75)"/>
+                                <path d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8Z"
+                                    fill="rgba(200,212,255,0.75)" />
                             </g>
 
                             <!-- Top-right small star -->
                             <g class="aion-star-twinkle-delayed" transform="translate(245, 68)">
-                                <path d="M0 -4.5 L1.2 -1.2 L4.5 0 L1.2 1.2 L0 4.5 L-1.2 1.2 L-4.5 0 L-1.2 -1.2Z" 
-                                      fill="rgba(160,180,255,0.55)"/>
+                                <path d="M0 -4.5 L1.2 -1.2 L4.5 0 L1.2 1.2 L0 4.5 L-1.2 1.2 L-4.5 0 L-1.2 -1.2Z"
+                                    fill="rgba(160,180,255,0.55)" />
                             </g>
 
                             <!-- Bottom-right tiny dot -->
-                            <circle cx="255" cy="245" r="3" fill="rgba(138,164,255,0.35)" 
-                                    class="aion-star-twinkle"/>
+                            <circle cx="255" cy="245" r="3" fill="rgba(138,164,255,0.35)" class="aion-star-twinkle" />
 
                             <!-- Bottom-left tiny dot -->
-                            <circle cx="65" cy="255" r="2.5" fill="rgba(160,180,255,0.3)" 
-                                    class="aion-star-twinkle-delayed"/>
+                            <circle cx="65" cy="255" r="2.5" fill="rgba(160,180,255,0.3)"
+                                class="aion-star-twinkle-delayed" />
 
                             <!-- Extra tiny sparkle -->
-                            <circle cx="280" cy="120" r="2" fill="rgba(200,212,255,0.4)" 
-                                    class="aion-star-twinkle-delayed"/>
+                            <circle cx="280" cy="120" r="2" fill="rgba(200,212,255,0.4)"
+                                class="aion-star-twinkle-delayed" />
                         </svg>
                     </div>
                 </div>
@@ -989,10 +1158,9 @@
     </footer>
 
     <!-- Aion Core Live Widget — PRESERVED -->
-    <button class="aion-orb" type="button" data-aion-launcher aria-expanded="false"
-        aria-label="Open Aion Core"><span class="aion-orb-ring" aria-hidden="true"></span><span
-            class="aion-orb-ring aion-orb-ring--2" aria-hidden="true"></span><span class="aion-orb-core"
-            aria-hidden="true"></span></button>
+    <button class="aion-orb" type="button" data-aion-launcher aria-expanded="false" aria-label="Open Aion Core"><span
+            class="aion-orb-ring" aria-hidden="true"></span><span class="aion-orb-ring aion-orb-ring--2"
+            aria-hidden="true"></span><span class="aion-orb-core" aria-hidden="true"></span></button>
     <aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant">
         <div class="aion-panel-glow" aria-hidden="true"></div>
         <header class="aion-header">
@@ -1026,7 +1194,7 @@
          pupils track independently, body tilts via wrapper
          ═══════════════════════════════════════════════════════════ -->
     <script>
-        (function() {
+        (function () {
             'use strict';
 
             const mascot = document.getElementById('aion-mascot');
@@ -1122,4 +1290,5 @@
         })();
     </script>
 </body>
+
 </html>

@@ -1,48 +1,207 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MediCore | Varsha Jairam</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/variables.css"><link rel="stylesheet" href="../assets/css/base.css"><link rel="stylesheet" href="../assets/css/components.css"><link rel="stylesheet" href="../assets/css/pages.css"><link rel="stylesheet" href="../assets/css/project-showcase.css"></head><body><nav class="navbar navbar-expand-lg navbar-custom"><div class="container"><a class="navbar-brand" href="../home.html">Varsha Jairam</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarNav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="../home.html">Home</a></li><li class="nav-item"><a class="nav-link" href="../about.html">About</a></li><li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li><li class="nav-item"><a class="nav-link" href="../resume.html">Resume</a></li><li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li></ul></div></div></nav><main class="page-shell"><section class="project-hero-premium project-hero--medicore"><div class="project-hero-premium-bg" aria-hidden="true"></div><div class="container"><div class="project-hero-premium-inner"><span class="status-badge completed">Completed</span><h1 class="hero-title">MediCore</h1><p class="hero-copy">Hospital management with NoSQL storage and SQL-like querying.</p></div></div></section><section class="project-showcase-section"><div class="container"><div class="showcase-heading reveal"><span class="showcase-label">DASHBOARD WORKSPACE</span><h2>Explore MediCore Hub</h2><p>Interact with the NoSQL query panel, administrative desks, and real-time patient charts.</p></div><div id="medicore-showcase-root" class="reveal"></div></div></section><section><div class="container"><p class="fun-overview reveal">MediCore is about making operational healthcare data feel easier to store, search, and reason about without forcing every record into a rigid structure.</p><div class="project-section-grid mt-4"><article class="detail-card reveal"><h3>Why I Built It</h3><p>To explore how flexible data storage can still support familiar querying for hospital workflows.</p></article><article class="detail-card reveal"><h3>Real Problem</h3><p>Healthcare data varies across modules, but teams still need structured access and clear retrieval.</p></article><article class="detail-card reveal"><h3>Challenges</h3><p>Making NoSQL data feel queryable, understandable, and manageable.</p></article><article class="detail-card reveal"><h3>Lessons Learned</h3><p>Data products need both flexibility under the hood and clarity at the interface.</p></article></div></div></section><section class="section-band"><div class="container"><h2 class="section-title reveal">Technologies Used</h2><div class="tech-list mt-3 reveal"><span class="tech-badge">NoSQL</span><span class="tech-badge">SQL-like Queries</span><span class="tech-badge">Hospital Ops</span><span class="tech-badge">Data Modeling</span></div><div class="repo-card glass-card mt-4 reveal"><div><h3>GitHub</h3><p class="mb-0">Repository link can be added when public.</p></div><a class="btn-secondary-custom" href="#">View Repository</a></div></div></section><section><div class="container"><article class="detail-card reveal"><h3>Future Plans</h3><p>Add role permissions, reporting dashboards, and stronger validation for operational data.</p></article></div></section><section class="section-band"><div class="container"><h2 class="section-title reveal">You may also like</h2><div class="recommendation-grid mt-4"><a class="mini-project-card reveal" href="synczone.html"><span class="badge-soft">Platform</span><h3>SyncZone</h3><p>Role-based campus platform.</p></a><a class="mini-project-card reveal" href="gallimart.html"><span class="badge-soft">Android</span><h3>GalliMart</h3><p>Marketplace operations.</p></a><a class="mini-project-card reveal" href="lunaops.html"><span class="badge-soft">Simulation</span><h3>LunaOps</h3><p>Mission-style simulation.</p></a></div></div></section></main><footer class="footer-custom"><div class="container text-center"><h2>Operational data, made usable.</h2><div class="footer-links"><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a></div><p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p></div></footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="../assets/js/navbar.js"></script><script src="../assets/js/main.js"></script><button class="aion-orb" type="button" data-aion-launcher aria-expanded="false" aria-label="Open Aion Core"><span class="aion-orb-ring" aria-hidden="true"></span><span class="aion-orb-ring aion-orb-ring--2" aria-hidden="true"></span><span class="aion-orb-core" aria-hidden="true"></span></button><aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant"><div class="aion-panel-glow" aria-hidden="true"></div><header class="aion-header"><div class="aion-brand"><span class="aion-brand-icon" aria-hidden="true">✦</span><div><strong>Aion Core</strong><span>Portfolio intelligence</span></div></div><button class="aion-close" type="button" data-aion-close aria-label="Close">&times;</button></header><div class="aion-messages" data-aion-messages><div class="aion-empty" data-aion-empty><span class="aion-empty-icon">✦</span><p>Ask me anything about Varsha's work, skills, or product direction.</p></div></div><form class="aion-form" data-aion-form><div class="aion-input-wrap"><input data-aion-input type="text" placeholder="Ask about Varsha..." aria-label="Ask Aion Core" autocomplete="off"><button type="submit" aria-label="Send"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l12-6-3 6 3 6-12-6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></button></div></form></aside><script src="../assets/js/aion-core.js"></script><script src="../assets/js/project-showcase.js"></script><script>const medicoreGroups = [
-    {
-        bentoSubtitle: "Module 01",
-        bentoTitle: "Patient Management",
-        bentoDesc: "Register admissions, check bed occupancies, and manage profiles.",
-        screens: [
-            { title: "Admissions Directory", subtitle: "Records Explorer", description: "The patient list dashboard allows staff to filter active admissions, track emergency contact notes, and check assigned consultants.", image: "../assets/images/projects/medicore/medicore_1.png" },
-            { title: "Intake Form", subtitle: "Patient Onboarding", description: "Structured registration workflows for admitting new cases, linking insurance groups, and assigning ward numbers.", image: "../assets/images/projects/medicore/medicore_2.png" },
-            { title: "Patient Vitals Desk", subtitle: "Clinical Telemetry", description: "Real-time records for logging temperature, pressure, blood oxygen levels, and critical updates directly on patient timelines.", image: "../assets/images/projects/medicore/medicore_3.png" },
-            { title: "Medical Charting", subtitle: "Diagnosis Logs", description: "Clinical record interface for writing prescriptions, attaching diagnostic reports, and detailing physician opinions.", image: "../assets/images/projects/medicore/medicore_4.png" }
-        ]
-    },
-    {
-        bentoSubtitle: "Module 02",
-        bentoTitle: "SQL-Like Query Console",
-        bentoDesc: "Perform structured queries over NoSQL document-style records.",
-        screens: [
-            { title: "NoSQL Database Shell", subtitle: "SQL-Like Console", description: "A high-performance query console translating structured SQL queries into fast retrievals from loose JSON patient records.", image: "../assets/images/projects/medicore/medicore_5.png" },
-            { title: "Query Builder Helper", subtitle: "Syntax Autocomplete", description: "Visual search tools and syntax highlighting assistance to build conditions, groupings, and joins without typing raw code.", image: "../assets/images/projects/medicore/medicore_6.png" },
-            { title: "Query Export Panel", subtitle: "Reporting Engine", description: "Compile query results into standard Excel, PDF, or CSV tables to compile diagnostic data for research and administration.", image: "../assets/images/projects/medicore/medicore_7.png" }
-        ]
-    },
-    {
-        bentoSubtitle: "Module 03",
-        bentoTitle: "Operations Desk",
-        bentoDesc: "Track occupancy metrics, clinic rosters, and medical inventory.",
-        screens: [
-            { title: "Occupancy Heatmap", subtitle: "Ward Capacity Tracker", description: "Interactive map representing real-time ward check-ins, remaining bed capacities, and nursery resource allocation.", image: "../assets/images/projects/medicore/medicore_8.png" },
-            { title: "On-Call Rosters", subtitle: "Staff Scheduling", description: "Central schedule outlining nurse rounds, physician rotas, and emergency contact details for active shifts.", image: "../assets/images/projects/medicore/medicore_9.png" },
-            { title: "Inventory Tracker", subtitle: "Pharma Stock Logs", description: "Live tracking of medical supplies, surgical instruments, and prescription drug stock levels, triggering alerts on low quantities.", image: "../assets/images/projects/medicore/medicore_10.png" }
-        ]
-    },
-    {
-        bentoSubtitle: "Module 04",
-        bentoTitle: "Billing & Discharge",
-        bentoDesc: "Process payments, generate claim codes, and discharge patients.",
-        screens: [
-            { title: "Discharge Checklist", subtitle: "Onboarding Out", description: "Automated checklist ensuring all clinical forms, pharmacy prescriptions, and return notes are cleared before release.", image: "../assets/images/projects/medicore/medicore_11.png" },
-            { title: "Billing Console", subtitle: "Invoice Summary", description: "Aggregates hospital stay fees, surgery charges, and pharmaceutical purchases into clear itemized invoices.", image: "../assets/images/projects/medicore/medicore_12.png" },
-            { title: "Insurance Claim Desk", subtitle: "Third-Party Processing", description: "Integrates standard insurance code lookup tables, validating claims, and submitting documentation for quick clearance.", image: "../assets/images/projects/medicore/medicore_13.png" }
-        ]
-    }
-];
+<!DOCTYPE html>
+<html lang="en">
 
-initProjectShowcase("medicore-showcase-root", medicoreGroups, {
-    type: "dashboard",
-    autoplayDuration: 6000
-});</script></body></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCore | Varsha Jairam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <link rel="stylesheet" href="../assets/css/project-showcase.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container"><a class="navbar-brand" href="../home.html">Varsha Jairam</a><button
+                class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resume.html">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page-shell">
+        <section class="project-hero-premium project-hero--medicore">
+            <div class="project-hero-premium-bg" aria-hidden="true"></div>
+            <div class="container">
+                <div class="project-hero-premium-inner"><span class="status-badge completed">Completed</span>
+                    <h1 class="hero-title">MediCore</h1>
+                    <p class="hero-copy">Hospital management with NoSQL storage and SQL-like querying.</p>
+                </div>
+            </div>
+        </section>
+        <section class="project-showcase-section">
+            <div class="container">
+                <div class="showcase-heading reveal"><span class="showcase-label">DASHBOARD WORKSPACE</span>
+                    <h2>Explore MediCore Hub</h2>
+                    <p>Interact with the NoSQL query panel, administrative desks, and real-time patient charts.</p>
+                </div>
+                <div id="medicore-showcase-root" class="reveal"></div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <p class="fun-overview reveal">MediCore is about making operational healthcare data feel easier to
+                    store, search, and reason about without forcing every record into a rigid structure.</p>
+                <div class="project-section-grid mt-4">
+                    <article class="detail-card reveal">
+                        <h3>Why I Built It</h3>
+                        <p>To explore how flexible data storage can still support familiar querying for hospital
+                            workflows.</p>
+                    </article>
+                    <article class="detail-card reveal">
+                        <h3>Real Problem</h3>
+                        <p>Healthcare data varies across modules, but teams still need structured access and clear
+                            retrieval.</p>
+                    </article>
+                    <article class="detail-card reveal">
+                        <h3>Challenges</h3>
+                        <p>Making NoSQL data feel queryable, understandable, and manageable.</p>
+                    </article>
+                    <article class="detail-card reveal">
+                        <h3>Lessons Learned</h3>
+                        <p>Data products need both flexibility under the hood and clarity at the interface.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section-band">
+            <div class="container">
+                <h2 class="section-title reveal">Technologies Used</h2>
+                <div class="tech-list mt-3 reveal"><span class="tech-badge">NoSQL</span><span
+                        class="tech-badge">SQL-like Queries</span><span class="tech-badge">Hospital Ops</span><span
+                        class="tech-badge">Data Modeling</span></div>
+                <div class="repo-card glass-card mt-4 reveal">
+                    <div>
+                        <h3>GitHub</h3>
+                        <p class="mb-0">Repository link can be added when public.</p>
+                    </div><a class="btn-secondary-custom" href="#">View Repository</a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <article class="detail-card reveal">
+                    <h3>Future Plans</h3>
+                    <p>Add role permissions, reporting dashboards, and stronger validation for operational data.</p>
+                </article>
+            </div>
+        </section>
+        <section class="section-band">
+            <div class="container">
+                <h2 class="section-title reveal">You may also like</h2>
+                <div class="recommendation-grid mt-4"><a class="mini-project-card reveal" href="synczone.html"><span
+                            class="badge-soft">Platform</span>
+                        <h3>SyncZone</h3>
+                        <p>Role-based campus platform.</p>
+                    </a><a class="mini-project-card reveal" href="gallimart.html"><span
+                            class="badge-soft">Android</span>
+                        <h3>GalliMart</h3>
+                        <p>Marketplace operations.</p>
+                    </a><a class="mini-project-card reveal" href="lunaops.html"><span
+                            class="badge-soft">Simulation</span>
+                        <h3>LunaOps</h3>
+                        <p>Mission-style simulation.</p>
+                    </a></div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer-custom">
+        <div class="container text-center">
+            <h2>Operational data, made usable.</h2>
+            <div class="footer-links"><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a></div>
+            <p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/main.js"></script><button class="aion-orb" type="button" data-aion-launcher
+        aria-expanded="false" aria-label="Open Aion Core"><span class="aion-orb-ring" aria-hidden="true"></span><span
+            class="aion-orb-ring aion-orb-ring--2" aria-hidden="true"></span><span class="aion-orb-core"
+            aria-hidden="true"></span></button>
+    <aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant">
+        <div class="aion-panel-glow" aria-hidden="true"></div>
+        <header class="aion-header">
+            <div class="aion-brand"><span class="aion-brand-icon" aria-hidden="true">✦</span>
+                <div><strong>Aion Core</strong><span>Portfolio intelligence</span></div>
+            </div><button class="aion-close" type="button" data-aion-close aria-label="Close">&times;</button>
+        </header>
+        <div class="aion-messages" data-aion-messages>
+            <div class="aion-empty" data-aion-empty><span class="aion-empty-icon">✦</span>
+                <p>Ask me anything about Varsha's work, skills, or product direction.</p>
+            </div>
+        </div>
+        <form class="aion-form" data-aion-form>
+            <div class="aion-input-wrap"><input data-aion-input type="text" placeholder="Ask about Varsha..."
+                    aria-label="Ask Aion Core" autocomplete="off"><button type="submit" aria-label="Send"><svg
+                        width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M3 9l12-6-3 6 3 6-12-6z" stroke="currentColor" stroke-width="1.4"
+                            stroke-linejoin="round" />
+                    </svg></button></div>
+        </form>
+    </aside>
+    <script src="../assets/js/aion-core.js"></script>
+    <script src="../assets/js/project-showcase.js"></script>
+    <script>const medicoreGroups = [
+            {
+                bentoSubtitle: "Module 01",
+                bentoTitle: "Patient Management",
+                bentoDesc: "Register admissions, check bed occupancies, and manage profiles.",
+                screens: [
+                    { title: "Admissions Directory", subtitle: "Records Explorer", description: "The patient list dashboard allows staff to filter active admissions, track emergency contact notes, and check assigned consultants.", image: "../assets/images/projects/medicore/medicore_1.png" },
+                    { title: "Intake Form", subtitle: "Patient Onboarding", description: "Structured registration workflows for admitting new cases, linking insurance groups, and assigning ward numbers.", image: "../assets/images/projects/medicore/medicore_2.png" },
+                    { title: "Patient Vitals Desk", subtitle: "Clinical Telemetry", description: "Real-time records for logging temperature, pressure, blood oxygen levels, and critical updates directly on patient timelines.", image: "../assets/images/projects/medicore/medicore_3.png" },
+                    { title: "Medical Charting", subtitle: "Diagnosis Logs", description: "Clinical record interface for writing prescriptions, attaching diagnostic reports, and detailing physician opinions.", image: "../assets/images/projects/medicore/medicore_4.png" }
+                ]
+            },
+            {
+                bentoSubtitle: "Module 02",
+                bentoTitle: "SQL-Like Query Console",
+                bentoDesc: "Perform structured queries over NoSQL document-style records.",
+                screens: [
+                    { title: "NoSQL Database Shell", subtitle: "SQL-Like Console", description: "A high-performance query console translating structured SQL queries into fast retrievals from loose JSON patient records.", image: "../assets/images/projects/medicore/medicore_5.png" },
+                    { title: "Query Builder Helper", subtitle: "Syntax Autocomplete", description: "Visual search tools and syntax highlighting assistance to build conditions, groupings, and joins without typing raw code.", image: "../assets/images/projects/medicore/medicore_6.png" },
+                    { title: "Query Export Panel", subtitle: "Reporting Engine", description: "Compile query results into standard Excel, PDF, or CSV tables to compile diagnostic data for research and administration.", image: "../assets/images/projects/medicore/medicore_7.png" }
+                ]
+            },
+            {
+                bentoSubtitle: "Module 03",
+                bentoTitle: "Operations Desk",
+                bentoDesc: "Track occupancy metrics, clinic rosters, and medical inventory.",
+                screens: [
+                    { title: "Occupancy Heatmap", subtitle: "Ward Capacity Tracker", description: "Interactive map representing real-time ward check-ins, remaining bed capacities, and nursery resource allocation.", image: "../assets/images/projects/medicore/medicore_8.png" },
+                    { title: "On-Call Rosters", subtitle: "Staff Scheduling", description: "Central schedule outlining nurse rounds, physician rotas, and emergency contact details for active shifts.", image: "../assets/images/projects/medicore/medicore_9.png" },
+                    { title: "Inventory Tracker", subtitle: "Pharma Stock Logs", description: "Live tracking of medical supplies, surgical instruments, and prescription drug stock levels, triggering alerts on low quantities.", image: "../assets/images/projects/medicore/medicore_10.png" }
+                ]
+            },
+            {
+                bentoSubtitle: "Module 04",
+                bentoTitle: "Billing & Discharge",
+                bentoDesc: "Process payments, generate claim codes, and discharge patients.",
+                screens: [
+                    { title: "Discharge Checklist", subtitle: "Onboarding Out", description: "Automated checklist ensuring all clinical forms, pharmacy prescriptions, and return notes are cleared before release.", image: "../assets/images/projects/medicore/medicore_11.png" },
+                    { title: "Billing Console", subtitle: "Invoice Summary", description: "Aggregates hospital stay fees, surgery charges, and pharmaceutical purchases into clear itemized invoices.", image: "../assets/images/projects/medicore/medicore_12.png" },
+                    { title: "Insurance Claim Desk", subtitle: "Third-Party Processing", description: "Integrates standard insurance code lookup tables, validating claims, and submitting documentation for quick clearance.", image: "../assets/images/projects/medicore/medicore_13.png" }
+                ]
+            }
+        ];
+
+        initProjectShowcase("medicore-showcase-root", medicoreGroups, {
+            type: "dashboard",
+            autoplayDuration: 6000
+        });</script>
+</body>
+
+</html>
