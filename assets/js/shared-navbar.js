@@ -41,6 +41,7 @@
   `;
   document.head.appendChild(style);
 
+  document.querySelectorAll(".dock-wrap, .mobile-menu").forEach((element) => element.remove());
   const navbar = document.createElement("div");
   navbar.innerHTML = `
     <div class="dock-wrap" id="dockWrap">

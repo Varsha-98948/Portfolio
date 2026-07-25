@@ -122,7 +122,7 @@
     .browser-address-bar svg { flex-shrink:0; opacity:0.6; }
 
     .browser-screen { position:relative; width:100%; aspect-ratio:16/10; background:#000; overflow:hidden; box-shadow:inset 0 0 40px rgba(0,0,0,0.8); }
-    .browser-screen img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transition:all 0.8s var(--ease-out); filter:brightness(1.05) contrast(1.08); }
+    .browser-screen img { width:100%; height:100%; object-fit:contain; object-position:center; display:block; transition:all 0.8s var(--ease-out); filter:brightness(1.05) contrast(1.08); }
     .browser-screen .screen-glare { position:absolute; inset:0; background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.02) 25%, transparent 50%, rgba(255,255,255,0.01) 75%, transparent 100%); pointer-events:none; z-index:2; }
     .browser-screen .screen-glow { position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,148,26,0.05) 0%, transparent 40%, transparent 60%, rgba(124,156,255,0.05) 100%); pointer-events:none; z-index:3; mix-blend-mode:screen; opacity:0.8; }
 
@@ -291,7 +291,6 @@
       *,*::before,*::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
     }
   </style>
-<base target="_blank">
 </head>
 <body>
 
@@ -972,5 +971,8 @@
 
 })();
 </script>
+<link rel="stylesheet" href="../assets/css/shared-site.css">
+<script src="../assets/js/shared-navbar.js"></script>
+<script src="../assets/js/shared-site.js"></script>
 </body>
 </html>
