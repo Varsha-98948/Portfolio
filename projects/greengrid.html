@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GalliMart | Varsha Jairam</title>
+  <title>GreenGrid | Varsha Jairam</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -95,37 +95,49 @@
     .showcase-header .section-title { font-size:clamp(2.5rem,5vw,4rem); }
     .showcase-header .section-subtitle { font-size:1.1rem; max-width:600px; margin:0 auto; }
 
-    /* ===== GalliMart Stacked Deck Showcase (unique to this page) ===== */
-    .deck-stage { position:relative; display:flex; align-items:center; justify-content:center; min-height:700px; perspective:1800px; }
-    .deck-area { position:relative; width:300px; height:620px; }
-    .deck-card { position:absolute; inset:0; border-radius:48px; transition:transform 0.6s var(--ease-out), opacity 0.6s var(--ease-out), filter 0.6s var(--ease-out); }
-    .deck-device { position:relative; width:100%; height:100%; background:linear-gradient(145deg, #2a2a35, #1a1a24); border-radius:48px; padding:14px; box-shadow:0 0 0 2px rgba(255,255,255,0.08), 0 0 0 8px rgba(255,255,255,0.02), 0 60px 140px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.5); }
-    .deck-notch { position:absolute; top:16px; left:50%; transform:translateX(-50%); width:100px; height:24px; background:#000; border-radius:0 0 14px 14px; z-index:20; }
-    .deck-screen { position:relative; width:100%; height:100%; border-radius:36px; overflow:hidden; background:#000; box-shadow:inset 0 0 30px rgba(0,0,0,0.8); }
-    .deck-screen img { width:100%; height:100%; object-fit:cover; display:block; }
-    .deck-screen-glow { position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,148,26,0.05) 0%, transparent 40%, transparent 60%, rgba(79,209,197,0.05) 100%); pointer-events:none; mix-blend-mode:screen; }
-    .deck-home-bar { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); width:100px; height:4px; background:rgba(255,255,255,0.25); border-radius:3px; z-index:20; }
+    /* Browser / web showcase */
+    .browser-stage-3d { position:relative; perspective:2400px; perspective-origin:center center; margin-bottom:60px; }
+    .browser-container { position:relative; transform-style:preserve-3d; transition:transform 0.6s var(--ease-out); display:flex; align-items:center; justify-content:center; min-height:600px; }
+    .browser-showcase-main { position:relative; width:820px; max-width:88vw; z-index:10; transform-style:preserve-3d; transition:all 0.8s var(--ease-out); }
 
-    /* Stack positions: front, back-1, back-2 (fanned deck) */
-    .deck-card[data-pos="front"] { transform:translate(0,0) rotate(0deg) scale(1); opacity:1; z-index:30; filter:none; }
-    .deck-card[data-pos="back1"] { transform:translate(26px,22px) rotate(6deg) scale(0.94); opacity:0.65; z-index:20; filter:blur(0.5px) brightness(0.75); }
-    .deck-card[data-pos="back2"] { transform:translate(48px,42px) rotate(11deg) scale(0.88); opacity:0.35; z-index:10; filter:blur(1px) brightness(0.55); }
-    .deck-card[data-pos="hidden"] { transform:translate(60px,55px) rotate(14deg) scale(0.82); opacity:0; z-index:0; }
-    .deck-card.deck-swipe-out { transform:translate(-140px,-40px) rotate(-18deg) scale(0.9); opacity:0; }
+    .browser-window { position:relative; width:100%; background:linear-gradient(145deg, #23232f, #15151d); border-radius:16px; overflow:hidden; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 60px 140px rgba(0,0,0,0.75), 0 0 120px rgba(201,148,26,0.1), inset 0 1px 0 rgba(255,255,255,0.08); transition:all 0.8s var(--ease-out); animation:deviceFloat 6s ease-in-out infinite; }
+    .browser-window::before { content:''; position:absolute; inset:-20px; background:radial-gradient(circle at 50% 50%, rgba(201,148,26,0.15), transparent 70%); filter:blur(40px); opacity:0; transition:opacity 0.6s; z-index:-1; }
+    .browser-window:hover::before { opacity:1; }
+    @keyframes deviceFloat { 0%,100% { transform:translateY(0) rotateY(0deg); } 25% { transform:translateY(-10px) rotateY(1.5deg); } 50% { transform:translateY(-14px) rotateY(0deg); } 75% { transform:translateY(-10px) rotateY(-1.5deg); } }
 
-    .deck-area.is-dragging .deck-card[data-pos="front"] { transition:none; }
+    .browser-titlebar { display:flex; align-items:center; gap:18px; padding:14px 18px; background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); border-bottom:1px solid rgba(255,255,255,0.07); }
+    .browser-dots { display:flex; gap:8px; flex-shrink:0; }
+    .browser-dot { width:11px; height:11px; border-radius:50%; opacity:0.85; }
+    .browser-dot--red { background:#ff5f57; }
+    .browser-dot--yellow { background:#febc2e; }
+    .browser-dot--green { background:#28c840; }
+    .browser-addressbar { flex:1; display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; padding:7px 16px; overflow:hidden; }
+    .browser-addressbar svg { flex-shrink:0; color:var(--accent-sage); opacity:0.8; }
+    .browser-addressbar span { font-size:0.75rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    .deck-info-showcase { position:relative; max-width:640px; margin:56px auto 0; padding:36px 46px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:24px; backdrop-filter:blur(30px); text-align:center; transition:all 0.5s var(--ease-out); }
-    .deck-info-showcase:hover { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.12); transform:translateY(-4px); }
-    .deck-role-tag { display:inline-block; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; padding:6px 14px; border-radius:999px; margin-bottom:14px; }
-    .deck-role-tag.role-buyer { background:rgba(124,156,255,0.12); color:var(--accent-blue); border:1px solid rgba(124,156,255,0.25); }
-    .deck-role-tag.role-shopkeeper { background:rgba(201,148,26,0.12); color:var(--accent-mustard); border:1px solid rgba(201,148,26,0.25); }
-    .deck-role-tag.role-driver { background:rgba(79,209,197,0.12); color:var(--accent-teal); border:1px solid rgba(79,209,197,0.25); }
-    .deck-role-tag.role-account { background:rgba(184,169,201,0.12); color:var(--accent-lavender); border:1px solid rgba(184,169,201,0.25); }
-    .deck-info-title { font-family:'Instrument Serif',serif; font-size:2rem; font-weight:400; line-height:1.2; margin-bottom:10px; }
-    .deck-info-desc { font-size:0.95rem; line-height:1.7; color:var(--text-muted); }
+    .browser-screen { position:relative; width:100%; aspect-ratio:16/10; background:#000; overflow:hidden; }
+    .browser-screen img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transition:all 0.8s var(--ease-out); filter:brightness(1.05) contrast(1.08); }
+    .screen-glare { position:absolute; inset:0; background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.02) 25%, transparent 50%, rgba(255,255,255,0.01) 75%, transparent 100%); pointer-events:none; z-index:2; }
+    .screen-glow { position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,148,26,0.05) 0%, transparent 40%, transparent 60%, rgba(124,156,255,0.05) 100%); pointer-events:none; z-index:3; mix-blend-mode:screen; opacity:0.8; }
 
-    .deck-controls { display:flex; align-items:center; justify-content:center; gap:24px; margin-top:44px; }
+    .browser-base { width:88%; height:14px; margin:0 auto; background:linear-gradient(180deg, #2c2c38, #17171e); border-radius:0 0 10px 10px; position:relative; box-shadow:0 18px 40px rgba(0,0,0,0.5); }
+    .browser-base::after { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:70px; height:5px; background:rgba(255,255,255,0.07); border-radius:0 0 6px 6px; }
+
+    .browser-side-container { position:absolute; top:44%; width:460px; transition:all 0.8s var(--ease-out); }
+    .browser-side-container.left { left:2%; transform:translateY(-50%) rotateY(32deg) scale(0.72); opacity:0.22; filter:blur(3px); }
+    .browser-side-container.right { right:2%; transform:translateY(-50%) rotateY(-32deg) scale(0.72); opacity:0.22; filter:blur(3px); }
+    .browser-side-container .browser-window { animation:none; }
+
+    .phone-info-showcase { position:relative; max-width:700px; margin:0 auto; padding:40px 50px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:28px; backdrop-filter:blur(30px); transition:all 0.6s var(--ease-out); text-align:center; }
+    .phone-info-showcase::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,148,26,0.08) 0%, transparent 50%, rgba(124,156,255,0.08) 100%); border-radius:28px; opacity:0; transition:opacity 0.6s; }
+    .phone-info-showcase:hover { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.12); transform:translateY(-5px); box-shadow:0 30px 80px rgba(0,0,0,0.4); }
+    .phone-info-showcase:hover::before { opacity:1; }
+
+    .info-label { font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:12px; }
+    .info-title { font-family:'Instrument Serif',serif; font-size:2.2rem; font-weight:400; line-height:1.2; margin-bottom:12px; color:var(--text); }
+    .info-description { font-size:1rem; line-height:1.7; color:var(--text-muted); }
+
+    .showcase-controls { display:flex; align-items:center; justify-content:center; gap:24px; margin-top:50px; }
     .control-btn { width:56px; height:56px; border-radius:50%; border:2px solid var(--border); background:var(--surface); color:var(--text); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.4s var(--ease-spring); backdrop-filter:blur(20px); position:relative; overflow:hidden; }
     .control-btn::before { content:''; position:absolute; inset:0; background:radial-gradient(circle, rgba(201,148,26,0.2), transparent); opacity:0; transition:opacity 0.4s; }
     .control-btn:hover { border-color:var(--accent-mustard); background:rgba(201,148,26,0.1); transform:scale(1.1); box-shadow:0 0 40px rgba(201,148,26,0.3), 0 10px 30px rgba(0,0,0,0.3); }
@@ -133,16 +145,13 @@
     .control-btn:active { transform:scale(0.95); }
     .control-btn svg { position:relative; z-index:1; }
 
-    /* Thumbnail filmstrip (unique nav element for GalliMart) */
-    .deck-filmstrip { display:flex; gap:14px; overflow-x:auto; padding:28px 8px 12px; margin-top:12px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
-    .deck-filmstrip::-webkit-scrollbar { height:6px; }
-    .deck-filmstrip::-webkit-scrollbar-thumb { background:var(--border); border-radius:6px; }
-    .film-thumb { flex:0 0 auto; width:64px; height:128px; border-radius:14px; overflow:hidden; border:2px solid var(--border); cursor:pointer; opacity:0.45; transition:all 0.35s var(--ease-out); position:relative; }
-    .film-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
-    .film-thumb.active { opacity:1; border-color:var(--accent-mustard); box-shadow:0 0 24px rgba(201,148,26,0.35); transform:translateY(-4px); }
-    .film-thumb:hover { opacity:0.85; transform:translateY(-2px); }
-    .film-thumb-num { position:absolute; bottom:4px; right:6px; font-size:0.6rem; font-weight:700; color:rgba(255,255,255,0.8); text-shadow:0 1px 3px rgba(0,0,0,0.8); }
-    .progress-text { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:var(--text-dim); letter-spacing:0.1em; margin-top:16px; text-align:center; }
+    .dot-navigation { display:flex; gap:12px; align-items:center; }
+    .nav-dot { width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer; transition:all 0.4s var(--ease-spring); position:relative; }
+    .nav-dot::before { content:''; position:absolute; inset:-8px; border-radius:50%; background:radial-gradient(circle, rgba(201,148,26,0.2), transparent); opacity:0; transition:opacity 0.4s; }
+    .nav-dot:hover { background:var(--text-muted); transform:scale(1.2); }
+    .nav-dot.active { background:var(--accent-mustard); width:36px; border-radius:5px; box-shadow:0 0 20px rgba(201,148,26,0.5), 0 0 40px rgba(201,148,26,0.3); }
+    .nav-dot.active::before { opacity:1; }
+    .progress-text { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:var(--text-dim); letter-spacing:0.1em; margin-top:20px; text-align:center; }
 
     /* Features */
     .features-section { padding:0 24px 100px; position:relative; background:var(--bg); }
@@ -167,10 +176,13 @@
     .repo-card:hover { border-color:rgba(124,156,255,0.2); background:rgba(124,156,255,0.04); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.25); }
     .repo-card h3 { font-size:1.1rem; font-weight:600; margin-bottom:4px; }
     .repo-card p { font-size:0.85rem; color:var(--text-muted); }
+    .repo-links { display:flex; gap:12px; flex-wrap:wrap; }
     .repo-link { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:none; transition:all 0.3s var(--ease-out); }
     .repo-link:hover { border-color:rgba(124,156,255,0.3); background:rgba(124,156,255,0.08); box-shadow:0 8px 24px rgba(124,156,255,0.08); transform:translateX(4px); }
     .repo-link svg { transition:transform 0.3s var(--ease-out); }
     .repo-link:hover svg { transform:translateX(3px); }
+    .repo-link--demo { border-color:rgba(79,209,197,0.2); }
+    .repo-link--demo:hover { border-color:rgba(79,209,197,0.35); background:rgba(79,209,197,0.08); box-shadow:0 8px 24px rgba(79,209,197,0.1); }
 
     /* Future */
     .future-section { padding:0 24px 100px; background:var(--bg); }
@@ -215,10 +227,10 @@
     .doodle-zone { position:relative; }
     .page-doodle { position:absolute; pointer-events:none; opacity:0; transition:opacity 1s var(--ease-out), transform 1s var(--ease-out); z-index:1; }
     .page-doodle.is-visible { opacity:1; }
-    .page-doodle--cart { top:12%; right:6%; color:var(--accent-coral); animation:doodleBob 4s ease-in-out infinite; }
-    .page-doodle--pin { bottom:18%; left:4%; color:var(--accent-blue); animation:doodleBob 5s ease-in-out infinite 0.5s; }
-    .page-doodle--store { top:45%; right:3%; color:var(--accent-teal); animation:doodleBob 4.5s ease-in-out infinite 1s; }
-    .page-doodle--box { top:8%; left:8%; color:var(--accent-sage); animation:doodleSpin 8s linear infinite; }
+    .page-doodle--chat-bubble { top:12%; right:6%; color:var(--accent-coral); animation:doodleBob 4s ease-in-out infinite; }
+    .page-doodle--paper-plane { bottom:18%; left:4%; color:var(--accent-blue); animation:doodleBob 5s ease-in-out infinite 0.5s; }
+    .page-doodle--users { top:45%; right:3%; color:var(--accent-teal); animation:doodleBob 4.5s ease-in-out infinite 1s; }
+    .page-doodle--fingerprint { top:8%; left:8%; color:var(--accent-sage); animation:doodleSpin 8s linear infinite; }
     .page-doodle--shield { bottom:20%; right:6%; color:var(--accent-blue); animation:doodleBob 4s ease-in-out infinite 0.3s; }
     .page-doodle--wifi { top:30%; right:4%; color:var(--accent-mustard); animation:doodlePulse 3s ease-in-out infinite; }
     .page-doodle--brackets { top:8%; right:8%; color:var(--accent-lavender); animation:doodleBob 4s ease-in-out infinite; }
@@ -226,7 +238,7 @@
     .page-doodle--database { top:50%; right:4%; color:var(--accent-teal); animation:doodleBob 5s ease-in-out infinite 0.7s; }
     .page-doodle--hammer { top:10%; left:5%; color:var(--accent-beige); animation:doodleWiggle 4s ease-in-out infinite; }
     .page-doodle--gear { bottom:15%; right:7%; color:var(--accent-mustard); animation:doodleSpin 10s linear infinite; }
-    .page-doodle--scooter { top:40%; right:3%; color:var(--accent-sage); animation:doodleBob 3.5s ease-in-out infinite; }
+    .page-doodle--terminal { top:40%; right:3%; color:var(--accent-sage); animation:doodleBlink 2s ease-in-out infinite; }
     .page-doodle--rocket { top:6%; right:8%; color:var(--accent-coral); animation:doodleBob 3s ease-in-out infinite; }
     .page-doodle--chart { bottom:10%; left:5%; color:var(--accent-blue); animation:doodleGrow 3s ease-in-out infinite; }
     .page-doodle--lightbulb { top:35%; left:3%; color:var(--accent-mustard); animation:doodlePulse 2.5s ease-in-out infinite; }
@@ -238,8 +250,11 @@
     @keyframes doodleWiggle { 0%,100% { transform:rotate(0deg); } 25% { transform:rotate(5deg); } 75% { transform:rotate(-5deg); } }
     @keyframes doodlePulse { 0%,100% { opacity:0.4; transform:scale(1); } 50% { opacity:0.8; transform:scale(1.15); } }
     @keyframes doodleGrow { 0%,100% { transform:scaleY(1); } 50% { transform:scaleY(1.2); } }
+    @keyframes doodleBlink { 0%,100% { opacity:0.3; } 50% { opacity:0.7; } }
 
     @media (max-width:1200px) {
+      .browser-side-container { display:none; }
+      .browser-showcase-main { width:90vw; }
       .overview-grid { grid-template-columns:1fr; gap:48px; }
       .overview-statement { position:relative; top:0; }
       .project-section-grid { grid-template-columns:1fr; }
@@ -254,9 +269,11 @@
     @media (max-width:768px) {
       .project-hero { min-height:auto; padding:100px 20px 60px; }
       .showcase-section { padding:80px 20px; }
-      .deck-area { width:240px; height:500px; }
-      .deck-info-showcase { padding:26px; }
-      .deck-info-title { font-size:1.6rem; }
+      .browser-container { min-height:auto; }
+      .browser-titlebar { padding:10px 14px; gap:12px; }
+      .browser-addressbar { padding:5px 12px; }
+      .phone-info-showcase { padding:30px; }
+      .info-title { font-size:1.8rem; }
       .control-btn { width:52px; height:52px; }
       .hero-meta { gap:20px; }
       .hero-meta-divider { display:none; }
@@ -264,7 +281,7 @@
       .features-section { padding:0 20px 60px; }
       .detail-card { padding:28px 24px; }
       .future-item { padding:20px 24px; }
-      .film-thumb { width:52px; height:104px; }
+      .repo-card { justify-content:center; text-align:center; }
     }
     @media (prefers-reduced-motion:reduce) {
       *,*::before,*::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
@@ -295,16 +312,16 @@
         <circle cx="8" cy="8" r="2" fill="currentColor"/><circle cx="22" cy="6" r="1.5" fill="currentColor"/><circle cx="34" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="24" r="1.5" fill="currentColor"/><circle cx="28" cy="28" r="1" fill="currentColor"/>
       </svg>
     </div>
-    <div class="hero-doodle hero-doodle--annotation" data-depth="0.4">local, live, delivered &rarr;</div>
+    <div class="hero-doodle hero-doodle--annotation" data-depth="0.4">progress, tracked &rarr;</div>
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">Project Showcase</div>
-    <h1 class="hero-title">Galli<span>Mart</span></h1>
-    <p class="hero-tagline">An Android hyperlocal marketplace connecting nearby buyers, shopkeepers, and delivery partners through real-time inventory, ordering, and tracking.</p>
+    <h1 class="hero-title">Green<span>Grid</span></h1>
+    <p class="hero-tagline">A developer productivity platform for tracking DSA problem-solving progress&mdash;GitHub-authenticated, dashboard-driven, and built to keep your streak alive.</p>
     <div class="hero-meta">
       <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-value">Completed</span></div>
       <div class="hero-meta-divider"></div>
-      <div class="hero-meta-item"><span class="hero-meta-label">Platform</span><span class="hero-meta-value">Android</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Platform</span><span class="hero-meta-value">Web</span></div>
       <div class="hero-meta-divider"></div>
       <div class="hero-meta-item"><span class="hero-meta-label">Year</span><span class="hero-meta-value">2025</span></div>
       <div class="hero-meta-divider"></div>
@@ -317,45 +334,45 @@
 
 <!-- ==================== OVERVIEW ==================== -->
 <section class="overview-section doodle-zone">
-  <div class="page-doodle page-doodle--cart" data-depth="0.4">
-    <svg viewBox="0 0 30 26" fill="none"><path d="M2 3h4l3 15h16l3-11H8" stroke="currentColor" stroke-width="1.2" opacity="0.6"/><circle cx="12" cy="22" r="2" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="22" cy="22" r="2" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+  <div class="page-doodle page-doodle--chat-bubble" data-depth="0.4">
+    <svg viewBox="0 0 32 28" fill="none"><rect x="1" y="1" width="26" height="20" rx="10" stroke="currentColor" stroke-width="1.2" opacity="0.6"/><path d="M7 21l5 5 2-5" stroke="currentColor" stroke-width="1.2" opacity="0.6"/><line x1="8" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="8" y1="13" x2="14" y2="13" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
   </div>
-  <div class="page-doodle page-doodle--pin" data-depth="0.6">
-    <svg viewBox="0 0 22 28" fill="none"><path d="M11 2c-5 0-9 3.8-9 9 0 6.5 9 15 9 15s9-8.5 9-15c0-5.2-4-9-9-9z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><circle cx="11" cy="11" r="3" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+  <div class="page-doodle page-doodle--paper-plane" data-depth="0.6">
+    <svg viewBox="0 0 28 24" fill="none"><path d="M2 12l24-10-10 10-6 10 2-8-10-2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
   </div>
-  <div class="page-doodle page-doodle--store" data-depth="0.3">
-    <svg viewBox="0 0 30 24" fill="none"><path d="M2 8l2-6h22l2 6" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M2 8v14h26V8" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M2 8c0 2.2 1.8 4 4 4s4-1.8 4-4M10 8c0 2.2 1.8 4 4 4s4-1.8 4-4M18 8c0 2.2 1.8 4 4 4s4-1.8 4-4" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+  <div class="page-doodle page-doodle--users" data-depth="0.3">
+    <svg viewBox="0 0 30 22" fill="none"><circle cx="10" cy="7" r="5" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="22" cy="7" r="4" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M2 20c0-5 4-8 8-8s6 1 6 1" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M14 20c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
   </div>
   <div class="overview-grid">
-    <div class="overview-statement reveal">Think of GalliMart as <em>your neighborhood market, digitized</em>&mdash;built for buyers, shopkeepers, and delivery partners within a single radius.</div>
+    <div class="overview-statement reveal">Think of GreenGrid as <em>GitHub meets a LeetCode tracker</em>&mdash;built to make consistent practice visible.</div>
     <div class="overview-details">
       <div class="overview-block reveal reveal-delay-1">
         <h3>Why I Built It</h3>
-        <p>Local shops rarely have a digital storefront, and buyers default to large e-commerce apps even for everyday nearby purchases. I wanted a lightweight marketplace that keeps commerce hyperlocal&mdash;connecting the three people already involved in any local sale: the buyer, the shopkeeper, and whoever delivers it.</p>
+        <p>Practice problems end up scattered across spreadsheets, browser bookmarks, and half-finished notebooks. I wanted one place tied to a developer's actual GitHub identity where solved problems, streaks, and topic coverage are always visible at a glance.</p>
       </div>
       <div class="overview-block reveal reveal-delay-2">
         <h3>What Makes It Different</h3>
-        <p>GalliMart is role-aware from the ground up. Shopkeepers manage live inventory, buyers browse and order from nearby stores, and delivery partners see routes and order history&mdash;all synced instantly through Firebase so every role sees the same order state in real time.</p>
+        <p>Sign-in runs entirely through GitHub OAuth, so there's no separate account to manage. A short onboarding flow tailors the dashboard to your goals, and every problem you log feeds a live streak and progress view instead of a static list.</p>
       </div>
       <div class="overview-block reveal reveal-delay-3">
         <h3>Challenges</h3>
         <ul>
-          <li>Designing three distinct role-based experiences in one app</li>
-          <li>Structuring Firebase Realtime Database for live inventory and orders</li>
-          <li>Keeping order status synced across buyer, shopkeeper, and driver</li>
-          <li>Building an intuitive add/edit flow for shopkeeper inventory</li>
-          <li>Handling authentication cleanly across three user types</li>
-          <li>Surfacing driver location and delivery history without clutter</li>
+          <li>Designing a REST API in Spring Boot from the ground up</li>
+          <li>Wiring GitHub OAuth into both frontend and backend</li>
+          <li>Modeling progress and streak data in PostgreSQL</li>
+          <li>Building fast search and filtering across problem sets</li>
+          <li>Containerizing the backend for consistent deploys</li>
+          <li>Coordinating separate deploys across GitHub Pages and Render</li>
         </ul>
       </div>
       <div class="overview-block reveal reveal-delay-4">
         <h3>Lessons Learned</h3>
         <ul>
-          <li>Role-based design forces clarity earlier in the build</li>
-          <li>Realtime data models need discipline, not just speed</li>
-          <li>Marketplaces are as much about trust as they are about UI</li>
-          <li>Small, well-scoped screens beat one crowded dashboard</li>
-          <li>Local commerce has different constraints than general e-commerce</li>
+          <li>Design the API contract before the UI that consumes it</li>
+          <li>OAuth flows need careful handling of edge cases and errors</li>
+          <li>A good onboarding step pays for itself in retention</li>
+          <li>Docker makes environment drift someone else's problem</li>
+          <li>Dashboards should surface trends, not just raw counts</li>
         </ul>
       </div>
     </div>
@@ -364,46 +381,96 @@
 
 <div class="section-connector"></div>
 
-<!-- ==================== SHOWCASE (Stacked Deck) ==================== -->
+<!-- ==================== SHOWCASE (WEB) ==================== -->
 <section class="showcase-section doodle-zone">
+  <div class="page-doodle page-doodle--fingerprint" data-depth="0.5">
+    <svg viewBox="0 0 36 36" fill="none"><path d="M18 2C9.7 2 3 8.7 3 17v8" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M18 6c-6.1 0-11 4.9-11 11v10" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M18 10c-3.9 0-7 3.1-7 7v12" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M18 14c-1.7 0-3 1.3-3 3v14" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M18 22c1.1 0 2-.9 2-2" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M33 17c0-8.3-6.7-15-15-15" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M29 17c0-6.1-4.9-11-11-11" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M25 17c0-3.9-3.1-7-7-7" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
   <div class="page-doodle page-doodle--shield" data-depth="0.6">
     <svg viewBox="0 0 28 32" fill="none"><path d="M14 2L4 7v8c0 6 4.3 11.3 10 13 5.7-1.7 10-7 10-13V7L14 2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M10 16l4 4 6-6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
   </div>
   <div class="page-doodle page-doodle--wifi" data-depth="0.4">
     <svg viewBox="0 0 30 24" fill="none"><path d="M3 10c5-5 13-5 18 0" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M7 14c3-3 9-3 12 0" stroke="currentColor" stroke-width="1.2" opacity="0.4"/><circle cx="15" cy="19" r="2" fill="currentColor" opacity="0.3"/></svg>
   </div>
-  <div class="page-doodle page-doodle--box" data-depth="0.5">
-    <svg viewBox="0 0 30 30" fill="none"><path d="M15 3L4 9v12l11 6 11-6V9L15 3z" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M4 9l11 6 11-6M15 15v12" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
-  </div>
   <div class="showcase-wrapper">
     <div class="showcase-header reveal">
-      <div class="section-eyebrow">App Walkthrough</div>
-      <h2 class="section-title">Every Role, One Marketplace</h2>
-      <p class="section-subtitle">Eleven screens across three roles&mdash;buyer, shopkeeper, and delivery partner&mdash;presented as a fanned card deck.</p>
+      <div class="section-eyebrow">Platform Walkthrough</div>
+      <h2 class="section-title">Explore the Experience</h2>
+      <p class="section-subtitle">Nine screens that tell the complete story&mdash;from first visit to daily practice, in a premium desktop preview.</p>
     </div>
 
-    <div class="deck-stage reveal reveal-delay-1">
-      <div class="deck-area" id="deckArea">
-        <!-- deck cards are injected by JS: front / back1 / back2 -->
+    <div class="browser-stage-3d reveal reveal-delay-1">
+      <div class="browser-container" id="browserContainer">
+        <!-- Left Side Browser -->
+        <div class="browser-side-container left" id="leftBrowser">
+          <div class="browser-window">
+            <div class="browser-titlebar">
+              <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span></div>
+              <div class="browser-addressbar">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
+                <span id="leftUrl">greengrid.app</span>
+              </div>
+            </div>
+            <div class="browser-screen">
+              <img id="leftBrowserImg" src="" alt="Previous">
+              <div class="screen-glare"></div><div class="screen-glow"></div>
+            </div>
+          </div>
+          <div class="browser-base"></div>
+        </div>
+        <!-- Main Browser -->
+        <div class="browser-showcase-main" id="mainBrowser">
+          <div class="browser-window">
+            <div class="browser-titlebar">
+              <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span></div>
+              <div class="browser-addressbar">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
+                <span id="mainUrl">greengrid.app</span>
+              </div>
+            </div>
+            <div class="browser-screen">
+              <img id="mainBrowserImg" src="../assets/images/projects/greengrid/01_Index.png" alt="Landing Page">
+              <div class="screen-glare"></div><div class="screen-glow"></div>
+            </div>
+          </div>
+          <div class="browser-base"></div>
+        </div>
+        <!-- Right Side Browser -->
+        <div class="browser-side-container right" id="rightBrowser">
+          <div class="browser-window">
+            <div class="browser-titlebar">
+              <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span></div>
+              <div class="browser-addressbar">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
+                <span id="rightUrl">greengrid.app</span>
+              </div>
+            </div>
+            <div class="browser-screen">
+              <img id="rightBrowserImg" src="" alt="Next">
+              <div class="screen-glare"></div><div class="screen-glow"></div>
+            </div>
+          </div>
+          <div class="browser-base"></div>
+        </div>
       </div>
     </div>
 
-    <div class="deck-controls reveal reveal-delay-2">
+    <div class="phone-info-showcase reveal reveal-delay-2">
+      <div class="info-label" id="infoLabel">01 &mdash; Landing</div>
+      <h3 class="info-title" id="infoTitle">Landing Page</h3>
+      <p class="info-description" id="infoDesc">The first impression of GreenGrid&mdash;an overview of what the platform tracks and why it helps.</p>
+    </div>
+
+    <div class="showcase-controls reveal reveal-delay-3">
       <button class="control-btn" id="prevBtn" aria-label="Previous Screen">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="deck-info-showcase" style="margin:0;">
-        <span class="deck-role-tag" id="roleTag">Onboarding</span>
-        <h3 class="deck-info-title" id="infoTitle">Register</h3>
-        <p class="deck-info-desc" id="infoDesc">Create a new GalliMart account to get started.</p>
-      </div>
+      <div class="dot-navigation" id="dotNav"></div>
       <button class="control-btn" id="nextBtn" aria-label="Next Screen">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
-
-    <div class="deck-filmstrip reveal reveal-delay-3" id="filmstrip"></div>
-    <div class="progress-text" id="progressText">01 / 11</div>
+    <div class="progress-text" id="progressText">01 / 09</div>
   </div>
 </section>
 
@@ -422,37 +489,51 @@
   </div>
   <div class="section-header" style="max-width:1200px;margin:0 auto 64px;padding:0 24px;">
     <div class="section-eyebrow reveal">Key Features</div>
-    <h2 class="section-title reveal reveal-delay-1">What GalliMart Does</h2>
-    <p class="section-subtitle reveal reveal-delay-2">The core capabilities that keep hyperlocal commerce fast, current, and trustworthy.</p>
+    <h2 class="section-title reveal reveal-delay-1">What GreenGrid Does</h2>
+    <p class="section-subtitle reveal reveal-delay-2">The core capabilities that turn scattered practice into a visible, consistent habit.</p>
   </div>
   <div class="project-section-grid">
     <article class="detail-card reveal">
-      <div class="detail-card-icon" style="background:rgba(124,156,255,0.08);border:1px solid rgba(124,156,255,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="7" stroke="#7c9cff" stroke-width="1.2"/><line x1="15" y1="15" x2="20" y2="20" stroke="#7c9cff" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="detail-card-icon" style="background:rgba(165,214,167,0.08);border:1px solid rgba(165,214,167,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 18l5-6 4 3 7-9" stroke="#a5d6a7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="6" r="1.5" fill="#a5d6a7"/></svg>
       </div>
-      <h3>Product Discovery</h3>
-      <p>Buyers browse nearby stores and search live inventory across shopkeepers, so what they see reflects what's actually in stock right now.</p>
+      <h3>DSA Progress Tracking</h3>
+      <p>Log every problem you solve and watch topic-wise coverage build over time. Progress is grouped by difficulty and category so gaps in practice are easy to spot.</p>
     </article>
     <article class="detail-card reveal reveal-delay-1">
       <div class="detail-card-icon" style="background:rgba(201,148,26,0.08);border:1px solid rgba(201,148,26,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="6" width="16" height="12" rx="2" stroke="#c9941a" stroke-width="1.2"/><path d="M7 6V4a2 2 0 012-2h4a2 2 0 012 2v2" stroke="#c9941a" stroke-width="1.2"/><line x1="11" y1="10" x2="11" y2="14" stroke="#c9941a" stroke-width="1.2" stroke-linecap="round"/><line x1="9" y1="12" x2="13" y2="12" stroke="#c9941a" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L2 7v8c0 5 4 9 10 9s9-4 9-9V7L11 2z" stroke="#c9941a" stroke-width="1.2"/><path d="M8 11l3 3 5-5" stroke="#c9941a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <h3>Inventory Management</h3>
-      <p>Shopkeepers add, edit, and track stock directly from their phone. Every change syncs instantly to Firebase and appears in buyer searches immediately.</p>
+      <h3>GitHub OAuth Authentication</h3>
+      <p>Sign in with an existing GitHub account&mdash;no new password to create or remember. Authentication is handled securely end-to-end between the frontend and the Spring Boot API.</p>
     </article>
     <article class="detail-card reveal reveal-delay-2">
-      <div class="detail-card-icon" style="background:rgba(79,209,197,0.08);border:1px solid rgba(79,209,197,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M2 5h4l2 12h10l2-8H7" stroke="#4fd1c5" stroke-width="1.2"/><circle cx="9" cy="19" r="1.6" stroke="#4fd1c5" stroke-width="1"/><circle cx="17" cy="19" r="1.6" stroke="#4fd1c5" stroke-width="1"/></svg>
+      <div class="detail-card-icon" style="background:rgba(124,156,255,0.08);border:1px solid rgba(124,156,255,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="#7c9cff" stroke-width="1.2"/><path d="M4 19c0-4 3-6 7-6s7 2 7 6" stroke="#7c9cff" stroke-width="1.2"/></svg>
       </div>
-      <h3>Order Management &amp; Tracking</h3>
-      <p>Orders move through a shared real-time state&mdash;placed, confirmed, out for delivery, completed&mdash;visible consistently to buyer, shopkeeper, and driver.</p>
+      <h3>Personalized Onboarding</h3>
+      <p>A short setup flow captures goals and experience level right after sign-in, so the dashboard reflects what each developer is actually working toward from day one.</p>
     </article>
     <article class="detail-card reveal reveal-delay-3">
       <div class="detail-card-icon" style="background:rgba(232,160,191,0.08);border:1px solid rgba(232,160,191,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="7" cy="6" r="3" stroke="#e8a0bf" stroke-width="1.2"/><path d="M2 18c0-3.3 2.2-6 5-6s5 2.7 5 6" stroke="#e8a0bf" stroke-width="1.2"/><circle cx="16" cy="7" r="2.4" stroke="#e8a0bf" stroke-width="1"/><path d="M12 18c0-2.6 1.8-4.6 4-4.6s4 2 4 4.6" stroke="#e8a0bf" stroke-width="1"/></svg>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="14" rx="2" stroke="#e8a0bf" stroke-width="1.2"/><line x1="3" y1="9" x2="19" y2="9" stroke="#e8a0bf" stroke-width="1" opacity="0.5"/><line x1="7" y1="13" x2="15" y2="13" stroke="#e8a0bf" stroke-width="1" opacity="0.3"/></svg>
       </div>
-      <h3>Multi-Role Experience</h3>
-      <p>Separate, purpose-built flows for buyers, shopkeepers, and delivery partners, backed by Firebase Authentication so each role only sees what it needs.</p>
+      <h3>Problem Management</h3>
+      <p>Add problems manually with tags, difficulty, and notes, and pull them back up instantly whenever they're needed for a review session.</p>
+    </article>
+    <article class="detail-card reveal">
+      <div class="detail-card-icon" style="background:rgba(79,209,197,0.08);border:1px solid rgba(79,209,197,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9" cy="9" r="6" stroke="#4fd1c5" stroke-width="1.2"/><line x1="14" y1="14" x2="19" y2="19" stroke="#4fd1c5" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Powerful Search &amp; Filtering</h3>
+      <p>Find any logged problem instantly by name, tag, difficulty, or status. Filters narrow the list in real time without reloading the page.</p>
+    </article>
+    <article class="detail-card reveal reveal-delay-1">
+      <div class="detail-card-icon" style="background:rgba(255,138,101,0.08);border:1px solid rgba(255,138,101,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C5.5 2 1 6 1 11s4.5 9 10 9 10-4 10-9" stroke="#ff8a65" stroke-width="1.2"/><path d="M11 6v6l4 2" stroke="#ff8a65" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Streak Tracking &amp; Analytics</h3>
+      <p>A live dashboard surfaces daily streaks, solved counts, and trend lines, backed by a Dockerized Spring Boot API and a PostgreSQL data layer built for consistent, secure updates.</p>
     </article>
   </div>
 </section>
@@ -467,8 +548,8 @@
   <div class="page-doodle page-doodle--gear" data-depth="0.6">
     <svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M15 5v3M15 22v3M5 15H8M22 15h3M7.6 7.6l2.1 2.1M20.3 20.3l2.1 2.1M7.6 22.4l2.1-2.1M20.3 9.7l2.1-2.1" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
   </div>
-  <div class="page-doodle page-doodle--scooter" data-depth="0.4">
-    <svg viewBox="0 0 32 22" fill="none"><circle cx="7" cy="18" r="3" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="25" cy="18" r="3" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M7 18h6l4-10h6M13 8h9" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+  <div class="page-doodle page-doodle--terminal" data-depth="0.4">
+    <svg viewBox="0 0 28 22" fill="none"><rect x="1" y="1" width="26" height="20" rx="4" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M6 7l4 4-4 4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="14" y1="15" x2="20" y2="15" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="22" cy="6" r="1.5" fill="currentColor" opacity="0.3"/></svg>
   </div>
   <div class="tech-wrapper">
     <div>
@@ -477,22 +558,34 @@
         <h2 class="section-title reveal reveal-delay-1">Technologies</h2>
       </div>
       <div class="tech-list reveal reveal-delay-2">
+        <span class="tech-tag"><span class="tech-tag-dot"></span>HTML</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>CSS</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Bootstrap</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>JavaScript</span>
         <span class="tech-tag"><span class="tech-tag-dot"></span>Java</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>XML</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Firebase Realtime Database</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Firebase Auth</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Android Studio</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Spring Boot</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>PostgreSQL</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>GitHub OAuth</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>GitHub Pages</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Render</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Docker</span>
       </div>
     </div>
     <div class="repo-card reveal reveal-delay-3">
       <div>
-        <h3>GitHub Repository</h3>
-        <p>View the full source code and documentation.</p>
+        <h3>GreenGrid on GitHub</h3>
+        <p>View the source code, or try the live deployment.</p>
       </div>
-      <a class="repo-link" href="https://github.com/Vallabh05/GalliMart" target="_blank" rel="noopener noreferrer">
-        View Code
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="repo-links">
+        <a class="repo-link" href="https://github.com/Vallabh05/GreenGrid" target="_blank" rel="noopener noreferrer">
+          GitHub
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="repo-link repo-link--demo" href="https://vallabh05.github.io/GreenGrid/" target="_blank" rel="noopener noreferrer">
+          Live Demo
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -516,12 +609,12 @@
       <h2 class="section-title reveal reveal-delay-1">What is Next</h2>
     </div>
     <ul class="future-list reveal reveal-delay-2">
-      <li class="future-item"><span class="future-item-number">01</span><span class="future-item-text">Offline inventory management with barcode scanning</span></li>
-      <li class="future-item"><span class="future-item-number">02</span><span class="future-item-text">In-app chat between buyers and shopkeepers</span></li>
-      <li class="future-item"><span class="future-item-number">03</span><span class="future-item-text">Delivery partner ratings and performance history</span></li>
-      <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Push notifications for order status changes</span></li>
-      <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">In-app wallet and payment integration</span></li>
-      <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Analytics dashboard for shopkeeper sales trends</span></li>
+      <li class="future-item"><span class="future-item-number">01</span><span class="future-item-text">AI-powered problem recommendations based on weak topics</span></li>
+      <li class="future-item"><span class="future-item-number">02</span><span class="future-item-text">Collaborative study groups with shared progress boards</span></li>
+      <li class="future-item"><span class="future-item-number">03</span><span class="future-item-text">Timed contest mode with scored problem sets</span></li>
+      <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Browser extension for one-click problem logging</span></li>
+      <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">Topic-wise heatmaps and deeper progress analytics</span></li>
+      <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Companion mobile app for on-the-go streak tracking</span></li>
     </ul>
   </div>
 </section>
@@ -548,13 +641,13 @@
       <a class="rec-card reveal" href="synczone.html">
         <div class="rec-card-tag">Android</div>
         <h3>SyncZone</h3>
-        <p>Campus collaboration platform with real-time chat and assignments.</p>
+        <p>Campus collaboration platform unifying messaging, assignments, and announcements.</p>
         <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </a>
-      <a class="rec-card reveal reveal-delay-1" href="aion.html">
-        <div class="rec-card-tag">AI</div>
-        <h3>Aion</h3>
-        <p>Memory and task intelligence system with contextual awareness and reasoning.</p>
+      <a class="rec-card reveal reveal-delay-1" href="gallimart.html">
+        <div class="rec-card-tag">Android</div>
+        <h3>GalliMart</h3>
+        <p>Local marketplace flows connecting buyers and sellers in neighborhood commerce.</p>
         <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
       </a>
       <a class="rec-card reveal reveal-delay-2" href="triggerly.html">
@@ -569,7 +662,7 @@
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="project-footer">
-  <h2>Local commerce, <em>made instant.</em></h2>
+  <h2>Practice tracked, <em>progress built.</em></h2>
   <div class="footer-links">
     <a href="../projects.html">Projects</a>
     <a href="../contact.html">Contact</a>
@@ -584,132 +677,154 @@
 
   /* ========== SCREEN DATA ========== */
   const screens = [
-    { number: "01", role: "Onboarding", roleClass: "role-account", title: "Register", desc: "New buyers, shopkeepers, and delivery partners create an account to join GalliMart.", image: "../assets/images/projects/gallimart/01_Register.jpg" },
-    { number: "02", role: "Onboarding", roleClass: "role-account", title: "Login", desc: "Sign in securely with Firebase Authentication and land on your role-specific home.", image: "../assets/images/projects/gallimart/02_Login.jpg" },
-    { number: "03", role: "Shopkeeper", roleClass: "role-shopkeeper", title: "Inventory", desc: "Shopkeepers view and manage their live stock, prices, and product listings.", image: "../assets/images/projects/gallimart/03_Shopkeeper_Inventory.jpg" },
-    { number: "04", role: "Shopkeeper", roleClass: "role-shopkeeper", title: "Add Inventory", desc: "Add new products to the store with details that sync instantly to buyers nearby.", image: "../assets/images/projects/gallimart/04_Shopkeeper_Add_Inventory.jpg" },
-    { number: "05", role: "Shopkeeper", roleClass: "role-shopkeeper", title: "Orders", desc: "Shopkeepers track incoming orders and update their status in real time.", image: "../assets/images/projects/gallimart/05_Shopkeeper_Orders.jpg" },
-    { number: "06", role: "Buyer", roleClass: "role-buyer", title: "Home", desc: "Buyers discover nearby stores and browse what's currently in stock.", image: "../assets/images/projects/gallimart/06_Buyer_Home.jpg" },
-    { number: "07", role: "Buyer", roleClass: "role-buyer", title: "Inventory", desc: "Buyers explore a shop's full product catalog before placing an order.", image: "../assets/images/projects/gallimart/07_Buyer_Inventory.jpg" },
-    { number: "08", role: "Buyer", roleClass: "role-buyer", title: "Orders", desc: "Buyers track their order history and current order status end to end.", image: "../assets/images/projects/gallimart/08_Buyer_Orders.jpg" },
-    { number: "09", role: "Delivery Partner", roleClass: "role-driver", title: "Locations", desc: "Delivery partners view active pickup and drop-off locations on the map.", image: "../assets/images/projects/gallimart/09_Driver_Locations.jpg" },
-    { number: "10", role: "Delivery Partner", roleClass: "role-driver", title: "Order History", desc: "Delivery partners review completed deliveries and past order records.", image: "../assets/images/projects/gallimart/10_Driver_Order_History.jpg" },
-    { number: "11", role: "Account", roleClass: "role-account", title: "Profile", desc: "Every user manages personal details and account settings from one place.", image: "../assets/images/projects/gallimart/11_Profile.jpg" }
+    { number: "01", label: "Landing", title: "Landing Page", desc: "The first impression of GreenGrid — an overview of what the platform tracks and why it helps.", image: "../assets/images/projects/greengrid/01_Index.png", url: "greengrid.app" },
+    { number: "02", label: "Create Account", title: "Registration", desc: "New developers create an account to start tracking their DSA practice.", image: "../assets/images/projects/greengrid/02_Registration.png", url: "greengrid.app/register" },
+    { number: "03", label: "Secure Sign-In", title: "Login", desc: "Returning users sign in to pick up their progress right where they left off.", image: "../assets/images/projects/greengrid/03_Login.png", url: "greengrid.app/login" },
+    { number: "04", label: "OAuth Flow", title: "GitHub Authorization", desc: "Authentication runs through GitHub OAuth, linking a developer's real coding identity to their progress.", image: "../assets/images/projects/greengrid/04_Github_Authorization.png", url: "github.com/login/oauth/authorize" },
+    { number: "05", label: "Progress Overview", title: "Dashboard", desc: "Streaks, solved counts and topic coverage come together in a single live view.", image: "../assets/images/projects/greengrid/05_Dashboard.png", url: "greengrid.app/dashboard" },
+    { number: "06", label: "Getting Started", title: "Personalized Onboarding", desc: "A short setup flow tailors the dashboard to each developer's goals and experience level.", image: "../assets/images/projects/greengrid/06_Onboarding.png", url: "greengrid.app/onboarding" },
+    { number: "07", label: "Log Practice", title: "Add Problem", desc: "Log a newly solved problem with its tags, difficulty, and notes for later review.", image: "../assets/images/projects/greengrid/07_Add_Problem.png", url: "greengrid.app/problems/new" },
+    { number: "08", label: "Find Anything", title: "Search Problems", desc: "Search and filter the full problem log instantly by name, tag, difficulty or status.", image: "../assets/images/projects/greengrid/08_Search.png", url: "greengrid.app/search" },
+    { number: "09", label: "Account Control", title: "Settings", desc: "Manage account details, preferences and connected GitHub identity in one place.", image: "../assets/images/projects/greengrid/09_Settings.png", url: "greengrid.app/settings" }
   ];
 
-  /* ========== STACKED DECK SHOWCASE ========== */
+  /* ========== WEB SHOWCASE ========== */
   let currentIndex = 0;
-  let isAnimating = false;
+  let isTransitioning = false;
 
-  const deckArea = document.getElementById('deckArea');
-  const roleTag = document.getElementById('roleTag');
+  const mainBrowserImg = document.getElementById('mainBrowserImg');
+  const leftBrowserImg = document.getElementById('leftBrowserImg');
+  const rightBrowserImg = document.getElementById('rightBrowserImg');
+  const mainUrl = document.getElementById('mainUrl');
+  const leftUrl = document.getElementById('leftUrl');
+  const rightUrl = document.getElementById('rightUrl');
+  const infoLabel = document.getElementById('infoLabel');
   const infoTitle = document.getElementById('infoTitle');
   const infoDesc = document.getElementById('infoDesc');
   const progressText = document.getElementById('progressText');
-  const filmstrip = document.getElementById('filmstrip');
+  const dotNav = document.getElementById('dotNav');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
+  const browserContainer = document.getElementById('browserContainer');
 
-  function buildDeviceMarkup(src, alt) {
-    return '<div class="deck-device">' +
-      '<div class="deck-notch"></div>' +
-      '<div class="deck-screen"><img src="' + src + '" alt="' + alt + '"><div class="deck-screen-glow"></div></div>' +
-      '<div class="deck-home-bar"></div>' +
-      '</div>';
-  }
+  // Generate dots
+  screens.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (index === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goToScreen(index));
+    dotNav.appendChild(dot);
+  });
+  const dots = dotNav.querySelectorAll('.nav-dot');
 
-  function renderDeck() {
-    const positions = ['front', 'back1', 'back2'];
-    deckArea.innerHTML = '';
-    positions.forEach((pos, offset) => {
-      const s = screens[(currentIndex + offset) % screens.length];
-      const card = document.createElement('div');
-      card.className = 'deck-card';
-      card.dataset.pos = pos;
-      card.innerHTML = buildDeviceMarkup(s.image, s.title);
-      if (pos === 'front') {
-        card.style.cursor = 'grab';
-        card.addEventListener('click', advance);
-      }
-      deckArea.appendChild(card);
+  function animateInfoIn() {
+    [infoLabel, infoTitle, infoDesc].forEach((el, i) => {
+      el.classList.remove('is-visible');
+      void el.offsetWidth; // force reflow
+      el.style.animationDelay = (i * 0.1) + 's';
+      el.classList.add('is-visible');
     });
   }
 
-  function renderFilmstrip() {
-    filmstrip.innerHTML = '';
-    screens.forEach((s, i) => {
-      const thumb = document.createElement('div');
-      thumb.className = 'film-thumb' + (i === currentIndex ? ' active' : '');
-      thumb.innerHTML = '<img src="' + s.image + '" alt="' + s.title + '"><span class="film-thumb-num">' + s.number + '</span>';
-      thumb.addEventListener('click', () => goToScreen(i));
-      filmstrip.appendChild(thumb);
-    });
-  }
+  function updateShowcase() {
+    if (isTransitioning) return;
+    isTransitioning = true;
 
-  function updateInfo() {
-    const s = screens[currentIndex];
-    roleTag.textContent = s.role;
-    roleTag.className = 'deck-role-tag ' + s.roleClass;
-    infoTitle.textContent = s.title;
-    infoDesc.textContent = s.desc;
-    progressText.textContent = s.number + ' / 11';
-    const thumbs = filmstrip.querySelectorAll('.film-thumb');
-    thumbs.forEach((t, i) => t.classList.toggle('active', i === currentIndex));
-  }
+    const current = screens[currentIndex];
+    const prev = screens[(currentIndex - 1 + screens.length) % screens.length];
+    const next = screens[(currentIndex + 1) % screens.length];
 
-  function advance() {
-    if (isAnimating) return;
-    isAnimating = true;
-    const front = deckArea.querySelector('.deck-card[data-pos="front"]');
-    if (front) front.classList.add('deck-swipe-out');
+    mainBrowserImg.style.opacity = '0';
+    mainBrowserImg.style.transform = 'scale(0.96)';
+
     setTimeout(() => {
-      currentIndex = (currentIndex + 1) % screens.length;
-      renderDeck();
-      updateInfo();
-      isAnimating = false;
-    }, 320);
-  }
+      mainBrowserImg.src = current.image;
+      mainBrowserImg.alt = current.title;
+      leftBrowserImg.src = prev.image;
+      leftBrowserImg.alt = prev.title;
+      rightBrowserImg.src = next.image;
+      rightBrowserImg.alt = next.title;
 
-  function retreat() {
-    if (isAnimating) return;
-    isAnimating = true;
-    currentIndex = (currentIndex - 1 + screens.length) % screens.length;
-    renderDeck();
-    updateInfo();
-    setTimeout(() => { isAnimating = false; }, 320);
+      mainUrl.textContent = current.url;
+      leftUrl.textContent = prev.url;
+      rightUrl.textContent = next.url;
+
+      infoLabel.textContent = current.number + ' — ' + current.label;
+      infoTitle.textContent = current.title;
+      infoDesc.textContent = current.desc;
+      progressText.textContent = current.number + ' / 09';
+
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+
+      mainBrowserImg.style.opacity = '1';
+      mainBrowserImg.style.transform = 'scale(1)';
+      animateInfoIn();
+
+      setTimeout(() => { isTransitioning = false; }, 400);
+    }, 400);
   }
 
   function goToScreen(index) {
-    if (isAnimating || index === currentIndex) return;
     currentIndex = index;
-    renderDeck();
-    updateInfo();
+    updateShowcase();
   }
 
-  prevBtn.addEventListener('click', retreat);
-  nextBtn.addEventListener('click', advance);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') retreat();
-    else if (e.key === 'ArrowRight') advance();
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + screens.length) % screens.length;
+    updateShowcase();
   });
 
-  // Simple swipe support on the deck
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % screens.length;
+    updateShowcase();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      currentIndex = (currentIndex - 1 + screens.length) % screens.length;
+      updateShowcase();
+    } else if (e.key === 'ArrowRight') {
+      currentIndex = (currentIndex + 1) % screens.length;
+      updateShowcase();
+    }
+  });
+
+  // Touch swipe
   let touchStartX = 0;
-  deckArea.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-  deckArea.addEventListener('touchend', e => {
+  const mainBrowser = document.getElementById('mainBrowser');
+  mainBrowser.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  mainBrowser.addEventListener('touchend', e => {
     const diff = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 40) { diff > 0 ? advance() : retreat(); }
+    if (Math.abs(diff) > 40) {
+      currentIndex = (currentIndex + (diff > 0 ? 1 : -1) + screens.length) % screens.length;
+      updateShowcase();
+    }
+  });
+
+  // Mouse 3D tilt
+  const showcase = document.querySelector('.showcase-section');
+  showcase.addEventListener('mousemove', (e) => {
+    const rect = showcase.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    browserContainer.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+  });
+  showcase.addEventListener('mouseleave', () => {
+    browserContainer.style.transform = 'rotateY(0deg) rotateX(0deg)';
   });
 
   // Autoplay
-  let autoplayInterval = setInterval(advance, 5200);
-  deckArea.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-  deckArea.addEventListener('mouseleave', () => { autoplayInterval = setInterval(advance, 5200); });
+  let autoplayInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % screens.length;
+    updateShowcase();
+  }, 5000);
 
-  renderDeck();
-  renderFilmstrip();
-  updateInfo();
+  mainBrowser.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+  mainBrowser.addEventListener('mouseleave', () => {
+    autoplayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % screens.length;
+      updateShowcase();
+    }, 5000);
+  });
 
   /* ========== SCROLL REVEAL ========== */
   const revealObserver = new IntersectionObserver((entries) => {
@@ -827,6 +942,9 @@
     }
     animateParticles();
   }
+
+  // Initialize showcase
+  updateShowcase();
 
 })();
 </script>

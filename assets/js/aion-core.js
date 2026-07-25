@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+const initializeAionCore = () => {
     const launcher = document.querySelector("[data-aion-launcher]");
     const panel = document.querySelector("[data-aion-panel]");
     const close = document.querySelector("[data-aion-close]");
@@ -109,4 +109,10 @@ document.addEventListener("DOMContentLoaded", () => {
         input.value = "";
         window.setTimeout(() => addMessage(respond(question), "bot", true), 280);
     });
-});
+};
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeAionCore, { once: true });
+} else {
+    initializeAionCore();
+}

@@ -1,142 +1,834 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triggerly | Varsha Jairam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/variables.css">
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
-    <link rel="stylesheet" href="../assets/css/pages.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triggerly | Varsha Jairam</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent-mustard: #c9941a;
+      --accent-navy: #1a1a2e;
+      --accent-blue: #7c9cff;
+      --accent-beige: #d4b896;
+      --accent-teal: #4fd1c5;
+      --accent-rose: #e8a0bf;
+      --accent-lavender: #b8a9c9;
+      --accent-coral: #ff8a65;
+      --accent-sage: #a5d6a7;
+      --bg: #0a0a0f;
+      --bg-elevated: #111118;
+      --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.14);
+      --text: #f0f0f5;
+      --text-muted: rgba(240,240,245,0.5);
+      --text-dim: rgba(240,240,245,0.25);
+      --ease-out: cubic-bezier(0.16,1,0.3,1);
+      --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+    .reveal.is-visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.12s; }
+    .reveal-delay-2 { transition-delay:0.24s; }
+    .reveal-delay-3 { transition-delay:0.36s; }
+    .reveal-delay-4 { transition-delay:0.48s; }
+
+    /* Hero */
+    .project-hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:120px 24px 100px; overflow:hidden; }
+    .project-hero-bg { position:absolute; inset:0; z-index:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,156,255,0.04), transparent), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(201,148,26,0.03), transparent); }
+    .hero-doodles { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+    .hero-doodle { position:absolute; opacity:0; transition:opacity 1.2s var(--ease-out); }
+    .hero-doodle.is-visible { opacity:1; }
+    .hero-doodle--star { top:14%; left:18%; }
+    .hero-doodle--star svg path { stroke:var(--accent-mustard); stroke-width:0.8; }
+    .hero-doodle--cross { bottom:28%; left:14%; }
+    .hero-doodle--cross svg line { stroke:var(--accent-teal); stroke-width:1; opacity:0.5; }
+    .hero-doodle--ring { top:20%; right:20%; }
+    .hero-doodle--ring svg circle { stroke:var(--accent-beige); stroke-width:1; opacity:0.4; }
+    .hero-doodle--arrow { bottom:24%; right:16%; }
+    .hero-doodle--arrow svg path { stroke:var(--accent-blue); stroke-width:1; opacity:0.5; }
+    .hero-doodle--dots { top:55%; left:20%; }
+    .hero-doodle--dots svg circle { fill:var(--accent-beige); opacity:0.3; }
+    .hero-doodle--annotation { top:28%; right:10%; font-family:'Instrument Serif',serif; font-style:italic; font-size:0.8rem; color:var(--accent-beige); transform:rotate(-4deg); white-space:nowrap; }
+    .hero-content { position:relative; z-index:10; max-width:720px; }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:0.7rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:24px; opacity:0; animation:fadeUp 0.6s var(--ease-out) 0.3s forwards; }
+    .hero-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent-mustard); opacity:0.5; }
+    .hero-title { font-family:'Instrument Serif',serif; font-size:clamp(3rem,8vw,5.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.02em; margin-bottom:20px; opacity:0; animation:fadeUp 0.7s var(--ease-out) 0.5s forwards; }
+    .hero-title span { font-style:italic; color:var(--accent-mustard); }
+    .hero-tagline { font-size:clamp(1rem,2vw,1.25rem); color:var(--text-muted); line-height:1.7; max-width:520px; margin:0 auto 40px; opacity:0; animation:fadeUp 0.6s var(--ease-out) 0.7s forwards; }
+    .hero-meta { display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; opacity:0; animation:fadeUp 0.6s var(--ease-out) 0.9s forwards; }
+    .hero-meta-item { display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .hero-meta-label { font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); }
+    .hero-meta-value { font-size:0.85rem; font-weight:500; color:var(--text-muted); }
+    .hero-meta-divider { width:1px; height:32px; background:var(--border); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    #heroCanvas { position:absolute; inset:0; z-index:1; pointer-events:none; }
+
+    /* Section headers */
+    .section-header { margin-bottom:64px; }
+    .section-eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:12px; }
+    .section-title { font-family:'Instrument Serif',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:400; line-height:1.15; letter-spacing:-0.01em; margin-bottom:12px; }
+    .section-subtitle { font-size:1rem; color:var(--text-muted); line-height:1.6; max-width:540px; }
+    .section-connector { height:1px; background:linear-gradient(90deg, transparent, var(--border), transparent); max-width:200px; margin:0 auto; opacity:0.5; }
+
+    /* Overview */
+    .overview-section { padding:100px 24px 0; position:relative; }
+    .overview-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .overview-statement { font-family:'Instrument Serif',serif; font-size:clamp(1.5rem,3vw,2.2rem); line-height:1.4; color:var(--text); position:sticky; top:120px; }
+    .overview-statement em { font-style:italic; color:var(--accent-mustard); }
+    .overview-details { display:flex; flex-direction:column; gap:48px; }
+    .overview-block h3 { font-size:0.75rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:14px; }
+    .overview-block p { font-size:1rem; line-height:1.75; color:var(--text-muted); }
+    .overview-block ul { list-style:none; padding:0; }
+    .overview-block li { font-size:0.95rem; line-height:1.8; color:var(--text-muted); padding-left:20px; position:relative; }
+    .overview-block li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; background:var(--accent-mustard); opacity:0.6; }
+
+    /* Showcase shell */
+    .showcase-section { padding:120px 24px; position:relative; background:linear-gradient(to bottom, var(--bg) 0%, var(--bg-elevated) 30%, var(--bg-elevated) 70%, var(--bg) 100%); overflow:hidden; }
+    .showcase-wrapper { max-width:1400px; margin:0 auto; }
+    .showcase-header { text-align:center; margin-bottom:80px; }
+    .showcase-header .section-title { font-size:clamp(2.5rem,5vw,4rem); }
+    .showcase-header .section-subtitle { font-size:1.1rem; max-width:600px; margin:0 auto; }
+
+    /* ===== Triggerly Browser Showcase (unique to this page) ===== */
+    .browser-stage { position:relative; max-width:980px; margin:0 auto; perspective:1600px; }
+    .browser-frame { position:relative; width:100%; border-radius:16px; background:linear-gradient(180deg, #1c1c26, #14141c); box-shadow:0 0 0 1px rgba(255,255,255,0.07), 0 60px 140px rgba(0,0,0,0.7), 0 0 100px rgba(124,156,255,0.06); overflow:hidden; transition:transform 0.6s var(--ease-out), opacity 0.5s var(--ease-out); }
+    .browser-chrome { display:flex; align-items:center; gap:14px; padding:16px 20px; background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); border-bottom:1px solid var(--border); }
+    .browser-dots { display:flex; gap:7px; flex:0 0 auto; }
+    .browser-dots span { width:11px; height:11px; border-radius:50%; background:rgba(255,255,255,0.14); }
+    .browser-dots span:nth-child(1) { background:#ff6159; opacity:0.5; }
+    .browser-dots span:nth-child(2) { background:#ffbd2e; opacity:0.5; }
+    .browser-dots span:nth-child(3) { background:#28c940; opacity:0.5; }
+    .browser-url-bar { flex:1; display:flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px; background:rgba(255,255,255,0.03); border:1px solid var(--border); font-size:0.78rem; color:var(--text-dim); }
+    .browser-url-bar svg { flex:0 0 auto; opacity:0.5; }
+    .browser-url-text { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .browser-viewport { position:relative; aspect-ratio:16/10; background:radial-gradient(ellipse 70% 60% at 50% 0%, rgba(124,156,255,0.06), transparent), linear-gradient(160deg, #0d0d13, #16161f); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .browser-viewport img { width:100%; height:100%; object-fit:contain; object-position:center; display:block; }
+    .browser-viewport::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:36px 36px; opacity:0.5; }
+    .placeholder-content { position:relative; z-index:2; text-align:center; padding:40px; }
+    .placeholder-badge { display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:999px; background:rgba(201,148,26,0.1); border:1px solid rgba(201,148,26,0.25); font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:24px; }
+    .placeholder-badge-dot { width:6px; height:6px; border-radius:50%; background:var(--accent-mustard); animation:dotPulse 2s ease-in-out infinite; }
+    .placeholder-icon { width:64px; height:64px; margin:0 auto 24px; border-radius:18px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.03); border:1px solid var(--border); }
+    .placeholder-title { font-family:'Instrument Serif',serif; font-size:1.6rem; font-weight:400; margin-bottom:10px; color:var(--text); }
+    .placeholder-desc { font-size:0.9rem; color:var(--text-muted); line-height:1.65; max-width:380px; margin:0 auto; }
+
+    .browser-info-showcase { position:relative; max-width:640px; margin:44px auto 0; padding:32px 44px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:22px; backdrop-filter:blur(30px); text-align:center; transition:all 0.5s var(--ease-out); }
+    .browser-info-showcase:hover { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.12); transform:translateY(-4px); }
+    .info-label { font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:12px; }
+    .info-title { font-family:'Instrument Serif',serif; font-size:1.7rem; font-weight:400; line-height:1.2; margin-bottom:10px; color:var(--text); }
+    .info-description { font-size:0.95rem; line-height:1.7; color:var(--text-muted); }
+
+    .showcase-controls { display:flex; align-items:center; justify-content:center; gap:24px; margin-top:44px; }
+    .control-btn { width:56px; height:56px; border-radius:50%; border:2px solid var(--border); background:var(--surface); color:var(--text); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.4s var(--ease-spring); backdrop-filter:blur(20px); position:relative; overflow:hidden; }
+    .control-btn::before { content:''; position:absolute; inset:0; background:radial-gradient(circle, rgba(201,148,26,0.2), transparent); opacity:0; transition:opacity 0.4s; }
+    .control-btn:hover { border-color:var(--accent-mustard); background:rgba(201,148,26,0.1); transform:scale(1.1); box-shadow:0 0 40px rgba(201,148,26,0.3), 0 10px 30px rgba(0,0,0,0.3); }
+    .control-btn:hover::before { opacity:1; }
+    .control-btn:active { transform:scale(0.95); }
+    .control-btn svg { position:relative; z-index:1; }
+
+    .dot-navigation { display:flex; gap:12px; align-items:center; }
+    .nav-dot { width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer; transition:all 0.4s var(--ease-spring); position:relative; }
+    .nav-dot::before { content:''; position:absolute; inset:-8px; border-radius:50%; background:radial-gradient(circle, rgba(201,148,26,0.2), transparent); opacity:0; transition:opacity 0.4s; }
+    .nav-dot:hover { background:var(--text-muted); transform:scale(1.2); }
+    .nav-dot.active { background:var(--accent-mustard); width:36px; border-radius:5px; box-shadow:0 0 20px rgba(201,148,26,0.5), 0 0 40px rgba(201,148,26,0.3); }
+    .nav-dot.active::before { opacity:1; }
+    .progress-text { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:var(--text-dim); letter-spacing:0.1em; margin-top:20px; text-align:center; }
+    @keyframes dotPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.8); } }
+
+    /* Features */
+    .features-section { padding:0 24px 100px; position:relative; background:var(--bg); }
+    .project-section-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+    .detail-card { background:var(--bg-elevated); border:1px solid var(--border); border-radius:20px; padding:40px 36px; transition:all 0.5s var(--ease-out); position:relative; overflow:hidden; }
+    .detail-card::before { content:''; position:absolute; top:0; left:0; right:0; height:0; background:linear-gradient(90deg, var(--accent-mustard), var(--accent-blue)); opacity:0.3; transition:height 0.4s var(--ease-out); }
+    .detail-card:hover::before { height:2px; }
+    .detail-card:hover { border-color:var(--border-hover); background:rgba(255,255,255,0.02); transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.3); }
+    .detail-card-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+    .detail-card h3 { font-family:'Instrument Serif',serif; font-size:1.4rem; font-weight:400; margin-bottom:16px; color:var(--text); }
+    .detail-card p { font-size:0.95rem; line-height:1.75; color:var(--text-muted); }
+
+    /* Tech */
+    .tech-section { padding:0 24px 100px; background:var(--bg); }
+    .tech-wrapper { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .tech-list { display:flex; flex-wrap:wrap; gap:10px; }
+    .tech-tag { display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:999px; background:var(--surface); border:1px solid var(--border); font-size:0.85rem; font-weight:500; color:var(--text-muted); transition:all 0.3s var(--ease-out); cursor:default; }
+    .tech-tag:hover { border-color:var(--border-hover); background:var(--surface-hover); color:var(--text); transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
+    .tech-tag-dot { width:6px; height:6px; border-radius:50%; background:var(--accent-mustard); animation:dotPulse 2s ease-in-out infinite; }
+    .repo-card { display:flex; align-items:center; justify-content:space-between; padding:28px 32px; border-radius:16px; background:var(--surface); border:1px solid var(--border); transition:all 0.5s var(--ease-out); gap:20px; flex-wrap:wrap; }
+    .repo-card:hover { border-color:rgba(124,156,255,0.2); background:rgba(124,156,255,0.04); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.25); }
+    .repo-card h3 { font-size:1.1rem; font-weight:600; margin-bottom:4px; }
+    .repo-card p { font-size:0.85rem; color:var(--text-muted); }
+    .repo-actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .repo-link { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:none; transition:all 0.3s var(--ease-out); }
+    .repo-link:hover { border-color:rgba(124,156,255,0.3); background:rgba(124,156,255,0.08); box-shadow:0 8px 24px rgba(124,156,255,0.08); transform:translateX(4px); }
+    .repo-link svg { transition:transform 0.3s var(--ease-out); }
+    .repo-link:hover svg { transform:translateX(3px); }
+
+    /* Future */
+    .future-section { padding:0 24px 100px; background:var(--bg); }
+    .future-wrapper { max-width:1200px; margin:0 auto; }
+    .future-list { list-style:none; padding:0; display:grid; grid-template-columns:repeat(2,1fr); gap:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+    .future-item { padding:24px 32px; border-bottom:1px solid var(--border); border-right:1px solid var(--border); display:flex; align-items:flex-start; gap:16px; transition:all 0.4s var(--ease-out); position:relative; }
+    .future-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:0; background:linear-gradient(to bottom, var(--accent-mustard), var(--accent-blue)); opacity:0.2; transition:width 0.4s var(--ease-out); }
+    .future-item:hover::before { width:3px; }
+    .future-item:hover { background:var(--surface); padding-left:36px; }
+    .future-item:nth-child(2n) { border-right:none; }
+    .future-item:nth-last-child(-n+2) { border-bottom:none; }
+    .future-item-number { font-family:'Instrument Serif',serif; font-size:1.4rem; font-style:italic; color:var(--accent-mustard); opacity:0.6; min-width:32px; transition:all 0.3s var(--ease-out); }
+    .future-item:hover .future-item-number { opacity:1; transform:scale(1.1); }
+    .future-item-text { font-size:0.95rem; line-height:1.6; color:var(--text-muted); }
+
+    /* Recs */
+    .rec-section { padding:0 24px 120px; background:var(--bg); }
+    .rec-wrapper { max-width:1200px; margin:0 auto; }
+    .rec-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .rec-card { display:block; padding:32px; border-radius:16px; background:var(--surface); border:1px solid var(--border); text-decoration:none; color:inherit; transition:all 0.5s var(--ease-out); position:relative; overflow:hidden; }
+    .rec-card::before { content:''; position:absolute; top:0; left:0; right:0; height:0; background:linear-gradient(90deg, var(--accent-mustard), var(--accent-blue)); opacity:0.4; transition:height 0.4s var(--ease-out); }
+    .rec-card:hover::before { height:3px; }
+    .rec-card:hover { border-color:var(--border-hover); background:var(--surface-hover); transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.35); }
+    .rec-card-tag { font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:12px; }
+    .rec-card h3 { font-family:'Instrument Serif',serif; font-size:1.4rem; font-weight:400; margin-bottom:8px; }
+    .rec-card p { font-size:0.9rem; color:var(--text-muted); line-height:1.5; }
+    .rec-card-arrow { margin-top:20px; display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; font-weight:600; color:var(--text-dim); transition:all 0.3s var(--ease-out); }
+    .rec-card:hover .rec-card-arrow { color:var(--accent-mustard); gap:10px; }
+
+    /* Footer */
+    .project-footer { padding:80px 24px; text-align:center; border-top:1px solid var(--border); background:var(--bg); position:relative; }
+    .project-footer h2 { font-family:'Instrument Serif',serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:400; margin-bottom:32px; }
+    .project-footer h2 em { font-style:italic; color:var(--accent-mustard); }
+    .footer-links { display:flex; justify-content:center; gap:32px; margin-bottom:40px; }
+    .footer-links a { font-size:0.8rem; color:var(--text-dim); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s; position:relative; }
+    .footer-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--accent-mustard); transition:width 0.3s var(--ease-out); }
+    .footer-links a:hover { color:var(--text); }
+    .footer-links a:hover::after { width:100%; }
+    .copyright { font-size:0.8rem; color:var(--text-dim); }
+
+    /* Doodles */
+    .doodle-zone { position:relative; }
+    .page-doodle { position:absolute; pointer-events:none; opacity:0; transition:opacity 1s var(--ease-out), transform 1s var(--ease-out); z-index:1; }
+    .page-doodle.is-visible { opacity:1; }
+    .page-doodle--bolt { top:12%; right:6%; color:var(--accent-coral); animation:doodleBob 4s ease-in-out infinite; }
+    .page-doodle--node { bottom:18%; left:4%; color:var(--accent-blue); animation:doodleBob 5s ease-in-out infinite 0.5s; }
+    .page-doodle--flow { top:45%; right:3%; color:var(--accent-teal); animation:doodleBob 4.5s ease-in-out infinite 1s; }
+    .page-doodle--plug { top:8%; left:8%; color:var(--accent-sage); animation:doodleSpin 8s linear infinite; }
+    .page-doodle--shield { bottom:20%; right:6%; color:var(--accent-blue); animation:doodleBob 4s ease-in-out infinite 0.3s; }
+    .page-doodle--wifi { top:30%; right:4%; color:var(--accent-mustard); animation:doodlePulse 3s ease-in-out infinite; }
+    .page-doodle--brackets { top:8%; right:8%; color:var(--accent-lavender); animation:doodleBob 4s ease-in-out infinite; }
+    .page-doodle--bug { bottom:12%; left:5%; color:var(--accent-rose); animation:doodleWiggle 3s ease-in-out infinite; }
+    .page-doodle--database { top:50%; right:4%; color:var(--accent-teal); animation:doodleBob 5s ease-in-out infinite 0.7s; }
+    .page-doodle--hammer { top:10%; left:5%; color:var(--accent-beige); animation:doodleWiggle 4s ease-in-out infinite; }
+    .page-doodle--gear { bottom:15%; right:7%; color:var(--accent-mustard); animation:doodleSpin 10s linear infinite; }
+    .page-doodle--webhook { top:40%; right:3%; color:var(--accent-sage); animation:doodleBob 3.5s ease-in-out infinite; }
+    .page-doodle--rocket { top:6%; right:8%; color:var(--accent-coral); animation:doodleBob 3s ease-in-out infinite; }
+    .page-doodle--chart { bottom:10%; left:5%; color:var(--accent-blue); animation:doodleGrow 3s ease-in-out infinite; }
+    .page-doodle--lightbulb { top:35%; left:3%; color:var(--accent-mustard); animation:doodlePulse 2.5s ease-in-out infinite; }
+    .page-doodle--link { top:8%; left:7%; color:var(--accent-teal); animation:doodleWiggle 4s ease-in-out infinite; }
+    .page-doodle--compass { bottom:12%; right:6%; color:var(--accent-beige); animation:doodleSpin 12s linear infinite; }
+    .page-doodle--bookmark { top:30%; right:4%; color:var(--accent-rose); animation:doodleBob 4s ease-in-out infinite 0.5s; }
+    @keyframes doodleBob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+    @keyframes doodleSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+    @keyframes doodleWiggle { 0%,100% { transform:rotate(0deg); } 25% { transform:rotate(5deg); } 75% { transform:rotate(-5deg); } }
+    @keyframes doodlePulse { 0%,100% { opacity:0.4; transform:scale(1); } 50% { opacity:0.8; transform:scale(1.15); } }
+    @keyframes doodleGrow { 0%,100% { transform:scaleY(1); } 50% { transform:scaleY(1.2); } }
+
+    @media (max-width:1200px) {
+      .overview-grid { grid-template-columns:1fr; gap:48px; }
+      .overview-statement { position:relative; top:0; }
+      .project-section-grid { grid-template-columns:1fr; }
+      .tech-wrapper { grid-template-columns:1fr; gap:48px; }
+      .future-list { grid-template-columns:1fr; }
+      .future-item:nth-child(2n) { border-right:1px solid var(--border); }
+      .future-item:nth-last-child(-n+2) { border-bottom:1px solid var(--border); }
+      .future-item:last-child { border-bottom:none; }
+      .rec-grid { grid-template-columns:1fr; }
+      .page-doodle { display:none; }
+    }
+    @media (max-width:768px) {
+      .project-hero { min-height:auto; padding:100px 20px 60px; }
+      .showcase-section { padding:80px 20px; }
+      .browser-info-showcase { padding:26px; }
+      .info-title { font-size:1.4rem; }
+      .control-btn { width:52px; height:52px; }
+      .hero-meta { gap:20px; }
+      .hero-meta-divider { display:none; }
+      .overview-section { padding:60px 20px 0; }
+      .features-section { padding:0 20px 60px; }
+      .detail-card { padding:28px 24px; }
+      .future-item { padding:20px 24px; }
+      .placeholder-title { font-size:1.3rem; }
+      .browser-chrome { padding:12px 14px; gap:10px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+    }
+  </style>
 </head>
-
 <body>
-    <main class="page-shell">
-        <section class="project-hero-premium project-hero--triggerly">
-            <div class="project-hero-premium-bg" aria-hidden="true"></div>
-            <div class="container">
-                <div class="project-hero-premium-inner"><span class="status-badge in-dev">In Development</span>
-                    <h1 class="hero-title">Triggerly</h1>
-                    <p class="hero-copy">Automation built around triggers, actions, and workflows.</p>
-                </div>
-            </div>
-        </section>
-        <section class="section-band pt-0">
-            <div class="container">
-                <div class="media-showcase reveal">
-                    <div class="media-slide">Trigger builder</div>
-                    <div class="media-slide">Action chain</div>
-                    <div class="media-slide">Workflow logs</div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <p class="fun-overview reveal">Triggerly is for the repeated digital tasks that deserve to happen
-                    automatically, clearly, and with enough control that users trust the workflow.</p>
-                <div class="project-section-grid mt-4">
-                    <article class="detail-card reveal">
-                        <h3>Why I Built It</h3>
-                        <p>I wanted to explore automation as a product, not just a script: triggers, actions,
-                            conditions, and useful outcomes.</p>
-                    </article>
-                    <article class="detail-card reveal">
-                        <h3>Real Problem</h3>
-                        <p>People repeat the same actions across disconnected tools because workflows are not easy to
-                            connect.</p>
-                    </article>
-                    <article class="detail-card reveal">
-                        <h3>Challenges</h3>
-                        <p>Making automation powerful without making the setup confusing.</p>
-                    </article>
-                    <article class="detail-card reveal">
-                        <h3>Lessons Learned</h3>
-                        <p>Automation products need clarity, logs, and graceful failure states.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-        <section class="section-band">
-            <div class="container">
-                <h2 class="section-title reveal">Technologies Used</h2>
-                <div class="tech-list mt-3 reveal"><span class="tech-badge">Workflow Logic</span><span
-                        class="tech-badge">APIs</span><span class="tech-badge">JavaScript</span><span
-                        class="tech-badge">Product Design</span></div>
-                <div class="repo-card glass-card mt-4 reveal">
-                    <div>
-                        <h3>GitHub</h3>
-                        <p class="mb-0">Repository link can be added when public.</p>
-                    </div><a class="btn-secondary-custom" href="#">View Repository</a>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <article class="detail-card reveal">
-                    <h3>Future Plans</h3>
-                    <p>Add integrations, reusable workflow templates, execution history, and team-facing automation
-                        controls.</p>
-                </article>
-            </div>
-        </section>
-        <section class="section-band">
-            <div class="container">
-                <h2 class="section-title reveal">You may also like</h2>
-                <div class="recommendation-grid mt-4"><a class="mini-project-card reveal" href="aion.html"><span
-                            class="badge-soft">Aion</span>
-                        <h3>Aion</h3>
-                        <p>Personal intelligence and memory.</p>
-                    </a><a class="mini-project-card reveal" href="lunaops.html"><span
-                            class="badge-soft">Simulation</span>
-                        <h3>LunaOps</h3>
-                        <p>Coordinate-based rover simulation.</p>
-                    </a><a class="mini-project-card reveal" href="medicore.html"><span class="badge-soft">Data</span>
-                        <h3>MediCore</h3>
-                        <p>NoSQL with SQL-like querying.</p>
-                    </a></div>
-            </div>
-        </section>
-    </main>
-    <footer class="footer-custom">
-        <div class="container text-center">
-            <h2>Workflow thinking in progress.</h2>
-            <div class="footer-links"><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a></div>
-            <p class="copyright">Copyright <span data-current-year></span> Varsha Jairam</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/main.js"></script><button class="aion-orb" type="button" data-aion-launcher
-        aria-expanded="false" aria-label="Open Aion Core"><span class="aion-orb-ring" aria-hidden="true"></span><span
-            class="aion-orb-ring aion-orb-ring--2" aria-hidden="true"></span><span class="aion-orb-core"
-            aria-hidden="true"></span></button>
-    <aside class="aion-panel" data-aion-panel aria-label="Aion Core assistant">
-        <div class="aion-panel-glow" aria-hidden="true"></div>
-        <header class="aion-header">
-            <div class="aion-brand"><span class="aion-brand-icon" aria-hidden="true">✦</span>
-                <div><strong>Aion Core</strong><span>Portfolio intelligence</span></div>
-            </div><button class="aion-close" type="button" data-aion-close aria-label="Close">&times;</button>
-        </header>
-        <div class="aion-messages" data-aion-messages>
-            <div class="aion-empty" data-aion-empty><span class="aion-empty-icon">✦</span>
-                <p>Ask me anything about Varsha's work, skills, or product direction.</p>
-            </div>
-        </div>
-        <form class="aion-form" data-aion-form>
-            <div class="aion-input-wrap"><input data-aion-input type="text" placeholder="Ask about Varsha..."
-                    aria-label="Ask Aion Core" autocomplete="off"><button type="submit" aria-label="Send"><svg
-                        width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <path d="M3 9l12-6-3 6 3 6-12-6z" stroke="currentColor" stroke-width="1.4"
-                            stroke-linejoin="round" />
-                    </svg></button></div>
-        </form>
-    </aside>
-    <script src="../assets/js/aion-core.js"></script>
-    <script src="../assets/js/shared-navbar.js"></script>
-</body>
 
+<!-- ==================== HERO ==================== -->
+<section class="project-hero">
+  <div class="project-hero-bg"></div>
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-doodles" id="hero-doodles">
+    <div class="hero-doodle hero-doodle--star" data-depth="0.3">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" stroke-width="0.8"/></svg>
+    </div>
+    <div class="hero-doodle hero-doodle--cross" data-depth="1.5">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="1"/><line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="1"/></svg>
+    </div>
+    <div class="hero-doodle hero-doodle--ring" data-depth="0.8">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1"/></svg>
+    </div>
+    <div class="hero-doodle hero-doodle--arrow" data-depth="1.2">
+      <svg width="44" height="24" viewBox="0 0 44 24" fill="none"><path d="M4 12h30M32 6l8 6-8 6" stroke="currentColor" stroke-width="1"/></svg>
+    </div>
+    <div class="hero-doodle hero-doodle--dots" data-depth="0.6">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="8" cy="8" r="2" fill="currentColor"/><circle cx="22" cy="6" r="1.5" fill="currentColor"/><circle cx="34" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="24" r="1.5" fill="currentColor"/><circle cx="28" cy="28" r="1" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="hero-doodle hero-doodle--annotation" data-depth="0.4">if this, then that &rarr;</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Project Showcase</div>
+    <h1 class="hero-title">Trigger<span>ly</span></h1>
+    <p class="hero-tagline">A workflow automation platform that connects your favorite services through conditional triggers&mdash;no code required.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-value">In Development</span></div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Platform</span><span class="hero-meta-value">Web</span></div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Year</span><span class="hero-meta-value">2026</span></div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-value">Full-Stack</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-connector"></div>
+
+<!-- ==================== OVERVIEW ==================== -->
+<section class="overview-section doodle-zone">
+  <div class="page-doodle page-doodle--bolt" data-depth="0.4">
+    <svg viewBox="0 0 20 30" fill="none"><path d="M12 2L3 18h6l-1 10 10-18h-6l0-10z" stroke="currentColor" stroke-width="1.2" opacity="0.6"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--node" data-depth="0.6">
+    <svg viewBox="0 0 32 20" fill="none"><circle cx="5" cy="5" r="3.5" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><circle cx="5" cy="16" r="3.5" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><circle cx="27" cy="10" r="3.5" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M8 5h10a4 4 0 014 4v1M8 16h10a4 4 0 004-4v-1" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--flow" data-depth="0.3">
+    <svg viewBox="0 0 30 26" fill="none"><rect x="2" y="2" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1" opacity="0.5"/><rect x="18" y="2" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1" opacity="0.5"/><rect x="10" y="16" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M7 10v3a3 3 0 003 3M23 10v3a3 3 0 01-3 3" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+  </div>
+  <div class="overview-grid">
+    <div class="overview-statement reveal">Think of Triggerly as <em>your automation glue</em>&mdash;the layer that watches for events and quietly does the work.</div>
+    <div class="overview-details">
+      <div class="overview-block reveal reveal-delay-1">
+        <h3>Why I'm Building It</h3>
+        <p>Most people juggle several tools that never talk to each other. I wanted a simple, visual way to describe "when this happens, do that"&mdash;without writing glue code every time two services needed to be connected.</p>
+      </div>
+      <div class="overview-block reveal reveal-delay-2">
+        <h3>What Makes It Different</h3>
+        <p>Triggerly is built around composable conditional logic rather than rigid one-to-one integrations. Triggers, conditions, and actions are separate building blocks, so the same trigger can branch into different actions depending on the data it receives.</p>
+      </div>
+      <div class="overview-block reveal reveal-delay-3">
+        <h3>Challenges</h3>
+        <ul>
+          <li>Designing a flexible trigger &rarr; condition &rarr; action data model</li>
+          <li>Handling webhooks and polling reliably at scale</li>
+          <li>Building a visual workflow canvas from scratch</li>
+          <li>Queuing and retrying failed automation runs safely</li>
+          <li>Keeping the integration layer extensible for new services</li>
+          <li>Designing execution logs that are actually readable</li>
+        </ul>
+      </div>
+      <div class="overview-block reveal reveal-delay-4">
+        <h3>Lessons Learned So Far</h3>
+        <ul>
+          <li>Automation reliability matters more than automation speed</li>
+          <li>A good data model saves months of UI rework</li>
+          <li>Idempotency has to be designed in, not bolted on</li>
+          <li>Visual builders need constraints to stay usable</li>
+          <li>Ship the core loop before the integration catalog</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-connector"></div>
+
+<!-- ==================== SHOWCASE (Browser Preview) ==================== -->
+<section class="showcase-section doodle-zone">
+  <div class="page-doodle page-doodle--shield" data-depth="0.6">
+    <svg viewBox="0 0 28 32" fill="none"><path d="M14 2L4 7v8c0 6 4.3 11.3 10 13 5.7-1.7 10-7 10-13V7L14 2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M10 16l4 4 6-6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--wifi" data-depth="0.4">
+    <svg viewBox="0 0 30 24" fill="none"><path d="M3 10c5-5 13-5 18 0" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M7 14c3-3 9-3 12 0" stroke="currentColor" stroke-width="1.2" opacity="0.4"/><circle cx="15" cy="19" r="2" fill="currentColor" opacity="0.3"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--plug" data-depth="0.5">
+    <svg viewBox="0 0 26 30" fill="none"><path d="M9 2v8M17 2v8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M5 10h16v6a8 8 0 01-16 0v-6z" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="13" y1="24" x2="13" y2="28" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+  </div>
+  <div class="showcase-wrapper">
+    <div class="showcase-header reveal">
+      <div class="section-eyebrow">Product Preview</div>
+      <h2 class="section-title">Built in the Open</h2>
+      <p class="section-subtitle">Triggerly is actively in development. These are the screens taking shape&mdash;real product screenshots will replace these previews as each one ships.</p>
+    </div>
+
+    <div class="browser-stage reveal reveal-delay-1">
+      <div class="browser-frame" id="browserFrame">
+        <div class="browser-chrome">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <div class="browser-url-bar">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="5" width="9" height="6" rx="1.5" stroke="currentColor" stroke-width="1"/><path d="M4.5 5V3.5a2 2 0 014 0V5" stroke="currentColor" stroke-width="1"/></svg>
+            <span class="browser-url-text" id="urlText">app.triggerly.dev/dashboard</span>
+          </div>
+        </div>
+        <div class="browser-viewport">
+          <div class="placeholder-content">
+            <div class="placeholder-badge"><span class="placeholder-badge-dot"></span><span id="badgeText">In Development</span></div>
+            <div class="placeholder-icon" id="placeholderIcon"></div>
+            <h3 class="placeholder-title" id="placeholderTitle">Dashboard</h3>
+            <p class="placeholder-desc" id="placeholderDesc">A live overview of every workflow, its last run, and its current health.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="browser-info-showcase reveal reveal-delay-2">
+      <div class="info-label" id="infoLabel">01 &mdash; Overview</div>
+      <h3 class="info-title" id="infoTitle">Dashboard</h3>
+      <p class="info-description" id="infoDesc">Every workflow, trigger, and recent run summarized in one place.</p>
+    </div>
+
+    <div class="showcase-controls reveal reveal-delay-3">
+      <button class="control-btn" id="prevBtn" aria-label="Previous Screen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="dot-navigation" id="dotNav"></div>
+      <button class="control-btn" id="nextBtn" aria-label="Next Screen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="progress-text" id="progressText">01 / 06</div>
+  </div>
+</section>
+
+<div class="section-connector"></div>
+
+<!-- ==================== FEATURES ==================== -->
+<section class="features-section doodle-zone">
+  <div class="page-doodle page-doodle--brackets" data-depth="0.5">
+    <svg viewBox="0 0 28 24" fill="none"><path d="M8 4L2 12l6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M20 4l6 8-6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="14" y1="2" x2="14" y2="22" stroke="currentColor" stroke-width="0.8" opacity="0.2" stroke-dasharray="2 2"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--bug" data-depth="0.6">
+    <svg viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="14" rx="5" ry="7" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="8" y1="10" x2="4" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="18" y1="10" x2="22" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="8" y1="18" x2="4" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="18" y1="18" x2="22" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="13" y1="7" x2="13" y2="3" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="11" cy="12" r="1" fill="currentColor" opacity="0.3"/><circle cx="15" cy="12" r="1" fill="currentColor" opacity="0.3"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--database" data-depth="0.4">
+    <svg viewBox="0 0 24 28" fill="none"><ellipse cx="12" cy="6" rx="9" ry="4" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M3 6v6c0 2.2 4 4 9 4s9-1.8 9-4V6" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M3 12v6c0 2.2 4 4 9 4s9-1.8 9-4v-6" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
+  <div class="section-header" style="max-width:1200px;margin:0 auto 64px;padding:0 24px;">
+    <div class="section-eyebrow reveal">Key Features</div>
+    <h2 class="section-title reveal reveal-delay-1">What Triggerly Does</h2>
+    <p class="section-subtitle reveal reveal-delay-2">The core building blocks behind every automation, from trigger to executed action.</p>
+  </div>
+  <div class="project-section-grid">
+    <article class="detail-card reveal">
+      <div class="detail-card-icon" style="background:rgba(124,156,255,0.08);border:1px solid rgba(124,156,255,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M13 2L4 13h6l-1 7 9-11h-6l1-7z" stroke="#7c9cff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Conditional Trigger Builder</h3>
+      <p>Define exactly when a workflow should fire using composable conditions&mdash;event type, payload values, thresholds&mdash;instead of a single rigid rule.</p>
+    </article>
+    <article class="detail-card reveal reveal-delay-1">
+      <div class="detail-card-icon" style="background:rgba(201,148,26,0.08);border:1px solid rgba(201,148,26,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="5" cy="5" r="3" stroke="#c9941a" stroke-width="1.2"/><circle cx="5" cy="17" r="3" stroke="#c9941a" stroke-width="1.2"/><circle cx="18" cy="11" r="3" stroke="#c9941a" stroke-width="1.2"/><path d="M8 5h6a3 3 0 013 3v0M8 17h6a3 3 0 003-3v0" stroke="#c9941a" stroke-width="1.1"/></svg>
+      </div>
+      <h3>Multi-Service Integrations</h3>
+      <p>Connect the apps you already use through a growing integration layer, with a consistent interface for authenticating and mapping data between services.</p>
+    </article>
+    <article class="detail-card reveal reveal-delay-2">
+      <div class="detail-card-icon" style="background:rgba(79,209,197,0.08);border:1px solid rgba(79,209,197,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C5.5 2 1 6 1 11s4.5 9 10 9 10-4 10-9" stroke="#4fd1c5" stroke-width="1.2"/><path d="M11 6v6l4 2" stroke="#4fd1c5" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Real-Time Execution Engine</h3>
+      <p>Workflows run the moment a trigger fires, with automatic retries and clear failure handling so nothing silently drops.</p>
+    </article>
+    <article class="detail-card reveal reveal-delay-3">
+      <div class="detail-card-icon" style="background:rgba(232,160,191,0.08);border:1px solid rgba(232,160,191,0.15);">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="18" height="18" rx="3" stroke="#e8a0bf" stroke-width="1.2"/><path d="M6 14l3-4 3 3 4-6" stroke="#e8a0bf" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Workflow Analytics &amp; Logs</h3>
+      <p>Every run is logged with its inputs, outputs, and timing, giving a clear audit trail for debugging and understanding automation health at a glance.</p>
+    </article>
+  </div>
+</section>
+
+<div class="section-connector"></div>
+
+<!-- ==================== TECH ==================== -->
+<section class="tech-section doodle-zone">
+  <div class="page-doodle page-doodle--hammer" data-depth="0.5">
+    <svg viewBox="0 0 26 26" fill="none"><rect x="10" y="2" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M4 20l6-4 6 4-6 4-6-4z" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="13" y1="16" x2="13" y2="20" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--gear" data-depth="0.6">
+    <svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M15 5v3M15 22v3M5 15H8M22 15h3M7.6 7.6l2.1 2.1M20.3 20.3l2.1 2.1M7.6 22.4l2.1-2.1M20.3 9.7l2.1-2.1" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--webhook" data-depth="0.4">
+    <svg viewBox="0 0 30 24" fill="none"><circle cx="6" cy="6" r="3.5" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="24" cy="6" r="3.5" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="15" cy="19" r="3.5" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M9 8l4 8M21 8l-4 8" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
+  </div>
+  <div class="tech-wrapper">
+    <div>
+      <div class="section-header" style="margin-bottom:40px;">
+        <div class="section-eyebrow reveal">Built With</div>
+        <h2 class="section-title reveal reveal-delay-1">Technologies</h2>
+      </div>
+      <div class="tech-list reveal reveal-delay-2">
+        <span class="tech-tag"><span class="tech-tag-dot"></span>React</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Node.js</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Express</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>PostgreSQL</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Webhooks</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>REST APIs</span>
+        <span class="tech-tag"><span class="tech-tag-dot"></span>Docker</span>
+      </div>
+    </div>
+    <div class="repo-card reveal reveal-delay-3">
+      <div>
+        <h3>GitHub Repository</h3>
+        <p>Follow along with active development and open issues.</p>
+      </div>
+      <div class="repo-actions">
+        <a class="repo-link" href="https://github.com/Vallabh05/Triggerly" target="_blank" rel="noopener noreferrer">
+          View Code
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-connector"></div>
+
+<!-- ==================== FUTURE ==================== -->
+<section class="future-section doodle-zone">
+  <div class="page-doodle page-doodle--rocket" data-depth="0.5">
+    <svg viewBox="0 0 26 30" fill="none"><path d="M13 2s-10 10-10 20h20c0-10-10-20-10-20z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><circle cx="13" cy="15" r="3" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M9 24l4 4 4-4" stroke="currentColor" stroke-width="1" opacity="0.3"/><line x1="13" y1="22" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--chart" data-depth="0.6">
+    <svg viewBox="0 0 28 24" fill="none"><rect x="2" y="2" width="24" height="20" rx="3" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M6 18l6-8 4 4 6-10" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><circle cx="6" cy="18" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="12" cy="10" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="16" cy="14" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="22" cy="4" r="1.5" fill="currentColor" opacity="0.4"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--lightbulb" data-depth="0.4">
+    <svg viewBox="0 0 22 28" fill="none"><path d="M11 2c-4.4 0-8 3.6-8 8 0 3.2 1.9 6 4.7 7.3.3.1.5.4.5.7v2h6v-2c0-.3.2-.6.5-.7C17.1 16 19 13.2 19 10c0-4.4-3.6-8-8-8z" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="9" y1="20" x2="9" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="13" y1="20" x2="13" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="8" y1="24" x2="14" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="9" y1="26" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
+  <div class="future-wrapper">
+    <div class="section-header" style="margin-bottom:48px;">
+      <div class="section-eyebrow reveal">Roadmap</div>
+      <h2 class="section-title reveal reveal-delay-1">What is Next</h2>
+    </div>
+    <ul class="future-list reveal reveal-delay-2">
+      <li class="future-item"><span class="future-item-number">01</span><span class="future-item-text">Drag-and-drop visual workflow canvas</span></li>
+      <li class="future-item"><span class="future-item-number">02</span><span class="future-item-text">Expanded integration marketplace with OAuth support</span></li>
+      <li class="future-item"><span class="future-item-number">03</span><span class="future-item-text">Team workspaces with shared workflow permissions</span></li>
+      <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Custom code steps for advanced transformations</span></li>
+      <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">Alerting for failed or delayed automation runs</span></li>
+      <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Public API for triggering workflows programmatically</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-connector"></div>
+
+<!-- ==================== RECOMMENDATIONS ==================== -->
+<section class="rec-section doodle-zone">
+  <div class="page-doodle page-doodle--link" data-depth="0.5">
+    <svg viewBox="0 0 28 16" fill="none"><path d="M10 8c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6s-2.7 6-6 6h-4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M18 8c0 3.3-2.7 6-6 6H8c-3.3 0-6-2.7-6-6s2.7-6 6-6h4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--compass" data-depth="0.6">
+    <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M14 3v4M14 21v4M3 14h4M21 14h4" stroke="currentColor" stroke-width="0.8" opacity="0.3"/><path d="M14 8l-3 9 9-3-6-6z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
+  </div>
+  <div class="page-doodle page-doodle--bookmark" data-depth="0.4">
+    <svg viewBox="0 0 20 26" fill="none"><path d="M4 2h12v20l-6-4-6 4V2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
+  </div>
+  <div class="rec-wrapper">
+    <div class="section-header" style="margin-bottom:48px;">
+      <div class="section-eyebrow reveal">More Work</div>
+      <h2 class="section-title reveal reveal-delay-1">You May Also Like</h2>
+    </div>
+    <div class="rec-grid">
+      <a class="rec-card reveal" href="synczone.html">
+        <div class="rec-card-tag">Android</div>
+        <h3>SyncZone</h3>
+        <p>Campus collaboration platform with real-time chat and assignments.</p>
+        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </a>
+      <a class="rec-card reveal reveal-delay-1" href="gallimart.html">
+        <div class="rec-card-tag">Android</div>
+        <h3>GalliMart</h3>
+        <p>Hyperlocal marketplace connecting buyers, shopkeepers, and delivery partners.</p>
+        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </a>
+      <a class="rec-card reveal reveal-delay-2" href="aion.html">
+        <div class="rec-card-tag">AI</div>
+        <h3>Aion</h3>
+        <p>Memory and task intelligence system with contextual awareness and reasoning.</p>
+        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="project-footer">
+  <h2>Automation, <em>quietly reliable.</em></h2>
+  <div class="footer-links">
+    <a href="../projects.html">Projects</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+  <p class="copyright">Copyright 2026 Varsha Jairam</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  /* ========== SCREEN DATA (placeholders — swap `image` in for real screenshots later) ========== */
+  const screens = [
+    { number: "01", label: "Overview", title: "Dashboard", url: "app.triggerly.dev/dashboard", desc: "Every workflow, trigger, and recent run summarized in one place.", icon: 'grid' },
+    { number: "02", label: "Trigger Setup", title: "Trigger Builder", url: "app.triggerly.dev/triggers/new", desc: "Define the event and conditions that should kick off a workflow.", icon: 'bolt' },
+    { number: "03", label: "Workflow Design", title: "Workflow Canvas", url: "app.triggerly.dev/workflows/123", desc: "Chain conditions and actions together into a single automation.", icon: 'flow' },
+    { number: "04", label: "Connections", title: "Integrations", url: "app.triggerly.dev/integrations", desc: "Browse and connect the services your workflows depend on.", icon: 'plug' },
+    { number: "05", label: "Observability", title: "Execution Logs", url: "app.triggerly.dev/logs", desc: "Inspect every automation run, its inputs, outputs, and status.", icon: 'logs' },
+    { number: "06", label: "Account", title: "Settings", url: "app.triggerly.dev/settings", desc: "Manage your account, API keys, and workspace preferences.", icon: 'gear' }
+  ];
+
+  const icons = {
+    grid: '<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="9" height="9" rx="2" stroke="#c9941a" stroke-width="1.3"/><rect x="16" y="3" width="9" height="9" rx="2" stroke="#c9941a" stroke-width="1.3" opacity="0.6"/><rect x="3" y="16" width="9" height="9" rx="2" stroke="#c9941a" stroke-width="1.3" opacity="0.6"/><rect x="16" y="16" width="9" height="9" rx="2" stroke="#c9941a" stroke-width="1.3" opacity="0.3"/></svg>',
+    bolt: '<svg width="28" height="28" viewBox="0 0 20 30" fill="none"><path d="M12 2L3 18h6l-1 10 10-18h-6l0-10z" stroke="#c9941a" stroke-width="1.3"/></svg>',
+    flow: '<svg width="28" height="28" viewBox="0 0 30 26" fill="none"><rect x="2" y="2" width="10" height="8" rx="2" stroke="#c9941a" stroke-width="1.1"/><rect x="18" y="2" width="10" height="8" rx="2" stroke="#c9941a" stroke-width="1.1" opacity="0.6"/><rect x="10" y="16" width="10" height="8" rx="2" stroke="#c9941a" stroke-width="1.1" opacity="0.4"/><path d="M7 10v3a3 3 0 003 3M23 10v3a3 3 0 01-3 3" stroke="#c9941a" stroke-width="1"/></svg>',
+    plug: '<svg width="28" height="28" viewBox="0 0 26 30" fill="none"><path d="M9 2v8M17 2v8" stroke="#c9941a" stroke-width="1.2"/><path d="M5 10h16v6a8 8 0 01-16 0v-6z" stroke="#c9941a" stroke-width="1.2"/><line x1="13" y1="24" x2="13" y2="28" stroke="#c9941a" stroke-width="1.2"/></svg>',
+    logs: '<svg width="28" height="28" viewBox="0 0 24 28" fill="none"><rect x="2" y="2" width="20" height="24" rx="3" stroke="#c9941a" stroke-width="1.2"/><line x1="7" y1="9" x2="17" y2="9" stroke="#c9941a" stroke-width="1.1" opacity="0.6"/><line x1="7" y1="14" x2="17" y2="14" stroke="#c9941a" stroke-width="1.1" opacity="0.6"/><line x1="7" y1="19" x2="13" y2="19" stroke="#c9941a" stroke-width="1.1" opacity="0.6"/></svg>',
+    gear: '<svg width="28" height="28" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="5" stroke="#c9941a" stroke-width="1.2"/><path d="M15 5v3M15 22v3M5 15H8M22 15h3M7.6 7.6l2.1 2.1M20.3 20.3l2.1 2.1M7.6 22.4l2.1-2.1M20.3 9.7l2.1-2.1" stroke="#c9941a" stroke-width="1.3"/></svg>'
+  };
+
+  /* ========== BROWSER SHOWCASE ========== */
+  let currentIndex = 0;
+  let isTransitioning = false;
+
+  const browserFrame = document.getElementById('browserFrame');
+  const urlText = document.getElementById('urlText');
+  const badgeText = document.getElementById('badgeText');
+  const placeholderIcon = document.getElementById('placeholderIcon');
+  const placeholderTitle = document.getElementById('placeholderTitle');
+  const placeholderDesc = document.getElementById('placeholderDesc');
+  const infoLabel = document.getElementById('infoLabel');
+  const infoTitle = document.getElementById('infoTitle');
+  const infoDesc = document.getElementById('infoDesc');
+  const progressText = document.getElementById('progressText');
+  const dotNav = document.getElementById('dotNav');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  screens.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (index === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goToScreen(index));
+    dotNav.appendChild(dot);
+  });
+  const dots = dotNav.querySelectorAll('.nav-dot');
+
+  function updateShowcase() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    browserFrame.style.opacity = '0';
+    browserFrame.style.transform = 'translateY(10px) scale(0.98)';
+
+    setTimeout(() => {
+      const s = screens[currentIndex];
+      urlText.textContent = s.url;
+      badgeText.textContent = 'In Development';
+      placeholderIcon.innerHTML = icons[s.icon];
+      placeholderTitle.textContent = s.title;
+      placeholderDesc.textContent = s.desc;
+
+      infoLabel.textContent = s.number + ' — ' + s.label;
+      infoTitle.textContent = s.title;
+      infoDesc.textContent = s.desc;
+      progressText.textContent = s.number + ' / ' + String(screens.length).padStart(2, '0');
+
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+
+      browserFrame.style.opacity = '1';
+      browserFrame.style.transform = 'translateY(0) scale(1)';
+
+      setTimeout(() => { isTransitioning = false; }, 350);
+    }, 300);
+  }
+
+  function goToScreen(index) {
+    currentIndex = index;
+    updateShowcase();
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + screens.length) % screens.length;
+    updateShowcase();
+  });
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % screens.length;
+    updateShowcase();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      currentIndex = (currentIndex - 1 + screens.length) % screens.length;
+      updateShowcase();
+    } else if (e.key === 'ArrowRight') {
+      currentIndex = (currentIndex + 1) % screens.length;
+      updateShowcase();
+    }
+  });
+
+  let autoplayInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % screens.length;
+    updateShowcase();
+  }, 5000);
+  browserFrame.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+  browserFrame.addEventListener('mouseleave', () => {
+    autoplayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % screens.length;
+      updateShowcase();
+    }, 5000);
+  });
+
+  updateShowcase();
+
+  /* ========== SCROLL REVEAL ========== */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ========== DOODLE REVEAL ========== */
+  const doodleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.page-doodle').forEach(el => doodleObserver.observe(el));
+
+  /* ========== HERO DOODLE PARALLAX ========== */
+  const heroDoodles = document.querySelectorAll('.hero-doodle');
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let currentMX = mouseX;
+  let currentMY = mouseY;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateDoodles() {
+    currentMX += (mouseX - currentMX) * 0.06;
+    currentMY += (mouseY - currentMY) * 0.06;
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const ox = currentMX - cx;
+    const oy = currentMY - cy;
+    heroDoodles.forEach(d => {
+      const depth = parseFloat(d.dataset.depth) || 1;
+      const s = depth * 0.25;
+      d.style.transform = 'translate3d(' + (ox * s * -1) + 'px, ' + (oy * s * -1) + 'px, 0)';
+    });
+    requestAnimationFrame(animateDoodles);
+  }
+
+  setTimeout(() => {
+    heroDoodles.forEach((d, i) => {
+      setTimeout(() => d.classList.add('is-visible'), i * 120);
+    });
+  }, 600);
+  animateDoodles();
+
+  /* ========== HERO PARTICLE CANVAS ========== */
+  const canvas = document.getElementById('heroCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const PARTICLE_COUNT = 60;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.4 + 0.1;
+        this.hue = Math.random() > 0.5 ? 42 : 220;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'hsla(' + this.hue + ', 70%, 60%, ' + this.opacity + ')';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+    function drawConnections() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = 'rgba(124, 156, 255, ' + (0.08 * (1 - dist / 120)) + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      drawConnections();
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  }
+
+})();
+</script>
+<link rel="stylesheet" href="../assets/css/shared-site.css">
+<script src="../assets/js/shared-navbar.js"></script>
+<script src="../assets/js/shared-site.js"></script>
+</body>
 </html>
