@@ -8,15 +8,9 @@
   document.querySelectorAll("footer").forEach((footer) => footer.remove());
   if (!isLandingPage) {
     const footer = document.createElement("footer");
-    footer.className = "shared-footer";
-    footer.innerHTML = `
-      <h2>Building products, made <em>calm.</em></h2>
-      <nav aria-label="Footer navigation">
-        <a href="${base}projects.html">Projects</a>
-        <a href="${base}contact.html">Contact</a>
-      </nav>
-      <p>Copyright 2026 Varsha Jairam</p>`;
+    footer.innerHTML = '<p>&copy; <span id="year"></span> Varsha Jairam</p>';
     document.body.append(footer);
+    document.getElementById("year").textContent = new Date().getFullYear();
   }
 
   if (isProjectDetail) {
@@ -55,6 +49,14 @@
       <form class="aion-form" data-aion-form><div class="aion-input-wrap"><input data-aion-input type="text" placeholder="Ask about Varsha..." aria-label="Ask Aion Core" autocomplete="off"></div><button type="submit" aria-label="Send message">→</button></form>
     </aside>`;
   document.body.append(aion);
+
+  document.querySelectorAll('a[href]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (/^(https?:|mailto:|tel:)/i.test(href || '')) {
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+  });
   const aionCore = document.createElement("script");
   aionCore.src = `${base}assets/js/aion-core.js`;
   document.body.append(aionCore);
