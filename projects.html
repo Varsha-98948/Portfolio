@@ -1182,10 +1182,10 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(180px 120px at 50% 100%, var(--pc, var(--amber)); opacity:0);
+      background: radial-gradient(180px 120px at 50% 100%, var(--pc, var(--amber)));
       opacity: 0;
       transition: opacity .5s ease;
-      pointer-events: none
+      pointer-events: none;
     }
 
     .pstat:hover {
@@ -1194,6 +1194,10 @@
 
     .pstat:hover::before {
       transform: scaleX(1)
+    }
+
+    .pstat:hover::after {
+      opacity: 1;
     }
 
     .pstat-num {
@@ -3112,7 +3116,8 @@
       <div class="sec-head rv">
         <span class="chapter-label" style="color:var(--pink)">Chapter 04</span>
         <h2 style="--accent:var(--pink)">Archived <em style="color:var(--pink)">Projects</em></h2>
-        <p>A snapshot of where I started — an early build that helped me understand web development, backend logic, and creating complete applications.</p>
+        <p>A snapshot of where I started — an early build that helped me understand web development, backend logic, and
+          creating complete applications.</p>
       </div>
 
       <div class="arc-list">
@@ -3123,7 +3128,8 @@
           </div>
           <div class="arc-body">
             <h3 class="serif">WanderWave</h3>
-            <p>An early tourism website that marked my first steps into backend development, modular web applications, and building complete user experiences.</p>
+            <p>An early tourism website that marked my first steps into backend development, modular web applications,
+              and building complete user experiences.</p>
           </div>
           <a class="arc-link" href="projects/wanderwave.html">View details
             <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
