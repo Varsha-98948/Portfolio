@@ -2234,7 +2234,7 @@
       <div class="explorer rv d-1">
         <!-- index -->
         <div class="exp-index" id="expIndex">
-          <div class="exp-row on" data-i="0" style="--rc:#7ea2ff">
+          <div class="exp-row on" data-i="0" data-href="projects/aion.html" style="--rc:#7ea2ff">
             <span class="en">01</span><span class="nm">Aion</span>
             <span class="meta">In Dev · AI</span>
             <span class="arw"><svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -2242,7 +2242,7 @@
                   stroke-linejoin="round" />
               </svg></span>
           </div>
-          <div class="exp-row" data-i="1" style="--rc:#e3a83a">
+          <div class="exp-row" data-i="1" data-href="projects/greengrid.html" style="--rc:#e3a83a">
             <span class="en">02</span><span class="nm">GreenGrid</span>
             <span class="meta">Live · Developer Tools</span>
             <span class="arw"><svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -2250,7 +2250,7 @@
                   stroke-linejoin="round" />
               </svg></span>
           </div>
-          <div class="exp-row" data-i="2" style="--rc:#e8a0bf">
+          <div class="exp-row" data-i="2" data-href="projects/lunaops.html" style="--rc:#e8a0bf">
             <span class="en">03</span><span class="nm">LunaOps</span>
             <span class="meta">Live · Simulation</span>
             <span class="arw"><svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -2258,7 +2258,7 @@
                   stroke-linejoin="round" />
               </svg></span>
           </div>
-          <div class="exp-row" data-i="3" style="--rc:#57d6c4">
+          <div class="exp-row" data-i="3" data-href="projects/synczone.html" style="--rc:#57d6c4">
             <span class="en">04</span><span class="nm">SyncZone</span>
             <span class="meta">Live · Collaboration</span>
             <span class="arw"><svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -2266,7 +2266,7 @@
                   stroke-linejoin="round" />
               </svg></span>
           </div>
-          <div class="exp-row" data-i="4" style="--rc:#7ea2ff">
+          <div class="exp-row" data-i="4" data-href="projects/gallimart.html" style="--rc:#7ea2ff">
             <span class="en">05</span><span class="nm">Gallimart</span>
             <span class="meta">Live · Android</span>
             <span class="arw"><svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -2863,7 +2863,7 @@
         rows.forEach(function (r) {
           var i = parseInt(r.getAttribute('data-i'), 10);
           r.addEventListener('mouseenter', function () { select(i); });
-          r.addEventListener('click', function () { select(i); });
+          r.addEventListener('click', function () { window.location.href = r.getAttribute('data-href'); });
         });
         /* autoplay, pauses on interaction */
         function play() { if (reduce) return; clearInterval(auto); auto = setInterval(function () { if (!hovering) select((active + 1) % rows.length); }, 3800); }

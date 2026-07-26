@@ -1,0 +1,19 @@
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg, #08080c);
+  transition: opacity .7s var(--ease, ease), visibility .7s var(--ease, ease);
+}
+.boot.done { opacity: 0; visibility: hidden; }
+.boot-mark { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.boot-mark .m { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, var(--amber, #e3a83a), #f0c063); color: var(--bg, #08080c); font-family: 'Instrument Serif', serif; font-size: 2rem; box-shadow: 0 12px 40px var(--amber-glow, rgba(227,168,58,.16)); animation: bootPop 1.2s var(--spring, ease) both; }
+.boot-mark .bar { width: 180px; height: 2px; background: var(--faint, rgba(255,255,255,.06)); border-radius: 2px; overflow: hidden; position: relative; }
+.boot-mark .bar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--amber, #e3a83a), var(--cyan, #7ea2ff), var(--lav, #b8a9c9)); animation: bootBar 1.1s var(--ease, ease) forwards; }
+.boot-mark .txt { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .24em; text-transform: uppercase; color: var(--dim, rgba(243,242,238,.3)); }
+@keyframes bootPop { from { transform: scale(.6) rotate(-8deg); opacity: 0; } }
+@keyframes bootBar { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .boot-mark .m, .boot-mark .bar::after { animation: none; } }
