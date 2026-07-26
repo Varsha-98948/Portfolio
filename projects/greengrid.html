@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GreenGrid | Varsha Jairam</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --accent-mustard: #c9941a;
@@ -19,937 +22,2460 @@
       --accent-sage: #a5d6a7;
       --bg: #0a0a0f;
       --bg-elevated: #111118;
-      --surface: rgba(255,255,255,0.03);
-      --surface-hover: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.08);
-      --border-hover: rgba(255,255,255,0.14);
+      --surface: rgba(255, 255, 255, 0.03);
+      --surface-hover: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.14);
       --text: #f0f0f5;
-      --text-muted: rgba(240,240,245,0.5);
-      --text-dim: rgba(240,240,245,0.25);
-      --ease-out: cubic-bezier(0.16,1,0.3,1);
-      --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+      --text-muted: rgba(240, 240, 245, 0.5);
+      --text-dim: rgba(240, 240, 245, 0.25);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
-    .reveal.is-visible { opacity:1; transform:translateY(0); }
-    .reveal-delay-1 { transition-delay:0.12s; }
-    .reveal-delay-2 { transition-delay:0.24s; }
-    .reveal-delay-3 { transition-delay:0.36s; }
-    .reveal-delay-4 { transition-delay:0.48s; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.12s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.24s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.36s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 0.48s;
+    }
 
     /* Hero */
-    .project-hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:120px 24px 100px; overflow:hidden; }
-    .project-hero-bg { position:absolute; inset:0; z-index:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,156,255,0.04), transparent), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(201,148,26,0.03), transparent); }
-    .hero-doodles { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
-    .hero-doodle { position:absolute; opacity:0; transition:opacity 1.2s var(--ease-out); }
-    .hero-doodle.is-visible { opacity:1; }
-    .hero-doodle--star { top:14%; left:18%; }
-    .hero-doodle--star svg path { stroke:var(--accent-mustard); stroke-width:0.8; }
-    .hero-doodle--cross { bottom:28%; left:14%; }
-    .hero-doodle--cross svg line { stroke:var(--accent-teal); stroke-width:1; opacity:0.5; }
-    .hero-doodle--ring { top:20%; right:20%; }
-    .hero-doodle--ring svg circle { stroke:var(--accent-beige); stroke-width:1; opacity:0.4; }
-    .hero-doodle--arrow { bottom:24%; right:16%; }
-    .hero-doodle--arrow svg path { stroke:var(--accent-blue); stroke-width:1; opacity:0.5; }
-    .hero-doodle--dots { top:55%; left:20%; }
-    .hero-doodle--dots svg circle { fill:var(--accent-beige); opacity:0.3; }
-    .hero-doodle--annotation { top:28%; right:10%; font-family:'Instrument Serif',serif; font-style:italic; font-size:0.8rem; color:var(--accent-beige); transform:rotate(-4deg); white-space:nowrap; }
-    .hero-content { position:relative; z-index:10; max-width:720px; }
-    .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:0.7rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:24px; opacity:0; animation:fadeUp 0.6s var(--ease-out) 0.3s forwards; }
-    .hero-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent-mustard); opacity:0.5; }
-    .hero-title { font-family:'Instrument Serif',serif; font-size:clamp(3rem,8vw,5.5rem); font-weight:400; line-height:1.05; letter-spacing:-0.02em; margin-bottom:20px; opacity:0; animation:fadeUp 0.7s var(--ease-out) 0.5s forwards; }
-    .hero-title span { font-style:italic; color:var(--accent-mustard); }
-    .hero-tagline { font-size:clamp(1rem,2vw,1.25rem); color:var(--text-muted); line-height:1.7; max-width:520px; margin:0 auto 40px; opacity:0; animation:fadeUp 0.6s var(--ease-out) 0.7s forwards; }
-    .hero-meta { display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; opacity:0; animation:fadeUp 0.6s var(--ease-out) 0.9s forwards; }
-    .hero-meta-item { display:flex; flex-direction:column; align-items:center; gap:4px; }
-    .hero-meta-label { font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); }
-    .hero-meta-value { font-size:0.85rem; font-weight:500; color:var(--text-muted); }
-    .hero-meta-divider { width:1px; height:32px; background:var(--border); }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-    #heroCanvas { position:absolute; inset:0; z-index:1; pointer-events:none; }
+    .project-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 100px;
+      overflow: hidden;
+    }
+
+    .project-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 156, 255, 0.04), transparent), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(201, 148, 26, 0.03), transparent);
+    }
+
+    .hero-doodles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-doodle {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1.2s var(--ease-out);
+    }
+
+    .hero-doodle.is-visible {
+      opacity: 1;
+    }
+
+    .hero-doodle--star {
+      top: 14%;
+      left: 18%;
+    }
+
+    .hero-doodle--star svg path {
+      stroke: var(--accent-mustard);
+      stroke-width: 0.8;
+    }
+
+    .hero-doodle--cross {
+      bottom: 28%;
+      left: 14%;
+    }
+
+    .hero-doodle--cross svg line {
+      stroke: var(--accent-teal);
+      stroke-width: 1;
+      opacity: 0.5;
+    }
+
+    .hero-doodle--ring {
+      top: 20%;
+      right: 20%;
+    }
+
+    .hero-doodle--ring svg circle {
+      stroke: var(--accent-beige);
+      stroke-width: 1;
+      opacity: 0.4;
+    }
+
+    .hero-doodle--arrow {
+      bottom: 24%;
+      right: 16%;
+    }
+
+    .hero-doodle--arrow svg path {
+      stroke: var(--accent-blue);
+      stroke-width: 1;
+      opacity: 0.5;
+    }
+
+    .hero-doodle--dots {
+      top: 55%;
+      left: 20%;
+    }
+
+    .hero-doodle--dots svg circle {
+      fill: var(--accent-beige);
+      opacity: 0.3;
+    }
+
+    .hero-doodle--annotation {
+      top: 28%;
+      right: 10%;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 0.8rem;
+      color: var(--accent-beige);
+      transform: rotate(-4deg);
+      white-space: nowrap;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 720px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s var(--ease-out) 0.3s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent-mustard);
+      opacity: 0.5;
+    }
+
+    .hero-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s var(--ease-out) 0.5s forwards;
+    }
+
+    .hero-title span {
+      font-style: italic;
+      color: var(--accent-mustard);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s var(--ease-out) 0.7s forwards;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s var(--ease-out) 0.9s forwards;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-meta-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .hero-meta-value {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--border);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
 
     /* Section headers */
-    .section-header { margin-bottom:64px; }
-    .section-eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:12px; }
-    .section-title { font-family:'Instrument Serif',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:400; line-height:1.15; letter-spacing:-0.01em; margin-bottom:12px; }
-    .section-subtitle { font-size:1rem; color:var(--text-muted); line-height:1.6; max-width:540px; }
-    .section-connector { height:1px; background:linear-gradient(90deg, transparent, var(--border), transparent); max-width:200px; margin:0 auto; opacity:0.5; }
+    .section-header {
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 540px;
+    }
+
+    .section-connector {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      max-width: 200px;
+      margin: 0 auto;
+      opacity: 0.5;
+    }
 
     /* Overview */
-    .overview-section { padding:100px 24px 0; position:relative; }
-    .overview-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
-    .overview-statement { font-family:'Instrument Serif',serif; font-size:clamp(1.5rem,3vw,2.2rem); line-height:1.4; color:var(--text); position:sticky; top:120px; }
-    .overview-statement em { font-style:italic; color:var(--accent-mustard); }
-    .overview-details { display:flex; flex-direction:column; gap:48px; }
-    .overview-block h3 { font-size:0.75rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:14px; }
-    .overview-block p { font-size:1rem; line-height:1.75; color:var(--text-muted); }
-    .overview-block ul { list-style:none; padding:0; }
-    .overview-block li { font-size:0.95rem; line-height:1.8; color:var(--text-muted); padding-left:20px; position:relative; }
-    .overview-block li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; background:var(--accent-mustard); opacity:0.6; }
+    .overview-section {
+      padding: 100px 24px 0;
+      position: relative;
+    }
+
+    .overview-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .overview-statement {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.4;
+      color: var(--text);
+      position: sticky;
+      top: 120px;
+    }
+
+    .overview-statement em {
+      font-style: italic;
+      color: var(--accent-mustard);
+    }
+
+    .overview-details {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .overview-block h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .overview-block p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    .overview-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .overview-block li {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .overview-block li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-mustard);
+      opacity: 0.6;
+    }
 
     /* Showcase (shared shell) */
-    .showcase-section { padding:120px 24px; position:relative; background:linear-gradient(to bottom, var(--bg) 0%, var(--bg-elevated) 30%, var(--bg-elevated) 70%, var(--bg) 100%); overflow:hidden; }
-    .showcase-wrapper { max-width:1400px; margin:0 auto; }
-    .showcase-header { text-align:center; margin-bottom:80px; }
-    .showcase-header .section-title { font-size:clamp(2.5rem,5vw,4rem); }
-    .showcase-header .section-subtitle { font-size:1.1rem; max-width:600px; margin:0 auto; }
+    .showcase-section {
+      padding: 120px 24px;
+      position: relative;
+      background: linear-gradient(to bottom, var(--bg) 0%, var(--bg-elevated) 30%, var(--bg-elevated) 70%, var(--bg) 100%);
+      overflow: hidden;
+    }
+
+    .showcase-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .showcase-header .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .showcase-header .section-subtitle {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
     /* Browser / web showcase */
-    .browser-stage-3d { position:relative; perspective:2400px; perspective-origin:center center; margin-bottom:60px; }
-    .browser-container { position:relative; transform-style:preserve-3d; transition:transform 0.6s var(--ease-out); display:flex; align-items:center; justify-content:center; min-height:600px; }
-    .browser-showcase-main { position:relative; width:820px; max-width:88vw; z-index:10; transform-style:preserve-3d; transition:all 0.8s var(--ease-out); }
+    .browser-stage-3d {
+      position: relative;
+      perspective: 2400px;
+      perspective-origin: center center;
+      margin-bottom: 60px;
+    }
 
-    .browser-window { position:relative; width:100%; background:linear-gradient(145deg, #23232f, #15151d); border-radius:16px; overflow:hidden; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 60px 140px rgba(0,0,0,0.75), 0 0 120px rgba(201,148,26,0.1), inset 0 1px 0 rgba(255,255,255,0.08); transition:all 0.8s var(--ease-out); animation:deviceFloat 6s ease-in-out infinite; }
-    .browser-window::before { content:''; position:absolute; inset:-20px; background:radial-gradient(circle at 50% 50%, rgba(201,148,26,0.15), transparent 70%); filter:blur(40px); opacity:0; transition:opacity 0.6s; z-index:-1; }
-    .browser-window:hover::before { opacity:1; }
-    @keyframes deviceFloat { 0%,100% { transform:translateY(0) rotateY(0deg); } 25% { transform:translateY(-10px) rotateY(1.5deg); } 50% { transform:translateY(-14px) rotateY(0deg); } 75% { transform:translateY(-10px) rotateY(-1.5deg); } }
+    .browser-container {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s var(--ease-out);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 600px;
+    }
 
-    .browser-titlebar { display:flex; align-items:center; gap:18px; padding:14px 18px; background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); border-bottom:1px solid rgba(255,255,255,0.07); }
-    .browser-dots { display:flex; gap:8px; flex-shrink:0; }
-    .browser-dot { width:11px; height:11px; border-radius:50%; opacity:0.85; }
-    .browser-dot--red { background:#ff5f57; }
-    .browser-dot--yellow { background:#febc2e; }
-    .browser-dot--green { background:#28c840; }
-    .browser-addressbar { flex:1; display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:999px; padding:7px 16px; overflow:hidden; }
-    .browser-addressbar svg { flex-shrink:0; color:var(--accent-sage); opacity:0.8; }
-    .browser-addressbar span { font-size:0.75rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .browser-showcase-main {
+      position: relative;
+      width: 820px;
+      max-width: 88vw;
+      z-index: 10;
+      transform-style: preserve-3d;
+      transition: all 0.8s var(--ease-out);
+    }
 
-    .browser-screen { position:relative; width:100%; aspect-ratio:16/10; background:#000; overflow:hidden; }
-    .browser-screen img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transition:all 0.8s var(--ease-out); filter:brightness(1.05) contrast(1.08); }
-    .screen-glare { position:absolute; inset:0; background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.02) 25%, transparent 50%, rgba(255,255,255,0.01) 75%, transparent 100%); pointer-events:none; z-index:2; }
-    .screen-glow { position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,148,26,0.05) 0%, transparent 40%, transparent 60%, rgba(124,156,255,0.05) 100%); pointer-events:none; z-index:3; mix-blend-mode:screen; opacity:0.8; }
+    .browser-window {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(145deg, #23232f, #15151d);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 60px 140px rgba(0, 0, 0, 0.75), 0 0 120px rgba(201, 148, 26, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: all 0.8s var(--ease-out);
+      animation: deviceFloat 6s ease-in-out infinite;
+    }
 
-    .browser-base { width:88%; height:14px; margin:0 auto; background:linear-gradient(180deg, #2c2c38, #17171e); border-radius:0 0 10px 10px; position:relative; box-shadow:0 18px 40px rgba(0,0,0,0.5); }
-    .browser-base::after { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:70px; height:5px; background:rgba(255,255,255,0.07); border-radius:0 0 6px 6px; }
+    .browser-window::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle at 50% 50%, rgba(201, 148, 26, 0.15), transparent 70%);
+      filter: blur(40px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      z-index: -1;
+    }
 
-    .browser-side-container { position:absolute; top:44%; width:460px; transition:all 0.8s var(--ease-out); }
-    .browser-side-container.left { left:2%; transform:translateY(-50%) rotateY(32deg) scale(0.72); opacity:0.22; filter:blur(3px); }
-    .browser-side-container.right { right:2%; transform:translateY(-50%) rotateY(-32deg) scale(0.72); opacity:0.22; filter:blur(3px); }
-    .browser-side-container .browser-window { animation:none; }
+    .browser-window:hover::before {
+      opacity: 1;
+    }
 
-    .phone-info-showcase { position:relative; max-width:700px; margin:0 auto; padding:40px 50px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:28px; backdrop-filter:blur(30px); transition:all 0.6s var(--ease-out); text-align:center; }
-    .phone-info-showcase::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(201,148,26,0.08) 0%, transparent 50%, rgba(124,156,255,0.08) 100%); border-radius:28px; opacity:0; transition:opacity 0.6s; }
-    .phone-info-showcase:hover { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.12); transform:translateY(-5px); box-shadow:0 30px 80px rgba(0,0,0,0.4); }
-    .phone-info-showcase:hover::before { opacity:1; }
+    @keyframes deviceFloat {
 
-    .info-label { font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:12px; }
-    .info-title { font-family:'Instrument Serif',serif; font-size:2.2rem; font-weight:400; line-height:1.2; margin-bottom:12px; color:var(--text); }
-    .info-description { font-size:1rem; line-height:1.7; color:var(--text-muted); }
+      0%,
+      100% {
+        transform: translateY(0) rotateY(0deg);
+      }
 
-    .showcase-controls { display:flex; align-items:center; justify-content:center; gap:24px; margin-top:50px; }
-    .control-btn { width:56px; height:56px; border-radius:50%; border:2px solid var(--border); background:var(--surface); color:var(--text); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.4s var(--ease-spring); backdrop-filter:blur(20px); position:relative; overflow:hidden; }
-    .control-btn::before { content:''; position:absolute; inset:0; background:radial-gradient(circle, rgba(201,148,26,0.2), transparent); opacity:0; transition:opacity 0.4s; }
-    .control-btn:hover { border-color:var(--accent-mustard); background:rgba(201,148,26,0.1); transform:scale(1.1); box-shadow:0 0 40px rgba(201,148,26,0.3), 0 10px 30px rgba(0,0,0,0.3); }
-    .control-btn:hover::before { opacity:1; }
-    .control-btn:active { transform:scale(0.95); }
-    .control-btn svg { position:relative; z-index:1; }
+      25% {
+        transform: translateY(-10px) rotateY(1.5deg);
+      }
 
-    .dot-navigation { display:flex; gap:12px; align-items:center; }
-    .nav-dot { width:10px; height:10px; border-radius:50%; background:var(--border); cursor:pointer; transition:all 0.4s var(--ease-spring); position:relative; }
-    .nav-dot::before { content:''; position:absolute; inset:-8px; border-radius:50%; background:radial-gradient(circle, rgba(201,148,26,0.2), transparent); opacity:0; transition:opacity 0.4s; }
-    .nav-dot:hover { background:var(--text-muted); transform:scale(1.2); }
-    .nav-dot.active { background:var(--accent-mustard); width:36px; border-radius:5px; box-shadow:0 0 20px rgba(201,148,26,0.5), 0 0 40px rgba(201,148,26,0.3); }
-    .nav-dot.active::before { opacity:1; }
-    .progress-text { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:var(--text-dim); letter-spacing:0.1em; margin-top:20px; text-align:center; }
+      50% {
+        transform: translateY(-14px) rotateY(0deg);
+      }
+
+      75% {
+        transform: translateY(-10px) rotateY(-1.5deg);
+      }
+    }
+
+    .browser-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .browser-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      opacity: 0.85;
+    }
+
+    .browser-dot--red {
+      background: #ff5f57;
+    }
+
+    .browser-dot--yellow {
+      background: #febc2e;
+    }
+
+    .browser-dot--green {
+      background: #28c840;
+    }
+
+    .browser-addressbar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 999px;
+      padding: 7px 16px;
+      overflow: hidden;
+    }
+
+    .browser-addressbar svg {
+      flex-shrink: 0;
+      color: var(--accent-sage);
+      opacity: 0.8;
+    }
+
+    .browser-addressbar span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .browser-screen {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .browser-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: all 0.8s var(--ease-out);
+      filter: brightness(1.05) contrast(1.08);
+    }
+
+    .screen-glare {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.02) 25%, transparent 50%, rgba(255, 255, 255, 0.01) 75%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .screen-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201, 148, 26, 0.05) 0%, transparent 40%, transparent 60%, rgba(124, 156, 255, 0.05) 100%);
+      pointer-events: none;
+      z-index: 3;
+      mix-blend-mode: screen;
+      opacity: 0.8;
+    }
+
+    .browser-base {
+      width: 88%;
+      height: 14px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #2c2c38, #17171e);
+      border-radius: 0 0 10px 10px;
+      position: relative;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .browser-base::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 0 0 6px 6px;
+    }
+
+    .browser-side-container {
+      position: absolute;
+      top: 44%;
+      width: 460px;
+      transition: all 0.8s var(--ease-out);
+    }
+
+    .browser-side-container.left {
+      left: 2%;
+      transform: translateY(-50%) rotateY(32deg) scale(0.72);
+      opacity: 0.22;
+      filter: blur(3px);
+    }
+
+    .browser-side-container.right {
+      right: 2%;
+      transform: translateY(-50%) rotateY(-32deg) scale(0.72);
+      opacity: 0.22;
+      filter: blur(3px);
+    }
+
+    .browser-side-container .browser-window {
+      animation: none;
+    }
+
+    .phone-info-showcase {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 50px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      backdrop-filter: blur(30px);
+      transition: all 0.6s var(--ease-out);
+      text-align: center;
+    }
+
+    .phone-info-showcase::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201, 148, 26, 0.08) 0%, transparent 50%, rgba(124, 156, 255, 0.08) 100%);
+      border-radius: 28px;
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+
+    .phone-info-showcase:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-5px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+    }
+
+    .phone-info-showcase:hover::before {
+      opacity: 1;
+    }
+
+    .info-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 12px;
+    }
+
+    .info-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .info-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .showcase-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .control-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s var(--ease-spring);
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .control-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(201, 148, 26, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .control-btn:hover {
+      border-color: var(--accent-mustard);
+      background: rgba(201, 148, 26, 0.1);
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(201, 148, 26, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .control-btn:hover::before {
+      opacity: 1;
+    }
+
+    .control-btn:active {
+      transform: scale(0.95);
+    }
+
+    .control-btn svg {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dot-navigation {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: all 0.4s var(--ease-spring);
+      position: relative;
+    }
+
+    .nav-dot::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 148, 26, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .nav-dot:hover {
+      background: var(--text-muted);
+      transform: scale(1.2);
+    }
+
+    .nav-dot.active {
+      background: var(--accent-mustard);
+      width: 36px;
+      border-radius: 5px;
+      box-shadow: 0 0 20px rgba(201, 148, 26, 0.5), 0 0 40px rgba(201, 148, 26, 0.3);
+    }
+
+    .nav-dot.active::before {
+      opacity: 1;
+    }
+
+    .progress-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      margin-top: 20px;
+      text-align: center;
+    }
 
     /* Features */
-    .features-section { padding:0 24px 100px; position:relative; background:var(--bg); }
-    .project-section-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-    .detail-card { background:var(--bg-elevated); border:1px solid var(--border); border-radius:20px; padding:40px 36px; transition:all 0.5s var(--ease-out); position:relative; overflow:hidden; }
-    .detail-card::before { content:''; position:absolute; top:0; left:0; right:0; height:0; background:linear-gradient(90deg, var(--accent-mustard), var(--accent-blue)); opacity:0.3; transition:height 0.4s var(--ease-out); }
-    .detail-card:hover::before { height:2px; }
-    .detail-card:hover { border-color:var(--border-hover); background:rgba(255,255,255,0.02); transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.3); }
-    .detail-card-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
-    .detail-card h3 { font-family:'Instrument Serif',serif; font-size:1.4rem; font-weight:400; margin-bottom:16px; color:var(--text); }
-    .detail-card p { font-size:0.95rem; line-height:1.75; color:var(--text-muted); }
+    .features-section {
+      padding: 0 24px 100px;
+      position: relative;
+      background: var(--bg);
+    }
+
+    .project-section-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .detail-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      transition: all 0.5s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detail-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(90deg, var(--accent-mustard), var(--accent-blue));
+      opacity: 0.3;
+      transition: height 0.4s var(--ease-out);
+    }
+
+    .detail-card:hover::before {
+      height: 2px;
+    }
+
+    .detail-card:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.02);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .detail-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .detail-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .detail-card p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
 
     /* Tech */
-    .tech-section { padding:0 24px 100px; background:var(--bg); }
-    .tech-wrapper { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
-    .tech-list { display:flex; flex-wrap:wrap; gap:10px; }
-    .tech-tag { display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:999px; background:var(--surface); border:1px solid var(--border); font-size:0.85rem; font-weight:500; color:var(--text-muted); transition:all 0.3s var(--ease-out); cursor:default; }
-    .tech-tag:hover { border-color:var(--border-hover); background:var(--surface-hover); color:var(--text); transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
-    .tech-tag-dot { width:6px; height:6px; border-radius:50%; background:var(--accent-mustard); animation:dotPulse 2s ease-in-out infinite; }
-    @keyframes dotPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.8); } }
-    .repo-card { display:flex; align-items:center; justify-content:space-between; padding:28px 32px; border-radius:16px; background:var(--surface); border:1px solid var(--border); transition:all 0.5s var(--ease-out); gap:20px; flex-wrap:wrap; }
-    .repo-card:hover { border-color:rgba(124,156,255,0.2); background:rgba(124,156,255,0.04); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.25); }
-    .repo-card h3 { font-size:1.1rem; font-weight:600; margin-bottom:4px; }
-    .repo-card p { font-size:0.85rem; color:var(--text-muted); }
-    .repo-links { display:flex; gap:12px; flex-wrap:wrap; }
-    .repo-link { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:0.85rem; font-weight:600; text-decoration:none; transition:all 0.3s var(--ease-out); }
-    .repo-link:hover { border-color:rgba(124,156,255,0.3); background:rgba(124,156,255,0.08); box-shadow:0 8px 24px rgba(124,156,255,0.08); transform:translateX(4px); }
-    .repo-link svg { transition:transform 0.3s var(--ease-out); }
-    .repo-link:hover svg { transform:translateX(3px); }
-    .repo-link--demo { border-color:rgba(79,209,197,0.2); }
-    .repo-link--demo:hover { border-color:rgba(79,209,197,0.35); background:rgba(79,209,197,0.08); box-shadow:0 8px 24px rgba(79,209,197,0.1); }
+    .tech-section {
+      padding: 0 24px 100px;
+      background: var(--bg);
+    }
+
+    .tech-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.3s var(--ease-out);
+      cursor: default;
+    }
+
+    .tech-tag:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      color: var(--text);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .tech-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-mustard);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    .repo-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 32px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.5s var(--ease-out);
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .repo-card:hover {
+      border-color: rgba(124, 156, 255, 0.2);
+      background: rgba(124, 156, 255, 0.04);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .repo-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .repo-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .repo-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .repo-link:hover {
+      border-color: rgba(124, 156, 255, 0.3);
+      background: rgba(124, 156, 255, 0.08);
+      box-shadow: 0 8px 24px rgba(124, 156, 255, 0.08);
+      transform: translateX(4px);
+    }
+
+    .repo-link svg {
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .repo-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .repo-link--demo {
+      border-color: rgba(79, 209, 197, 0.2);
+    }
+
+    .repo-link--demo:hover {
+      border-color: rgba(79, 209, 197, 0.35);
+      background: rgba(79, 209, 197, 0.08);
+      box-shadow: 0 8px 24px rgba(79, 209, 197, 0.1);
+    }
 
     /* Future */
-    .future-section { padding:0 24px 100px; background:var(--bg); }
-    .future-wrapper { max-width:1200px; margin:0 auto; }
-    .future-list { list-style:none; padding:0; display:grid; grid-template-columns:repeat(2,1fr); gap:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; }
-    .future-item { padding:24px 32px; border-bottom:1px solid var(--border); border-right:1px solid var(--border); display:flex; align-items:flex-start; gap:16px; transition:all 0.4s var(--ease-out); position:relative; }
-    .future-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:0; background:linear-gradient(to bottom, var(--accent-mustard), var(--accent-blue)); opacity:0.2; transition:width 0.4s var(--ease-out); }
-    .future-item:hover::before { width:3px; }
-    .future-item:hover { background:var(--surface); padding-left:36px; }
-    .future-item:nth-child(2n) { border-right:none; }
-    .future-item:nth-last-child(-n+2) { border-bottom:none; }
-    .future-item-number { font-family:'Instrument Serif',serif; font-size:1.4rem; font-style:italic; color:var(--accent-mustard); opacity:0.6; min-width:32px; transition:all 0.3s var(--ease-out); }
-    .future-item:hover .future-item-number { opacity:1; transform:scale(1.1); }
-    .future-item-text { font-size:0.95rem; line-height:1.6; color:var(--text-muted); }
+    .future-section {
+      padding: 0 24px 100px;
+      background: var(--bg);
+    }
+
+    .future-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .future-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .future-item {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all 0.4s var(--ease-out);
+      position: relative;
+    }
+
+    .future-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: linear-gradient(to bottom, var(--accent-mustard), var(--accent-blue));
+      opacity: 0.2;
+      transition: width 0.4s var(--ease-out);
+    }
+
+    .future-item:hover::before {
+      width: 3px;
+    }
+
+    .future-item:hover {
+      background: var(--surface);
+      padding-left: 36px;
+    }
+
+    .future-item:nth-child(2n) {
+      border-right: none;
+    }
+
+    .future-item:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    .future-item-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--accent-mustard);
+      opacity: 0.6;
+      min-width: 32px;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .future-item:hover .future-item-number {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .future-item-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
 
     /* Recs */
-    .rec-section { padding:0 24px 120px; background:var(--bg); }
-    .rec-wrapper { max-width:1200px; margin:0 auto; }
-    .rec-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-    .rec-card { display:block; padding:32px; border-radius:16px; background:var(--surface); border:1px solid var(--border); text-decoration:none; color:inherit; transition:all 0.5s var(--ease-out); position:relative; overflow:hidden; }
-    .rec-card::before { content:''; position:absolute; top:0; left:0; right:0; height:0; background:linear-gradient(90deg, var(--accent-mustard), var(--accent-blue)); opacity:0.4; transition:height 0.4s var(--ease-out); }
-    .rec-card:hover::before { height:3px; }
-    .rec-card:hover { border-color:var(--border-hover); background:var(--surface-hover); transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.35); }
-    .rec-card-tag { font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent-mustard); margin-bottom:12px; }
-    .rec-card h3 { font-family:'Instrument Serif',serif; font-size:1.4rem; font-weight:400; margin-bottom:8px; }
-    .rec-card p { font-size:0.9rem; color:var(--text-muted); line-height:1.5; }
-    .rec-card-arrow { margin-top:20px; display:inline-flex; align-items:center; gap:6px; font-size:0.8rem; font-weight:600; color:var(--text-dim); transition:all 0.3s var(--ease-out); }
-    .rec-card:hover .rec-card-arrow { color:var(--accent-mustard); gap:10px; }
+    .rec-section {
+      padding: 0 24px 120px;
+      background: var(--bg);
+    }
+
+    .rec-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .rec-card {
+      display: block;
+      padding: 32px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.5s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rec-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: linear-gradient(90deg, var(--accent-mustard), var(--accent-blue));
+      opacity: 0.4;
+      transition: height 0.4s var(--ease-out);
+    }
+
+    .rec-card:hover::before {
+      height: 3px;
+    }
+
+    .rec-card:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .rec-card-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-mustard);
+      margin-bottom: 12px;
+    }
+
+    .rec-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .rec-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .rec-card-arrow {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .rec-card:hover .rec-card-arrow {
+      color: var(--accent-mustard);
+      gap: 10px;
+    }
 
     /* Footer */
-    .project-footer { padding:80px 24px; text-align:center; border-top:1px solid var(--border); background:var(--bg); position:relative; }
-    .project-footer h2 { font-family:'Instrument Serif',serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:400; margin-bottom:32px; }
-    .project-footer h2 em { font-style:italic; color:var(--accent-mustard); }
-    .footer-links { display:flex; justify-content:center; gap:32px; margin-bottom:40px; }
-    .footer-links a { font-size:0.8rem; color:var(--text-dim); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s; position:relative; }
-    .footer-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--accent-mustard); transition:width 0.3s var(--ease-out); }
-    .footer-links a:hover { color:var(--text); }
-    .footer-links a:hover::after { width:100%; }
-    .copyright { font-size:0.8rem; color:var(--text-dim); }
+    .project-footer {
+      padding: 80px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      position: relative;
+    }
+
+    .project-footer h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+
+    .project-footer h2 em {
+      font-style: italic;
+      color: var(--accent-mustard);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-mustard);
+      transition: width 0.3s var(--ease-out);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
 
     /* Doodles */
-    .doodle-zone { position:relative; }
-    .page-doodle { position:absolute; pointer-events:none; opacity:0; transition:opacity 1s var(--ease-out), transform 1s var(--ease-out); z-index:1; }
-    .page-doodle.is-visible { opacity:1; }
-    .page-doodle--chat-bubble { top:12%; right:6%; color:var(--accent-coral); animation:doodleBob 4s ease-in-out infinite; }
-    .page-doodle--paper-plane { bottom:18%; left:4%; color:var(--accent-blue); animation:doodleBob 5s ease-in-out infinite 0.5s; }
-    .page-doodle--users { top:45%; right:3%; color:var(--accent-teal); animation:doodleBob 4.5s ease-in-out infinite 1s; }
-    .page-doodle--fingerprint { top:8%; left:8%; color:var(--accent-sage); animation:doodleSpin 8s linear infinite; }
-    .page-doodle--shield { bottom:20%; right:6%; color:var(--accent-blue); animation:doodleBob 4s ease-in-out infinite 0.3s; }
-    .page-doodle--wifi { top:30%; right:4%; color:var(--accent-mustard); animation:doodlePulse 3s ease-in-out infinite; }
-    .page-doodle--brackets { top:8%; right:8%; color:var(--accent-lavender); animation:doodleBob 4s ease-in-out infinite; }
-    .page-doodle--bug { bottom:12%; left:5%; color:var(--accent-rose); animation:doodleWiggle 3s ease-in-out infinite; }
-    .page-doodle--database { top:50%; right:4%; color:var(--accent-teal); animation:doodleBob 5s ease-in-out infinite 0.7s; }
-    .page-doodle--hammer { top:10%; left:5%; color:var(--accent-beige); animation:doodleWiggle 4s ease-in-out infinite; }
-    .page-doodle--gear { bottom:15%; right:7%; color:var(--accent-mustard); animation:doodleSpin 10s linear infinite; }
-    .page-doodle--terminal { top:40%; right:3%; color:var(--accent-sage); animation:doodleBlink 2s ease-in-out infinite; }
-    .page-doodle--rocket { top:6%; right:8%; color:var(--accent-coral); animation:doodleBob 3s ease-in-out infinite; }
-    .page-doodle--chart { bottom:10%; left:5%; color:var(--accent-blue); animation:doodleGrow 3s ease-in-out infinite; }
-    .page-doodle--lightbulb { top:35%; left:3%; color:var(--accent-mustard); animation:doodlePulse 2.5s ease-in-out infinite; }
-    .page-doodle--link { top:8%; left:7%; color:var(--accent-teal); animation:doodleWiggle 4s ease-in-out infinite; }
-    .page-doodle--compass { bottom:12%; right:6%; color:var(--accent-beige); animation:doodleSpin 12s linear infinite; }
-    .page-doodle--bookmark { top:30%; right:4%; color:var(--accent-rose); animation:doodleBob 4s ease-in-out infinite 0.5s; }
-    @keyframes doodleBob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
-    @keyframes doodleSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
-    @keyframes doodleWiggle { 0%,100% { transform:rotate(0deg); } 25% { transform:rotate(5deg); } 75% { transform:rotate(-5deg); } }
-    @keyframes doodlePulse { 0%,100% { opacity:0.4; transform:scale(1); } 50% { opacity:0.8; transform:scale(1.15); } }
-    @keyframes doodleGrow { 0%,100% { transform:scaleY(1); } 50% { transform:scaleY(1.2); } }
-    @keyframes doodleBlink { 0%,100% { opacity:0.3; } 50% { opacity:0.7; } }
+    .doodle-zone {
+      position: relative;
+    }
+
+    .page-doodle {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+      z-index: 1;
+    }
+
+    .page-doodle.is-visible {
+      opacity: 1;
+    }
+
+    .page-doodle--chat-bubble {
+      top: 12%;
+      right: 6%;
+      color: var(--accent-coral);
+      animation: doodleBob 4s ease-in-out infinite;
+    }
+
+    .page-doodle--paper-plane {
+      bottom: 18%;
+      left: 4%;
+      color: var(--accent-blue);
+      animation: doodleBob 5s ease-in-out infinite 0.5s;
+    }
+
+    .page-doodle--users {
+      top: 45%;
+      right: 3%;
+      color: var(--accent-teal);
+      animation: doodleBob 4.5s ease-in-out infinite 1s;
+    }
+
+    .page-doodle--fingerprint {
+      top: 8%;
+      left: 8%;
+      color: var(--accent-sage);
+      animation: doodleSpin 8s linear infinite;
+    }
+
+    .page-doodle--shield {
+      bottom: 20%;
+      right: 6%;
+      color: var(--accent-blue);
+      animation: doodleBob 4s ease-in-out infinite 0.3s;
+    }
+
+    .page-doodle--wifi {
+      top: 30%;
+      right: 4%;
+      color: var(--accent-mustard);
+      animation: doodlePulse 3s ease-in-out infinite;
+    }
+
+    .page-doodle--brackets {
+      top: 8%;
+      right: 8%;
+      color: var(--accent-lavender);
+      animation: doodleBob 4s ease-in-out infinite;
+    }
+
+    .page-doodle--bug {
+      bottom: 12%;
+      left: 5%;
+      color: var(--accent-rose);
+      animation: doodleWiggle 3s ease-in-out infinite;
+    }
+
+    .page-doodle--database {
+      top: 50%;
+      right: 4%;
+      color: var(--accent-teal);
+      animation: doodleBob 5s ease-in-out infinite 0.7s;
+    }
+
+    .page-doodle--hammer {
+      top: 10%;
+      left: 5%;
+      color: var(--accent-beige);
+      animation: doodleWiggle 4s ease-in-out infinite;
+    }
+
+    .page-doodle--gear {
+      bottom: 15%;
+      right: 7%;
+      color: var(--accent-mustard);
+      animation: doodleSpin 10s linear infinite;
+    }
+
+    .page-doodle--terminal {
+      top: 40%;
+      right: 3%;
+      color: var(--accent-sage);
+      animation: doodleBlink 2s ease-in-out infinite;
+    }
+
+    .page-doodle--rocket {
+      top: 6%;
+      right: 8%;
+      color: var(--accent-coral);
+      animation: doodleBob 3s ease-in-out infinite;
+    }
+
+    .page-doodle--chart {
+      bottom: 10%;
+      left: 5%;
+      color: var(--accent-blue);
+      animation: doodleGrow 3s ease-in-out infinite;
+    }
+
+    .page-doodle--lightbulb {
+      top: 35%;
+      left: 3%;
+      color: var(--accent-mustard);
+      animation: doodlePulse 2.5s ease-in-out infinite;
+    }
+
+    .page-doodle--link {
+      top: 8%;
+      left: 7%;
+      color: var(--accent-teal);
+      animation: doodleWiggle 4s ease-in-out infinite;
+    }
+
+    .page-doodle--compass {
+      bottom: 12%;
+      right: 6%;
+      color: var(--accent-beige);
+      animation: doodleSpin 12s linear infinite;
+    }
+
+    .page-doodle--bookmark {
+      top: 30%;
+      right: 4%;
+      color: var(--accent-rose);
+      animation: doodleBob 4s ease-in-out infinite 0.5s;
+    }
+
+    @keyframes doodleBob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes doodleSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes doodleWiggle {
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(5deg);
+      }
+
+      75% {
+        transform: rotate(-5deg);
+      }
+    }
+
+    @keyframes doodlePulse {
+
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scale(1.15);
+      }
+    }
+
+    @keyframes doodleGrow {
+
+      0%,
+      100% {
+        transform: scaleY(1);
+      }
+
+      50% {
+        transform: scaleY(1.2);
+      }
+    }
+
+    @keyframes doodleBlink {
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+    }
 
     @media (max-width:1200px) {
-      .browser-side-container { display:none; }
-      .browser-showcase-main { width:90vw; }
-      .overview-grid { grid-template-columns:1fr; gap:48px; }
-      .overview-statement { position:relative; top:0; }
-      .project-section-grid { grid-template-columns:1fr; }
-      .tech-wrapper { grid-template-columns:1fr; gap:48px; }
-      .future-list { grid-template-columns:1fr; }
-      .future-item:nth-child(2n) { border-right:1px solid var(--border); }
-      .future-item:nth-last-child(-n+2) { border-bottom:1px solid var(--border); }
-      .future-item:last-child { border-bottom:none; }
-      .rec-grid { grid-template-columns:1fr; }
-      .page-doodle { display:none; }
+      .browser-side-container {
+        display: none;
+      }
+
+      .browser-showcase-main {
+        width: 90vw;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .overview-statement {
+        position: relative;
+        top: 0;
+      }
+
+      .project-section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-wrapper {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .future-list {
+        grid-template-columns: 1fr;
+      }
+
+      .future-item:nth-child(2n) {
+        border-right: 1px solid var(--border);
+      }
+
+      .future-item:nth-last-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .future-item:last-child {
+        border-bottom: none;
+      }
+
+      .rec-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-doodle {
+        display: none;
+      }
     }
+
     @media (max-width:768px) {
-      .project-hero { min-height:auto; padding:100px 20px 60px; }
-      .showcase-section { padding:80px 20px; }
-      .browser-container { min-height:auto; }
-      .browser-titlebar { padding:10px 14px; gap:12px; }
-      .browser-addressbar { padding:5px 12px; }
-      .phone-info-showcase { padding:30px; }
-      .info-title { font-size:1.8rem; }
-      .control-btn { width:52px; height:52px; }
-      .hero-meta { gap:20px; }
-      .hero-meta-divider { display:none; }
-      .overview-section { padding:60px 20px 0; }
-      .features-section { padding:0 20px 60px; }
-      .detail-card { padding:28px 24px; }
-      .future-item { padding:20px 24px; }
-      .repo-card { justify-content:center; text-align:center; }
+      .project-hero {
+        min-height: auto;
+        padding: 100px 20px 60px;
+      }
+
+      .showcase-section {
+        padding: 80px 20px;
+      }
+
+      .browser-container {
+        min-height: auto;
+      }
+
+      .browser-titlebar {
+        padding: 10px 14px;
+        gap: 12px;
+      }
+
+      .browser-addressbar {
+        padding: 5px 12px;
+      }
+
+      .phone-info-showcase {
+        padding: 30px;
+      }
+
+      .info-title {
+        font-size: 1.8rem;
+      }
+
+      .control-btn {
+        width: 52px;
+        height: 52px;
+      }
+
+      .hero-meta {
+        gap: 20px;
+      }
+
+      .hero-meta-divider {
+        display: none;
+      }
+
+      .overview-section {
+        padding: 60px 20px 0;
+      }
+
+      .features-section {
+        padding: 0 20px 60px;
+      }
+
+      .detail-card {
+        padding: 28px 24px;
+      }
+
+      .future-item {
+        padding: 20px 24px;
+      }
+
+      .repo-card {
+        justify-content: center;
+        text-align: center;
+      }
     }
+
     @media (prefers-reduced-motion:reduce) {
-      *,*::before,*::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- ==================== HERO ==================== -->
-<section class="project-hero">
-  <div class="project-hero-bg"></div>
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-doodles" id="hero-doodles">
-    <div class="hero-doodle hero-doodle--star" data-depth="0.3">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" stroke-width="0.8"/></svg>
+  <!-- ==================== HERO ==================== -->
+  <section class="project-hero">
+    <div class="project-hero-bg"></div>
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-doodles" id="hero-doodles">
+      <div class="hero-doodle hero-doodle--star" data-depth="0.3">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" stroke-width="0.8" />
+        </svg>
+      </div>
+      <div class="hero-doodle hero-doodle--cross" data-depth="1.5">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="1" />
+          <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="hero-doodle hero-doodle--ring" data-depth="0.8">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="hero-doodle hero-doodle--arrow" data-depth="1.2">
+        <svg width="44" height="24" viewBox="0 0 44 24" fill="none">
+          <path d="M4 12h30M32 6l8 6-8 6" stroke="currentColor" stroke-width="1" />
+        </svg>
+      </div>
+      <div class="hero-doodle hero-doodle--dots" data-depth="0.6">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <circle cx="8" cy="8" r="2" fill="currentColor" />
+          <circle cx="22" cy="6" r="1.5" fill="currentColor" />
+          <circle cx="34" cy="12" r="2" fill="currentColor" />
+          <circle cx="12" cy="24" r="1.5" fill="currentColor" />
+          <circle cx="28" cy="28" r="1" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="hero-doodle hero-doodle--annotation" data-depth="0.4">progress, tracked &rarr;</div>
     </div>
-    <div class="hero-doodle hero-doodle--cross" data-depth="1.5">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="1"/><line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="1"/></svg>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Project Showcase</div>
+      <h1 class="hero-title">Green<span>Grid</span></h1>
+      <p class="hero-tagline">A GitHub-connected platform that helps developers track their DSA progress, stay
+        consistent, and turn daily problem solving into a journey they can actually see.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span
+            class="hero-meta-value">Completed</span></div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-meta-item"><span class="hero-meta-label">Platform</span><span
+            class="hero-meta-value">Web</span></div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-meta-item"><span class="hero-meta-label">Year</span><span class="hero-meta-value">2026</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-value">Full-Stack
+            Developer</span></div>
+      </div>
     </div>
-    <div class="hero-doodle hero-doodle--ring" data-depth="0.8">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="currentColor" stroke-width="1"/></svg>
-    </div>
-    <div class="hero-doodle hero-doodle--arrow" data-depth="1.2">
-      <svg width="44" height="24" viewBox="0 0 44 24" fill="none"><path d="M4 12h30M32 6l8 6-8 6" stroke="currentColor" stroke-width="1"/></svg>
-    </div>
-    <div class="hero-doodle hero-doodle--dots" data-depth="0.6">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <circle cx="8" cy="8" r="2" fill="currentColor"/><circle cx="22" cy="6" r="1.5" fill="currentColor"/><circle cx="34" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="24" r="1.5" fill="currentColor"/><circle cx="28" cy="28" r="1" fill="currentColor"/>
+  </section>
+
+  <div class="section-connector"></div>
+
+  <!-- ==================== OVERVIEW ==================== -->
+  <section class="overview-section doodle-zone">
+    <div class="page-doodle page-doodle--chat-bubble" data-depth="0.4">
+      <svg viewBox="0 0 32 28" fill="none">
+        <rect x="1" y="1" width="26" height="20" rx="10" stroke="currentColor" stroke-width="1.2" opacity="0.6" />
+        <path d="M7 21l5 5 2-5" stroke="currentColor" stroke-width="1.2" opacity="0.6" />
+        <line x1="8" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="8" y1="13" x2="14" y2="13" stroke="currentColor" stroke-width="1" opacity="0.4" />
       </svg>
     </div>
-    <div class="hero-doodle hero-doodle--annotation" data-depth="0.4">progress, tracked &rarr;</div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Project Showcase</div>
-    <h1 class="hero-title">Green<span>Grid</span></h1>
-    <p class="hero-tagline">A developer productivity platform for tracking DSA problem-solving progress&mdash;GitHub-authenticated, dashboard-driven, and built to keep your streak alive.</p>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-value">Completed</span></div>
-      <div class="hero-meta-divider"></div>
-      <div class="hero-meta-item"><span class="hero-meta-label">Platform</span><span class="hero-meta-value">Web</span></div>
-      <div class="hero-meta-divider"></div>
-      <div class="hero-meta-item"><span class="hero-meta-label">Year</span><span class="hero-meta-value">2025</span></div>
-      <div class="hero-meta-divider"></div>
-      <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-value">Full-Stack</span></div>
+    <div class="page-doodle page-doodle--paper-plane" data-depth="0.6">
+      <svg viewBox="0 0 28 24" fill="none">
+        <path d="M2 12l24-10-10 10-6 10 2-8-10-2z" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+      </svg>
     </div>
-  </div>
-</section>
-
-<div class="section-connector"></div>
-
-<!-- ==================== OVERVIEW ==================== -->
-<section class="overview-section doodle-zone">
-  <div class="page-doodle page-doodle--chat-bubble" data-depth="0.4">
-    <svg viewBox="0 0 32 28" fill="none"><rect x="1" y="1" width="26" height="20" rx="10" stroke="currentColor" stroke-width="1.2" opacity="0.6"/><path d="M7 21l5 5 2-5" stroke="currentColor" stroke-width="1.2" opacity="0.6"/><line x1="8" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="8" y1="13" x2="14" y2="13" stroke="currentColor" stroke-width="1" opacity="0.4"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--paper-plane" data-depth="0.6">
-    <svg viewBox="0 0 28 24" fill="none"><path d="M2 12l24-10-10 10-6 10 2-8-10-2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--users" data-depth="0.3">
-    <svg viewBox="0 0 30 22" fill="none"><circle cx="10" cy="7" r="5" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="22" cy="7" r="4" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M2 20c0-5 4-8 8-8s6 1 6 1" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M14 20c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
-  </div>
-  <div class="overview-grid">
-    <div class="overview-statement reveal">Think of GreenGrid as <em>GitHub meets a LeetCode tracker</em>&mdash;built to make consistent practice visible.</div>
-    <div class="overview-details">
-      <div class="overview-block reveal reveal-delay-1">
-        <h3>Why I Built It</h3>
-        <p>Practice problems end up scattered across spreadsheets, browser bookmarks, and half-finished notebooks. I wanted one place tied to a developer's actual GitHub identity where solved problems, streaks, and topic coverage are always visible at a glance.</p>
-      </div>
-      <div class="overview-block reveal reveal-delay-2">
-        <h3>What Makes It Different</h3>
-        <p>Sign-in runs entirely through GitHub OAuth, so there's no separate account to manage. A short onboarding flow tailors the dashboard to your goals, and every problem you log feeds a live streak and progress view instead of a static list.</p>
-      </div>
-      <div class="overview-block reveal reveal-delay-3">
-        <h3>Challenges</h3>
-        <ul>
-          <li>Designing a REST API in Spring Boot from the ground up</li>
-          <li>Wiring GitHub OAuth into both frontend and backend</li>
-          <li>Modeling progress and streak data in PostgreSQL</li>
-          <li>Building fast search and filtering across problem sets</li>
-          <li>Containerizing the backend for consistent deploys</li>
-          <li>Coordinating separate deploys across GitHub Pages and Render</li>
-        </ul>
-      </div>
-      <div class="overview-block reveal reveal-delay-4">
-        <h3>Lessons Learned</h3>
-        <ul>
-          <li>Design the API contract before the UI that consumes it</li>
-          <li>OAuth flows need careful handling of edge cases and errors</li>
-          <li>A good onboarding step pays for itself in retention</li>
-          <li>Docker makes environment drift someone else's problem</li>
-          <li>Dashboards should surface trends, not just raw counts</li>
-        </ul>
-      </div>
+    <div class="page-doodle page-doodle--users" data-depth="0.3">
+      <svg viewBox="0 0 30 22" fill="none">
+        <circle cx="10" cy="7" r="5" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <circle cx="22" cy="7" r="4" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M2 20c0-5 4-8 8-8s6 1 6 1" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M14 20c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1" opacity="0.3" />
+      </svg>
     </div>
-  </div>
-</section>
-
-<div class="section-connector"></div>
-
-<!-- ==================== SHOWCASE (WEB) ==================== -->
-<section class="showcase-section doodle-zone">
-  <div class="page-doodle page-doodle--fingerprint" data-depth="0.5">
-    <svg viewBox="0 0 36 36" fill="none"><path d="M18 2C9.7 2 3 8.7 3 17v8" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M18 6c-6.1 0-11 4.9-11 11v10" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M18 10c-3.9 0-7 3.1-7 7v12" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M18 14c-1.7 0-3 1.3-3 3v14" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M18 22c1.1 0 2-.9 2-2" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M33 17c0-8.3-6.7-15-15-15" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M29 17c0-6.1-4.9-11-11-11" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M25 17c0-3.9-3.1-7-7-7" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--shield" data-depth="0.6">
-    <svg viewBox="0 0 28 32" fill="none"><path d="M14 2L4 7v8c0 6 4.3 11.3 10 13 5.7-1.7 10-7 10-13V7L14 2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M10 16l4 4 6-6" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--wifi" data-depth="0.4">
-    <svg viewBox="0 0 30 24" fill="none"><path d="M3 10c5-5 13-5 18 0" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M7 14c3-3 9-3 12 0" stroke="currentColor" stroke-width="1.2" opacity="0.4"/><circle cx="15" cy="19" r="2" fill="currentColor" opacity="0.3"/></svg>
-  </div>
-  <div class="showcase-wrapper">
-    <div class="showcase-header reveal">
-      <div class="section-eyebrow">Platform Walkthrough</div>
-      <h2 class="section-title">Explore the Experience</h2>
-      <p class="section-subtitle">Nine screens that tell the complete story&mdash;from first visit to daily practice, in a premium desktop preview.</p>
-    </div>
-
-    <div class="browser-stage-3d reveal reveal-delay-1">
-      <div class="browser-container" id="browserContainer">
-        <!-- Left Side Browser -->
-        <div class="browser-side-container left" id="leftBrowser">
-          <div class="browser-window">
-            <div class="browser-titlebar">
-              <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span></div>
-              <div class="browser-addressbar">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
-                <span id="leftUrl">greengrid.app</span>
-              </div>
-            </div>
-            <div class="browser-screen">
-              <img id="leftBrowserImg" src="" alt="Previous">
-              <div class="screen-glare"></div><div class="screen-glow"></div>
-            </div>
-          </div>
-          <div class="browser-base"></div>
+    <div class="overview-grid">
+      <div class="overview-statement reveal">Inspired by GitHub's idea of making progress visible, <em>GreenGrid is a
+          place to document your DSA journey from the very first problem and not just celebrate the hundredth.</em>
+      </div>
+      <div class="overview-details">
+        <div class="overview-block reveal reveal-delay-1">
+          <h3>Why I Built It</h3>
+          <p>GreenGrid started as a random thought before I seriously began practicing DSA. I wanted one place where I
+            could log every problem I solved, organize them by topic, and watch my progress grow over time. Rather than
+            trying to remember what I'd practiced, I wanted a simple system that could grow alongside me.</p>
         </div>
-        <!-- Main Browser -->
-        <div class="browser-showcase-main" id="mainBrowser">
-          <div class="browser-window">
-            <div class="browser-titlebar">
-              <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span></div>
-              <div class="browser-addressbar">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
-                <span id="mainUrl">greengrid.app</span>
-              </div>
-            </div>
-            <div class="browser-screen">
-              <img id="mainBrowserImg" src="../assets/images/projects/greengrid/01_Index.png" alt="Landing Page">
-              <div class="screen-glare"></div><div class="screen-glow"></div>
-            </div>
-          </div>
-          <div class="browser-base"></div>
+        <div class="overview-block reveal reveal-delay-2">
+          <h3>What Makes It Different</h3>
+          <p>Instead of creating another username and password, GreenGrid uses GitHub as your identity. A short
+            onboarding flow personalizes the experience, while the dashboard focuses on streaks, topic coverage, and
+            overall progress - making it easy to see how your learning evolves over time.</p>
         </div>
-        <!-- Right Side Browser -->
-        <div class="browser-side-container right" id="rightBrowser">
-          <div class="browser-window">
-            <div class="browser-titlebar">
-              <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span></div>
-              <div class="browser-addressbar">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
-                <span id="rightUrl">greengrid.app</span>
-              </div>
-            </div>
-            <div class="browser-screen">
-              <img id="rightBrowserImg" src="" alt="Next">
-              <div class="screen-glare"></div><div class="screen-glow"></div>
-            </div>
-          </div>
-          <div class="browser-base"></div>
+        <div class="overview-block reveal reveal-delay-3">
+          <h3>Challenges Along the Way</h3>
+          <ul>
+            <li>Building my first complete Spring Boot REST API</li>
+            <li>Implementing GitHub OAuth across the full application</li>
+            <li>Designing a database to track problems, tags, and progress</li>
+            <li>Creating responsive search and filtering features</li>
+            <li>Containerizing the backend with Docker</li>
+            <li>Deploying the frontend and backend independently</li>
+          </ul>
+        </div>
+        <div class="overview-block reveal reveal-delay-4">
+          <h3>What I Learned</h3>
+          <ul>
+            <li>Planning the backend first makes frontend development smoother</li>
+            <li>OAuth involves far more edge cases than it first appears</li>
+            <li>Good dashboards highlight progress, not just statistics</li>
+            <li>Docker creates a more reliable development workflow</li>
+            <li>Small design decisions can make tracking feel more rewarding</li>
+          </ul>
         </div>
       </div>
+
     </div>
+  </section>
 
-    <div class="phone-info-showcase reveal reveal-delay-2">
-      <div class="info-label" id="infoLabel">01 &mdash; Landing</div>
-      <h3 class="info-title" id="infoTitle">Landing Page</h3>
-      <p class="info-description" id="infoDesc">The first impression of GreenGrid&mdash;an overview of what the platform tracks and why it helps.</p>
+  <div class="section-connector"></div>
+
+  <!-- ==================== SHOWCASE (WEB) ==================== -->
+  <section class="showcase-section doodle-zone">
+    <div class="page-doodle page-doodle--fingerprint" data-depth="0.5">
+      <svg viewBox="0 0 36 36" fill="none">
+        <path d="M18 2C9.7 2 3 8.7 3 17v8" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <path d="M18 6c-6.1 0-11 4.9-11 11v10" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M18 10c-3.9 0-7 3.1-7 7v12" stroke="currentColor" stroke-width="1" opacity="0.3" />
+        <path d="M18 14c-1.7 0-3 1.3-3 3v14" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M18 22c1.1 0 2-.9 2-2" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <path d="M33 17c0-8.3-6.7-15-15-15" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <path d="M29 17c0-6.1-4.9-11-11-11" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M25 17c0-3.9-3.1-7-7-7" stroke="currentColor" stroke-width="1" opacity="0.3" />
+      </svg>
     </div>
-
-    <div class="showcase-controls reveal reveal-delay-3">
-      <button class="control-btn" id="prevBtn" aria-label="Previous Screen">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="dot-navigation" id="dotNav"></div>
-      <button class="control-btn" id="nextBtn" aria-label="Next Screen">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+    <div class="page-doodle page-doodle--shield" data-depth="0.6">
+      <svg viewBox="0 0 28 32" fill="none">
+        <path d="M14 2L4 7v8c0 6 4.3 11.3 10 13 5.7-1.7 10-7 10-13V7L14 2z" stroke="currentColor" stroke-width="1.2"
+          opacity="0.5" />
+        <path d="M10 16l4 4 6-6" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+      </svg>
     </div>
-    <div class="progress-text" id="progressText">01 / 09</div>
-  </div>
-</section>
-
-<div class="section-connector"></div>
-
-<!-- ==================== FEATURES ==================== -->
-<section class="features-section doodle-zone">
-  <div class="page-doodle page-doodle--brackets" data-depth="0.5">
-    <svg viewBox="0 0 28 24" fill="none"><path d="M8 4L2 12l6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M20 4l6 8-6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="14" y1="2" x2="14" y2="22" stroke="currentColor" stroke-width="0.8" opacity="0.2" stroke-dasharray="2 2"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--bug" data-depth="0.6">
-    <svg viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="14" rx="5" ry="7" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="8" y1="10" x2="4" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="18" y1="10" x2="22" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="8" y1="18" x2="4" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="18" y1="18" x2="22" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="13" y1="7" x2="13" y2="3" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="11" cy="12" r="1" fill="currentColor" opacity="0.3"/><circle cx="15" cy="12" r="1" fill="currentColor" opacity="0.3"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--database" data-depth="0.4">
-    <svg viewBox="0 0 24 28" fill="none"><ellipse cx="12" cy="6" rx="9" ry="4" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M3 6v6c0 2.2 4 4 9 4s9-1.8 9-4V6" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M3 12v6c0 2.2 4 4 9 4s9-1.8 9-4v-6" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
-  </div>
-  <div class="section-header" style="max-width:1200px;margin:0 auto 64px;padding:0 24px;">
-    <div class="section-eyebrow reveal">Key Features</div>
-    <h2 class="section-title reveal reveal-delay-1">What GreenGrid Does</h2>
-    <p class="section-subtitle reveal reveal-delay-2">The core capabilities that turn scattered practice into a visible, consistent habit.</p>
-  </div>
-  <div class="project-section-grid">
-    <article class="detail-card reveal">
-      <div class="detail-card-icon" style="background:rgba(165,214,167,0.08);border:1px solid rgba(165,214,167,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 18l5-6 4 3 7-9" stroke="#a5d6a7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="6" r="1.5" fill="#a5d6a7"/></svg>
-      </div>
-      <h3>DSA Progress Tracking</h3>
-      <p>Log every problem you solve and watch topic-wise coverage build over time. Progress is grouped by difficulty and category so gaps in practice are easy to spot.</p>
-    </article>
-    <article class="detail-card reveal reveal-delay-1">
-      <div class="detail-card-icon" style="background:rgba(201,148,26,0.08);border:1px solid rgba(201,148,26,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L2 7v8c0 5 4 9 10 9s9-4 9-9V7L11 2z" stroke="#c9941a" stroke-width="1.2"/><path d="M8 11l3 3 5-5" stroke="#c9941a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <h3>GitHub OAuth Authentication</h3>
-      <p>Sign in with an existing GitHub account&mdash;no new password to create or remember. Authentication is handled securely end-to-end between the frontend and the Spring Boot API.</p>
-    </article>
-    <article class="detail-card reveal reveal-delay-2">
-      <div class="detail-card-icon" style="background:rgba(124,156,255,0.08);border:1px solid rgba(124,156,255,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="#7c9cff" stroke-width="1.2"/><path d="M4 19c0-4 3-6 7-6s7 2 7 6" stroke="#7c9cff" stroke-width="1.2"/></svg>
-      </div>
-      <h3>Personalized Onboarding</h3>
-      <p>A short setup flow captures goals and experience level right after sign-in, so the dashboard reflects what each developer is actually working toward from day one.</p>
-    </article>
-    <article class="detail-card reveal reveal-delay-3">
-      <div class="detail-card-icon" style="background:rgba(232,160,191,0.08);border:1px solid rgba(232,160,191,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="14" rx="2" stroke="#e8a0bf" stroke-width="1.2"/><line x1="3" y1="9" x2="19" y2="9" stroke="#e8a0bf" stroke-width="1" opacity="0.5"/><line x1="7" y1="13" x2="15" y2="13" stroke="#e8a0bf" stroke-width="1" opacity="0.3"/></svg>
-      </div>
-      <h3>Problem Management</h3>
-      <p>Add problems manually with tags, difficulty, and notes, and pull them back up instantly whenever they're needed for a review session.</p>
-    </article>
-    <article class="detail-card reveal">
-      <div class="detail-card-icon" style="background:rgba(79,209,197,0.08);border:1px solid rgba(79,209,197,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9" cy="9" r="6" stroke="#4fd1c5" stroke-width="1.2"/><line x1="14" y1="14" x2="19" y2="19" stroke="#4fd1c5" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </div>
-      <h3>Powerful Search &amp; Filtering</h3>
-      <p>Find any logged problem instantly by name, tag, difficulty, or status. Filters narrow the list in real time without reloading the page.</p>
-    </article>
-    <article class="detail-card reveal reveal-delay-1">
-      <div class="detail-card-icon" style="background:rgba(255,138,101,0.08);border:1px solid rgba(255,138,101,0.15);">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C5.5 2 1 6 1 11s4.5 9 10 9 10-4 10-9" stroke="#ff8a65" stroke-width="1.2"/><path d="M11 6v6l4 2" stroke="#ff8a65" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </div>
-      <h3>Streak Tracking &amp; Analytics</h3>
-      <p>A live dashboard surfaces daily streaks, solved counts, and trend lines, backed by a Dockerized Spring Boot API and a PostgreSQL data layer built for consistent, secure updates.</p>
-    </article>
-  </div>
-</section>
-
-<div class="section-connector"></div>
-
-<!-- ==================== TECH ==================== -->
-<section class="tech-section doodle-zone">
-  <div class="page-doodle page-doodle--hammer" data-depth="0.5">
-    <svg viewBox="0 0 26 26" fill="none"><rect x="10" y="2" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M4 20l6-4 6 4-6 4-6-4z" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="13" y1="16" x2="13" y2="20" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--gear" data-depth="0.6">
-    <svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M15 5v3M15 22v3M5 15H8M22 15h3M7.6 7.6l2.1 2.1M20.3 20.3l2.1 2.1M7.6 22.4l2.1-2.1M20.3 9.7l2.1-2.1" stroke="currentColor" stroke-width="1.2" opacity="0.4"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--terminal" data-depth="0.4">
-    <svg viewBox="0 0 28 22" fill="none"><rect x="1" y="1" width="26" height="20" rx="4" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M6 7l4 4-4 4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="14" y1="15" x2="20" y2="15" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="22" cy="6" r="1.5" fill="currentColor" opacity="0.3"/></svg>
-  </div>
-  <div class="tech-wrapper">
-    <div>
-      <div class="section-header" style="margin-bottom:40px;">
-        <div class="section-eyebrow reveal">Built With</div>
-        <h2 class="section-title reveal reveal-delay-1">Technologies</h2>
-      </div>
-      <div class="tech-list reveal reveal-delay-2">
-        <span class="tech-tag"><span class="tech-tag-dot"></span>HTML</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>CSS</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Bootstrap</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>JavaScript</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Java</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Spring Boot</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>PostgreSQL</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>GitHub OAuth</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>GitHub Pages</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Render</span>
-        <span class="tech-tag"><span class="tech-tag-dot"></span>Docker</span>
-      </div>
+    <div class="page-doodle page-doodle--wifi" data-depth="0.4">
+      <svg viewBox="0 0 30 24" fill="none">
+        <path d="M3 10c5-5 13-5 18 0" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+        <path d="M7 14c3-3 9-3 12 0" stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+        <circle cx="15" cy="19" r="2" fill="currentColor" opacity="0.3" />
+      </svg>
     </div>
-    <div class="repo-card reveal reveal-delay-3">
+    <div class="showcase-wrapper">
+      <div class="showcase-header reveal">
+        <div class="section-eyebrow">Platform Walkthrough</div>
+        <h2 class="section-title">Explore the Experience</h2>
+        <p class="section-subtitle">Nine screens that tell the complete story&mdash;from first visit to daily practice,
+          in a premium desktop preview.</p>
+      </div>
+
+      <div class="browser-stage-3d reveal reveal-delay-1">
+        <div class="browser-container" id="browserContainer">
+          <!-- Left Side Browser -->
+          <div class="browser-side-container left" id="leftBrowser">
+            <div class="browser-window">
+              <div class="browser-titlebar">
+                <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span
+                    class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span>
+                </div>
+                <div class="browser-addressbar">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1" />
+                    <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1" />
+                  </svg>
+                  <span id="leftUrl">greengrid.app</span>
+                </div>
+              </div>
+              <div class="browser-screen">
+                <img id="leftBrowserImg" src="" alt="Previous">
+                <div class="screen-glare"></div>
+                <div class="screen-glow"></div>
+              </div>
+            </div>
+            <div class="browser-base"></div>
+          </div>
+          <!-- Main Browser -->
+          <div class="browser-showcase-main" id="mainBrowser">
+            <div class="browser-window">
+              <div class="browser-titlebar">
+                <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span
+                    class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span>
+                </div>
+                <div class="browser-addressbar">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1" />
+                    <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1" />
+                  </svg>
+                  <span id="mainUrl">greengrid.html</span>
+                </div>
+              </div>
+              <div class="browser-screen">
+                <img id="mainBrowserImg" src="../assets/images/projects/greengrid/01_Index.png" alt="Landing Page">
+                <div class="screen-glare"></div>
+                <div class="screen-glow"></div>
+              </div>
+            </div>
+            <div class="browser-base"></div>
+          </div>
+          <!-- Right Side Browser -->
+          <div class="browser-side-container right" id="rightBrowser">
+            <div class="browser-window">
+              <div class="browser-titlebar">
+                <div class="browser-dots"><span class="browser-dot browser-dot--red"></span><span
+                    class="browser-dot browser-dot--yellow"></span><span class="browser-dot browser-dot--green"></span>
+                </div>
+                <div class="browser-addressbar">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <rect x="2.5" y="5.5" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1" />
+                    <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="currentColor" stroke-width="1" />
+                  </svg>
+                  <span id="rightUrl">greengrid.html</span>
+                </div>
+              </div>
+              <div class="browser-screen">
+                <img id="rightBrowserImg" src="" alt="Next">
+                <div class="screen-glare"></div>
+                <div class="screen-glow"></div>
+              </div>
+            </div>
+            <div class="browser-base"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-info-showcase reveal reveal-delay-2">
+        <div class="info-label" id="infoLabel">01 &mdash; Landing</div>
+        <h3 class="info-title" id="infoTitle">Landing Page</h3>
+        <p class="info-description" id="infoDesc">The first impression of GreenGrid&mdash;an overview of what the
+          platform tracks and why it helps.</p>
+      </div>
+
+      <div class="showcase-controls reveal reveal-delay-3">
+        <button class="control-btn" id="prevBtn" aria-label="Previous Screen">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="dot-navigation" id="dotNav"></div>
+        <button class="control-btn" id="nextBtn" aria-label="Next Screen">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="progress-text" id="progressText">01 / 09</div>
+    </div>
+  </section>
+
+  <div class="section-connector"></div>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section class="features-section doodle-zone">
+    <div class="page-doodle page-doodle--brackets" data-depth="0.5">
+      <svg viewBox="0 0 28 24" fill="none">
+        <path d="M8 4L2 12l6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+        <path d="M20 4l6 8-6 8" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+        <line x1="14" y1="2" x2="14" y2="22" stroke="currentColor" stroke-width="0.8" opacity="0.2"
+          stroke-dasharray="2 2" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--bug" data-depth="0.6">
+      <svg viewBox="0 0 26 26" fill="none">
+        <ellipse cx="13" cy="14" rx="5" ry="7" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <line x1="8" y1="10" x2="4" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="18" y1="10" x2="22" y2="6" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="8" y1="18" x2="4" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="18" y1="18" x2="22" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="13" y1="7" x2="13" y2="3" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <circle cx="11" cy="12" r="1" fill="currentColor" opacity="0.3" />
+        <circle cx="15" cy="12" r="1" fill="currentColor" opacity="0.3" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--database" data-depth="0.4">
+      <svg viewBox="0 0 24 28" fill="none">
+        <ellipse cx="12" cy="6" rx="9" ry="4" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <path d="M3 6v6c0 2.2 4 4 9 4s9-1.8 9-4V6" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M3 12v6c0 2.2 4 4 9 4s9-1.8 9-4v-6" stroke="currentColor" stroke-width="1" opacity="0.3" />
+      </svg>
+    </div>
+    <div class="section-header" style="max-width:1200px;margin:0 auto 64px;padding:0 24px;">
+      <div class="section-eyebrow reveal">Key Features</div>
+      <h2 class="section-title reveal reveal-delay-1">How GreenGrid Helps</h2>
+      <p class="section-subtitle reveal reveal-delay-2">Everything is designed to make tracking DSA practice simple,
+        organized, and motivating from day one.</p>
+      <div class="project-section-grid">
+        <article class="detail-card reveal">
+          <div class="detail-card-icon"
+            style="background:rgba(165,214,167,0.08);border:1px solid rgba(165,214,167,0.15);">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M3 18l5-6 4 3 7-9" stroke="#a5d6a7" stroke-width="1.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <circle cx="19" cy="6" r="1.5" fill="#a5d6a7" />
+            </svg>
+          </div>
+          <h3>DSA Progress Tracking</h3>
+          <p>Keep every solved problem in one place and see your progress grow over time. Problems are organized by
+            topic and difficulty, making it easy to spot strengths, identify gaps, and stay consistent.</p>
+        </article>
+        <article class="detail-card reveal reveal-delay-1">
+          <div class="detail-card-icon"
+            style="background:rgba(201,148,26,0.08);border:1px solid rgba(201,148,26,0.15);">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M11 2L2 7v8c0 5 4 9 10 9s9-4 9-9V7L11 2z" stroke="#c9941a" stroke-width="1.2" />
+              <path d="M8 11l3 3 5-5" stroke="#c9941a" stroke-width="1.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>GitHub OAuth Authentication</h3>
+          <p>Sign in with your GitHub account instead of creating another username and password. The experience is
+            quick, familiar, and keeps the focus on solving problems rather than managing accounts.</p>
+        </article>
+        <article class="detail-card reveal reveal-delay-2">
+          <div class="detail-card-icon"
+            style="background:rgba(124,156,255,0.08);border:1px solid rgba(124,156,255,0.15);">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="7" r="4" stroke="#7c9cff" stroke-width="1.2" />
+              <path d="M4 19c0-4 3-6 7-6s7 2 7 6" stroke="#7c9cff" stroke-width="1.2" />
+            </svg>
+          </div>
+          <h3>Personalized Onboarding</h3>
+          <p>A short onboarding flow captures your goals and experience level, helping GreenGrid present a dashboard
+            that's relevant from the moment you get started.</p>
+        </article>
+        <article class="detail-card reveal reveal-delay-3">
+          <div class="detail-card-icon"
+            style="background:rgba(232,160,191,0.08);border:1px solid rgba(232,160,191,0.15);">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="3" y="4" width="16" height="14" rx="2" stroke="#e8a0bf" stroke-width="1.2" />
+              <line x1="3" y1="9" x2="19" y2="9" stroke="#e8a0bf" stroke-width="1" opacity="0.5" />
+              <line x1="7" y1="13" x2="15" y2="13" stroke="#e8a0bf" stroke-width="1" opacity="0.3" />
+            </svg>
+          </div>
+          <h3>Problem Library</h3>
+          <p>Save problems with tags, difficulty levels, notes, and links so they're always easy to revisit when
+            reviewing a topic or preparing for your next practice session.</p>
+        </article>
+        <article class="detail-card reveal">
+          <div class="detail-card-icon"
+            style="background:rgba(79,209,197,0.08);border:1px solid rgba(79,209,197,0.15);">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="9" cy="9" r="6" stroke="#4fd1c5" stroke-width="1.2" />
+              <line x1="14" y1="14" x2="19" y2="19" stroke="#4fd1c5" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>Search &amp; Filters</h3>
+          <p>Quickly find any saved problem using filters for topics, difficulty, tags, or completion status, making
+            review sessions faster and more organized.</p>
+        </article>
+        <article class="detail-card reveal reveal-delay-1">
+          <div class="detail-card-icon"
+            style="background:rgba(255,138,101,0.08);border:1px solid rgba(255,138,101,0.15);">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M11 2C5.5 2 1 6 1 11s4.5 9 10 9 10-4 10-9" stroke="#ff8a65" stroke-width="1.2" />
+              <path d="M11 6v6l4 2" stroke="#ff8a65" stroke-width="1.2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>Streaks &amp; Insights</h3>
+          <p>Track your consistency through daily streaks, solved problems, and progress trends that make it easier to
+            stay motivated and see how far you've come.</p>
+        </article>
+      </div>
+  </section>
+
+  <div class="section-connector"></div>
+
+  <!-- ==================== TECH ==================== -->
+  <section class="tech-section doodle-zone">
+    <div class="page-doodle page-doodle--hammer" data-depth="0.5">
+      <svg viewBox="0 0 26 26" fill="none">
+        <rect x="10" y="2" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <path d="M4 20l6-4 6 4-6 4-6-4z" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="13" y1="16" x2="13" y2="20" stroke="currentColor" stroke-width="1" opacity="0.3" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--gear" data-depth="0.6">
+      <svg viewBox="0 0 30 30" fill="none">
+        <circle cx="15" cy="15" r="5" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <path d="M15 5v3M15 22v3M5 15H8M22 15h3M7.6 7.6l2.1 2.1M20.3 20.3l2.1 2.1M7.6 22.4l2.1-2.1M20.3 9.7l2.1-2.1"
+          stroke="currentColor" stroke-width="1.2" opacity="0.4" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--terminal" data-depth="0.4">
+      <svg viewBox="0 0 28 22" fill="none">
+        <rect x="1" y="1" width="26" height="20" rx="4" stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <path d="M6 7l4 4-4 4" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+        <line x1="14" y1="15" x2="20" y2="15" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <circle cx="22" cy="6" r="1.5" fill="currentColor" opacity="0.3" />
+      </svg>
+    </div>
+    <div class="tech-wrapper">
       <div>
-        <h3>GreenGrid on GitHub</h3>
-        <p>View the source code, or try the live deployment.</p>
+        <div class="section-header" style="margin-bottom:40px;">
+          <div class="section-eyebrow reveal">Built With</div>
+          <h2 class="section-title reveal reveal-delay-1">Technologies</h2>
+        </div>
+        <div class="tech-list reveal reveal-delay-2">
+          <span class="tech-tag"><span class="tech-tag-dot"></span>HTML5</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>CSS3</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>Bootstrap 5</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>JavaScript(Vanilla)</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>Java</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>JWT</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>Spring Boot</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>Flyway</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>Supabase</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>GitHub OAuth</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>GitHub Pages(Deployment)</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>Render</span>
+          <span class="tech-tag"><span class="tech-tag-dot"></span>Docker</span>
+        </div>
       </div>
-      <div class="repo-links">
-        <a class="repo-link" href="https://github.com/Vallabh05/GreenGrid" target="_blank" rel="noopener noreferrer">
-          GitHub
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="repo-card reveal reveal-delay-3">
+        <div>
+          <h3>Explore the Project</h3>
+          <p>Browse the source code, explore the project structure, or try the live demo to see GreenGrid in action.</p>
+
+        </div>
+        <div class="repo-links">
+          <a class="repo-link" href="https://github.com/Varsha-98948/GreenGrid" target="_blank"
+            rel="noopener noreferrer">
+            GitHub
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a class="repo-link repo-link--demo" href="https://varsha-98948.github.io/GreenGrid/" target="_blank"
+            rel="noopener noreferrer">
+            Live Demo
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-connector"></div>
+
+  <!-- ==================== FUTURE ==================== -->
+  <section class="future-section doodle-zone">
+    <div class="page-doodle page-doodle--rocket" data-depth="0.5">
+      <svg viewBox="0 0 26 30" fill="none">
+        <path d="M13 2s-10 10-10 20h20c0-10-10-20-10-20z" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+        <circle cx="13" cy="15" r="3" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M9 24l4 4 4-4" stroke="currentColor" stroke-width="1" opacity="0.3" />
+        <line x1="13" y1="22" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--chart" data-depth="0.6">
+      <svg viewBox="0 0 28 24" fill="none">
+        <rect x="2" y="2" width="24" height="20" rx="3" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M6 18l6-8 4 4 6-10" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+        <circle cx="6" cy="18" r="1.5" fill="currentColor" opacity="0.4" />
+        <circle cx="12" cy="10" r="1.5" fill="currentColor" opacity="0.4" />
+        <circle cx="16" cy="14" r="1.5" fill="currentColor" opacity="0.4" />
+        <circle cx="22" cy="4" r="1.5" fill="currentColor" opacity="0.4" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--lightbulb" data-depth="0.4">
+      <svg viewBox="0 0 22 28" fill="none">
+        <path
+          d="M11 2c-4.4 0-8 3.6-8 8 0 3.2 1.9 6 4.7 7.3.3.1.5.4.5.7v2h6v-2c0-.3.2-.6.5-.7C17.1 16 19 13.2 19 10c0-4.4-3.6-8-8-8z"
+          stroke="currentColor" stroke-width="1" opacity="0.5" />
+        <line x1="9" y1="20" x2="9" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="13" y1="20" x2="13" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="8" y1="24" x2="14" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <line x1="9" y1="26" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3" />
+      </svg>
+    </div>
+    <div class="future-wrapper">
+      <div class="section-header" style="margin-bottom:48px;">
+        <div class="section-eyebrow reveal">Roadmap</div>
+        <h2 class="section-title reveal reveal-delay-1">What is Next</h2>
+      </div>
+      <ul class="future-list reveal reveal-delay-2">
+        <li class="future-item"><span class="future-item-number">01</span><span class="future-item-text">Browser
+            extension for one-click problem capture while solving on coding platforms</span></li>
+
+        <li class="future-item"><span class="future-item-number">02</span><span class="future-item-text">Automatic
+            synchronization from platforms like LeetCode and Codeforces</span></li>
+
+        <li class="future-item"><span class="future-item-number">03</span><span class="future-item-text">Dashboard
+            redesign with richer visualizations and a smoother user experience</span></li>
+
+        <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Backend
+            optimization for faster search, filtering, and dashboard loading</span></li>
+
+        <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">Personalized
+            practice suggestions based on solved topics and progress trends</span></li>
+
+        <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Companion
+            mobile app for tracking progress and reviewing problems anywhere</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="section-connector"></div>
+
+  <!-- ==================== RECOMMENDATIONS ==================== -->
+  <section class="rec-section doodle-zone">
+    <div class="page-doodle page-doodle--link" data-depth="0.5">
+      <svg viewBox="0 0 28 16" fill="none">
+        <path d="M10 8c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6s-2.7 6-6 6h-4" stroke="currentColor" stroke-width="1.2"
+          opacity="0.5" />
+        <path d="M18 8c0 3.3-2.7 6-6 6H8c-3.3 0-6-2.7-6-6s2.7-6 6-6h4" stroke="currentColor" stroke-width="1.2"
+          opacity="0.5" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--compass" data-depth="0.6">
+      <svg viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1" opacity="0.4" />
+        <path d="M14 3v4M14 21v4M3 14h4M21 14h4" stroke="currentColor" stroke-width="0.8" opacity="0.3" />
+        <path d="M14 8l-3 9 9-3-6-6z" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+      </svg>
+    </div>
+    <div class="page-doodle page-doodle--bookmark" data-depth="0.4">
+      <svg viewBox="0 0 20 26" fill="none">
+        <path d="M4 2h12v20l-6-4-6 4V2z" stroke="currentColor" stroke-width="1.2" opacity="0.5" />
+        <line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1" opacity="0.3" />
+      </svg>
+    </div>
+    <div class="rec-wrapper">
+      <div class="section-header" style="margin-bottom:48px;">
+        <div class="section-eyebrow reveal">More Work</div>
+        <h2 class="section-title reveal reveal-delay-1">You May Also Like</h2>
+      </div>
+      <div class="rec-grid">
+        <a class="rec-card reveal" href="synczone.html">
+          <div class="rec-card-tag">Android</div>
+          <h3>SyncZone</h3>
+          <p>Campus collaboration platform unifying messaging, assignments, and announcements.</p>
+          <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg></span>
         </a>
-        <a class="repo-link repo-link--demo" href="https://vallabh05.github.io/GreenGrid/" target="_blank" rel="noopener noreferrer">
-          Live Demo
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h8M8 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a class="rec-card reveal reveal-delay-1" href="gallimart.html">
+          <div class="rec-card-tag">Android</div>
+          <h3>GalliMart</h3>
+          <p>Local marketplace flows connecting buyers and sellers in neighborhood commerce.</p>
+          <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg></span>
+        </a>
+        <a class="rec-card reveal reveal-delay-2" href="triggerly.html">
+          <div class="rec-card-tag">Automation</div>
+          <h3>Triggerly</h3>
+          <p>Workflow automation engine that connects services through conditional triggers.</p>
+          <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg></span>
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="section-connector"></div>
-
-<!-- ==================== FUTURE ==================== -->
-<section class="future-section doodle-zone">
-  <div class="page-doodle page-doodle--rocket" data-depth="0.5">
-    <svg viewBox="0 0 26 30" fill="none"><path d="M13 2s-10 10-10 20h20c0-10-10-20-10-20z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><circle cx="13" cy="15" r="3" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M9 24l4 4 4-4" stroke="currentColor" stroke-width="1" opacity="0.3"/><line x1="13" y1="22" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--chart" data-depth="0.6">
-    <svg viewBox="0 0 28 24" fill="none"><rect x="2" y="2" width="24" height="20" rx="3" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M6 18l6-8 4 4 6-10" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><circle cx="6" cy="18" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="12" cy="10" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="16" cy="14" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="22" cy="4" r="1.5" fill="currentColor" opacity="0.4"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--lightbulb" data-depth="0.4">
-    <svg viewBox="0 0 22 28" fill="none"><path d="M11 2c-4.4 0-8 3.6-8 8 0 3.2 1.9 6 4.7 7.3.3.1.5.4.5.7v2h6v-2c0-.3.2-.6.5-.7C17.1 16 19 13.2 19 10c0-4.4-3.6-8-8-8z" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="9" y1="20" x2="9" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="13" y1="20" x2="13" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="8" y1="24" x2="14" y2="24" stroke="currentColor" stroke-width="1" opacity="0.4"/><line x1="9" y1="26" x2="13" y2="26" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
-  </div>
-  <div class="future-wrapper">
-    <div class="section-header" style="margin-bottom:48px;">
-      <div class="section-eyebrow reveal">Roadmap</div>
-      <h2 class="section-title reveal reveal-delay-1">What is Next</h2>
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="project-footer">
+    <h2>Practice tracked, <em>progress built.</em></h2>
+    <div class="footer-links">
+      <a href="../projects.html">Projects</a>
+      <a href="../contact.html">Contact</a>
     </div>
-    <ul class="future-list reveal reveal-delay-2">
-      <li class="future-item"><span class="future-item-number">01</span><span class="future-item-text">AI-powered problem recommendations based on weak topics</span></li>
-      <li class="future-item"><span class="future-item-number">02</span><span class="future-item-text">Collaborative study groups with shared progress boards</span></li>
-      <li class="future-item"><span class="future-item-number">03</span><span class="future-item-text">Timed contest mode with scored problem sets</span></li>
-      <li class="future-item"><span class="future-item-number">04</span><span class="future-item-text">Browser extension for one-click problem logging</span></li>
-      <li class="future-item"><span class="future-item-number">05</span><span class="future-item-text">Topic-wise heatmaps and deeper progress analytics</span></li>
-      <li class="future-item"><span class="future-item-number">06</span><span class="future-item-text">Companion mobile app for on-the-go streak tracking</span></li>
-    </ul>
-  </div>
-</section>
+    <p class="copyright">Copyright 2026 Varsha Jairam</p>
+  </footer>
 
-<div class="section-connector"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
 
-<!-- ==================== RECOMMENDATIONS ==================== -->
-<section class="rec-section doodle-zone">
-  <div class="page-doodle page-doodle--link" data-depth="0.5">
-    <svg viewBox="0 0 28 16" fill="none"><path d="M10 8c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6s-2.7 6-6 6h-4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><path d="M18 8c0 3.3-2.7 6-6 6H8c-3.3 0-6-2.7-6-6s2.7-6 6-6h4" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--compass" data-depth="0.6">
-    <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1" opacity="0.4"/><path d="M14 3v4M14 21v4M3 14h4M21 14h4" stroke="currentColor" stroke-width="0.8" opacity="0.3"/><path d="M14 8l-3 9 9-3-6-6z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
-  </div>
-  <div class="page-doodle page-doodle--bookmark" data-depth="0.4">
-    <svg viewBox="0 0 20 26" fill="none"><path d="M4 2h12v20l-6-4-6 4V2z" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1" opacity="0.3"/></svg>
-  </div>
-  <div class="rec-wrapper">
-    <div class="section-header" style="margin-bottom:48px;">
-      <div class="section-eyebrow reveal">More Work</div>
-      <h2 class="section-title reveal reveal-delay-1">You May Also Like</h2>
-    </div>
-    <div class="rec-grid">
-      <a class="rec-card reveal" href="synczone.html">
-        <div class="rec-card-tag">Android</div>
-        <h3>SyncZone</h3>
-        <p>Campus collaboration platform unifying messaging, assignments, and announcements.</p>
-        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-      </a>
-      <a class="rec-card reveal reveal-delay-1" href="gallimart.html">
-        <div class="rec-card-tag">Android</div>
-        <h3>GalliMart</h3>
-        <p>Local marketplace flows connecting buyers and sellers in neighborhood commerce.</p>
-        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-      </a>
-      <a class="rec-card reveal reveal-delay-2" href="triggerly.html">
-        <div class="rec-card-tag">Automation</div>
-        <h3>Triggerly</h3>
-        <p>Workflow automation engine that connects services through conditional triggers.</p>
-        <span class="rec-card-arrow">Explore <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-      </a>
-    </div>
-  </div>
-</section>
+      /* ========== SCREEN DATA ========== */
+      const screens = [
+        { number: "01", label: "Landing", title: "Landing Page", desc: "The first impression of GreenGrid — an overview of what the platform tracks and why it helps.", image: "../assets/images/projects/greengrid/01_Index.png", url: "greengrid.app" },
+        { number: "02", label: "Create Account", title: "Registration", desc: "New developers create an account to start tracking their DSA practice.", image: "../assets/images/projects/greengrid/02_Registration.png", url: "greengrid.app/register" },
+        { number: "03", label: "Secure Sign-In", title: "Login", desc: "Returning users sign in to pick up their progress right where they left off.", image: "../assets/images/projects/greengrid/03_Login.png", url: "greengrid.app/login" },
+        { number: "04", label: "OAuth Flow", title: "GitHub Authorization", desc: "Authentication runs through GitHub OAuth, linking a developer's real coding identity to their progress.", image: "../assets/images/projects/greengrid/04_Github_Authorization.png", url: "github.com/login/oauth/authorize" },
+        { number: "05", label: "Progress Overview", title: "Dashboard", desc: "Streaks, solved counts and topic coverage come together in a single live view.", image: "../assets/images/projects/greengrid/05_Dashboard.png", url: "greengrid.app/dashboard" },
+        { number: "06", label: "Getting Started", title: "Personalized Onboarding", desc: "A short setup flow tailors the dashboard to each developer's goals and experience level.", image: "../assets/images/projects/greengrid/06_Onboarding.png", url: "greengrid.app/onboarding" },
+        { number: "07", label: "Log Practice", title: "Add Problem", desc: "Log a newly solved problem with its tags, difficulty, and notes for later review.", image: "../assets/images/projects/greengrid/07_Add_Problem.png", url: "greengrid.app/problems/new" },
+        { number: "08", label: "Find Anything", title: "Search Problems", desc: "Search and filter the full problem log instantly by name, tag, difficulty or status.", image: "../assets/images/projects/greengrid/08_Search.png", url: "greengrid.app/search" },
+        { number: "09", label: "Account Control", title: "Settings", desc: "Manage account details, preferences and connected GitHub identity in one place.", image: "../assets/images/projects/greengrid/09_Settings.png", url: "greengrid.app/settings" }
+      ];
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="project-footer">
-  <h2>Practice tracked, <em>progress built.</em></h2>
-  <div class="footer-links">
-    <a href="../projects.html">Projects</a>
-    <a href="../contact.html">Contact</a>
-  </div>
-  <p class="copyright">Copyright 2026 Varsha Jairam</p>
-</footer>
+      /* ========== WEB SHOWCASE ========== */
+      let currentIndex = 0;
+      let isTransitioning = false;
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-(function() {
-  'use strict';
+      const mainBrowserImg = document.getElementById('mainBrowserImg');
+      const leftBrowserImg = document.getElementById('leftBrowserImg');
+      const rightBrowserImg = document.getElementById('rightBrowserImg');
+      const mainUrl = document.getElementById('mainUrl');
+      const leftUrl = document.getElementById('leftUrl');
+      const rightUrl = document.getElementById('rightUrl');
+      const infoLabel = document.getElementById('infoLabel');
+      const infoTitle = document.getElementById('infoTitle');
+      const infoDesc = document.getElementById('infoDesc');
+      const progressText = document.getElementById('progressText');
+      const dotNav = document.getElementById('dotNav');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const browserContainer = document.getElementById('browserContainer');
 
-  /* ========== SCREEN DATA ========== */
-  const screens = [
-    { number: "01", label: "Landing", title: "Landing Page", desc: "The first impression of GreenGrid — an overview of what the platform tracks and why it helps.", image: "../assets/images/projects/greengrid/01_Index.png", url: "greengrid.app" },
-    { number: "02", label: "Create Account", title: "Registration", desc: "New developers create an account to start tracking their DSA practice.", image: "../assets/images/projects/greengrid/02_Registration.png", url: "greengrid.app/register" },
-    { number: "03", label: "Secure Sign-In", title: "Login", desc: "Returning users sign in to pick up their progress right where they left off.", image: "../assets/images/projects/greengrid/03_Login.png", url: "greengrid.app/login" },
-    { number: "04", label: "OAuth Flow", title: "GitHub Authorization", desc: "Authentication runs through GitHub OAuth, linking a developer's real coding identity to their progress.", image: "../assets/images/projects/greengrid/04_Github_Authorization.png", url: "github.com/login/oauth/authorize" },
-    { number: "05", label: "Progress Overview", title: "Dashboard", desc: "Streaks, solved counts and topic coverage come together in a single live view.", image: "../assets/images/projects/greengrid/05_Dashboard.png", url: "greengrid.app/dashboard" },
-    { number: "06", label: "Getting Started", title: "Personalized Onboarding", desc: "A short setup flow tailors the dashboard to each developer's goals and experience level.", image: "../assets/images/projects/greengrid/06_Onboarding.png", url: "greengrid.app/onboarding" },
-    { number: "07", label: "Log Practice", title: "Add Problem", desc: "Log a newly solved problem with its tags, difficulty, and notes for later review.", image: "../assets/images/projects/greengrid/07_Add_Problem.png", url: "greengrid.app/problems/new" },
-    { number: "08", label: "Find Anything", title: "Search Problems", desc: "Search and filter the full problem log instantly by name, tag, difficulty or status.", image: "../assets/images/projects/greengrid/08_Search.png", url: "greengrid.app/search" },
-    { number: "09", label: "Account Control", title: "Settings", desc: "Manage account details, preferences and connected GitHub identity in one place.", image: "../assets/images/projects/greengrid/09_Settings.png", url: "greengrid.app/settings" }
-  ];
+      // Generate dots
+      screens.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'nav-dot' + (index === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToScreen(index));
+        dotNav.appendChild(dot);
+      });
+      const dots = dotNav.querySelectorAll('.nav-dot');
 
-  /* ========== WEB SHOWCASE ========== */
-  let currentIndex = 0;
-  let isTransitioning = false;
-
-  const mainBrowserImg = document.getElementById('mainBrowserImg');
-  const leftBrowserImg = document.getElementById('leftBrowserImg');
-  const rightBrowserImg = document.getElementById('rightBrowserImg');
-  const mainUrl = document.getElementById('mainUrl');
-  const leftUrl = document.getElementById('leftUrl');
-  const rightUrl = document.getElementById('rightUrl');
-  const infoLabel = document.getElementById('infoLabel');
-  const infoTitle = document.getElementById('infoTitle');
-  const infoDesc = document.getElementById('infoDesc');
-  const progressText = document.getElementById('progressText');
-  const dotNav = document.getElementById('dotNav');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const browserContainer = document.getElementById('browserContainer');
-
-  // Generate dots
-  screens.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.className = 'nav-dot' + (index === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goToScreen(index));
-    dotNav.appendChild(dot);
-  });
-  const dots = dotNav.querySelectorAll('.nav-dot');
-
-  function animateInfoIn() {
-    [infoLabel, infoTitle, infoDesc].forEach((el, i) => {
-      el.classList.remove('is-visible');
-      void el.offsetWidth; // force reflow
-      el.style.animationDelay = (i * 0.1) + 's';
-      el.classList.add('is-visible');
-    });
-  }
-
-  function updateShowcase() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    const current = screens[currentIndex];
-    const prev = screens[(currentIndex - 1 + screens.length) % screens.length];
-    const next = screens[(currentIndex + 1) % screens.length];
-
-    mainBrowserImg.style.opacity = '0';
-    mainBrowserImg.style.transform = 'scale(0.96)';
-
-    setTimeout(() => {
-      mainBrowserImg.src = current.image;
-      mainBrowserImg.alt = current.title;
-      leftBrowserImg.src = prev.image;
-      leftBrowserImg.alt = prev.title;
-      rightBrowserImg.src = next.image;
-      rightBrowserImg.alt = next.title;
-
-      mainUrl.textContent = current.url;
-      leftUrl.textContent = prev.url;
-      rightUrl.textContent = next.url;
-
-      infoLabel.textContent = current.number + ' — ' + current.label;
-      infoTitle.textContent = current.title;
-      infoDesc.textContent = current.desc;
-      progressText.textContent = current.number + ' / 09';
-
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-
-      mainBrowserImg.style.opacity = '1';
-      mainBrowserImg.style.transform = 'scale(1)';
-      animateInfoIn();
-
-      setTimeout(() => { isTransitioning = false; }, 400);
-    }, 400);
-  }
-
-  function goToScreen(index) {
-    currentIndex = index;
-    updateShowcase();
-  }
-
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + screens.length) % screens.length;
-    updateShowcase();
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % screens.length;
-    updateShowcase();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      currentIndex = (currentIndex - 1 + screens.length) % screens.length;
-      updateShowcase();
-    } else if (e.key === 'ArrowRight') {
-      currentIndex = (currentIndex + 1) % screens.length;
-      updateShowcase();
-    }
-  });
-
-  // Touch swipe
-  let touchStartX = 0;
-  const mainBrowser = document.getElementById('mainBrowser');
-  mainBrowser.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-  mainBrowser.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 40) {
-      currentIndex = (currentIndex + (diff > 0 ? 1 : -1) + screens.length) % screens.length;
-      updateShowcase();
-    }
-  });
-
-  // Mouse 3D tilt
-  const showcase = document.querySelector('.showcase-section');
-  showcase.addEventListener('mousemove', (e) => {
-    const rect = showcase.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    browserContainer.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
-  });
-  showcase.addEventListener('mouseleave', () => {
-    browserContainer.style.transform = 'rotateY(0deg) rotateX(0deg)';
-  });
-
-  // Autoplay
-  let autoplayInterval = setInterval(() => {
-    currentIndex = (currentIndex + 1) % screens.length;
-    updateShowcase();
-  }, 5000);
-
-  mainBrowser.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-  mainBrowser.addEventListener('mouseleave', () => {
-    autoplayInterval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % screens.length;
-      updateShowcase();
-    }, 5000);
-  });
-
-  /* ========== SCROLL REVEAL ========== */
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('is-visible');
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  /* ========== DOODLE REVEAL ========== */
-  const doodleObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('is-visible');
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.page-doodle').forEach(el => doodleObserver.observe(el));
-
-  /* ========== HERO DOODLE PARALLAX ========== */
-  const heroDoodles = document.querySelectorAll('.hero-doodle');
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let currentMX = mouseX;
-  let currentMY = mouseY;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  function animateDoodles() {
-    currentMX += (mouseX - currentMX) * 0.06;
-    currentMY += (mouseY - currentMY) * 0.06;
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const ox = currentMX - cx;
-    const oy = currentMY - cy;
-    heroDoodles.forEach(d => {
-      const depth = parseFloat(d.dataset.depth) || 1;
-      const s = depth * 0.25;
-      d.style.transform = 'translate3d(' + (ox * s * -1) + 'px, ' + (oy * s * -1) + 'px, 0)';
-    });
-    requestAnimationFrame(animateDoodles);
-  }
-
-  setTimeout(() => {
-    heroDoodles.forEach((d, i) => {
-      setTimeout(() => d.classList.add('is-visible'), i * 120);
-    });
-  }, 600);
-  animateDoodles();
-
-  /* ========== HERO PARTICLE CANVAS ========== */
-  const canvas = document.getElementById('heroCanvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const PARTICLE_COUNT = 60;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
-        this.opacity = Math.random() * 0.4 + 0.1;
-        this.hue = Math.random() > 0.5 ? 42 : 220;
+      function animateInfoIn() {
+        [infoLabel, infoTitle, infoDesc].forEach((el, i) => {
+          el.classList.remove('is-visible');
+          void el.offsetWidth; // force reflow
+          el.style.animationDelay = (i * 0.1) + 's';
+          el.classList.add('is-visible');
+        });
       }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'hsla(' + this.hue + ', 70%, 60%, ' + this.opacity + ')';
-        ctx.fill();
-      }
-    }
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+      function updateShowcase() {
+        if (isTransitioning) return;
+        isTransitioning = true;
 
-    function drawConnections() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+        const current = screens[currentIndex];
+        const prev = screens[(currentIndex - 1 + screens.length) % screens.length];
+        const next = screens[(currentIndex + 1) % screens.length];
+
+        mainBrowserImg.style.opacity = '0';
+        mainBrowserImg.style.transform = 'scale(0.96)';
+
+        setTimeout(() => {
+          mainBrowserImg.src = current.image;
+          mainBrowserImg.alt = current.title;
+          leftBrowserImg.src = prev.image;
+          leftBrowserImg.alt = prev.title;
+          rightBrowserImg.src = next.image;
+          rightBrowserImg.alt = next.title;
+
+          mainUrl.textContent = current.url;
+          leftUrl.textContent = prev.url;
+          rightUrl.textContent = next.url;
+
+          infoLabel.textContent = current.number + ' — ' + current.label;
+          infoTitle.textContent = current.title;
+          infoDesc.textContent = current.desc;
+          progressText.textContent = current.number + ' / 09';
+
+          dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+
+          mainBrowserImg.style.opacity = '1';
+          mainBrowserImg.style.transform = 'scale(1)';
+          animateInfoIn();
+
+          setTimeout(() => { isTransitioning = false; }, 400);
+        }, 400);
+      }
+
+      function goToScreen(index) {
+        currentIndex = index;
+        updateShowcase();
+      }
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + screens.length) % screens.length;
+        updateShowcase();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % screens.length;
+        updateShowcase();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          currentIndex = (currentIndex - 1 + screens.length) % screens.length;
+          updateShowcase();
+        } else if (e.key === 'ArrowRight') {
+          currentIndex = (currentIndex + 1) % screens.length;
+          updateShowcase();
+        }
+      });
+
+      // Touch swipe
+      let touchStartX = 0;
+      const mainBrowser = document.getElementById('mainBrowser');
+      mainBrowser.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+      mainBrowser.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 40) {
+          currentIndex = (currentIndex + (diff > 0 ? 1 : -1) + screens.length) % screens.length;
+          updateShowcase();
+        }
+      });
+
+      // Mouse 3D tilt
+      const showcase = document.querySelector('.showcase-section');
+      showcase.addEventListener('mousemove', (e) => {
+        const rect = showcase.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        browserContainer.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+      });
+      showcase.addEventListener('mouseleave', () => {
+        browserContainer.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+
+      // Autoplay
+      let autoplayInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % screens.length;
+        updateShowcase();
+      }, 5000);
+
+      mainBrowser.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+      mainBrowser.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(() => {
+          currentIndex = (currentIndex + 1) % screens.length;
+          updateShowcase();
+        }, 5000);
+      });
+
+      /* ========== SCROLL REVEAL ========== */
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      /* ========== DOODLE REVEAL ========== */
+      const doodleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.page-doodle').forEach(el => doodleObserver.observe(el));
+
+      /* ========== HERO DOODLE PARALLAX ========== */
+      const heroDoodles = document.querySelectorAll('.hero-doodle');
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let currentMX = mouseX;
+      let currentMY = mouseY;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animateDoodles() {
+        currentMX += (mouseX - currentMX) * 0.06;
+        currentMY += (mouseY - currentMY) * 0.06;
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const ox = currentMX - cx;
+        const oy = currentMY - cy;
+        heroDoodles.forEach(d => {
+          const depth = parseFloat(d.dataset.depth) || 1;
+          const s = depth * 0.25;
+          d.style.transform = 'translate3d(' + (ox * s * -1) + 'px, ' + (oy * s * -1) + 'px, 0)';
+        });
+        requestAnimationFrame(animateDoodles);
+      }
+
+      setTimeout(() => {
+        heroDoodles.forEach((d, i) => {
+          setTimeout(() => d.classList.add('is-visible'), i * 120);
+        });
+      }, 600);
+      animateDoodles();
+
+      /* ========== HERO PARTICLE CANVAS ========== */
+      const canvas = document.getElementById('heroCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const PARTICLE_COUNT = 60;
+
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+          constructor() { this.reset(); }
+          reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.3;
+            this.speedY = (Math.random() - 0.5) * 0.3;
+            this.opacity = Math.random() * 0.4 + 0.1;
+            this.hue = Math.random() > 0.5 ? 42 : 220;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+          }
+          draw() {
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = 'rgba(124, 156, 255, ' + (0.08 * (1 - dist / 120)) + ')';
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = 'hsla(' + this.hue + ', 70%, 60%, ' + this.opacity + ')';
+            ctx.fill();
           }
         }
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+        function drawConnections() {
+          for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 120) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = 'rgba(124, 156, 255, ' + (0.08 * (1 - dist / 120)) + ')';
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+              }
+            }
+          }
+        }
+
+        function animateParticles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => { p.update(); p.draw(); });
+          drawConnections();
+          requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
       }
-    }
 
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      drawConnections();
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-  }
+      // Initialize showcase
+      updateShowcase();
 
-  // Initialize showcase
-  updateShowcase();
-
-})();
-</script>
-<link rel="stylesheet" href="../assets/css/shared-site.css">
-<script src="../assets/js/shared-navbar.js"></script>
-<script src="../assets/js/shared-site.js"></script>
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/shared-site.css">
+  <script src="../assets/js/shared-navbar.js"></script>
+  <script src="../assets/js/shared-site.js"></script>
 </body>
+
 </html>
